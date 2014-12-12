@@ -1,0 +1,12 @@
+gem-ctags
+awesome_print
+brakeman
+bundler
+hirb
+neovim
+pry
+pry-byebug
+reek
+rubocop
+rspec
+rails_best_practices

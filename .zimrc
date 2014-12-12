@@ -1,0 +1,26 @@
+# Load any helper scripts as defined here
+zmodules=(archive autosuggestions completion directory environment git \
+          git-info history history-substring-search input prompt \
+          syntax-highlighting utility)
+
+# Environment
+# ===========
+# Set the string below to the desired terminal title format string.
+# ztermtitle='%n@%m:%~'
+
+# Input
+zdouble_dot_expand='true'
+
+# Prompt
+zprompt_theme='eriner'
+
+# SSH
+zssh_ids=(id_rsa)
+
+# Syntax-Highlighting
+zhighlighters=(main brackets cursor root)
+
+#  * history-substring-search j/k keys not working on vi mode!
+# https://github.com/Eriner/zim/issues/108
+# https://github.com/Eriner/zim/issues/23
+bindkey -A viins main

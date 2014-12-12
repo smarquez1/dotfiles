@@ -1,0 +1,8 @@
+# Mac stuff
+.DS_Store
+
+# Tag files
+tags
+!tags/
+tags.lock
+tags.temp

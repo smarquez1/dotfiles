@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gnome-shell-notifications-alert">
+  <schema path="/org/gnome/shell/extensions/notifications-alert/" id="org.gnome.shell.extensions.notifications-alert">
+    <key name="force" type="b">
+      <default>false</default>
+      <summary>Force alerting even when notifications are set to OFF</summary>
+      <description>Alert even if you set notifications to OFF on user menu</description>
+    </key>
+    <key name="chatonly" type="b">
+      <default>false</default>
+      <summary>Only alert for chat notifications</summary>
+      <description>Only chat notifications (like Empathy ones) will get alerted</description>
+    </key>
+    <key name="blinkrate" type="i">
+      <default>800</default>
+      <summary>Blink rate</summary>
+      <description>The rate that the alert blinks, in ms. 0 means no blink</description>
+    </key>
+    <key name="color" type="s">
+      <default>'#ff0000'</default>
+      <summary>Alert color</summary>
+      <description>The color used to paint the message on user's menu</description>
+    </key>
+    <key name="application-list" type="as">
+      <default>[ ]</default>
+      <summary>Blacklist</summary>
+      <description>A list of strings, each containing an application id (desktop file name), followed by a colon</description>
+    </key>
+    <key name="filter" type="i">
+      <default>0</default>
+      <summary>Filter type</summary>
+      <description>Filter type to use. 0 mean Blacklist, 1 means Whitelist</description>
+    </key>
+  </schema>
+</schemalist>

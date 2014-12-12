@@ -1,0 +1,56 @@
+#!/bin/bash
+#Requirements:
+# yadm-git
+# yaourt
+
+# INSTALL DEPENDENCIES
+echo "installing dependencies"
+sudo pacman -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip \
+  trash-cli --noconfirm
+yaourt -S universal-ctags --noconfirm
+
+# ZSH
+
+if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
+  echo "bootstraping ZSH"
+  chsh -s /usr/bin/zsh
+  git clone --recursive https://github.com/zimfw/zimfw.git ~/.zim
+fi
+
+# INSTALL TMUX  PLUGINS
+if [ `ls -A ~/.tmux/plugins/tpm | wc -m` == "0" ]; then
+  echo "bootstraping tmux"
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
+    ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+fi
+
+# INSTALL NEOVIM PLUGINS
+if command -v nvim >/dev/null 2>&1; then
+  echo "Bootstraping NeoVim"
+
+  sudo pip install neovim
+  curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
+    nvim '+PlugUpdate' '+PlugClean!' '+qall'
+fi
+
+# BASE 16 SHELL
+if [ `ls -A ~/.config/base16-shell/ | wc -m` == "0" ]; then
+  echo "installing BASE16 Shell"
+  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+fi
+
+# Rbenv
+if command -v rbenv >/dev/null 2>&1; then
+  echo "Bootstraping rbenv"
+  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
+
+  mkdir -p "$(rbenv root)/plugins"
+  git clone https://github.com/znz/rbenv-plug.git "$(rbenv root)/plugins/rbenv-plug"
+  rbenv plug bundler
+  rbenv plug ctags
+  rbenv ctags
+  rbenv plug default-gems
+  rbenv plug ruby-build
+  rbenv plug update
+fi

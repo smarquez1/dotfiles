@@ -1,0 +1,15 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+  UseCache: false
+Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: 'indented'
+
