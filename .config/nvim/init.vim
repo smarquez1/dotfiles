@@ -90,7 +90,7 @@ au FileType vim
   \ | setl foldlevel=0
 
 " Custom key mapings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Leader is space
+" comma is space
 let mapleader=" "
 
 " Semicolon is colon

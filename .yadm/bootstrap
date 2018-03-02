@@ -1,13 +1,13 @@
 #!/bin/bash
-#Requirements:
+# Requirements:
 # yadm-git
 # yaourt
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 sudo pacman -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip \
-  trash-cli --noconfirm
-yaourt -S universal-ctags --noconfirm
+  trash-cli openssh --noconfirm --needed
+yaourt -S universal-ctags yay-bin --noconfirm --needed
 
 # ZSH
 
@@ -47,10 +47,60 @@ if command -v rbenv >/dev/null 2>&1; then
 
   mkdir -p "$(rbenv root)/plugins"
   git clone https://github.com/znz/rbenv-plug.git "$(rbenv root)/plugins/rbenv-plug"
-  rbenv plug bundler
   rbenv plug ctags
-  rbenv ctags
   rbenv plug default-gems
   rbenv plug ruby-build
   rbenv plug update
+
+  rbenv ctags
+fi
+
+# DESKTOP
+read -r -p "Bootstrap gnome-shell? [y/N] " response
+response=${response,,}
+if [[ "$response" =~ ^(yes|y)$ ]]; then
+  sudo pacman -S gpaste --no-confirm --needed
+  yaourt -S gnome-shell-extension-installer --no-confirm --needed
+
+  gnome-shell-extension-installer 307  # Dash to dock
+  gnome-shell-extension-installer 2    # Move Clock
+  gnome-shell-extension-installer 1295 # Google earth wallpaper
+  gnome-shell-extension-installer 1031 # TopIcons Plus
+  gnome-shell-extension-installer 826  # Suspend button
+  gnome-shell-extension-installer 906  # Sound Input & Output Device Chooser 
+  gnome-shell-extension-installer 905  # Refresh Wifi Connections
+  gnome-shell-extension-installer 258  # Notifications Alert 
+  gnome-shell-extension-installer 1267 # No Title Bar
+  gnome-shell-extension-installer 55   # Media Player Indicator
+  gnome-shell-extension-installer 1007 # 'Window Is Ready' Notification Remover
+  gnome-shell-extension-installer 53   # Pomodoro
+fi
+
+# TODO:
+# configure theme
+# dconf config (keyboard shortcuts, etc)
+
+# TODO: Improve
+read -r -p "Install Basic Desktop apps? [y/N] " response
+response=${response,,}
+if [[ "$response" =~ ^(yes|y)$ ]]; then
+  yaourt -S dropbox gnome-mpv gnome-tweak-tool gnome-shell-pomodoro \
+    google-chrome gpaste simplenote-electron-bin slack-desktop \
+    paper-icon-theme ttf-iosevka-term bitwarden --no-confirm --needed
+fi
+
+# TODO: Improve
+read -r -p "Install Extra packages? [y/N] " response
+response=${response,,}
+if [[ "$response" =~ ^(yes|y)$ ]]; then
+  yaourt -S acestream-engine acestream-launcher android-file-transfer \
+    android-tools aria2 calibre chrome-gnome-shell darktable dconf-editor \
+    geeqie htop intel-ucode linux-firmware linux-lts linux-lts-headers \
+    linux-zen linux-zen-headers meld ntfs-3g nvm pgadmin4 pinta \
+    popcorntime-bin rapid-photo-downloader skypeforlinux-bin spotify steam \
+    steam-native-runtime stremio-legacy subdownloader sublime-text-dev \
+    subliminal telegram-desktop-bin termite-git termite-terminfo-git \
+    transmission-cli transmission-gtk trash-cli unified-remote-server \
+    vulkan-icd-loader vulkan-intel wget wine wine-mono winetricks yarn yay \
+    zoom etcher --no-confirm --needed
 fi
