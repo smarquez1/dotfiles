@@ -11,6 +11,8 @@ set sidescroll=1
 
 " Highlight column at 80 
 set cc=80
+au FileType javascript set cc=100
+
 
 " Line wrapping
 set wrap
@@ -152,9 +154,10 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
-\   'javascript': ['eslint', 'prettier'],
 \   'css': ['prettier', 'stylelint'],
-\   'scss': ['prettier', 'stylelint']
+\   'javascript': ['eslint', 'prettier'],
+\   'scss': ['prettier', 'stylelint'],
+\   'ruby': ['rubocop']
 \}
 
 Plug 'dyng/ctrlsf.vim'

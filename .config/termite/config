@@ -1,10 +1,9 @@
 [options]
 mouse_autohide        = true
 font                  = Iosevka Term Regular 12
-font                  = Monospace 11
 geometry              = 1024x600
 # set size hints for the window
-# size_hints            = true
+size_hints            = true
 # emit escape sequences for extra modified keys
 # modify_other_keys     = true
 

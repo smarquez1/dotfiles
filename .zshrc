@@ -22,9 +22,6 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 # Report terminal type
 export TERM=tmux-256color
-# export TERM=screen-256color
-# set locale to english
-export LC_ALL=en_US.UTF-8
 
 # Prevent history to save duplicates
 setopt hist_ignore_all_dups

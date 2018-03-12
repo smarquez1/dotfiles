@@ -23,7 +23,7 @@
   prompt = false
 [difftool "vimdiff"]
   prompt = false
-  cmd = nvim -d $LOCAL $BASE
+  cmd = nvim $LOCAL $BASE HEAD
 [fetch]
   prune = true
 [rebase]
