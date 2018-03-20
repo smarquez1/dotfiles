@@ -12,10 +12,7 @@ zmodules=(archive autosuggestions completion directory environment git \
 zdouble_dot_expand='true'
 
 # Prompt
-zprompt_theme='eriner'
-
-# SSH
-zssh_ids=(id_rsa)
+zprompt_theme='gitster'
 
 # Syntax-Highlighting
 zhighlighters=(main brackets cursor root)

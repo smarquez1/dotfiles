@@ -47,16 +47,9 @@ alias bu="bundle update"
 # Rbenv aliases
 alias re="rbenv exec"
 # Rails aliases
-alias ber="bundle exec rails"
 alias pspec="be rake parallel:spec $1"
-# aliases for Tmux
-alias tmux='tmux -2'
-alias ta='tmux attach -t'
-alias tnew='tmux new -s'
-alias tls='tmux ls'
-alias tkill='tmux kill-session -t'
 
-# Attach tmux session
+# Reattach tmux session
 if [[ $TMUX = "" ]]; then
   tmux ls | grep -vq attached && TMUXARG="attach-session -d"
   exec eval "tmux $TMUXARG"

@@ -59,8 +59,10 @@ fi
 read -r -p "Bootstrap gnome-shell? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
+  sudo pacman -R gnome-shell-extensions --noconfirm --needed
+
   yay -S gpaste gnome-shell-pomodoro \
-    gnome-shell-extension-installer --noconfirm --needed
+    gnome-shell-extension-installer dconf --noconfirm --needed
 
   gnome-shell-extension-installer 307  # Dash to dock
   gnome-shell-extension-installer 2    # Move Clock
@@ -71,21 +73,20 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
   gnome-shell-extension-installer 258  # Notifications Alert 
   gnome-shell-extension-installer 1267 # No Title Bar
   gnome-shell-extension-installer 55   # Media Player Indicator
+  gnome-shell-extension-installer 19   # User Themes
   gnome-shell-extension-installer 1007 # 'Window Is Ready' Notification Remover
+  gnome-shell-extension-installer 112  # Remove Accessibility
+  gnome-shell-extension-installer 1128 # Hide Activities
+  gnome-shell-extension-installer 708  # Panel OSD
 fi
 
-# TODO:
-# configure theme
-# dconf config (keyboard shortcuts, etc)
-
-# TODO: Improve
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S dropbox gnome-mpv gnome-tweak-tool gnome-shell-pomodoro \
     google-chrome gpaste simplenote-electron-bin slack-desktop \
     ttf-iosevka-term bitwarden termite termite-terminfo chrome-gnome-shell \
-    --noconfirm --needed
+    numix-frost-themes --noconfirm --needed
 fi
 
 # TODO: Improve
@@ -102,5 +103,8 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
     transmission-cli transmission-gtk trash-cli unified-remote-server \
     vulkan-icd-loader vulkan-intel wget wine wine-mono winetricks yarn \
     zoom etcher kdenlive luv-icon-theme-git \
-    noto-fonts noto-fonts-emoji capitaine-cursors --noconfirm --needed
+    noto-fonts noto-fonts-emoji capitaine-cursors gnome-clocks \
+    --noconfirm --needed
+
+  dconf load /org/gnome/ < gnome.dconf
 fi

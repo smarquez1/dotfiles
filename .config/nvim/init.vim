@@ -4,15 +4,11 @@
 " set mouse
 set mouse=a
 
-" https://github.com/neovim/neovim/issues/4930
-" set re=1
-
 set sidescroll=1
 
 " Highlight column at 80 
 set cc=80
-au FileType javascript set cc=100
-
+au FileType javascript,html,eruby set cc=100
 
 " Line wrapping
 set wrap

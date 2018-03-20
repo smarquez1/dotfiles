@@ -12,4 +12,3 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/MultilineMethodCallIndentation:
   EnforcedStyle: 'indented'
-
