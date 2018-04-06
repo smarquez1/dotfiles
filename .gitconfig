@@ -21,9 +21,6 @@
   tool = vimdiff
 [difftool]
   prompt = false
-[difftool "vimdiff"]
-  prompt = false
-  cmd = nvim $LOCAL $BASE HEAD
 [fetch]
   prune = true
 [rebase]
@@ -49,7 +46,8 @@
   up             = !git fetch origin && git rebase origin/master
   # one-line log
   l              = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  # my commits last month
+  my-commits = !git log --author=\"`git config user.name`\" --pretty=format:\"%cd  %h  %s\" --date=short
   # list aliases
   la             = "!git config -l | grep alias | cut -c 7-"
- # my commits last month
-  my-commits = !git log --author=\"`git config user.name`\" --pretty=format:\"%cd  %h  %s\" --date=short

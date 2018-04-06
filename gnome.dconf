@@ -24,131 +24,101 @@ color='#73a0d1'
 [shell/extensions/topicons]
 tray-pos='right'
 
-[shell/extensions/extendedgestures]
-right-three-swipes=false
-left-three-action='overview'
-left-three-swipes=false
-right-three-action='overview'
-down-three-action='switch-workspace'
-up-three-action='switch-workspace'
-
 [shell/extensions/dash-to-dock]
 dash-max-icon-size=48
 icon-size-fixed=true
 
-/* [file-roller/ui] */
-/* sidebar-width=200 */
-/* window-height=480 */
-/* window-width=600 */
+[shell/overrides]
+dynamic-workspaces=false
 
-/* [evolution-data-server] */
-/* network-monitor-gio-name='' */
-/* migrated=true */
+[gedit/plugins]
+active-plugins=['spell', 'filebrowser', 'time', 'modelines', 'docinfo']
 
-/* [desktop/a11y/magnifier] */
-/* mag-factor=12.0 */
+[clocks]
+world-clocks=[{'location': <(uint32 2, <('Glen Allen, Virginia, United States of America', 'KOFP', false, [(0.65739533382907789, -1.3527414175821273)], [(0.65812973172640288, -1.3514860022511679)])>)>}, {'location': <(uint32 2, <('Mar del Plata', 'SAZM', true, [(-0.66206155710541803, -1.005018755122304)], [(-0.66322511575784515, -1.0044369845227366)])>)>}, {'location': <(uint32 2, <('Málaga', 'LEMG', true, [(0.63995406488235163, -0.078248922313314942)], [(0.64082672950834885, -0.077085381114180396)])>)>}]
 
-/* [desktop/a11y/applications] */
-/* screen-keyboard-enabled=false */
-/* screen-magnifier-enabled=false */
-/* screen-reader-enabled=false */
+[Weather/Application]
+locations=[<(uint32 2, <('Mar del Plata', 'SAZM', true, [(-0.66206155710541803, -1.005018755122304)], [(-0.66322511575784515, -1.0044369845227366)])>)>]
 
-/* [desktop/a11y/mouse] */
-/* secondary-click-enabled=false */
-/* secondary-click-time=1.2 */
-/* dwell-time=1.2 */
-/* dwell-threshold=10 */
-/* dwell-click-enabled=false */
+[nautilus/preferences]
+click-policy='single'
 
-/* [desktop/notifications] */
-/* application-children=['google-chrome', 'gnome-tweak-tool', 'rapid-photo-downloader', 'org-gnome-nautilus', 'slack', 'spotify', 'evolution'] */
+[desktop/interface]
+text-scaling-factor=1.25
+gtk-enable-primary-paste=false
+font-name='Noto Sans 11'
+document-font-name='Noto Sans 11'
+toolkit-accessibility=false
+cursor-theme='capitaine-cursors'
+icon-theme='Luv'
+monospace-font-name='Iosevka Term 12'
+gtk-theme='Numix-Frost'
+clock-show-date=false
 
-/* [desktop/notifications/application/google-chrome] */
-/* application-id='google-chrome.desktop' */
+[desktop/wm/preferences]
+button-layout='close,minimize,maximize:appmenu'
+resize-with-right-button=true
+theme='Numix-Frost-Light'
+num-workspaces=2
+titlebar-font='Noto Sans Bold 11'
 
-/* [desktop/notifications/application/gnome-tweak-tool] */
-/* application-id='gnome-tweak-tool.desktop' */
+[desktop/wm/keybindings]
+switch-to-workspace-left=@as []
+move-to-workspace-left=@as []
+begin-move=@as []
+move-to-monitor-right=@as []
+switch-to-workspace-1=@as []
+toggle-maximized=['<Super>k']
+move-to-monitor-left=@as []
+cycle-windows=@as []
+show-desktop=['<Super>d']
+maximize=@as []
+toggle-fullscreen=['<Alt>Return']
+begin-resize=@as []
+panel-main-menu=@as []
+cycle-windows-backward=@as []
+cycle-group-backward=@as []
+switch-to-workspace-right=@as []
+move-to-workspace-down=['<Shift><Super>j']
+move-to-workspace-1=@as []
+cycle-group=@as []
+move-to-workspace-last=@as []
+switch-applications=['<Alt>Tab']
+minimize=['<Super>j']
+switch-to-workspace-last=@as []
+switch-applications-backward=['<Shift><Alt>Tab']
+move-to-monitor-down=@as []
+switch-to-workspace-down=@as []
+move-to-workspace-up=['<Shift><Super>k']
+move-to-workspace-right=@as []
+unmaximize=@as []
+move-to-monitor-up=@as []
+close=['<Primary>q']
+switch-to-workspace-up=@as []
 
-/* [desktop/notifications/application/evolution] */
-/* application-id='evolution.desktop' */
+[desktop/sound]
+allow-volume-above-100-percent=true
 
-/* [desktop/notifications/application/rapid-photo-downloader] */
-/* application-id='rapid-photo-downloader.desktop' */
+[desktop/input-sources]
+show-all-sources=false
+sources=[('xkb', 'us'), ('xkb', 'es')]
+mru-sources=[('xkb', 'us'), ('xkb', 'es')]
+xkb-options=['caps:escape', 'compose:ralt']
 
-/* [desktop/notifications/application/slack] */
-/* application-id='slack.desktop' */
+[GPaste]
+track-changes=true
+track-extension-state=true
+upload=''
+launch-ui=''
+make-password=''
+sync-primary-to-clipboard=''
+sync-clipboard-to-primary=''
+show-history='<Ctrl><Alt>V'
+pop=''
 
-/* [desktop/notifications/application/org-gnome-nautilus] */
-/* application-id='org.gnome.Nautilus.desktop' */
+[mutter/keybindings]
+toggle-tiled-right=['<Super>l']
+toggle-tiled-left=['<Super>h']
 
-/* [desktop/notifications/application/spotify] */
-/* application-id='spotify.desktop' */
-
-/* [desktop/screensaver] */
-/* picture-uri='file:///home/sergio/.cache/gnome-control-center/backgrounds/acd8feada32402e75d5fb075004a3c787eb831be0c3f366551aa66fd8668256e' */
-/* color-shading-type='solid' */
-/* primary-color='#000000000000' */
-/* picture-options='zoom' */
-/* secondary-color='#000000000000' */
-
-/* [desktop/background] */
-/* picture-uri='file:///home/sergio/.cache/gnome-control-center/backgrounds/90c12560f08617189d2db5adbcb328a74f1f94c3cffdc09a350fc0bb2f192d37' */
-/* show-desktop-icons=false */
-/* color-shading-type='solid' */
-/* primary-color='#000000000000' */
-/* picture-options='zoom' */
-/* secondary-color='#000000000000' */
-
-/* [desktop/input-sources] */
-/* sources=[('xkb', 'us'), ('xkb', 'es')] */
-/* xkb-options=['caps:escape', 'compose:ralt'] */
-
-/* [desktop/wm/preferences] */
-/* button-layout='close,minimize,maximize:appmenu' */
-/* resize-with-right-button=true */
-/* theme='Numix-Frost-Light' */
-/* titlebar-font='Noto Sans Bold 11' */
-
-/* [desktop/wm/keybindings] */
-/* maximize=@as [] */
-/* toggle-maximized=['<Alt>Return'] */
-/* unmaximize=['<Super>k'] */
-/* close=['<Primary>q'] */
-/* move-to-workspace-up=['<Shift><Super>k'] */
-/* switch-to-workspace-left=@as [] */
-/* switch-to-workspace-down=@as [] */
-/* move-to-workspace-right=@as [] */
-/* cycle-windows=@as [] */
-/* cycle-windows-backward=@as [] */
-/* move-to-monitor-left=@as [] */
-/* show-desktop=['<Super>d'] */
-/* switch-to-workspace-right=@as [] */
-/* move-to-monitor-down=@as [] */
-/* move-to-workspace-left=@as [] */
-/* move-to-monitor-right=@as [] */
-/* move-to-workspace-down=['<Shift><Super>j'] */
-/* move-to-monitor-up=@as [] */
-/* minimize=['<Super>j'] */
-/* switch-to-workspace-up=@as [] */
-
-/* [desktop/interface] */
-/* text-scaling-factor=1.25 */
-/* font-name='Noto Sans 11' */
-/* document-font-name='Noto Sans 11' */
-/* toolkit-accessibility=false */
-/* gtk-im-module='gtk-im-context-simple' */
-/* cursor-theme='capitaine-cursors' */
-/* icon-theme='Luv' */
-/* monospace-font-name='Iosevka Term 12' */
-/* gtk-theme='Numix-Frost' */
-/* clock-show-date=false */
-
-/* [GPaste] */
-/* show-history='<Ctrl><Alt>V' */
-/* pop='' */
-/* track-extension-state=true */
-/* track-changes=true */
-
-/* [mutter/keybindings] */
-/* toggle-tiled-right=['<Super>l'] */
-/* toggle-tiled-left=['<Super>h'] */
+[mutter/wayland/keybindings]
+restore-shortcuts=@as []

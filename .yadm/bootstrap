@@ -102,7 +102,7 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
     subliminal telegram-desktop-bin libreoffice-fresh-es \
     transmission-cli transmission-gtk trash-cli unified-remote-server \
     vulkan-icd-loader vulkan-intel wget wine wine-mono winetricks yarn \
-    zoom etcher kdenlive luv-icon-theme-git \
+    zoom etcher kdenlive luv-icon-theme-git gparted \
     noto-fonts noto-fonts-emoji capitaine-cursors gnome-clocks \
     --noconfirm --needed
 

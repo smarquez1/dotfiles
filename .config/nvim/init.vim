@@ -6,13 +6,6 @@ set mouse=a
 
 set sidescroll=1
 
-" Highlight column at 80 
-set cc=80
-au FileType javascript,html,eruby set cc=100
-
-" Line wrapping
-set wrap
-
 " Configure search
 set ignorecase smartcase
 
@@ -67,7 +60,16 @@ set splitbelow splitright
 " Line breaks
 set breakindent
 set breakindentopt=sbr
-let &showbreak = '↪'
+let &showbreak = '↳ '
+
+" Highlight column at 80 
+set cc=80
+" au FileType javascript,html,eruby set cc=100
+
+" Line wrapping
+set wrap
+set cpo=n
+
 
 " Formatting ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -141,9 +143,8 @@ nmap <leader>ai mzgg=G`z
 
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
-Plug 'sbdchd/neoformat'
-
 Plug 'w0rp/ale'
+" {{{
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'scss': ['sasslint']
@@ -155,6 +156,7 @@ let g:ale_fixers = {
 \   'scss': ['prettier', 'stylelint'],
 \   'ruby': ['rubocop']
 \}
+" }}}
 
 Plug 'dyng/ctrlsf.vim'
 " {{{
@@ -214,18 +216,9 @@ map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 "}}}
 Plug 'janko-m/vim-test'
-" {{{
-let test#runners = {'javascript': ['jest']}
-let test#strategy = "neoterm"
-" }}}
 Plug 'tpope/vim-speeddating'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'kassio/neoterm'
-" {{{
-let g:neoterm_position = 'vertical'
-" }}}
 " Completion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-completion-manager'
       \ | Plug 'SirVer/ultisnips'
       \ | Plug 'honza/vim-snippets'
@@ -260,7 +253,7 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = {
 \ 'colorscheme': 'Tomorrow_Night_Eighties',
 \ 'active': {
-\   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],
+\   'left': [['mode', 'paste'], ['readonly', 'gitbranch', 'filename', 'modified']],
 \   'right': [['lineinfo'],
 \             ['percent'],
 \             ['filetype', 'linter_errors']]
@@ -283,7 +276,7 @@ function! LightlineLinterErrors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+  return l:counts.total == 0 ? '' : printf('%d ❌', all_errors)
 endfunction
 
 autocmd User ALELint call lightline#update()

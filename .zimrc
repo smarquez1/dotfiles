@@ -21,3 +21,6 @@ zhighlighters=(main brackets cursor root)
 # https://github.com/Eriner/zim/issues/108
 # https://github.com/Eriner/zim/issues/23
 bindkey -A viins main
+
+# Load these ssh identities with the ssh module
+zssh_ids=(id_rsa)

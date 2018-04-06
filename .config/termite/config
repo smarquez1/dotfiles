@@ -1,18 +1,16 @@
 [options]
-mouse_autohide        = true
 font                  = Iosevka Term Regular 12
-# set size hints for the window
+mouse_autohide        = true
 size_hints            = true
-# emit escape sequences for extra modified keys
-# modify_other_keys     = true
 
 [colors]
 # Base16 Tomorrow Night
+
+cursor = #aeafad
 foreground      = #c5c8c6
 foreground_bold = #e0e0e0
-cursor          = #e0e0e0
 background      = #1d1f21
-# 16 color space
+
 # Black, Gray, Silver, White
 color0  = #1d1f21
 color8  = #969896
