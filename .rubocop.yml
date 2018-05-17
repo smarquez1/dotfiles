@@ -10,5 +10,5 @@ Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: 'indented'

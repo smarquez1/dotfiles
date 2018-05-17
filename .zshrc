@@ -5,18 +5,12 @@ export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Base 16 shell
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-eighties.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-# NVM & AVN
-[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-#source /usr/share/nvm/nvm.sh
-#source /usr/share/nvm/bash_completion
-#source /usr/share/nvm/install-nvm-exec
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-#yarn
-#export PATH="$PATH:`yarn global bin`"
 
+# cli language is english
+export LANG=en_US.utf8
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
@@ -28,7 +22,7 @@ setopt hist_ignore_all_dups
 # wait 10 seconds before really executing 'rm -rf *'
 setopt RM_STAR_WAIT
 # auto correct
-# setopt CORRECT
+setopt CORRECT
 
 # Aliases
 # =======
@@ -48,6 +42,8 @@ alias bu="bundle update"
 alias re="rbenv exec"
 # Rails aliases
 alias pspec="be rake parallel:spec $1"
+# Update system and dependencies
+alias le_update="~/.yadm/update.sh"
 
 # Reattach tmux session
 if [[ $TMUX = "" ]]; then

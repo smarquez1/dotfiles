@@ -1,5 +1,10 @@
 " Neovim config
 
+" performance issues
+set ttyfast
+set regexpengine=1
+set synmaxcol=200
+
 " General options ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " set mouse
 set mouse=a
@@ -17,8 +22,6 @@ set clipboard+=unnamedplus
 
 " Use zsh as shell
 set shell=zsh
-
-set lazyredraw
 
 " Visual Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Enable live substitution
@@ -143,6 +146,8 @@ nmap <leader>ai mzgg=G`z
 
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
+Plug 'benmills/vimux'
+
 Plug 'w0rp/ale'
 " {{{
 let g:ale_linters = {
@@ -216,6 +221,9 @@ map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 "}}}
 Plug 'janko-m/vim-test'
+" {{{
+let test#strategy = "vimux"
+" }}}
 Plug 'tpope/vim-speeddating'
 Plug 'christoomey/vim-tmux-navigator'
 " Completion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,13 +1,13 @@
 #!/bin/bash
 # Requirements:
 # yadm-git
-# yaourt
+# yay
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 yaourt -S yay-bin --noconfirm --needed
 yay -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip trash-cli \
-  openssh xclip --noconfirm --needed
+  openssh xclip yarn --noconfirm --needed
 
 # ZSH
 
@@ -47,12 +47,19 @@ if command -v rbenv >/dev/null 2>&1; then
 
   mkdir -p "$(rbenv root)/plugins"
   git clone https://github.com/znz/rbenv-plug.git "$(rbenv root)/plugins/rbenv-plug"
+  rbenv plug aliases
   rbenv plug ctags
   rbenv plug default-gems
   rbenv plug ruby-build
   rbenv plug update
 
   rbenv ctags
+fi
+
+# node
+if command -v yarn >/dev/null 2>&1; then
+  echo "Bootstraping node"
+  sudo yarn global add eslint create-react-app
 fi
 
 # DESKTOP
@@ -78,6 +85,7 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
   gnome-shell-extension-installer 112  # Remove Accessibility
   gnome-shell-extension-installer 1128 # Hide Activities
   gnome-shell-extension-installer 708  # Panel OSD
+  gnome-shell-extension-installer 1319 # GSConnect
 fi
 
 read -r -p "Install Basic Desktop apps? [y/N] " response
@@ -96,15 +104,15 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S acestream-engine acestream-launcher android-file-transfer \
     android-tools calibre chrome-gnome-shell darktable dconf-editor \
     geeqie htop intel-ucode linux-firmware linux-lts linux-lts-headers \
-    meld ntfs-3g nvm pgadmin4 pinta \
+    meld ntfs-3g nvm pgadmin4 pinta gthumb ttf-bookerly evolution \
     popcorntime-bin rapid-photo-downloader skype-desktop-bin spotify steam \
     steam-native-runtime stremio-legacy subdownloader sublime-text-dev \
     subliminal telegram-desktop-bin libreoffice-fresh-es \
     transmission-cli transmission-gtk trash-cli unified-remote-server \
-    vulkan-icd-loader vulkan-intel wget wine wine-mono winetricks yarn \
-    zoom etcher kdenlive luv-icon-theme-git gparted \
+    vulkan-icd-loader vulkan-intel wget wine wine-mono winetricks \
+    zoom etcher kdenlive luv-icon-theme-git gparted wunderline \
     noto-fonts noto-fonts-emoji capitaine-cursors gnome-clocks \
-    --noconfirm --needed
+    kdeconnect --noconfirm --needed
 
   dconf load /org/gnome/ < gnome.dconf
 fi
