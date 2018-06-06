@@ -1,153 +1,127 @@
 " Neovim config
 
-" performance issues
+" General options ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" set mouse
+set mouse=a
+" Scroll extra lines when reaching the bottom
+set scrolloff=3
+" Add underscore as a keyword break
+" set iskeyword-=_
+" Configure search
+set ignorecase smartcase
+" Use system's clipboard. Keep platform specific settings
+set clipboard=unnamedplus
+" No backup or swapfile
+set nobackup nowb noswapfile
+" Use zsh as shell
+set shell=zsh
+" performance fixes
 set ttyfast
 set regexpengine=1
 set synmaxcol=200
 
-" General options ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" set mouse
-set mouse=a
-
-set sidescroll=1
-
-" Configure search
-set ignorecase smartcase
-
-" Use system's clipboard. Keep platform specific settings
-set clipboard+=unnamedplus
-
-" No backup or swapfile
-" set nobackup nowritebackup noswapfile
-
-" Use zsh as shell
-set shell=zsh
-
-" Visual Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Enable live substitution
-set inccommand=nosplit
-
+" UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Enable true color
 set termguicolors
-
+" Enable live substitution
+set inccommand=nosplit
 " Show line numbers
-set number numberwidth=2
-
-" Show lines numbers realtive to current line (slow)
+set number
 set relativenumber
-
+set numberwidth=2
 " Disable swap files
 set noswapfile nobackup nowb
-
 " Highlight current line (slow)
 " set cursorline
-
 " Make escape work in the Neovim terminal.
 tnoremap <Esc> <C-\><C-n>
-
 " Make navigation into and out of Neovim terminal splits nicer.
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
-
 " No line numbers in terminal mode
 autocmd TermOpen * setlocal nonumber
-
 " Prefer Neovim terminal insert mode to normal mode.
 autocmd BufEnter term://* startinsert
-
 " Areas where the splits should occur
 set splitbelow splitright
-
-" Line breaks
+" Wrap text
+set wrap
 set breakindent
 set breakindentopt=sbr
 let &showbreak = '↳ '
-
-" Highlight column at 80 
-set cc=80
+" Don't wrap text
+" set nowrap
+" set sidescroll=1
+" Highlight column at 81
+set cc=81
 " au FileType javascript,html,eruby set cc=100
 
-" Line wrapping
-set wrap
-set cpo=n
-
-
 " Formatting ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 " Use tabs as spaces, default identation: 2 spaces
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
-
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-
-au FileType markdown
-  \   setl spell
-
+" Enable spellin on markdown files
+au FileType markdown setl spell
 " configure vim folds
 au FileType vim
   \   setl foldmethod=marker
   \ | setl foldenable
   \ | setl foldlevel=0
-
 " Custom key mapings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " comma is space
 let mapleader=" "
-
-" Semicolon is colon
-map ; :
-
-" Hit twice semicolon for original behaviour
-noremap ;; ;
-
 " Save file
 noremap <leader>w :w <cr>
-
 " Quicker window movement
 nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 nmap <c-h> <c-w>h
-
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
-
 " Replace hashrockets with 1.9 hash style syntax
-nmap <Leader>: :%s/:\([^=,'"]*\) =>/\1:/g <cr>o
-
+nmap <leader>: :%s/:\(\w\+\)\s*=>\s*/\1: /g <cr>
 " Re-Open Previously Opened File
-nnoremap <Leader><Leader> :e#<CR>
-
+nnoremap <leader><leader> :e#<CR>
 " Open current file with external tool
 nmap <leader>E :!open % <CR> <CR>
-
 " map . in visual mode
 vnoremap . :norm.<cr>
-
-" unmap F1 help
-nmap <F1> <nop>
-imap <F1> <nop>
-
 " unmap ex mode: 'Type visual to go into Normal mode.'
 nmap Q <nop>
-
 " Cancel a search with Escape:
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-
 " Quickly open/reload vim
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
-
 " Auto indent whole document
 nmap <leader>ai mzgg=G`z
 
+" Saner cursor positioning after yanking blocks
+vnoremap <expr>y "my\"" . v:register . "y`y"
+
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
-Plug 'benmills/vimux'
+" Vue
+Plug 'posva/vim-vue'
+" Match html tags
+Plug 'Valloric/MatchTagAlways'
+" Helps stop using hjkl keys
+Plug 'takac/vim-hardtime'
+" Continuously updated session files, used with tmux-resurrect
+Plug 'tpope/vim-obsession'
 
+
+" {{{
+let g:hardtime_showmsg = 1
+let g:hardtime_default_on = 1
+let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
+" }}}
 Plug 'w0rp/ale'
 " {{{
 let g:ale_linters = {
@@ -162,7 +136,6 @@ let g:ale_fixers = {
 \   'ruby': ['rubocop']
 \}
 " }}}
-
 Plug 'dyng/ctrlsf.vim'
 " {{{
 let g:ctrlsf_position = 'left'
@@ -212,14 +185,6 @@ let g:rubycomplete_rails = 1
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-sayonara'
-Plug 'justinmk/vim-sneak'
-"{{{
-let g:sneak#streak = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-"}}}
 Plug 'janko-m/vim-test'
 " {{{
 let test#strategy = "vimux"
@@ -231,7 +196,6 @@ Plug 'roxma/nvim-completion-manager'
       \ | Plug 'SirVer/ultisnips'
       \ | Plug 'honza/vim-snippets'
       \ | Plug 'isRuslan/vim-es6'
-      \ | Plug 'bentayloruk/vim-react-es6-snippets'
       \ | Plug 'fishbullet/deoplete-ruby'
       \ | Plug 'carlitux/deoplete-ternjs'
       \ | Plug 'jiangmiao/auto-pairs'
@@ -246,11 +210,11 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:AutoPairsMultilineClose = 1
 " }}}
-
+Plug 'benmills/vimux'
 " Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'chriskempson/base16-vim'
 " {{{
-let base16colorspace=256
+let base16colorspace=256 
 " }}}
 Plug 'Yggdroot/indentLine'
 " {{{
@@ -261,7 +225,8 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = {
 \ 'colorscheme': 'Tomorrow_Night_Eighties',
 \ 'active': {
-\   'left': [['mode', 'paste'], ['readonly', 'gitbranch', 'filename', 'modified']],
+\   'left': [['mode', 'paste'],
+\            ['readonly', 'gitbranch', 'filename', 'modified']],
 \   'right': [['lineinfo'],
 \             ['percent'],
 \             ['filetype', 'linter_errors']]
@@ -323,25 +288,21 @@ let g:used_javascript_libs = 'underscore,jquery,react,flux,jasmine'
 call plug#end()
 
 " Colorscheme
-colo base16-eighties
-hi VertSplit guibg=bg guifg=cyan
-
+set background=dark
+colorscheme base16-eighties
+hi VertSplit guibg=bg guifg=fg
 " Neovim-fuzzy
 nmap <Leader>f :FuzzyOpen <cr>
-
 " Rails
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
 nmap <leader>as :AS <cr>
-
 " Sayonara
 nnoremap <leader>q :Sayonara!<cr>
 nnoremap <leader>Q :Sayonara<cr>
-
 " Ctrlsf
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
-
 " Fugitive git bindings
 nnoremap <Leader>ga :Git add %:p<CR><CR>
 nnoremap <Leader>gs :Gstatus<CR>
@@ -358,16 +319,13 @@ nnoremap <Leader>gb :Git branch<Space>
 nnoremap <Leader>go :Git checkout<Space>
 nnoremap <Leader>gps :Dispatch! git push<CR>
 nnoremap <Leader>gpl :Dispatch! git pull<CR>
-
 " Nerdtree
 map <leader>d :NERDTreeToggle<cr>
 map <leader>D :NERDTreeFind<cr>
-
 " Vim Test
 nmap <leader>T :TestFile<CR>
 nmap <leader>t :TestNearest<CR>
 nmap <leader>l :TestLast<CR>
-
 " Vim Plug
 nmap <leader>pu :PlugUpdate<CR>
 nmap <leader>pU :PlugUpgrade<CR>

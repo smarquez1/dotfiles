@@ -3,11 +3,13 @@ export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Initialize zim
 [[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
 # Base 16 shell
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-eighties.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-eighties.sh"
+# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+# yarn
+export PATH="$(yarn global bin):$PATH"
 
 # cli language is english
 export LANG=en_US.utf8
@@ -16,6 +18,7 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 # Report terminal type
 export TERM=tmux-256color
+export GDK_SCALE=2
 
 # Prevent history to save duplicates
 setopt hist_ignore_all_dups

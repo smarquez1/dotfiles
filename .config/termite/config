@@ -1,44 +1,54 @@
 [options]
-font                  = Iosevka Term Regular 12
+font                  = Iosevka Term Regular 11
 mouse_autohide        = true
-size_hints            = true
+fullscreen            = true
 
 [colors]
-# Base16 Tomorrow Night
+# Base16 Eighties
+# Author: Chris Kempson (http://chriskempson.com)
 
-cursor = #aeafad
-foreground      = #c5c8c6
-foreground_bold = #e0e0e0
-background      = #1d1f21
+foreground          = #d3d0c8
+foreground_bold     = #e8e6df
+cursor              = #e8e6df
+cursor_foreground   = #2d2d2d
+background          = rgba(45, 45, 45)
+
+# 16 color space
 
 # Black, Gray, Silver, White
-color0  = #1d1f21
-color8  = #969896
-color7  = #c5c8c6
-color15 = #ffffff
+color0  = #2d2d2d
+color8  = #747369
+color7  = #d3d0c8
+color15 = #f2f0ec
+
 # Red
-color1  = #cc6666
-color9  = #cc6666
+color1  = #f2777a
+color9  = #f2777a
+
 # Green
-color2  = #b5bd68
-color10 = #b5bd68
+color2  = #99cc99
+color10 = #99cc99
+
 # Yellow
-color3  = #f0c674
-color11 = #f0c674
+color3  = #ffcc66
+color11 = #ffcc66
+
 # Blue
-color4  = #81a2be
-color12 = #81a2be
+color4  = #6699cc
+color12 = #6699cc
+
 # Purple
-color5  = #b294bb
-color13 = #b294bb
+color5  = #cc99cc
+color13 = #cc99cc
+
 # Teal
-color6  = #8abeb7
-color14 = #8abeb7
+color6  = #66cccc
+color14 = #66cccc
+
 # Extra colors
-color15 = #ffffff
-color16 = #de935f
-color17 = #a3685a
-color18 = #282a2e
-color19 = #373b41
-color20 = #b4b7b4
-color21 = #e0e0e0
+color16 = #f99157
+color17 = #d27b53
+color18 = #393939
+color19 = #515151
+color20 = #a09f93
+color21 = #e8e6df

@@ -34,12 +34,6 @@ if command -v nvim >/dev/null 2>&1; then
     nvim '+PlugUpdate' '+PlugClean!' '+qall'
 fi
 
-# BASE 16 SHELL
-if [ `ls -A ~/.config/base16-shell/ | wc -m` == "0" ]; then
-  echo "installing BASE16 Shell"
-  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-fi
-
 # Rbenv
 if command -v rbenv >/dev/null 2>&1; then
   echo "Bootstraping rbenv"
@@ -59,33 +53,30 @@ fi
 # node
 if command -v yarn >/dev/null 2>&1; then
   echo "Bootstraping node"
-  sudo yarn global add eslint create-react-app
+  sudo yarn global add eslint create-react-app vue-cli
 fi
 
 # DESKTOP
 read -r -p "Bootstrap gnome-shell? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  sudo pacman -R gnome-shell-extensions --noconfirm --needed
+  yay -R gnome-shell-extensions --noconfirm --needed
 
   yay -S gpaste gnome-shell-pomodoro \
+    gnome-shell-extension-unite-git \
+    gnome-shell-extension-dash-to-dock-git \
     gnome-shell-extension-installer dconf --noconfirm --needed
 
-  gnome-shell-extension-installer 307  # Dash to dock
-  gnome-shell-extension-installer 2    # Move Clock
-  gnome-shell-extension-installer 1031 # TopIcons Plus
-  gnome-shell-extension-installer 826  # Suspend button
-  gnome-shell-extension-installer 906  # Sound Input & Output Device Chooser 
-  gnome-shell-extension-installer 905  # Refresh Wifi Connections
-  gnome-shell-extension-installer 258  # Notifications Alert 
-  gnome-shell-extension-installer 1267 # No Title Bar
-  gnome-shell-extension-installer 55   # Media Player Indicator
+  gnome-shell-extension-installer 15   # Alternate Tab
   gnome-shell-extension-installer 19   # User Themes
-  gnome-shell-extension-installer 1007 # 'Window Is Ready' Notification Remover
+  gnome-shell-extension-installer 55   # Media Player Indicator
   gnome-shell-extension-installer 112  # Remove Accessibility
-  gnome-shell-extension-installer 1128 # Hide Activities
-  gnome-shell-extension-installer 708  # Panel OSD
-  gnome-shell-extension-installer 1319 # GSConnect
+  gnome-shell-extension-installer 258  # Notifications Alert 
+  gnome-shell-extension-installer 826  # Suspend button
+  gnome-shell-extension-installer 905  # Refresh Wifi Connections
+  gnome-shell-extension-installer 906  # Sound Input & Output Device Chooser 
+  gnome-shell-extension-installer 921  # Multi Monitors Add-On 
+  gnome-shell-extension-installer 1007 # 'Window Is Ready' Notification Remover
 fi
 
 read -r -p "Install Basic Desktop apps? [y/N] " response
@@ -94,25 +85,23 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S dropbox gnome-mpv gnome-tweak-tool gnome-shell-pomodoro \
     google-chrome gpaste simplenote-electron-bin slack-desktop \
     ttf-iosevka-term bitwarden termite termite-terminfo chrome-gnome-shell \
-    numix-frost-themes --noconfirm --needed
+    firefox-developer-edition materia-gtk-theme --noconfirm --needed
 fi
 
-# TODO: Improve
 read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S acestream-engine acestream-launcher android-file-transfer \
-    android-tools calibre chrome-gnome-shell darktable dconf-editor \
-    geeqie htop intel-ucode linux-firmware linux-lts linux-lts-headers \
-    meld ntfs-3g nvm pgadmin4 pinta gthumb ttf-bookerly evolution \
-    popcorntime-bin rapid-photo-downloader skype-desktop-bin spotify steam \
-    steam-native-runtime stremio-legacy subdownloader sublime-text-dev \
-    subliminal telegram-desktop-bin libreoffice-fresh-es \
-    transmission-cli transmission-gtk trash-cli unified-remote-server \
-    vulkan-icd-loader vulkan-intel wget wine wine-mono winetricks \
-    zoom etcher kdenlive luv-icon-theme-git gparted wunderline \
-    noto-fonts noto-fonts-emoji capitaine-cursors gnome-clocks \
-    kdeconnect --noconfirm --needed
+  yay -S acestream-launcher android-file-transfer android-tools calibre \
+    chrome-gnome-shell darktable dconf-editor geeqie htop intel-ucode \
+    linux-firmware linux-lts linux-lts-headers ntfs-3g nvm pgadmin4 pinta \ 
+    gthumb ttf-bookerly evolution popcorntime-bin rapid-photo-downloader \
+    skype-desktop-bin spotify steam stremio-legacy subdownloader \ 
+    sublime-text-dev libreoffice-fresh-es transmission-gtk trash-cli \
+    unified-remote-server vulkan-icd-loader vulkan-intel wget wine wine-mono \
+    winetricks zoom etcher kdenlive luv-icon-theme-git gparted wunderline \
+    noto-fonts noto-fonts-emoji capitaine-cursors gnome-clocks emoji-keyboard \
+    --noconfirm --needed
+    # gnome-shell-tweener-fix  mutter-781835-workaround \
 
   dconf load /org/gnome/ < gnome.dconf
 fi
