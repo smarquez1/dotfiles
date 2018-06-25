@@ -1,14 +1,9 @@
 AllCops:
-  TargetRubyVersion: 2.3
-  Exclude:
-    - "vendor/**/*"
-    - "db/**/*"
-    - "config/**/*"
-    - "bin/*"
-  UseCache: false
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  ExtraDetails: false
+  TargetRubyVersion: 2.5
 Documentation:
-  Enabled: false
-Style/FrozenStringLiteralComment:
   Enabled: false
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: 'indented'

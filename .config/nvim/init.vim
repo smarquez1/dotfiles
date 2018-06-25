@@ -5,8 +5,6 @@
 set mouse=a
 " Scroll extra lines when reaching the bottom
 set scrolloff=3
-" Add underscore as a keyword break
-" set iskeyword-=_
 " Configure search
 set ignorecase smartcase
 " Use system's clipboard. Keep platform specific settings
@@ -16,7 +14,6 @@ set nobackup nowb noswapfile
 " Use zsh as shell
 set shell=zsh
 " performance fixes
-set ttyfast
 set regexpengine=1
 set synmaxcol=200
 
@@ -26,20 +23,9 @@ set termguicolors
 " Enable live substitution
 set inccommand=nosplit
 " Show line numbers
-set number
-set relativenumber
-set numberwidth=2
+set number relativenumber numberwidth=2
 " Disable swap files
 set noswapfile nobackup nowb
-" Highlight current line (slow)
-" set cursorline
-" Make escape work in the Neovim terminal.
-tnoremap <Esc> <C-\><C-n>
-" Make navigation into and out of Neovim terminal splits nicer.
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
 " No line numbers in terminal mode
 autocmd TermOpen * setlocal nonumber
 " Prefer Neovim terminal insert mode to normal mode.
@@ -47,30 +33,23 @@ autocmd BufEnter term://* startinsert
 " Areas where the splits should occur
 set splitbelow splitright
 " Wrap text
-set wrap
-set breakindent
-set breakindentopt=sbr
-let &showbreak = '↳ '
-" Don't wrap text
-" set nowrap
-" set sidescroll=1
+set wrap breakindent breakindentopt=sbr
+" cpoptions=n
+let showbreak = '↳ '
 " Highlight column at 81
 set cc=81
-" au FileType javascript,html,eruby set cc=100
+au FileType javascript,html,eruby,vue set cc=101
 
 " Formatting ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use tabs as spaces, default identation: 2 spaces
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-" Enable spellin on markdown files
+" Enable spelling on markdown files
 au FileType markdown setl spell
-" configure vim folds
-au FileType vim
-  \   setl foldmethod=marker
-  \ | setl foldenable
-  \ | setl foldlevel=0
+" Enable folding by default
+set foldmethod=indent foldlevel=99
+" Enable folding by default for VIM files/configuration
+au FileType vim setl foldmethod=marker foldenable foldlevel=0 
+
 " Custom key mapings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " comma is space
 let mapleader=" "
@@ -85,69 +64,79 @@ nmap <c-h> <c-w>h
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
 " Replace hashrockets with 1.9 hash style syntax
-nmap <leader>: :%s/:\(\w\+\)\s*=>\s*/\1: /g <cr>
+nnoremap <leader>: :%s/:\(\w\+\)\s*=>\s*/\1: /g <cr>
 " Re-Open Previously Opened File
 nnoremap <leader><leader> :e#<CR>
 " Open current file with external tool
-nmap <leader>E :!open % <CR> <CR>
+nnoremap <leader>E :!open % <CR> <CR>
 " map . in visual mode
 vnoremap . :norm.<cr>
 " unmap ex mode: 'Type visual to go into Normal mode.'
-nmap Q <nop>
+nnoremap Q <nop>
 " Cancel a search with Escape:
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 " Quickly open/reload vim
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 " Auto indent whole document
-nmap <leader>ai mzgg=G`z
-
+nnoremap <leader>ai mzgg=G`z
 " Saner cursor positioning after yanking blocks
 vnoremap <expr>y "my\"" . v:register . "y`y"
+" Escape in terminal switches to normal mode
+tnoremap <Esc> <C-\><C-n>
+" Make navigation into and out of Neovim terminal splits nicer.
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
 
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
 " Vue
 Plug 'posva/vim-vue'
+" {{{
+autocmd FileType vue syntax sync fromstart
+let g:vue_disable_pre_processors=1
+" }}}
 " Match html tags
 Plug 'Valloric/MatchTagAlways'
 " Helps stop using hjkl keys
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
+" {{{
+" let g:hardtime_showmsg = 1
+" let g:hardtime_default_on = 1
+" let g:hardtime_ignore_buffer_patterns = [ "gitcommit", "NERD.*" ]
+" }}}
 " Continuously updated session files, used with tmux-resurrect
 Plug 'tpope/vim-obsession'
-
-
-" {{{
-let g:hardtime_showmsg = 1
-let g:hardtime_default_on = 1
-let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
-" }}}
 Plug 'w0rp/ale'
 " {{{
+"let g:ale_javascript_eslint_use_global=0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'scss': ['sasslint']
+\   'scss': ['stylelint'],
+\   'ruby': ['rubocop', 'mri']
 \}
 
 let g:ale_fixers = {
-\   'css': ['prettier', 'stylelint'],
-\   'javascript': ['eslint', 'prettier'],
-\   'scss': ['prettier', 'stylelint'],
+\   'css': ['stylelint'],
+\   'javascript': ['eslint'],
+\   'vue': ['eslint'],
+\   'scss': ['stylelint'],
 \   'ruby': ['rubocop']
 \}
 " }}}
 Plug 'dyng/ctrlsf.vim'
 " {{{
-let g:ctrlsf_position = 'left'
+let g:ctrlsf_search_mode='async'
 let g:ctrlsf_indent = 2
 let g:ctrlsf_mapping = {
-      \ "split"   : "<C-S>",
-      \ "vsplit"  : "<C-V>",
-      \ "quit"    : "q",
-      \ "next"    : "<C-J>",
-      \ "prev"    : "<C-K>",
-      \ "popen"   : "",
-      \ }
+\ "split"   : "<C-S>",
+\ "vsplit"  : "<C-V>",
+\ "quit"    : "q",
+\ "next"    : "<C-J>",
+\ "prev"    : "<C-K>",
+\ "popen"   : "" }
 
 autocmd FileType ctrlsf set nonu norelativenumber
 " }}}
@@ -156,13 +145,39 @@ Plug 'alvan/vim-closetag'
 " {{{
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js, *.jsx, *.erb"
 " }}}
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
+" {{{
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+" }}}
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-ragtag'
+" {{{
+let g:ragtag_global_maps = 1
+" }}}
 Plug 'mattn/emmet-vim'
 " {{{
-autocmd FileType html,erb,jsx EmmetInstall
+autocmd FileType html,erb,jsx,vue EmmetInstall
 " }}}
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'terryma/vim-multiple-cursors'
@@ -192,7 +207,7 @@ let test#strategy = "vimux"
 Plug 'tpope/vim-speeddating'
 Plug 'christoomey/vim-tmux-navigator'
 " Completion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plug 'roxma/nvim-completion-manager'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       \ | Plug 'SirVer/ultisnips'
       \ | Plug 'honza/vim-snippets'
       \ | Plug 'isRuslan/vim-es6'
@@ -201,14 +216,22 @@ Plug 'roxma/nvim-completion-manager'
       \ | Plug 'jiangmiao/auto-pairs'
       \ | Plug 'ervandew/supertab'
 " {{{
+" Start deoplete
 let g:deoplete#enable_at_startup = 1
-
+"Add extra Ternjs filetypes
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue'
+                \ ]
+" Ultisnips
 let g:UltiSnipsExpandTrigger="<C-j>"
-
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:AutoPairsMultilineClose = 1
+
+
 " }}}
 Plug 'benmills/vimux'
 " Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -291,6 +314,9 @@ call plug#end()
 set background=dark
 colorscheme base16-eighties
 hi VertSplit guibg=bg guifg=fg
+
+" Vim Ale
+map <Leader>af :ALEFix<cr>
 " Neovim-fuzzy
 nmap <Leader>f :FuzzyOpen <cr>
 " Rails
