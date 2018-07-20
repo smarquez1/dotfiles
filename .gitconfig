@@ -1,46 +1,13 @@
-[user]
-  name  = Sergio D. Márquez
-  email = marquez.sergio.d@gmail.com
-[github]
-  user = smarquez1
-[push]
-  default = current
-[core]
-  excludesfile = ~/.gitignore
-  autocrlf     = input
-  editor       = nvim
 [advice]
   statusHints = false
-[merge]
-  prompt = false
-  tool = vimdiff
-[mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
-[diff]
-  prompt = false
-  tool = vimdiff
-[difftool]
-  prompt = false
-[fetch]
-  prune = true
-[rebase]
-  autosquash = true
 [alias]
   d              = difftool
   m              = mergetool
   aa             = add --all
   branches       = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   ca             = commit --amend -v
-  can            = commit --amend --no-edit
   cleanup        = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
   co             = checkout
-  co-pr          = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
-  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
-  delete-branch  = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
-  merge-branch   = !git checkout master && git merge @{-1}
-  rename-branch  = !sh -c 'old=$(git current-branch) && git branch -m $old $1 && git push origin --set-upstream $1 && git push origin --delete $old' -
-  pr             = !hub pull-request
-  set-upstream   = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
   st             = status
   undo-commit    = reset --soft HEAD^
   unstage        = reset HEAD
@@ -52,3 +19,24 @@
   my-commits = !git log --author=\"`git config user.name`\" --pretty=format:\"%cd  %h  %s\" --date=short
   # list aliases
   la             = "!git config -l | grep alias | cut -c 7-"
+[core]
+	excludesfile = ~/.gitignore
+  editor = nvim
+[diff]
+  prompt = false
+  tool = vimdiff
+[difftool]
+  prompt = false
+[github]
+  user = smarquez1
+[merge]
+  prompt = false
+  tool = vimdiff
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+[push]
+	default = current
+  followTags = true
+[user]
+  name  = Sergio D. Márquez
+  email = marquez.sergio.d@gmail.com

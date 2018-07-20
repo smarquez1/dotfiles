@@ -1,16 +1,16 @@
 #!/bin/bash
-# Requirements:
-# yadm-git
-# yay
+# Requirements: yadm-git
+# yaourt -S yadm-git --noconfirm --needed
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 yaourt -S yay-bin --noconfirm --needed
-yay -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip trash-cli \
-  openssh xclip yarn --noconfirm --needed
+yay -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip openssh \ 
+  xclip yarn htop intel-ucode libva-intel-driver linux-firmware linux-lts \
+  linux-lts-headers ntfs-3g wget --noconfirm --needed
+
 
 # ZSH
-
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
   echo "bootstraping ZSH"
   chsh -s /usr/bin/zsh
@@ -83,25 +83,20 @@ read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S dropbox gnome-mpv gnome-tweak-tool gnome-shell-pomodoro \
-    google-chrome gpaste simplenote-electron-bin slack-desktop \
-    ttf-iosevka-term bitwarden termite termite-terminfo chrome-gnome-shell \
-    firefox-developer-edition materia-gtk-theme --noconfirm --needed
+    chromium-vaapi-bin gpaste simplenote-electron-bin slack-desktop \
+    ttf-iosevka-term noto-fonts noto-fonts-emoji bitwarden kitty \
+    chrome-gnome-shell firefox-developer-edition --noconfirm --needed
 fi
 
 read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S acestream-launcher android-file-transfer android-tools calibre \
-    chrome-gnome-shell darktable dconf-editor geeqie htop intel-ucode \
-    linux-firmware linux-lts linux-lts-headers ntfs-3g nvm pgadmin4 pinta \ 
-    gthumb ttf-bookerly evolution popcorntime-bin rapid-photo-downloader \
-    skype-desktop-bin spotify steam stremio-legacy subdownloader \ 
-    sublime-text-dev libreoffice-fresh-es transmission-gtk trash-cli \
-    unified-remote-server vulkan-icd-loader vulkan-intel wget wine wine-mono \
-    winetricks zoom etcher kdenlive luv-icon-theme-git gparted wunderline \
-    noto-fonts noto-fonts-emoji capitaine-cursors gnome-clocks emoji-keyboard \
-    --noconfirm --needed
-    # gnome-shell-tweener-fix  mutter-781835-workaround \
-
-  dconf load /org/gnome/ < gnome.dconf
+    chrome-gnome-shell darktable dconf-editor geeqie pgadmin4 pinta \ 
+    gthumb ttf-bookerly popcorntime-bin rapid-photo-downloader \
+    skype-desktop-bin spotify steam stremio-legacy subdownloader \
+    libreoffice-fresh-es transmission-gtk unified-remote-server \ 
+    vulkan-icd-loader vulkan-intel wine wine-mono winetricks zoom etcher \
+    kdenlive luv-icon-theme-git gparted capitaine-cursors gnome-clocks \
+    emoji-keyboard --noconfirm --needed
 fi

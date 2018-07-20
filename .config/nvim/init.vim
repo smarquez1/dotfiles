@@ -111,7 +111,6 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-obsession'
 Plug 'w0rp/ale'
 " {{{
-"let g:ale_javascript_eslint_use_global=0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'scss': ['stylelint'],
@@ -186,11 +185,11 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode  = 0
 
 function! Multiple_cursors_before()
-    " let b:deoplete_disable_auto_complete = 1
+    let b:deoplete_disable_auto_complete = 1
 endfunction
 
 function! Multiple_cursors_after()
-    " let b:deoplete_disable_auto_complete = 0
+    let b:deoplete_disable_auto_complete = 0
 endfunction
 " }}}
 Plug 'sheerun/vim-polyglot'
@@ -208,32 +207,37 @@ Plug 'tpope/vim-speeddating'
 Plug 'christoomey/vim-tmux-navigator'
 " Completion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-      \ | Plug 'SirVer/ultisnips'
-      \ | Plug 'honza/vim-snippets'
-      \ | Plug 'isRuslan/vim-es6'
-      \ | Plug 'fishbullet/deoplete-ruby'
-      \ | Plug 'carlitux/deoplete-ternjs'
-      \ | Plug 'jiangmiao/auto-pairs'
-      \ | Plug 'ervandew/supertab'
+  \ | Plug 'fishbullet/deoplete-ruby'
+  \ | Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+  \ | Plug 'Shougo/neosnippet.vim'
+  \ | Plug 'Shougo/neosnippet-snippets'
 " {{{
 " Start deoplete
 let g:deoplete#enable_at_startup = 1
 "Add extra Ternjs filetypes
-let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue'
-                \ ]
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<C-j>"
-" close the preview window when you're not using it
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:AutoPairsMultilineClose = 1
+let g:deoplete#sources#ternjs#filetypes = ['jsx', 'vue']
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-j>  <Plug>(neosnippet_expand_or_jump)
+smap <C-j>  <Plug>(neosnippet_expand_or_jump)
+xmap <C-j>  <Plug>(neosnippet_expand_target)
 
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <expr><TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ neosnippet#expandable_or_jumpable() ?
+  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 " }}}
-Plug 'benmills/vimux'
+Plug 'jiangmiao/auto-pairs'
+let g:AutoPairsMultilineClose = 1
+let g:AutoPairsMultilineClose = 1
 " Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'chriskempson/base16-vim'
 " {{{
@@ -302,10 +306,9 @@ Plug 'tpope/vim-rbenv'
 Plug 'vim-ruby/vim-ruby'
 
 " Javascript specific ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plug 'justinj/vim-react-snippets'
 Plug 'othree/javascript-libraries-syntax.vim'
 " {{{
-let g:used_javascript_libs = 'underscore,jquery,react,flux,jasmine'
+let g:used_javascript_libs = 'underscore,jquery,react,flux,vue,jasmine'
 " }}}
 
 call plug#end()
@@ -319,6 +322,7 @@ hi VertSplit guibg=bg guifg=fg
 map <Leader>af :ALEFix<cr>
 " Neovim-fuzzy
 nmap <Leader>f :FuzzyOpen <cr>
+
 " Rails
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
