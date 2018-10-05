@@ -1,11 +1,11 @@
 # Load any helper scripts as defined here
-zmodules=(archive autosuggestions completion directory environment fasd git \
-          git-info history history-substring-search input prompt ssh \
-          syntax-highlighting utility)
+zmodules=(completion archive autosuggestions directory environment fasd git \
+          git-info history syntax-highlighting history-substring-search \
+          input prompt ssh utility)
 
 # Input
-zdouble_dot_expand='true'
 zinput_mode='vi'
+zdouble_dot_expand='true'
 
 # Prompt
 zprompt_theme='gitster'

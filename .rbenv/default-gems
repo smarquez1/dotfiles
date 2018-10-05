@@ -5,6 +5,7 @@ pry
 pry-byebug
 rubocop
 rspec
+
 # rails_best_practices
 # reek
 # hirb

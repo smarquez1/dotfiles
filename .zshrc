@@ -18,7 +18,6 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 # Report terminal type
 export TERM=tmux-256color
-export GDK_SCALE=2
 
 # Prevent history to save duplicates
 setopt hist_ignore_all_dups
@@ -49,7 +48,7 @@ alias pspec="be rake parallel:spec $1"
 alias le_update="~/.yadm/update.sh"
 
 # Reattach tmux session
-if [[ $TMUX = "" ]]; then
-  tmux ls | grep -vq attached && TMUXARG="attach-session -d"
-  exec eval "tmux $TMUXARG"
-fi
+# if [[ $TMUX = "" ]]; then
+  # tmux ls | grep -vq attached && TMUXARG="attach-session -d"
+  # exec eval "tmux $TMUXARG"
+# fi

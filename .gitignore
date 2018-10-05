@@ -6,3 +6,6 @@ tags
 !tags/
 tags.lock
 tags.temp
+
+# Libreoffice lock files
+.~lock.*#

@@ -15,7 +15,7 @@ set nobackup nowb noswapfile
 set shell=zsh
 " performance fixes
 set regexpengine=1
-set synmaxcol=200
+set synmaxcol=400
 
 " UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Enable true color
@@ -24,10 +24,8 @@ set termguicolors
 set inccommand=nosplit
 " Show line numbers
 set number relativenumber numberwidth=2
-" Disable swap files
-set noswapfile nobackup nowb
 " No line numbers in terminal mode
-autocmd TermOpen * setlocal nonumber
+autocmd TermOpen * setlocal nonumber norelativenumber
 " Prefer Neovim terminal insert mode to normal mode.
 autocmd BufEnter term://* startinsert
 " Areas where the splits should occur
@@ -38,6 +36,7 @@ set wrap breakindent breakindentopt=sbr
 let showbreak = '↳ '
 " Highlight column at 81
 set cc=81
+" Highlight column at 101 for FE types
 au FileType javascript,html,eruby,vue set cc=101
 
 " Formatting ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,6 +91,19 @@ tnoremap <C-l> <C-\><C-N><C-w>l
 
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
+
+" A Filetype plugin for csv files
+Plug 'chrisbra/csv.vim'
+" vim plugin to interact with the simplenote service 
+Plug 'mrtazz/simplenote.vim'
+" {{{
+let g:SimplenoteUsername = "baqtor@gmail.com"
+"let g:SimplenotePassword = "your simplenote password"
+" }}}
+" vim plugin to interact with tmux
+Plug 'benmills/vimux'
+" Wrapper of some vim/neovim's :terminal functions.
+Plug 'kassio/neoterm'
 " Vue
 Plug 'posva/vim-vue'
 " {{{
@@ -169,7 +181,6 @@ endfunction
 " }}}
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-ragtag'
 " {{{
 let g:ragtag_global_maps = 1
@@ -195,12 +206,23 @@ endfunction
 Plug 'sheerun/vim-polyglot'
 " {{{
 let g:rubycomplete_rails = 1
+let g:vim_markdown_conceal = 0
 " }}}
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-sayonara'
 Plug 'janko-m/vim-test'
 " {{{
+function! NeovimVerticalStrategy(cmd)
+  vertical new
+  call termopen(a:cmd)
+  au BufDelete <buffer> wincmd p " switch back to last window
+  startinsert
+endfunction
+
+let g:test#custom_strategies = {'neovim_vertical': function('NeovimVerticalStrategy')}
+
+"let test#strategy = "neovim_vertical"
 let test#strategy = "vimux"
 " }}}
 Plug 'tpope/vim-speeddating'

@@ -1,0 +1,5 @@
+rofi.combi-modi:    window,drun
+rofi.show-icons:    true
+rofi.font:          Noto Sans 14
+rofi.modi:          combi
+rofi.theme:         /usr/share/rofi/themes/Adapta-Nokto.rasi

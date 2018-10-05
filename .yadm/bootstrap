@@ -9,7 +9,6 @@ yay -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip openssh \
   xclip yarn htop intel-ucode libva-intel-driver linux-firmware linux-lts \
   linux-lts-headers ntfs-3g wget --noconfirm --needed
 
-
 # ZSH
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
   echo "bootstraping ZSH"
@@ -45,6 +44,7 @@ if command -v rbenv >/dev/null 2>&1; then
   rbenv plug ctags
   rbenv plug default-gems
   rbenv plug ruby-build
+  rbenv plug use
   rbenv plug update
 
   rbenv ctags
@@ -53,7 +53,7 @@ fi
 # node
 if command -v yarn >/dev/null 2>&1; then
   echo "Bootstraping node"
-  sudo yarn global add eslint create-react-app vue-cli
+  sudo yarn global add eslint vue-cli neovim-node-host ternjs
 fi
 
 # DESKTOP
@@ -72,11 +72,16 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
   gnome-shell-extension-installer 55   # Media Player Indicator
   gnome-shell-extension-installer 112  # Remove Accessibility
   gnome-shell-extension-installer 258  # Notifications Alert 
+  gnome-shell-extension-installer 307  # dash to dock
   gnome-shell-extension-installer 826  # Suspend button
   gnome-shell-extension-installer 905  # Refresh Wifi Connections
   gnome-shell-extension-installer 906  # Sound Input & Output Device Chooser 
   gnome-shell-extension-installer 921  # Multi Monitors Add-On 
   gnome-shell-extension-installer 1007 # 'Window Is Ready' Notification Remover
+  gnome-shell-extension-installer 1268 # Gnomesome
+  gnome-shell-extension-installer 1287 # Unite
+  gnome-shell-extension-installer 1465 # Desktop Icons
+
 fi
 
 read -r -p "Install Basic Desktop apps? [y/N] " response
@@ -84,7 +89,7 @@ response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S dropbox gnome-mpv gnome-tweak-tool gnome-shell-pomodoro \
     chromium-vaapi-bin gpaste simplenote-electron-bin slack-desktop \
-    ttf-iosevka-term noto-fonts noto-fonts-emoji bitwarden kitty \
+    ttf-iosevka-term noto-fonts noto-fonts-emoji bitwarden termite \
     chrome-gnome-shell firefox-developer-edition --noconfirm --needed
 fi
 
@@ -98,5 +103,6 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
     libreoffice-fresh-es transmission-gtk unified-remote-server \ 
     vulkan-icd-loader vulkan-intel wine wine-mono winetricks zoom etcher \
     kdenlive luv-icon-theme-git gparted capitaine-cursors gnome-clocks \
-    emoji-keyboard --noconfirm --needed
+    emoji-keyboard update-grub ananicy-git linux-ck linux-ck-lts \
+    --noconfirm --needed
 fi
