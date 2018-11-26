@@ -1,4 +1,4 @@
-# Change default zim location
+#  Change default zim location
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Initialize zim
 [[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
@@ -11,8 +11,6 @@ eval "$(rbenv init -)"
 # yarn
 export PATH="$(yarn global bin):$PATH"
 
-# cli language is english
-export LANG=en_US.utf8
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
@@ -48,7 +46,7 @@ alias pspec="be rake parallel:spec $1"
 alias le_update="~/.yadm/update.sh"
 
 # Reattach tmux session
-# if [[ $TMUX = "" ]]; then
-  # tmux ls | grep -vq attached && TMUXARG="attach-session -d"
-  # exec eval "tmux $TMUXARG"
-# fi
+if [[ $TMUX = "" ]]; then
+  tmux ls | grep -vq attached && TMUXARG="attach-session -d"
+  exec eval "tmux $TMUXARG"
+fi

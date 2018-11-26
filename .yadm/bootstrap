@@ -53,7 +53,8 @@ fi
 # node
 if command -v yarn >/dev/null 2>&1; then
   echo "Bootstraping node"
-  sudo yarn global add eslint vue-cli neovim-node-host ternjs
+  sudo yarn global add eslint vue-cli neovim-node-host \
+    javascript-typescript-langsserver
 fi
 
 # DESKTOP
