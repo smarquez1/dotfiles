@@ -5,6 +5,7 @@ pry
 pry-byebug
 rubocop
 rspec
+solargraph
 
 # rails_best_practices
 # reek

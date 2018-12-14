@@ -1,6 +1,5 @@
-" Neovim config
-
-" General options ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" General options
+" ===============
 " set mouse
 set mouse=a
 " Scroll extra lines when reaching the bottom
@@ -14,40 +13,39 @@ set nobackup nowb noswapfile
 " Use zsh as shell
 set shell=zsh
 " performance fixes
-set regexpengine=1
+" set regexpengine=1
 set synmaxcol=400
-
-" UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Enable true color
 set termguicolors
 " Enable live substitution
 set inccommand=nosplit
 " Show line numbers
 set number relativenumber numberwidth=2
-" No line numbers in terminal mode
-autocmd TermOpen * setlocal nonumber norelativenumber
 " Prefer Neovim terminal insert mode to normal mode.
 autocmd BufEnter term://* startinsert
 " Areas where the splits should occur
 set splitbelow splitright
 " Wrap text
-set wrap breakindent breakindentopt=sbr
+set nowrap breakindent breakindentopt=sbr
 " cpoptions=n
 let showbreak = '↳ '
 " Highlight column at 81
 set cc=81
-" Highlight column at 101 for FE types
-au FileType javascript,html,eruby,vue set cc=101
-
-" Formatting ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use tabs as spaces, default identation: 2 spaces
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
-" Enable spelling on markdown files
-au FileType markdown setl spell
 " Enable folding by default
 set foldmethod=indent foldlevel=99
+
+" Filetype specific settings
+" ==========================
+" Highlight column at 101
+au FileType javascript,html,eruby,vue set cc=101
+" Enable spelling on markdown files
+au FileType markdown setl spell
 " Enable folding by default for VIM files/configuration
 au FileType vim setl foldmethod=marker foldenable foldlevel=0 
+" No line numbers in terminal mode
+autocmd TermOpen * setlocal nonumber norelativenumber
 
 " Custom key mapings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " comma is space
@@ -66,21 +64,13 @@ map <leader>v :vsplit <cr>
 nnoremap <leader>: :%s/:\(\w\+\)\s*=>\s*/\1: /g <cr>
 " Re-Open Previously Opened File
 nnoremap <leader><leader> :e#<CR>
-" Open current file with external tool
-nnoremap <leader>E :!open % <CR> <CR>
-" map . in visual mode
-vnoremap . :norm.<cr>
-" unmap ex mode: 'Type visual to go into Normal mode.'
-nnoremap Q <nop>
 " Cancel a search with Escape:
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-" Quickly open/reload vim
+" Quickly open/reload config
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 " Auto indent whole document
 nnoremap <leader>ai mzgg=G`z
-" Saner cursor positioning after yanking blocks
-vnoremap <expr>y "my\"" . v:register . "y`y"
 " Escape in terminal switches to normal mode
 tnoremap <Esc> <C-\><C-n>
 " Make navigation into and out of Neovim terminal splits nicer.
@@ -89,128 +79,91 @@ tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 
-" Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" map . in visual mode
+vnoremap . :norm.<cr>
+" unmap ex mode: 'Type visual to go into Normal mode.'
+nnoremap Q <nop>
+" saner cursor positioning after yanking blocks
+vnoremap <expr>y "my\"" . v:register . "y`y"
+
+" Plugins
+" =======
 call plug#begin('~/.vim/plugged')
 
-" A Filetype plugin for csv files
-Plug 'chrisbra/csv.vim'
-" vim plugin to interact with the simplenote service 
-Plug 'mrtazz/simplenote.vim'
-" {{{
-let g:SimplenoteUsername = "baqtor@gmail.com"
-"let g:SimplenotePassword = "your simplenote password"
-" }}}
+" A Vim plugin that manages your tag files
+Plug 'ludovicchabant/vim-gutentags'
+" Comments
+Plug 'tpope/vim-commentary'
 " vim plugin to interact with tmux
 Plug 'benmills/vimux'
-" Wrapper of some vim/neovim's :terminal functions.
-Plug 'kassio/neoterm'
-" Vue
-Plug 'posva/vim-vue'
-" {{{
-autocmd FileType vue syntax sync fromstart
-let g:vue_disable_pre_processors=1
-" }}}
-" Match html tags
+" A Vim plugin that always highlights the enclosing html/xml tags
 Plug 'Valloric/MatchTagAlways'
-" Helps stop using hjkl keys
-" Plug 'takac/vim-hardtime'
-" {{{
-" let g:hardtime_showmsg = 1
-" let g:hardtime_default_on = 1
-" let g:hardtime_ignore_buffer_patterns = [ "gitcommit", "NERD.*" ]
-" }}}
-" Continuously updated session files, used with tmux-resurrect
-Plug 'tpope/vim-obsession'
+" Asynchronous linting/fixing for Vim and LSP integration
 Plug 'w0rp/ale'
 " {{{
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'scss': ['stylelint'],
-\   'ruby': ['rubocop', 'mri']
-\}
+      \   'javascript': ['eslint'],
+      \   'scss': ['stylelint'],
+      \   'ruby': ['rubocop', 'solargraph', 'mri']
+      \}
 
 let g:ale_fixers = {
-\   'css': ['stylelint'],
-\   'javascript': ['eslint'],
-\   'vue': ['eslint'],
-\   'scss': ['stylelint'],
-\   'ruby': ['rubocop']
-\}
+      \   'css': ['stylelint'],
+      \   'javascript': ['eslint'],
+      \   'vue': ['eslint'],
+      \   'scss': ['stylelint'],
+      \   'ruby': ['rubocop']
+      \}
 " }}}
+" An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'dyng/ctrlsf.vim'
 " {{{
 let g:ctrlsf_search_mode='async'
 let g:ctrlsf_indent = 2
-let g:ctrlsf_mapping = {
-\ "split"   : "<C-S>",
-\ "vsplit"  : "<C-V>",
-\ "quit"    : "q",
-\ "next"    : "<C-J>",
-\ "prev"    : "<C-K>",
-\ "popen"   : "" }
-
 autocmd FileType ctrlsf set nonu norelativenumber
 " }}}
-Plug 'ludovicchabant/vim-gutentags'
+"Auto close (X)HTML tags
 Plug 'alvan/vim-closetag'
 " {{{
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js, *.jsx, *.erb"
 " }}}
-" Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdcommenter'
-" {{{
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-" }}}
+" A Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
+" A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+" {{{
+let g:fugitive_git_executable = 'LANG=en_US git'
+" }}}
+" ghetto HTML/XML mappings (formerly allml.vim)
 Plug 'tpope/vim-ragtag'
 " {{{
 let g:ragtag_global_maps = 1
 " }}}
+" emmet for vim
 Plug 'mattn/emmet-vim'
 " {{{
 autocmd FileType html,erb,jsx,vue EmmetInstall
 " }}}
+" Fuzzy file finding for neovim
 Plug 'cloudhead/neovim-fuzzy'
+" True Sublime Text style multiple selections for Vim
 Plug 'terryma/vim-multiple-cursors'
 " {{{
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode  = 0
-
-function! Multiple_cursors_before()
-    let b:deoplete_disable_auto_complete = 1
-endfunction
-
-function! Multiple_cursors_after()
-    let b:deoplete_disable_auto_complete = 0
-endfunction
 " }}}
+" Better support for some languages
 Plug 'sheerun/vim-polyglot'
 " {{{
-let g:rubycomplete_rails = 1
+"let g:rubycomplete_rails = 1
 let g:vim_markdown_conceal = 0
+let g:jsx_ext_required = 1
 " }}}
+" enable repeating supported plugin maps with "."
 Plug 'tpope/vim-repeat'
+" Vim Surround
 Plug 'tpope/vim-surround'
-Plug 'mhinz/vim-sayonara'
+" Vim test runner
 Plug 'janko-m/vim-test'
 " {{{
 function! NeovimVerticalStrategy(cmd)
@@ -225,87 +178,84 @@ let g:test#custom_strategies = {'neovim_vertical': function('NeovimVerticalStrat
 "let test#strategy = "neovim_vertical"
 let test#strategy = "vimux"
 " }}}
-Plug 'tpope/vim-speeddating'
+" Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
 " Completion ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  \ | Plug 'fishbullet/deoplete-ruby'
-  \ | Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
-  \ | Plug 'Shougo/neosnippet.vim'
-  \ | Plug 'Shougo/neosnippet-snippets'
+" Snippet support TODO: configure
+" Neovim completion manager
+Plug 'ncm2/ncm2'
+  \ | Plug 'roxma/nvim-yarp'
+  \ | Plug 'ncm2/ncm2-bufword'
+  \ | Plug 'ncm2/ncm2-tmux'
+  \ | Plug 'ncm2/ncm2-path'
+  \ | Plug 'ncm2/ncm2-ultisnips' | Plug 'SirVer/ultisnips' 
+  \ | Plug 'honza/vim-snippets' | Plug 'jvanja/vim-bootstrap4-snippets'
+
 " {{{
-" Start deoplete
-let g:deoplete#enable_at_startup = 1
-"Add extra Ternjs filetypes
-let g:deoplete#sources#ternjs#filetypes = ['jsx', 'vue']
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-j>  <Plug>(neosnippet_expand_or_jump)
-smap <C-j>  <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>  <Plug>(neosnippet_expand_target)
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,preview,noselect
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <expr><TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ neosnippet#expandable_or_jumpable() ?
-  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" c-j c-k for moving in snippet
+let g:UltiSnipsExpandTrigger		= "<tab>"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
 " }}}
+
+" LSP Support
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh'
+  \ }
+" {{{
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'ruby': ['solargraph', 'stdio']
+  \ }
+ "}}}
+" Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
+" {{{
 let g:AutoPairsMultilineClose = 1
-let g:AutoPairsMultilineClose = 1
+" }}}
 " Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Base16 colors
 Plug 'chriskempson/base16-vim'
 " {{{
 let base16colorspace=256 
 " }}}
+" A vim plugin to display the indention levels with thin vertical lines
 Plug 'Yggdroot/indentLine'
 " {{{
 let g:indentLine_enabled=1
 " }}}
+" Better statusline
 Plug 'itchyny/lightline.vim'
 " {{{
 let g:lightline = {
-\ 'colorscheme': 'Tomorrow_Night_Eighties',
-\ 'active': {
-\   'left': [['mode', 'paste'],
-\            ['readonly', 'gitbranch', 'filename', 'modified']],
-\   'right': [['lineinfo'],
-\             ['percent'],
-\             ['filetype', 'linter_errors']]
-\ },
-\ 'component_function': {
-\   'gitbranch': 'fugitive#head'
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
+	\ 'colorscheme': 'Tomorrow_Night_Eighties',
+	\ 'active': {
+	\   'left': [['mode', 'paste'],
+	\            ['readonly', 'gitbranch', 'filename', 'modified']],
+	\   'right': [['lineinfo'],
+	\             ['percent'],
+	\             ['filetype', 'linter_errors']]
+	\ },
+	\ 'component_function': {
+	\   'gitbranch': 'fugitive#head'
+	\ }
 \ }
-\ }
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ❌', all_errors)
-endfunction
-
-autocmd User ALELint call lightline#update()
 
 " }}}
+" Git changes in gutter
 Plug 'mhinz/vim-signify'
+" Display number of search results
 Plug 'henrik/vim-indexed-search'
+" File explorer like navigation
 Plug 'scrooloose/nerdtree'
 " {{{
 " Don't show help, press ? to get it
@@ -319,18 +269,25 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 " }}}
 
 " Ruby specific ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Plug 'ecomba/vim-ruby-refactoring'
+" Simple plugin to add {} after hitting #
 Plug 'p0deje/vim-ruby-interpolation'
-Plug 'tpope/vim-bundler'
+" endwise.vim: wisely add "end" in ruby, endfunction/endif/more in vim script, etc 
 Plug 'tpope/vim-endwise'
+" {{{
+"https://github.com/roxma/nvim-completion-manager/issues/49
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+let g:endwise_no_mappings = 1
+imap <C-X><CR> <CR><Plug> AlwaysEnd
+imap <expr> <CR> (pumvisible() ? "\<C-Y>\<CR>\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+" }}}
+" Ruby on Rails power tools
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rbenv'
-Plug 'vim-ruby/vim-ruby'
-
 " Javascript specific ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'othree/javascript-libraries-syntax.vim'
 " {{{
-let g:used_javascript_libs = 'underscore,jquery,react,flux,vue,jasmine'
+let g:used_javascript_libs = 'underscore,jquery,react,vue,jasmine'
 " }}}
 
 call plug#end()
@@ -344,14 +301,10 @@ hi VertSplit guibg=bg guifg=fg
 map <Leader>af :ALEFix<cr>
 " Neovim-fuzzy
 nmap <Leader>f :FuzzyOpen <cr>
-
 " Rails
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
 nmap <leader>as :AS <cr>
-" Sayonara
-nnoremap <leader>q :Sayonara!<cr>
-nnoremap <leader>Q :Sayonara<cr>
 " Ctrlsf
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath

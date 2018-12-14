@@ -1,5 +1,3 @@
-[advice]
-  statusHints = false
 [alias]
   d              = difftool
   m              = mergetool
@@ -12,12 +10,9 @@
   undo-commit    = reset --soft HEAD^
   unstage        = reset HEAD
   up             = !git fetch origin && git rebase origin/master
-  # one-line log
   l              = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  # my commits last month
   my-commits = !git log --author=\"`git config user.name`\" --pretty=format:\"%cd  %h  %s\" --date=short
-  # list aliases
   la             = "!git config -l | grep alias | cut -c 7-"
 [core]
 	excludesfile = ~/.gitignore
@@ -33,7 +28,7 @@
   prompt = false
   tool = vimdiff
 [mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [push]
 	default = current
   followTags = true

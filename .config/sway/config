@@ -16,7 +16,7 @@ set $menu rofi -show combi | xargs swaymsg exec
 # Workaround to allow use of scripts etc
 #set $pa-adjust $HOME/bin/pa-adjust
 ### Output configuration
-font pango:Noto Sans 14
+font pango:Noto Sans 9
 
 # Remove title bars
 default_border pixel
@@ -25,73 +25,77 @@ default_border pixel
 output * bg '~/Imágenes/wallpapers/wallpaper.jpg' stretch
 
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output HDMI-A-1 resolution 1920x1080 scale 1 position 0,0
-output eDP-1 resolution 1920x1080 scale 1 position 0,1080
+output eDP-1 resolution 1920x1080 scale 1.50 position 0,0
+output HDMI-A-1 resolution 1920x1080 scale 1 position 0,-1080
 
 ## Input configuration
+# input "9456:320:Metadot_-_Das_Keyboard_Das_Keyboard" {
+#   xkb_options caps:escape
+# }
+
 input "1267:5:Elan_Touchpad" {
   dwt enabled
-  tap enable
-  accel_profile adaptive
-  natural_scroll enabled
-  middle_emulation enabled
+    tap enable
+    accel_profile adaptive
+    natural_scroll enabled
+    middle_emulation enabled
 }
 
 # Idle configurations
 exec swayidle \
-  timeout 300 'swaylock -c 000000' \
-  timeout 600 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -c 000000'
+       timeout 300 'swaylock -c 000000' \
+       timeout 600 'swaymsg "output * dpms off"' \
+       resume 'swaymsg "output * dpms on"' \
+       before-sleep 'swaylock -c 000000'
 
 ### Key bindings
 #
 # start a terminal
-bindsym $mod+Return exec $term
+       bindsym $mod+Return exec $term
 
 # kill focused window
-bindsym $mod+q kill
+       bindsym $mod+q kill
 
 # start your launcher
-bindsym $mod+d exec $menu
- 
+       bindsym $mod+d exec $menu
+
 # mouse button for dragging.
-floating_modifier $mod normal
+       floating_modifier $mod normal
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+       bindsym $mod+Shift+c reload
 
 # exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+       bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+       bindsym $mod+$left focus left
+       bindsym $mod+$down focus down
+       bindsym $mod+$up focus up
+       bindsym $mod+$right focus right
 # _move_ the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+       bindsym $mod+Shift+$left move left
+       bindsym $mod+Shift+$down move down
+       bindsym $mod+Shift+$up move up
+       bindsym $mod+Shift+$right move right
 
 # Workspaces:
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
+       set $ws1 "1: "
+       set $ws2 "2: "
+       set $ws3 "3: "
+       set $ws4 "4: "
+       set $ws5 "5: "
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
+       bindsym $mod+1 workspace $ws1
+       bindsym $mod+2 workspace $ws2
+       bindsym $mod+3 workspace $ws3
+       bindsym $mod+4 workspace $ws4
+       bindsym $mod+5 workspace $ws5
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
+       bindsym $mod+Shift+1 move container to workspace $ws1
+       bindsym $mod+Shift+2 move container to workspace $ws2
+       bindsym $mod+Shift+3 move container to workspace $ws3
+       bindsym $mod+Shift+4 move container to workspace $ws4
+       bindsym $mod+Shift+5 move container to workspace $ws5
 
 # Assign applications to their own workspace
 #assign [class="termite"]       $ws1
@@ -104,25 +108,25 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 # Layout stuff:
 
 # "split"
-bindsym $mod+v splith
-bindsym $mod+s splitv
+       bindsym $mod+v splith
+       bindsym $mod+s splitv
 
 # Switch the current container between different layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+       bindsym $mod+s layout stacking
+       bindsym $mod+w layout tabbed
+       bindsym $mod+e layout toggle split
 
 # Make the current focus fullscreen
-bindsym $mod+f fullscreen
+       bindsym $mod+f fullscreen
 
 # Toggle the current focus between tiling and floating mode
 #bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+       bindsym $mod+space focus mode_toggle
 
 # move focus to the parent container
-bindsym $mod+a focus parent
+       bindsym $mod+a focus parent
 #
 # Scratchpad:
 #
@@ -130,28 +134,29 @@ bindsym $mod+a focus parent
 # You can send windows there and get them back later.
 
 # Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+       bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
+
 #
 # Resizing containers:
 #
-mode "resize" {
-  # left will shrink the containers width
-  # right will grow the containers width
-  # up will shrink the containers height
-  # down will grow the containers height
-  bindsym $left resize shrink width 10 px or 10 ppt
-  bindsym $down resize grow height 10 px or 10 ppt
-  bindsym $up resize shrink height 10 px or 10 ppt
-  bindsym $right resize grow width 10 px or 10 ppt
+       mode "resize" {
+# left will shrink the containers width
+# right will grow the containers width
+# up will shrink the containers height
+# down will grow the containers height
+         bindsym $left resize shrink width 10 px or 10 ppt
+           bindsym $down resize grow height 10 px or 10 ppt
+           bindsym $up resize shrink height 10 px or 10 ppt
+           bindsym $right resize grow width 10 px or 10 ppt
 
-  # return to default mode
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
+# return to default mode
+           bindsym Return mode "default"
+           bindsym Escape mode "default"
+       }
 bindsym $mod+r mode "resize"
 
 # lock screen
@@ -159,21 +164,24 @@ bindsym $mod+r mode "resize"
 set $locker swaylock -c 00000000
 
 # status_command i3status
+# bar {
+#   status_command i3status 
+#   position top
+# }
 bar {
-  status_command i3status 
   position top
 }
 
 # Audio keys
- bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
- bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
- bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
+# bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
 
 # Brightness keys
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+# bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+# bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 
 ### Startup programs. ##
-exec --no-startup-id redshift-gtk
+# exec --no-startup-id redshift-gtk
 # exec --no-startup-id nm-applet
-
+exec mako
