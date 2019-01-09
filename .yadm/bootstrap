@@ -7,7 +7,7 @@ echo "installing dependencies"
 yaourt -S yay-bin --noconfirm --needed
 yay -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip openssh \ 
   xclip yarn htop intel-ucode libva-intel-driver linux-firmware linux-lts \
-  linux-lts-headers ntfs-3g wget --noconfirm --needed
+  linux-lts-headers ntfs-3g wget zgen-git --noconfirm --needed
 
 # ZSH
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
@@ -57,53 +57,23 @@ if command -v yarn >/dev/null 2>&1; then
     javascript-typescript-langsserver
 fi
 
-# DESKTOP
-read -r -p "Bootstrap gnome-shell? [y/N] " response
-response=${response,,}
-if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -R gnome-shell-extensions --noconfirm --needed
-
-  yay -S gpaste gnome-shell-pomodoro \
-    gnome-shell-extension-unite-git \
-    gnome-shell-extension-dash-to-dock-git \
-    gnome-shell-extension-installer dconf --noconfirm --needed
-
-  gnome-shell-extension-installer 15   # Alternate Tab
-  gnome-shell-extension-installer 19   # User Themes
-  gnome-shell-extension-installer 55   # Media Player Indicator
-  gnome-shell-extension-installer 112  # Remove Accessibility
-  gnome-shell-extension-installer 258  # Notifications Alert 
-  gnome-shell-extension-installer 307  # dash to dock
-  gnome-shell-extension-installer 826  # Suspend button
-  gnome-shell-extension-installer 905  # Refresh Wifi Connections
-  gnome-shell-extension-installer 906  # Sound Input & Output Device Chooser 
-  gnome-shell-extension-installer 921  # Multi Monitors Add-On 
-  gnome-shell-extension-installer 1007 # 'Window Is Ready' Notification Remover
-  gnome-shell-extension-installer 1268 # Gnomesome
-  gnome-shell-extension-installer 1287 # Unite
-  gnome-shell-extension-installer 1465 # Desktop Icons
-
-fi
-
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S dropbox gnome-mpv gnome-tweak-tool gnome-shell-pomodoro \
-    chromium-vaapi-bin gpaste simplenote-electron-bin slack-desktop \
-    ttf-iosevka-term noto-fonts noto-fonts-emoji bitwarden termite \
-    chrome-gnome-shell firefox-developer-edition --noconfirm --needed
+  yay -S dropbox firefox simplenote-electron-bin slack-desktop ttf-iosevka-term \
+    noto-fonts noto-fonts-emoji bitwarden termite --noconfirm --needed
 fi
 
 read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S acestream-launcher android-file-transfer android-tools calibre \
-    chrome-gnome-shell darktable dconf-editor geeqie pgadmin4 pinta \ 
-    gthumb ttf-bookerly popcorntime-bin rapid-photo-downloader \
-    skype-desktop-bin spotify steam stremio-legacy subdownloader \
+    darktable dconf-editor geeqie pgadmin4 pinta \ 
+    ttf-bookerly popcorntime-bin rapid-photo-downloader \
+    spotify steam stremio-legacy subdownloader \
     libreoffice-fresh-es transmission-gtk unified-remote-server \ 
-    vulkan-icd-loader vulkan-intel wine wine-mono winetricks zoom etcher \
-    kdenlive luv-icon-theme-git gparted capitaine-cursors gnome-clocks \
-    emoji-keyboard update-grub ananicy-git linux-ck linux-ck-lts \
+    vulkan-icd-loader vulkan-intel zoom etcher \
+    kdenlive gparted \
+    emoji-keyboard update-grub ananicy-git linux-ck linux-ck-headers \
     --noconfirm --needed
 fi

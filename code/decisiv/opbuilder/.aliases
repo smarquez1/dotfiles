@@ -1,0 +1,19 @@
+# Wget resume by defaut
+alias wget='wget -c'
+# Neovim replaces Vim
+alias vim=nvim
+alias v=nvim
+# open
+alias open='xdg-open'
+# Bundler aliases
+alias b="bundle"
+alias be="bundle exec"
+alias bi="bundle install"
+alias bu="bundle update"
+# Rbenv aliases
+alias re="rbenv exec"
+# Rails aliases
+alias pspec="be rake parallel:spec $1"
+# Update system and dependencies
+alias le_update="~/.yadm/update.sh"
+

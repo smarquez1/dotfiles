@@ -114,6 +114,12 @@ let g:ale_fixers = {
       \   'scss': ['stylelint'],
       \   'ruby': ['rubocop']
       \}
+let g:ale_set_signs = 1
+hi link ALEErrorLine ErrorMsg
+hi link ALEWarningLine WarningMsg
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
 " }}}
 " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'dyng/ctrlsf.vim'
@@ -166,17 +172,9 @@ Plug 'tpope/vim-surround'
 " Vim test runner
 Plug 'janko-m/vim-test'
 " {{{
-function! NeovimVerticalStrategy(cmd)
-  vertical new
-  call termopen(a:cmd)
-  au BufDelete <buffer> wincmd p " switch back to last window
-  startinsert
-endfunction
-
-let g:test#custom_strategies = {'neovim_vertical': function('NeovimVerticalStrategy')}
-
-"let test#strategy = "neovim_vertical"
-let test#strategy = "vimux"
+let test#strategy = "neovim"
+" let test#strategy = "vimux"
+let test#neovim#term_position = "vert"
 " }}}
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
@@ -226,7 +224,7 @@ let g:AutoPairsMultilineClose = 1
 " Base16 colors
 Plug 'chriskempson/base16-vim'
 " {{{
-let base16colorspace=256 
+" let base16colorspace=256 
 " }}}
 " A vim plugin to display the indention levels with thin vertical lines
 Plug 'Yggdroot/indentLine'
@@ -252,7 +250,7 @@ let g:lightline = {
 
 " }}}
 " Git changes in gutter
-Plug 'mhinz/vim-signify'
+" Plug 'mhinz/vim-signify'
 " Display number of search results
 Plug 'henrik/vim-indexed-search'
 " File explorer like navigation
