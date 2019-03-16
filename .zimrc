@@ -1,15 +1,18 @@
 # Load any helper scripts as defined here
 zmodules=(completion archive autosuggestions directory environment git \
-          git-info history syntax-highlighting input ssh utility \
+          git-info history syntax-highlighting input prompt ssh utility \
           history-substring-search)
 
 # Input
 zinput_mode='vi'
 zdouble_dot_expand='true'
 
+# Prompt
+zprompt_theme='gitster'
+
 # Syntax-Highlighting
 zhighlighters=(main brackets cursor root)
 
-# SSH
+# promSSH
 # Load these ssh identities
-zssh_ids=(id_rsa)
+ssh_ids=(id_rsa)

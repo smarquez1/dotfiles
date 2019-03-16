@@ -1,5 +1,5 @@
 [options]
-font                  = Iosevka Term Regular 11
+font                  = Iosevka Term 11
 mouse_autohide        = true
 fullscreen            = true
 

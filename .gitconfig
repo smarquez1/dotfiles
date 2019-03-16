@@ -6,6 +6,7 @@
   ca             = commit --amend -v
   cleanup        = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
   co             = checkout
+  cp             = cherry-pick
   st             = status
   undo-commit    = reset --soft HEAD^
   unstage        = reset HEAD
@@ -25,10 +26,11 @@
 [github]
   user = smarquez1
 [merge]
+  ff = only
   prompt = false
   tool = vimdiff
 [mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [push]
 	default = current
   followTags = true

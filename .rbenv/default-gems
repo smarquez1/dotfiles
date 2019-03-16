@@ -4,11 +4,9 @@ neovim
 pry
 pry-byebug
 rubocop
+rubocop-rspec
 rspec
 solargraph
-
-# rails_best_practices
-# reek
-# hirb
-# awesome_print
-# brakeman
+rails_best_practices
+reek
+brakeman

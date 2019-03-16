@@ -1,13 +1,11 @@
 #!/bin/bash
-# Requirements: yadm-git
-# yaourt -S yadm-git --noconfirm --needed
+# Requirements: yaourt
+# ```sudo pacman -S yaourt```
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 yaourt -S yay-bin --noconfirm --needed
-yay -S zsh zsh-completions neovim git ripgrep fzy tmux python-pip openssh \ 
-  xclip yarn htop intel-ucode libva-intel-driver linux-firmware linux-lts \
-  linux-lts-headers ntfs-3g wget zgen-git --noconfirm --needed
+yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git ripgrep fzy tmux python-pip openssh ptags yarn htop intel-ucode libva-intel-driver wget zgen-git docker docker-compose --noconfirm --needed
 
 # ZSH
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
@@ -53,27 +51,24 @@ fi
 # node
 if command -v yarn >/dev/null 2>&1; then
   echo "Bootstraping node"
-  sudo yarn global add eslint vue-cli neovim-node-host \
-    javascript-typescript-langsserver
+  sudo yarn global add eslint stylelint prettier vue-cli javascript-typescript-langsserver
 fi
 
+# Basic desktop apps
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S dropbox firefox simplenote-electron-bin slack-desktop ttf-iosevka-term \
-    noto-fonts noto-fonts-emoji bitwarden termite --noconfirm --needed
+  yay -S simplenote-electron-bin slack-desktop ttf-iosevka-term ttf-inter-ui noto-fonts noto-fonts-emoji firefox-kde-opensuse-bin plasma-browser-integration termite --noconfirm --needed
 fi
 
 read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S acestream-launcher android-file-transfer android-tools calibre \
-    darktable dconf-editor geeqie pgadmin4 pinta \ 
-    ttf-bookerly popcorntime-bin rapid-photo-downloader \
-    spotify steam stremio-legacy subdownloader \
-    libreoffice-fresh-es transmission-gtk unified-remote-server \ 
-    vulkan-icd-loader vulkan-intel zoom etcher \
-    kdenlive gparted \
-    emoji-keyboard update-grub ananicy-git linux-ck linux-ck-headers \
-    --noconfirm --needed
+  yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly rapid-photo-downloader spotify transmission-qt vulkan-icd-loader vulkan-intel zoom  kdenlive ananicy-git e4rat-lite-git --noconfirm --needed
 fi
+
+sudo systemctl enable ananicy tlp
+
+sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
+vm.swappiness=10
+EOF

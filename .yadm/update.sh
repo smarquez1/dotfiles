@@ -7,8 +7,6 @@ yay -Syu --devel --noconfirm
 nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
 # Zim
 sh ~/.zim/tools/zim_update
-# Gnome Shell extensions
-gnome-shell-extension-installer --update --yes
 # Rbenv plugins
 rbenv update
 # Nodejs dependencies

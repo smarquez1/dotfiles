@@ -3,13 +3,16 @@
 " set mouse
 set mouse=a
 " Scroll extra lines when reaching the bottom
-set scrolloff=3
+set scrolloff=5
 " Configure search
 set ignorecase smartcase
 " Use system's clipboard. Keep platform specific settings
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 " No backup or swapfile
 set nobackup nowb noswapfile
+" Persistent Undo
+set undodir=~/.vim/undodir
+set undofile
 " Use zsh as shell
 set shell=zsh
 " performance fixes
@@ -17,6 +20,8 @@ set shell=zsh
 set synmaxcol=400
 " Enable true color
 set termguicolors
+" Set nerd fonts
+set guifont=Iosevka\ Nerd\ Font\ 11
 " Enable live substitution
 set inccommand=nosplit
 " Show line numbers
@@ -26,30 +31,34 @@ autocmd BufEnter term://* startinsert
 " Areas where the splits should occur
 set splitbelow splitright
 " Wrap text
-set nowrap breakindent breakindentopt=sbr
+set wrap linebreak breakindent
 " cpoptions=n
-let showbreak = '↳ '
+set showbreak=↪\ 
 " Highlight column at 81
 set cc=81
 " Use tabs as spaces, default identation: 2 spaces
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
 " Enable folding by default
 set foldmethod=indent foldlevel=99
+" Delete comment character when joining commented lines
+set formatoptions+=j
 
 " Filetype specific settings
 " ==========================
 " Highlight column at 101
-au FileType javascript,html,eruby,vue set cc=101
+au FileType javascript,html,eruby,vue setl cc=101
 " Enable spelling on markdown files
 au FileType markdown setl spell
 " Enable folding by default for VIM files/configuration
 au FileType vim setl foldmethod=marker foldenable foldlevel=0 
 " No line numbers in terminal mode
-autocmd TermOpen * setlocal nonumber norelativenumber
+au TermOpen * setlocal nonumber norelativenumber
 
 " Custom key mapings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " comma is space
 let mapleader=" "
+" semi colon is colon
+map ; :
 " Save file
 noremap <leader>w :w <cr>
 " Quicker window movement
@@ -90,8 +99,23 @@ vnoremap <expr>y "my\"" . v:register . "y`y"
 " =======
 call plug#begin('~/.vim/plugged')
 
+" Git changes in gutter
+Plug 'mhinz/vim-signify'
+" A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+" {{{
+let g:fugitive_git_executable = 'LANG=en_US git'
+" }}}
+
+" Vim org-mode
+Plug 'jceb/vim-orgmode'
+" Display css colors
+Plug 'ap/vim-css-color'
 " A Vim plugin that manages your tag files
 Plug 'ludovicchabant/vim-gutentags'
+" {{{
+" let g:gutentags_ctags_executable='ptags'
+" }}}"
 " Comments
 Plug 'tpope/vim-commentary'
 " vim plugin to interact with tmux
@@ -102,21 +126,24 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'w0rp/ale'
 " {{{
 let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \   'scss': ['stylelint'],
-      \   'ruby': ['rubocop', 'solargraph', 'mri']
-      \}
+  \   'javascript': ['eslint'],
+  \   'scss': ['stylelint'],
+  \   'css': ['stylelint'],
+  \   'ruby': ['rubocop', 'solargraph', 'ruby', 'reek'],
+  \   'yaml': ['prettier']
+\}
 
 let g:ale_fixers = {
-      \   'css': ['stylelint'],
-      \   'javascript': ['eslint'],
-      \   'vue': ['eslint'],
-      \   'scss': ['stylelint'],
-      \   'ruby': ['rubocop']
-      \}
+  \   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+  \   'css': ['stylelint'],
+  \   'javascript': ['eslint'],
+  \   'vue': ['eslint'],
+  \   'scss': ['stylelint'],
+  \   'ruby': ['rubocop']
+\}
 let g:ale_set_signs = 1
-hi link ALEErrorLine ErrorMsg
-hi link ALEWarningLine WarningMsg
+" hi link ALEErrorLine ErrorMsg
+" hi link ALEWarningLine WarningMsg
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
@@ -124,9 +151,16 @@ let g:ale_lint_delay = 0
 " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'dyng/ctrlsf.vim'
 " {{{
+let g:ctrlsf_auto_close = {
+    \ "normal" : 0,
+    \ "compact": 0
+    \}
+let g:ctrlsf_auto_focus = {
+    \ "at": "start"
+    \ }
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_default_root = 'project'
 let g:ctrlsf_search_mode='async'
-let g:ctrlsf_indent = 2
-autocmd FileType ctrlsf set nonu norelativenumber
 " }}}
 "Auto close (X)HTML tags
 Plug 'alvan/vim-closetag'
@@ -135,11 +169,6 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js, *.jsx, *.erb"
 " }}}
 " A Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
-" A Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
-" {{{
-let g:fugitive_git_executable = 'LANG=en_US git'
-" }}}
 " ghetto HTML/XML mappings (formerly allml.vim)
 Plug 'tpope/vim-ragtag'
 " {{{
@@ -172,9 +201,9 @@ Plug 'tpope/vim-surround'
 " Vim test runner
 Plug 'janko-m/vim-test'
 " {{{
-let test#strategy = "neovim"
-" let test#strategy = "vimux"
-let test#neovim#term_position = "vert"
+" let test#strategy = "neovim"
+" let test#neovim#term_position = "vert"
+let test#strategy = "vimux"
 " }}}
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
@@ -188,7 +217,6 @@ Plug 'ncm2/ncm2'
   \ | Plug 'ncm2/ncm2-path'
   \ | Plug 'ncm2/ncm2-ultisnips' | Plug 'SirVer/ultisnips' 
   \ | Plug 'honza/vim-snippets' | Plug 'jvanja/vim-bootstrap4-snippets'
-
 " {{{
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -196,10 +224,13 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,preview,noselect
 
 " c-j c-k for moving in snippet
-let g:UltiSnipsExpandTrigger		= "<tab>"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
+inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <c-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<c-r>" : "\<CR>")
 
 " }}}
 
@@ -249,8 +280,6 @@ let g:lightline = {
 \ }
 
 " }}}
-" Git changes in gutter
-" Plug 'mhinz/vim-signify'
 " Display number of search results
 Plug 'henrik/vim-indexed-search'
 " File explorer like navigation
@@ -266,6 +295,10 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 " }}}
 
+" Elixir
+" ~~~~~~~~~~~~~~~~~~
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 " Ruby specific ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Simple plugin to add {} after hitting #
 Plug 'p0deje/vim-ruby-interpolation'
@@ -307,21 +340,8 @@ nmap <leader>as :AS <cr>
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
 " Fugitive git bindings
-nnoremap <Leader>ga :Git add %:p<CR><CR>
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gc :Gcommit -v -q<CR>
-nnoremap <Leader>gt :Gcommit -v -q %:p<CR>
 nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>ge :Gedit<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR><CR>
-nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <Leader>gp :Ggrep<Space>
-nnoremap <Leader>gm :Gmove<Space>
-nnoremap <Leader>gb :Git branch<Space>
-nnoremap <Leader>go :Git checkout<Space>
-nnoremap <Leader>gps :Dispatch! git push<CR>
-nnoremap <Leader>gpl :Dispatch! git pull<CR>
 " Nerdtree
 map <leader>d :NERDTreeToggle<cr>
 map <leader>D :NERDTreeFind<cr>
