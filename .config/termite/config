@@ -1,7 +1,6 @@
 [options]
 font                  = Iosevka Term 11
 mouse_autohide        = true
-fullscreen            = true
 
 [colors]
 # Base16 Eighties

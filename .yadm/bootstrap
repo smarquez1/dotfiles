@@ -5,7 +5,7 @@
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 yaourt -S yay-bin --noconfirm --needed
-yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git ripgrep fzy tmux python-pip openssh ptags yarn htop intel-ucode libva-intel-driver wget zgen-git docker docker-compose --noconfirm --needed
+yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git ripgrep ranger tmux python-pip openssh ptags yarn htop intel-ucode libva-intel-driver wget zgen-git docker docker-compose hub --noconfirm --needed
 
 # ZSH
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then

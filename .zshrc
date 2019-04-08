@@ -11,12 +11,14 @@ eval "$(rbenv init -)"
 export PATH="$(yarn global bin):$PATH"
 # load aliases
 source "$HOME/.aliases"
-
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
 # Report terminal type
 export TERM=tmux-256color
+# Force GTK to use wayland
+export GDK_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
 
 # Prevent history to save duplicates
 setopt hist_ignore_all_dups
