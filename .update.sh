@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Update mirrors
+# sudo pacman-mirrors --country all && pacman -Syyu
+
 # System
 yay -Syu --devel --noconfirm
 # Tmux
@@ -6,8 +10,6 @@ yay -Syu --devel --noconfirm
 # Neovim
 nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
 # Zim
-sh ~/.zim/tools/zim_update
+zmanage update
 # Rbenv plugins
 rbenv update
-# Nodejs dependencies
-yarn global upgrade

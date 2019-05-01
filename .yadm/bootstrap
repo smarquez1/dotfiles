@@ -2,10 +2,12 @@
 # Requirements: yaourt
 # ```sudo pacman -S yaourt```
 
+# TODO: enable kyber
+
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 yaourt -S yay-bin --noconfirm --needed
-yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git ripgrep ranger tmux python-pip openssh ptags yarn htop intel-ucode libva-intel-driver wget zgen-git docker docker-compose hub --noconfirm --needed
+yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git ripgrep fzy ranger tmux python-pip openssh yarn htop intel-ucode libva-intel-driver wget zgen-git docker docker-compose hub reflector --noconfirm --needed
 
 # ZSH
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
@@ -48,27 +50,36 @@ if command -v rbenv >/dev/null 2>&1; then
   rbenv ctags
 fi
 
-# node
-if command -v yarn >/dev/null 2>&1; then
-  echo "Bootstraping node"
-  sudo yarn global add eslint stylelint prettier vue-cli javascript-typescript-langsserver
-fi
-
-# Basic desktop apps
+udo yarn global add eslint stylelint prettier vue-cli javascript-typescript-langsserver
+ Basic desktop apps
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S simplenote-electron-bin slack-desktop ttf-iosevka-term ttf-inter-ui noto-fonts noto-fonts-emoji firefox-kde-opensuse-bin plasma-browser-integration termite --noconfirm --needed
+  yay -S simplenote-electron-bin slack-desktop ttf-iosevka-term ttf-inter-ui \
+    noto-fonts noto-fonts-emoji firefox plasma-browser-integration \
+    termite tilix --noconfirm --needed
 fi
 
 read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly rapid-photo-downloader spotify transmission-qt vulkan-icd-loader vulkan-intel zoom  kdenlive ananicy-git e4rat-lite-git --noconfirm --needed
+  yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly \
+    rapid-photo-downloader spotify transmission-qt vulkan-icd-loader vulkan-intel \
+    zoom kdenlive ananicy-git e4rat-lite-git --noconfirm --needed
 fi
 
+# Enable TLP and Ananicy
 sudo systemctl enable ananicy tlp
 
+# Tune system responsiveness
 sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
-vm.swappiness=10
+  vm.swappiness=10
+  vm.vfs_cache_pressure=50
+  vm.dirty_background_ratio = 3
+  vm.dirty_ratio = 10
+EOF
+
+# Needed by capybara specs
+sudo tee -a /etc/sysctl.d/40-max-user-watches.conf <<-EOF
+  fs.inotify.max_user_watches=524288
 EOF

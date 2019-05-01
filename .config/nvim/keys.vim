@@ -1,6 +1,7 @@
-let mapleader = " " " map Leader
+" map Leader
+let mapleader = " "
 " semi colon is colon
-map ; :         
+map ; :
 noremap <leader>w :w <cr> " Save file
 " Quicker window movement
 nmap <c-j> <c-w>j
@@ -10,6 +11,15 @@ nmap <c-h> <c-w>h
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
+" Tab management
+nnoremap <leader>c :tabnew<CR>
+" inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+" inoremap <C-tab>   <Esc>:tabnext<CR>i
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
 " Replace hashrockets with 1.9 hash style syntax
 nnoremap <leader>: :%s/:\(\w\+\)\s*=>\s*/\1: /g <cr>
 " Re-Open Previously Opened File
@@ -26,6 +36,8 @@ tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
+" Escape from terminal goes to normal mode
+tnoremap <Esc> <C-\><C-n>
 
 " map . in visual mode
 vnoremap . :norm.<cr>
@@ -39,25 +51,33 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 
 " Vim Ale
 map <Leader>af :ALEFix<cr>
+
 " Rails
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
 nmap <leader>as :AS <cr>
+
 " Ctrlsf
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
+
 " Fugitive git bindings
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
+
 " Vim Test
 nmap <leader>T :TestFile<CR>
 nmap <leader>t :TestNearest<CR>
 nmap <leader>l :TestLast<CR>
+
 " Nerdtree
-map <leader>d :NERDTreeToggle<cr>
-map <leader>D :NERDTreeFind<cr>
-" FZF
-nnoremap <silent> <Leader>f :Files<CR>
+map <leader>d :NERDTreeToggle<CR>
+map <leader>D :NERDTreeFind<CR>
+
+" neovim fuzzy
+nnoremap <silent> <Leader>f :FuzzyOpen<CR>
+
+" coc-vim
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -73,11 +93,12 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Colorscheme
-set background=dark
-colorscheme base16-eighties
-hi VertSplit guibg=bg guifg=fg
+" Remap keys for gotos
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Vim Ale
 map <Leader>af :ALEFix<cr>
@@ -95,3 +116,5 @@ nnoremap <Leader>gd :Gdiff<CR>
 nmap <leader>T :TestFile<CR>
 nmap <leader>t :TestNearest<CR>
 nmap <leader>l :TestLast<CR>
+
+imap <C-X><CR> <CR><Plug> AlwaysEnd
