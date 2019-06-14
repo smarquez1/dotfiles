@@ -40,6 +40,9 @@ alias tls_staging='tsh ls --cluster=decisiv-studebaker '
 alias tls_prod='tsh ls --cluster=decisiv-prod '
 alias tls_dev='tsh ls --cluster=decisiv-dev '
 alias tls_qa='tsh ls --cluster=decisiv-qa '
+alias tls_ud_prod='tsh ls --cluster=decisiv-ud-prod '
+alias tls_misp_test='tsh ls --cluster=decisiv-misp_test '
+alias tls_qa='tsh ls --cluster=decisiv-qa '
 
 function tsh_staging() {
    command tsh ssh --cluster=decisiv-studebaker developers@$1

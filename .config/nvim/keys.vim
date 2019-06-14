@@ -64,6 +64,12 @@ vmap <leader>/ <Plug>CtrlSFVwordPath
 " Fugitive git bindings
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
+" Show commits for every source line
+" nnoremap <Leader>gb :Gblame<CR>  " git blame
+" Open current line in the browser
+nnoremap <Leader>gb :.Gbrowse<CR>
+" Open visual selection in the browser
+vnoremap <Leader>gb :Gbrowse<CR>
 
 " Vim Test
 nmap <leader>T :TestFile<CR>
@@ -82,6 +88,11 @@ nnoremap <silent> <Leader>f :FuzzyOpen<CR>
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
 inoremap <silent><expr> <TAB>
   \ pumvisible() ? coc#_select_confirm() :
@@ -93,28 +104,3 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> <C-]> <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Vim Ale
-map <Leader>af :ALEFix<cr>
-" Rails
-nmap <leader>a :A <cr>
-nmap <leader>av :AV <cr>
-nmap <leader>as :AS <cr>
-" Ctrlsf
-nmap <leader>/ <Plug>CtrlSFPrompt
-vmap <leader>/ <Plug>CtrlSFVwordPath
-" Fugitive git bindings
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-" Vim Test
-nmap <leader>T :TestFile<CR>
-nmap <leader>t :TestNearest<CR>
-nmap <leader>l :TestLast<CR>
-
-imap <C-X><CR> <CR><Plug> AlwaysEnd

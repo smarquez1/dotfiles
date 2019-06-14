@@ -15,6 +15,7 @@ let g:ale_linters = {
       \   'scss': ['stylelint'],
       \   'css': ['stylelint'],
       \   'elixir': ['mix_format', 'elixir-ls', 'credo'],
+      \   'eruby': ['erb'],
       \   'ruby': ['ruby', 'rubocop'],
       \   'yaml': ['prettier']
 \}
@@ -90,8 +91,8 @@ let g:AutoPairsMultilineClose = 1
 let g:fugitive_git_executable = 'LANG=en_US git'
 
 " Polyglot
-" Disable plyglot for javascript, since we are using yajs.vim
-let g:polyglot_disabled = ['javascript']
+" Don't threat all js files as jsx
+let g:jsx_ext_required = 1
 
 " javascript libraries
 let g:used_javascript_libs = 'underscore, jquery, react, vue, jasmine'

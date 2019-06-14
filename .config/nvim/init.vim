@@ -1,20 +1,14 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-
 Plug 'mhartington/oceanic-next'
-" Plug 'itchyny/lightline.vim' " Better statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'kassio/neoterm'
 Plug 'benmills/vimux' " vim plugin to interact with tmux
 Plug 'Valloric/MatchTagAlways' " A Vim plugin that always highlights the enclosing html/xml tags
 Plug 'alvan/vim-closetag' "Auto close (X)HTML tags
 Plug 'tpope/vim-ragtag' " ghetto HTML/XML mappings (formerly allml.vim)
-Plug 'othree/yajs.vim' 
-
 Plug 'mattn/emmet-vim' " emmet for vim
 Plug 'unblevable/quick-scope'  " Lightning fast left-right movement in Vim 
-Plug 'jceb/vim-orgmode' " Vim org-mode
 Plug 'RRethy/vim-hexokinase' " Display css colors
 Plug 'tpope/vim-commentary' " Comments
 Plug 'scrooloose/nerdtree' " File explorer like navigation
@@ -22,7 +16,6 @@ Plug 'w0rp/ale' " Asynchronous linting/fixing for Vim and LSP integration
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder using fzy
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
-
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with "."
@@ -59,10 +52,10 @@ let s:coc_extensions = [
       \ 'coc-vetur',
       \ 'coc-yaml'
       \ ]
+
 Plug 'neoclide/coc.nvim', {'do': function('PlugCoc')} 
 Plug 'jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'chriskempson/base16-vim' " Base16 colors
-Plug 'Yggdroot/indentLine' " A vim plugin to display the indention levels with thin vertical lines
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'airblade/vim-gitgutter' " Show git diff in the gutter
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal

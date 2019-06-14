@@ -55,8 +55,8 @@ udo yarn global add eslint stylelint prettier vue-cli javascript-typescript-lang
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S simplenote-electron-bin slack-desktop ttf-iosevka-term ttf-inter-ui \
-    noto-fonts noto-fonts-emoji firefox plasma-browser-integration \
+  yay -S notion-app slack-desktop ttf-iosevka-term ttf-inter-ui \
+    noto-fonts noto-fonts-emoji ttf-emojione firefox plasma-browser-integration \
     termite tilix --noconfirm --needed
 fi
 
