@@ -1,9 +1,0 @@
-AllCops:
-  DisplayCopNames: true
-  DisplayStyleGuide: true
-  ExtraDetails: false
-  TargetRubyVersion: 2.5
-Documentation:
-  Enabled: false
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: 'indented'

@@ -1,13 +1,25 @@
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'oceanicnext',
+      \ 'active': {
+      \   'left':   [ [ 'mode', 'paste' ],
+      \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right':  [ [ 'lineinfo' ],
+      \               [ 'filetype' ]
+      \             ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \ },
+      \ }
+
+" Hexokinase
 let g:Hexokinase_refreshEvents = ['BufWritePost', 'BufEnter']
 
-" Airline
-let g:airline_theme='base16_oceanicnext'
-let g:airline_theme='oceanicnext'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type= 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" Vim Sneak
+let g:sneak#label = 1
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
 
 " Vim ALE
 let g:ale_linters = {

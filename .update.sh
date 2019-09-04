@@ -10,6 +10,6 @@ yay -Syu --devel --noconfirm
 # Neovim
 nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
 # Zim
-zmanage update
+sh ~/.zim/tools/zim_update
 # Rbenv plugins
 rbenv update

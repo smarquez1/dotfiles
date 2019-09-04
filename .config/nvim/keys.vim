@@ -30,7 +30,7 @@ nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 " nnoremap <leader>ev :e $MYVIMRC; cd ~/.config/nvim<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 " Auto indent whole document
-nnoremap <leader>ai mzgg=G`z
+nnoremap <leader>ai gg=G<C-o><C-O>
 " Make navigation into and out of Neovim terminal splits nicer.
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j

@@ -36,26 +36,13 @@ fi
 
 # teleport shortcuts
 alias teleport_login="tsh --proxy=decisiv.sh:443 login --auth=okta"
-alias tls_staging='tsh ls --cluster=decisiv-studebaker '
-alias tls_prod='tsh ls --cluster=decisiv-prod '
-alias tls_dev='tsh ls --cluster=decisiv-dev '
-alias tls_qa='tsh ls --cluster=decisiv-qa '
-alias tls_ud_prod='tsh ls --cluster=decisiv-ud-prod '
-alias tls_misp_test='tsh ls --cluster=decisiv-misp_test '
-alias tls_qa='tsh ls --cluster=decisiv-qa '
 
-function tsh_staging() {
-   command tsh ssh --cluster=decisiv-studebaker developers@$1
+# Ex tls_decisiv dev builder
+function tls_decisiv() {
+	command tsh ls --cluster=decisiv-$1 | grep app=$2 | grep -Eo '[^/"]+'
 }
 
-function tsh_prod() {
-   command tsh ssh --cluster=decisiv-prod developers@$1
-}
-
-function tsh_dev() {
-   command tsh ssh --cluster=decisiv-dev developers@$1
-}
-
-function tsh_qa() {
-   command tsh ssh --cluster=decisiv-qa developers@$1
+# Ex tsh_decisiv dev builder-app-dev-1.dev.decisivapps.com
+function tsh_decisiv() {
+   command tsh ssh --cluster=decisiv-$1 developers@$2
 }

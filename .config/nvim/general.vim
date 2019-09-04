@@ -14,8 +14,7 @@ set updatetime=250
 " Customize breakline symbol
 set showbreak=↪\ 
 " Ident using 2 spaces
-" set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
-set tabstop=2 shiftwidth=2
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
 set foldmethod=indent foldlevel=99 " Enable folding by default
 set formatoptions+=j " Delete comment character when joining commented lines
 

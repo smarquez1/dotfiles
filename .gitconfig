@@ -8,15 +8,15 @@
   m              = mergetool
   aa             = add --all
   ca             = commit --amend -v
-  cleanup        = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
   co             = checkout
+  cleanup        = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
+  commit = commit -v
   cp             = cherry-pick
   st             = status
   undo-commit    = reset --soft HEAD^
   unstage        = reset HEAD
   up             = !git fetch origin && git rebase origin/master
-  l              = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  l              = log --oneline --decorate --color
   la             = "!git config -l | grep alias | cut -c 7-"
 [core]
 	excludesfile = ~/.gitignore
