@@ -1,31 +1,4 @@
 "coc.vim: Intellisense engine for vim8 & neovim, full language server protocol support as VSCode 
-function! PlugCoc(info) abort
-  if a:info.status ==? 'installed' || a:info.force
-    !yarn install
-    call coc#util#install()
-  elseif a:info.status ==? 'updated'
-    !yarn install
-    call coc#util#update()
-  endif
-  call coc#add_extension(join(get(s:, 'coc_extensions', [])))
-endfunction
-
-let s:coc_extensions = [
-      \ 'coc-eslint',
-      \ 'coc-emoji',
-      \ 'coc-prettier',
-      \ 'coc-tsserver',
-      \ 'coc-vetur',
-      \ 'coc-css', 
-      \ 'coc-highlight', 
-      \ 'coc-html',     
-      \ 'coc-json',
-      \ 'coc-snippets',
-      \ 'coc-solargraph',
-      \ 'coc-tsserver',
-      \ 'coc-yaml'
-      \ ]
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim'
@@ -49,7 +22,27 @@ Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 " Plug 'justinmk/vim-sneak' " Precise cursor movement
 Plug 'mattn/emmet-vim' " emmet for vim
 Plug 'mhartington/oceanic-next'
-Plug 'neoclide/coc.nvim', {'do': function('PlugCoc')} 
+" Plug 'neoclide/coc.nvim', { 'do': function('PlugCoc') } 
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+let s:coc_global_extensions = [
+      \ 'coc-solargraph'
+      \ ]
+
+" let s:coc_global_extensions = [
+"       \ 'coc-eslint',
+"       \ 'coc-emoji',
+"       \ 'coc-tsserver',
+"       \ 'coc-vetur',
+"       \ 'coc-css', 
+"       \ 'coc-html',     
+"       \ 'coc-json',
+"       \ 'coc-snippets',
+"       \ 'coc-solargraph',
+"       \ 'coc-tsserver',
+"       \ 'coc-yaml'
+"       \ ]
+
 Plug 'scrooloose/nerdtree' " File explorer like navigation
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 Plug 'terryma/vim-multiple-cursors'

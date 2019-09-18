@@ -28,7 +28,7 @@ let g:ale_linters = {
       \   'css': ['stylelint'],
       \   'elixir': ['mix_format', 'elixir-ls', 'credo'],
       \   'eruby': ['erb'],
-      \   'ruby': ['ruby', 'rubocop'],
+      \   'ruby': ['ruby', 'rubocop', 'reek'],
       \   'yaml': ['prettier']
 \}
 
@@ -94,7 +94,6 @@ let test#strategy = "vimux"
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
-let g:coc_snippet_next = '<tab>'
 
 " Autopairs
 let g:AutoPairsMultilineClose = 1

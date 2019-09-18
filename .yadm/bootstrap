@@ -58,8 +58,8 @@ sudo yarn global add eslint stylelint prettier javascript-typescript-langserver
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S notion-app slack-desktop ttf-iosevka-term ttf-inter-ui \
-    noto-fonts noto-fonts-emoji ttf-joypixels firefox google-chrome \
+  yay -S notion-app slack-desktop ttf-iosevka-term \
+    noto-fonts ttf-joypixels firefox google-chrome \
 		pavucontrol plasma-browser-integration termite --noconfirm --needed
 fi
 
@@ -67,8 +67,8 @@ read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly \
-    rapid-photo-downloader spotify transmission-qt vulkan-icd-loader vulkan-intel \
-    zoom kdenlive --noconfirm --needed
+    rapid-photo-downloader spotify transmission-gtk postman-bin vulkan-icd-loader vulkan-intel \
+    zoom kdenlive ttf-windows ttf-ms-fonts --noconfirm --needed
 fi
 
 # Enable TLP and Ananicy
@@ -96,7 +96,7 @@ sudo tee -a /etc/pulse/default.pa <<-EOF
   load-module module-switch-on-connect
 EOF
 
-# Enable bootstrap at startup
-sudo tee -a /etc/bluetooth/main.conf <<-EOF
-  AutoEnable=true
-EOF
+# Enable bluetooth at startup . Managed by TLP?
+# sudo tee -a /etc/bluetooth/main.conf <<-EOF
+#   AutoEnable=true
+# EOF
