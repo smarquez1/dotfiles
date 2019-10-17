@@ -1,4 +1,5 @@
 bundler
+fasterer
 neovim
 pry
 pry-byebug

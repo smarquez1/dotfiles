@@ -28,13 +28,14 @@ let g:ale_linters = {
       \   'css': ['stylelint'],
       \   'elixir': ['mix_format', 'elixir-ls', 'credo'],
       \   'eruby': ['erb'],
-      \   'ruby': ['ruby', 'rubocop', 'reek'],
+      \   'ruby': ['ruby', 'rubocop', 'standardrb', 'fasterer'],
       \   'yaml': ['prettier']
 \}
 
 let g:ale_fixers = {
 \   'css': ['stylelint'],
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
 \   'elixir': ['mix_format'],
 \   'vue': ['eslint'],
 \   'scss': ['stylelint'],

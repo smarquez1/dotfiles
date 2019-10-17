@@ -1,0 +1,38 @@
+# Wget resume by defaut
+# alias wget='wget -c'
+# Neovim replaces Vim
+alias vim=nvim
+alias v=nvim
+# open
+alias open='xdg-open'
+# Bundler aliases
+alias b="bundle"
+alias be="bundle exec"
+alias bi="bundle install"
+alias bu="bundle update"
+# Rails aliases
+alias rs="bundle exec rails s"
+alias rc="bundle exec rails c"
+alias pspec="be rake parallel:spec $1"
+# Rbenv aliases
+alias re="rbenv exec"
+# Update system and dependencies
+alias le_update="~/.yadm/update.sh"
+# Docker aliases
+alias dco='docker-compose'
+alias dcb='docker-compose build'
+alias dce='docker-compose exec'
+alias dcps='docker-compose ps'
+alias dcrestart='docker-compose restart'
+alias dcrm='docker-compose rm'
+alias dcr='docker-compose run'
+alias dcstop='docker-compose stop'
+alias dcup='docker-compose up'
+alias dcupd='docker-compose up -d'
+alias dcdn='docker-compose down'
+alias dcl='docker-compose logs'
+alias dclf='docker-compose logs -f'
+alias dcpull='docker-compose pull'
+alias dcstart='docker-compose start'
+# Systemctl
+alias sc=systemctl
