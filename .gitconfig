@@ -10,6 +10,7 @@
   ca             = commit --amend -v
   co             = checkout
   cleanup        = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
+  fcleanup       = "!git branch | grep -v "master" | xargs git branch -D" 
   commit = commit -v
   cp             = cherry-pick
   st             = status

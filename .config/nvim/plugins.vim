@@ -1,48 +1,29 @@
+" Colorizer
 " Lightline
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'oceanicnext',
       \ 'active': {
       \   'left':   [ [ 'mode', 'paste' ],
-      \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \               [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
       \   'right':  [ [ 'lineinfo' ],
       \               [ 'filetype' ]
       \             ]
       \ },
       \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
       \   'gitbranch': 'fugitive#head',
       \ },
       \ }
-
-" Hexokinase
-let g:Hexokinase_refreshEvents = ['BufWritePost', 'BufEnter']
 
 " Vim Sneak
 let g:sneak#label = 1
 nmap f <Plug>Sneak_s
 nmap F <Plug>Sneak_S
-
-" Vim ALE
-let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \   'scss': ['stylelint'],
-      \   'css': ['stylelint'],
-      \   'elixir': ['mix_format', 'elixir-ls', 'credo'],
-      \   'eruby': ['erb'],
-      \   'ruby': ['ruby', 'rubocop', 'standardrb', 'fasterer'],
-      \   'yaml': ['prettier']
-\}
-
-let g:ale_fixers = {
-\   'css': ['stylelint'],
-\   'javascript': ['eslint'],
-\   'javascriptreact': ['eslint'],
-\   'elixir': ['mix_format'],
-\   'vue': ['eslint'],
-\   'scss': ['stylelint'],
-\   'ruby': ['rubocop']
-\}
-
-let g:ale_lint_on_insert_leave = 1
 
 " CTRLSF
 " Use rg as backend
@@ -112,5 +93,7 @@ let g:used_javascript_libs = 'underscore, jquery, react, vue, jasmine'
 " NERDTree
 " Don't show help, press ? to get it
 let g:NERDTreeMinimalUI = 1
+" 
+let NERDTreeDirArrows = 1
 " Delete buffer after file rename, delete
 let g:NERDTreeAutoDeleteBuffer=1

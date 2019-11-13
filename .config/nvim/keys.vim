@@ -49,9 +49,6 @@ vnoremap <expr>y "my\"" . v:register . "y`y"
 inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
 inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 
-" Vim Ale
-map <Leader>af :ALEFix<cr>
-
 " Rails
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
@@ -84,9 +81,9 @@ map <leader>D :NERDTreeFind<CR>
 nnoremap <silent> <Leader>f :FuzzyOpen<CR>
 
 " coc-vim
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Auto Fix
+map <Leader>af :CocFix<cr>
 
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

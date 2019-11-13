@@ -1,0 +1,13 @@
+{
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "solargraph.useBundler": false,
+  "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "diagnostic.errorSign": ".",
+  "diagnostic.warningSign": ".",
+  "diagnostic.infoSign": "•",
+  "solargraph.commandPath": "/Users/sergio/.rbenv/shims/solargraph"
+}

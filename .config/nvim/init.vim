@@ -4,6 +4,8 @@ let s:coc_global_extensions = [
       \ 'coc-css', 
       \ 'coc-eslint',
       \ 'coc-tsserver',
+      \ 'coc-git',
+      \ 'coc-hightlight',
       \ 'coc-solargraph'
       \ ]
 
@@ -11,7 +13,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'Valloric/MatchTagAlways' " A Vim plugin that always highlights the enclosing html/xml tags
-Plug 'airblade/vim-gitgutter' " Show git diff in the gutter
 Plug 'alvan/vim-closetag' "Auto close (X)HTML tags
 Plug 'benmills/vimux' " vim plugin to interact with tmux
 Plug 'chriskempson/base16-vim' " Base16 colors
@@ -30,7 +31,6 @@ Plug 'mhartington/oceanic-next'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Display css colors
 Plug 'scrooloose/nerdtree' " File explorer like navigation
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 Plug 'slashmili/alchemist.vim'
@@ -43,7 +43,6 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
 Plug 'tpope/vim-surround' " Vim Surround
-Plug 'w0rp/ale' " Asynchronous linting/fixing for Vim and LSP integration
 call plug#end()
 
 source $HOME/.config/nvim/general.vim

@@ -46,7 +46,6 @@ if command -v rbenv >/dev/null 2>&1; then
   git clone https://github.com/znz/rbenv-plug.git "$(rbenv root)/plugins/rbenv-plug"
   rbenv plug aliases
   rbenv plug default-gems
-  rbenv plug communal-gems
   rbenv plug ruby-build
   rbenv plug use
   rbenv plug update

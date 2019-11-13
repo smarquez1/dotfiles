@@ -4,7 +4,7 @@
 alias vim=nvim
 alias v=nvim
 # open
-alias open='xdg-open'
+# alias open='xdg-open'
 # Bundler aliases
 alias b="bundle"
 alias be="bundle exec"
