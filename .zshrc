@@ -29,13 +29,12 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 # Report term
-if [ "$system_type" = "Darwin" ]; then
-  if [ -z "$TMUX" ]; then
-    export TERM=xterm-256color
-   else
-     export TERM=screen-256color
-   fi
- fi
+export TERM=screen-256color
+# if [ -z "$TMUX" ]; then
+#   export TERM=xterm-256color
+# else
+#   export TERM=screen-256color
+# fi
 
 # Prevent history to save duplicates
 setopt hist_ignore_all_dups
@@ -51,15 +50,19 @@ if [[ $TMUX = "" ]]; then
 fi
 
 ## Teleport shortcuts
-alias teleport_login="tsh --proxy=decisiv.sh:443 login --auth=okta"
+alias tlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
 
-# Ex tls_decisiv dev builder
-function tls_decisiv() {
-	command tsh ls --cluster=decisiv-$1 | grep app=$2 | grep -Eo '[^/"]+'
+# Ex tlsd builder
+tlsd() {
+	tsh ls --cluster=decisiv | grep app=$1 | grep -Eo '[^/"]+'
 }
 
-# Ex tsh_decisiv dev builder-app-dev-1.dev.decisivapps.com
-# Ex2 tsh_decisiv dev builder-app-dev-1.dev.decisivapps.com tmux a
-function tsh_decisiv() {
-   command tsh ssh --cluster=decisiv-$1 developers@$2 $3
+# Ex tshd builder-app-dev-1.dev.decisivapps.com
+# Ex2 tshd builder-app-dev-1.dev.decisivapps.com tmux a
+tshd() {
+  tsh ssh --cluster=decisiv developers@$1 $2
+}
+
+tshdd() {
+  tsh ssh --cluster=decisiv developers@$1.decisivapps.com
 }

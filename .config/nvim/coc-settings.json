@@ -1,13 +1,14 @@
 {
-  "suggest.echodocSupport": true,
-  "suggest.maxCompleteItemCount": 20,
-  "solargraph.useBundler": false,
-  "solargraph.diagnostics": true,
-  "solargraph.autoformat": true,
-  "solargraph.formatting": true,
-  "solargraph.hover": true,
   "diagnostic.errorSign": ".",
   "diagnostic.warningSign": ".",
   "diagnostic.infoSign": "•",
-  "solargraph.commandPath": "/Users/sergio/.rbenv/shims/solargraph"
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "solargraph.autoformat": true,
+  "solargraph.commandPath": "/Users/sergio/.rbenv/shims/solargraph",
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "solargraph.useBundler": false,
+  "eslint.autoFixOnSave": true
 }

@@ -1,5 +1,5 @@
 # Load any helper scripts as defined here
-zmodules=(completion archive autosuggestions directory environment git \
+zmodules=(completion archive directory environment git \
           git-info history syntax-highlighting input prompt ssh utility \
           history-substring-search)
 
@@ -8,6 +8,7 @@ zinput_mode='vi'
 zdouble_dot_expand='true'
 
 # Prompt
+# eriner gitster magicmace minimal steeef
 zprompt_theme='gitster'
 
 # Syntax-Highlighting

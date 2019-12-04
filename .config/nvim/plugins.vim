@@ -1,11 +1,16 @@
-" Colorizer
+" IndentLine
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_enabled = 0 
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'markdown']
+
 " Lightline
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'oceanicnext',
+      \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left':   [ [ 'mode', 'paste' ],
       \               [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
@@ -69,7 +74,8 @@ let g:multi_cursor_exit_from_insert_mode  = 0
 
 " vim-test
 " let test#neovim#term_position = "vert"
-let test#strategy = "vimux"
+  let test#strategy = "vimux"
+let g:test#ruby#rspec#executable = 'bundle exec rspec'
 
 " COC
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -78,8 +84,8 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
 " Autopairs
-let g:AutoPairsMultilineClose = 1
-
+let g:AutoPairsFlyMode = 1
+let g:AutoPairs = { '(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "|":"|" }
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
 

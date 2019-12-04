@@ -26,10 +26,15 @@ if &wildoptions == "pum"
 endif
 
 " Theme
+" Enable true color 启用终端24位色
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
+" let g:oceanic_next_terminal_bold = 1
+" let g:oceanic_next_terminal_italic = 1
+let g:onedark_terminal_italics = 1
+let g:airline_theme='onedark'
+colorscheme onedark
 
 " Filetype specific settings
 " ==========================
