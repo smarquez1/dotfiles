@@ -16,8 +16,6 @@ alias rc="bundle exec rails c"
 alias pspec="be rake parallel:spec $1"
 # Rbenv aliases
 alias re="rbenv exec"
-# Update system and dependencies
-alias le_update="~/.yadm/update.sh"
 # Docker aliases
 alias dco='docker-compose'
 alias dcb='docker-compose build'
@@ -34,5 +32,37 @@ alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
 alias dcpull='docker-compose pull'
 alias dcstart='docker-compose start'
-# Systemctl
-alias sc=systemctl
+
+# Update System
+le_update() {
+  brew update
+  brew upgrade
+  brew cask upgrade
+  brew cleanup
+  # Tmux
+  ~/.tmux/plugins/tpm/scripts/update_plugin.sh
+  # Neovim
+  nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
+  # Zim
+  sh ~/.zim/tools/zim_update
+  # Rbenv plugins
+  rbenv update
+}
+
+## Teleport shortcuts
+alias tlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
+
+# Ex tlsd builder
+tlsd() {
+	tsh ls --cluster=decisiv | grep app=$1 | grep -Eo '[^/"]+'
+}
+
+# Ex tshd builder-app-dev-1.dev.decisivapps.com
+# Ex2 tshd builder-app-dev-1.dev.decisivapps.com tmux a
+tshd() {
+  tsh ssh --cluster=decisiv developers@$1 $2
+}
+
+tshdd() {
+  tsh ssh --cluster=decisiv developers@$1.decisivapps.com
+}

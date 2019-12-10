@@ -48,21 +48,3 @@ if [[ $TMUX = "" ]]; then
   tmux ls | grep -vq attached && TMUXARG="attach-session -d"
   exec eval "tmux $TMUXARG"
 fi
-
-## Teleport shortcuts
-alias tlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
-
-# Ex tlsd builder
-tlsd() {
-	tsh ls --cluster=decisiv | grep app=$1 | grep -Eo '[^/"]+'
-}
-
-# Ex tshd builder-app-dev-1.dev.decisivapps.com
-# Ex2 tshd builder-app-dev-1.dev.decisivapps.com tmux a
-tshd() {
-  tsh ssh --cluster=decisiv developers@$1 $2
-}
-
-tshdd() {
-  tsh ssh --cluster=decisiv developers@$1.decisivapps.com
-}
