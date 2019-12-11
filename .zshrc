@@ -36,6 +36,9 @@ export TERM=screen-256color
 #   export TERM=screen-256color
 # fi
 
+# GPG
+export GPG_TTY=$(tty)
+
 # Prevent history to save duplicates
 setopt hist_ignore_all_dups
 # wait 10 seconds before really executing 'rm -rf *'

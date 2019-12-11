@@ -13,7 +13,6 @@ alias bu="bundle update"
 # Rails aliases
 alias rs="bundle exec rails s"
 alias rc="bundle exec rails c"
-alias pspec="be rake parallel:spec $1"
 # Rbenv aliases
 alias re="rbenv exec"
 # Docker aliases
