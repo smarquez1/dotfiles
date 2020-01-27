@@ -43,7 +43,8 @@ le_update() {
   # Neovim
   nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
   # Zim
-  sh ~/.zim/tools/zim_update
+  zimfw update
+  zimfw upgrade
   # Rbenv plugins
   rbenv update
 }

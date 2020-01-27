@@ -15,6 +15,7 @@ Plug 'AndrewRadev/tagalong.vim' " Change an HTML(ish) opening tag and take the c
 Plug 'Valloric/MatchTagAlways' " A Vim plugin that always highlights the enclosing html/xml tags
 Plug 'alvan/vim-closetag' "Auto close (X)HTML tags
 Plug 'benmills/vimux' " vim plugin to interact with tmux
+Plug 'chrisbra/csv.vim' " A Filetype plugin for csv files
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
 Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder using fzy
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2

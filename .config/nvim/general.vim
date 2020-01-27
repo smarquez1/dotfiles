@@ -26,12 +26,13 @@ if &wildoptions == "pum"
 endif
 
 " Theme
-" Enable true color 启用终端24位色
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" According to :h xterm-true-color
+" t_8f and t_8b are only set when $TERM is xterm*
+" In tmux, $TERM is screen by default.
+" Therefore, we have to set them explicitly here.
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-" let g:oceanic_next_terminal_bold = 1
-" let g:oceanic_next_terminal_italic = 1
 let g:onedark_terminal_italics = 1
 let g:airline_theme='onedark'
 colorscheme onedark
