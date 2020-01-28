@@ -1,10 +1,15 @@
+SYSTEM_TYPE=$(uname -s)
+
 # Elixir
 # export PATH="$PATH:/path/to/elixir/bin"
 
 # Rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-# https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  # https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
+  export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+fi
 
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"

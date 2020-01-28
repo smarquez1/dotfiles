@@ -1,14 +1,27 @@
 #!/bin/bash
 
-# TODO: enable kyber
+SYSTEM_TYPE=$(uname -s)
+
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  # install homebrew if it's missing
+  if ! command -v brew >/dev/null 2>&1; then
+    echo ">>> Installing homebrew.."
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+fi
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
-sudo pacman -S yay --noconfirm --needed
-yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git \
-	ripgrep fzy tmux python-pip openssh yarn htop intel-ucode libva-intel-driver \
-	wget zgen-git docker docker-compose ananicy-git e4rat-lite-git tlp \
-	pulseaudio-modules-bt-git -noconfirm --needed
+
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  brew install zsh neovim git ripgrep fzy tmux yarn htop wget docker docker-compose
+elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+  sudo pacman -S yay --noconfirm --needed
+
+  yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git \
+    ripgrep fzy tmux python-pip openssh yarn htop intel-ucode libva-intel-driver \
+    wget docker docker-compose tlp pulseaudio-modules-bt-git -noconfirm --needed
+fi
 
 # ZSH
 # Set zsh as default shell
@@ -58,45 +71,58 @@ sudo yarn global add eslint stylelint prettier javascript-typescript-langserver
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S notion-app slack-desktop ttf-iosevka-term \
-    noto-fonts ttf-joypixels firefox google-chrome \
-		pavucontrol plasma-browser-integration termite --noconfirm --needed
+
+  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    brew cask install iterm  slack google-chrome firefox
+  elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+    yay -S notion-app slack-desktop ttf-iosevka-term \
+      noto-fonts ttf-joypixels firefox google-chrome \
+      pavucontrol plasma-browser-integration termite --noconfirm --needed
+  fi
 fi
 
 read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly \
-    rapid-photo-downloader spotify transmission-gtk postman-bin vulkan-icd-loader vulkan-intel \
-    zoom kdenlive ttf-windows ttf-ms-fonts --noconfirm --needed
+  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    brew install calibre darktable dbeaver spotify transmission zoom 
+  elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+    yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly \
+      rapid-photo-downloader spotify transmission-gtk \
+      vulkan-icd-loader vulkan-intel zoom kdenlive ttf-windows \
+      ttf-ms-fonts --noconfirm --needed
+  fi
 fi
 
-# Enable TLP and Ananicy
-sudo systemctl enable ananicy tlp
+if [ "$SYSTEM_TYPE" = "Linux" ]; then
+  # Enable TLP
+    sudo systemctl enable tlp
 
-# Tune system responsiveness
-sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
-  vm.swappiness=10
-  vm.vfs_cache_pressure=50
-  vm.dirty_background_ratio = 3
-  vm.dirty_ratio = 10
-EOF
+  # Tune system responsiveness
+  sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
+    vm.swappiness=10
+    vm.vfs_cache_pressure=50
+    vm.dirty_background_ratio = 3
+    vm.dirty_ratio = 10
+  EOF
 
-# Needed by capybara specs
-sudo tee -a /etc/sysctl.d/40-max-user-watches.conf <<-EOF
-  fs.inotify.max_user_watches=524288
-EOF
+  # Needed by capybara specs
+  sudo tee -a /etc/sysctl.d/40-max-user-watches.conf <<-EOF
+    fs.inotify.max_user_watches=524288
+  EOF
 
+  # Emoji support
+  sudo ln -sf ../conf.avail/75-joypixels.conf /etc/fonts/conf.d/75-joypixels.conf
 
-# Emoji support
-sudo ln -sf ../conf.avail/75-joypixels.conf /etc/fonts/conf.d/75-joypixels.conf
+  # Pulse audio auto switch
+  sudo tee -a /etc/pulse/default.pa <<-EOF
+    load-module module-switch-on-connect
+  EOF
 
-# Pulse audio auto switch
-sudo tee -a /etc/pulse/default.pa <<-EOF
-  load-module module-switch-on-connect
-EOF
+  # Enable bluetooth at startup.
+  sudo tee -a /etc/bluetooth/main.conf <<-EOF
+    AutoEnable=true
+  EOF
 
-# Enable bluetooth at startup.
-sudo tee -a /etc/bluetooth/main.conf <<-EOF
-  AutoEnable=true
-EOF
+  # TODO: font smoothing
+fi
