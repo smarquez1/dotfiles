@@ -18,9 +18,9 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   sudo pacman -S yay --noconfirm --needed
 
-  yay -S zsh zsh-completions xclip python-neovim python2-neovim neovim git \
+  yay -S zsh zsh-completions xclip python-neovim neovim git \
     ripgrep fzy tmux python-pip openssh yarn htop intel-ucode libva-intel-driver \
-    wget docker docker-compose tlp pulseaudio-modules-bt-git -noconfirm --needed
+    wget docker docker-compose tlp pulseaudio-modules-bt-git --noconfirm --needed
 fi
 
 # ZSH
@@ -87,7 +87,7 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew install calibre darktable dbeaver spotify transmission zoom 
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S android-tools calibre darktable geeqie dbeaver-ce pinta ttf-bookerly \
+    yay -S android-tools calibre darktable geeqie dbeaver pinta ttf-bookerly \
       rapid-photo-downloader spotify transmission-gtk \
       vulkan-icd-loader vulkan-intel zoom kdenlive ttf-windows \
       ttf-ms-fonts --noconfirm --needed

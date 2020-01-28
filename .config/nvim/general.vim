@@ -7,7 +7,7 @@ set inccommand=nosplit " Enable live substitution
 set number relativenumber numberwidth=2 " Show line numbers
 set wrap linebreak breakindent " Wrap text
 set splitbelow splitright " more Natural splits behaviour
-set clipboard=unnamed " Use system's clipboard.
+set clipboard=unnamedplus " Use system's clipboard.
 set hidden " Keep undo history for hidden buffers
 set updatetime=250
 
