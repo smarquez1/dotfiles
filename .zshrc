@@ -14,9 +14,6 @@ fi
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 
-# load aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
-
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
@@ -48,10 +45,10 @@ setopt RM_STAR_WAIT
 bindkey -v
 
 # Prompt for spelling correction of commands.
-setopt CORRECT
+# setopt CORRECT
 
 # Customize spelling correction prompt.
-SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+# SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}

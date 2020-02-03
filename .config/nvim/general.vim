@@ -1,5 +1,4 @@
 set mouse=a " Enable mouse
-set scrolloff=5 " Scroll extra lines when reaching the bottom
 set ignorecase smartcase " Configure search
 set nobackup nowb noswapfile " No backup or swapfile
 set shell=zsh " Use zsh as shell
