@@ -5,7 +5,7 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "solargraph.autoformat": true,
-  "solargraph.commandPath": "/Users/sergio/.rbenv/shims/solargraph",
+  "solargraph.commandPath": "~/.rbenv/shims/solargraph",
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
