@@ -22,12 +22,11 @@ export VISUAL=$EDITOR
 export PATH="/usr/local/sbin:$PATH"
 
 # Report term
-export TERM=screen-256color
-# if [ -z "$TMUX" ]; then
-#   export TERM=xterm-256color
-# else
-#   export TERM=screen-256color
-# fi
+if [ -z "$TMUX" ]; then
+  export TERM=xterm-256color
+else
+  export TERM=screen-256color
+fi
 
 # GPG
 export GPG_TTY=$(tty)
@@ -65,6 +64,10 @@ WORDCHARS=${WORDCHARS//[\/]}
 # Set a custom path for the completion dump file.
 # If none is provided, the default ${ZDOTDIR:-${HOME}}/.zcompdump is used.
 #zstyle ':zim:completion' dumpfile "${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
+
+# fix completions not working.
+autoload -Uz compinit
+compinit
 
 #
 # git

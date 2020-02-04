@@ -2,45 +2,49 @@
 
 SYSTEM_TYPE=$(uname -s)
 
-if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  # install homebrew if it's missing
-  if ! command -v brew >/dev/null 2>&1; then
-    echo ">>> Installing homebrew.."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  fi
-fi
-
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
-
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  brew install zsh neovim git ripgrep fzy tmux yarn htop wget docker docker-compose
-elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-  sudo pacman -S yay --noconfirm --needed
+    if ! command -v brew >/dev/null 2>&1; then
+      BREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
+      echo ">>> Installing homebrew.."
+      echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
+    fi
 
-  yay -S zsh zsh-completions xclip python-neovim neovim git \
-    ripgrep fzy tmux python-pip openssh yarn htop intel-ucode libva-intel-driver \
-    wget docker docker-compose tlp pulseaudio-modules-bt-git --noconfirm --needed
+    brew tap homebrew/cask-fonts  
+    brew tap homebrew/cask-drivers
+  fi
+
+  brew install neovim git ripgrep fd fzf tmux yarn htop wget docker \
+    docker-compose python
+elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+  if command -v yay >/dev/null 2>&1; then
+    sudo pacman -S yay --noconfirm --needed
+  fi
+
+  yay -S zsh xclip python-neovim neovim git ripgrep fd fzf \
+    tmux python-pip openssh yarn htop wget docker docker-compose tlp \
+    pulseaudio-modules-bt-git --noconfirm --needed
 fi
 
 # ZSH
 # Set zsh as default shell
 chsh -s $(which zsh)
-
+# Install zim framework
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
   echo "bootstraping ZSH"
   chsh -s /usr/bin/zsh
   git clone --recursive https://github.com/zimfw/zimfw.git ~/.zim
 fi
 
-# INSTALL TMUX  PLUGINS
+# Install tmux  plugins
 if [ `ls -A ~/.tmux/plugins/tpm | wc -m` == "0" ]; then
   echo "bootstraping tmux"
    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
     ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 fi
 
-# INSTALL NEOVIM PLUGINS
+# Install neovim plugins
 if command -v nvim >/dev/null 2>&1; then
   echo "Bootstraping NeoVim"
 
@@ -73,11 +77,11 @@ response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
 
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew cask install iterm  slack google-chrome firefox
+    brew cask install iterm slack google-chrome firefox
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S notion-app slack-desktop ttf-iosevka-term \
-      noto-fonts ttf-joypixels firefox google-chrome \
-      pavucontrol plasma-browser-integration termite --noconfirm --needed
+    yay -S notion-app slack-desktop ttf-iosevka-term noto-fonts ttf-joypixels \
+      firefox google-chrome pavucontrol plasma-browser-integration termite \
+      --noconfirm --needed
   fi
 fi
 
@@ -85,18 +89,17 @@ read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew install calibre darktable dbeaver spotify transmission zoom 
+    brew install calibre darktable dbeaver spotify transmission zoom
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S android-tools calibre darktable geeqie dbeaver pinta ttf-bookerly \
-      rapid-photo-downloader spotify transmission-gtk \
-      vulkan-icd-loader vulkan-intel zoom kdenlive ttf-windows \
-      ttf-ms-fonts --noconfirm --needed
+    yay -S android-tools calibre darktable geeqie dbeaver pinta \
+      rapid-photo-downloader spotify transmission-gtk zoom kdenlive \
+      --noconfirm --needed
   fi
 fi
 
 if [ "$SYSTEM_TYPE" = "Linux" ]; then
   # Enable TLP
-    sudo systemctl enable tlp
+  sudo systemctl enable tlp
 
   # Tune system responsiveness
   sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF

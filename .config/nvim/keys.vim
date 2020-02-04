@@ -37,7 +37,7 @@ tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 " Escape from terminal goes to normal mode
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 
 " map . in visual mode
 vnoremap . :norm.<cr>
@@ -49,14 +49,44 @@ vnoremap <expr>y "my\"" . v:register . "y`y"
 inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
 inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 
-" Rails
-nmap <leader>a :A <cr>
-nmap <leader>av :AV <cr>
-nmap <leader>as :AS <cr>
-
 " Ctrlsf
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
+
+" coc-vim
+" Auto Fix
+map <Leader>af :CocFix<cr>
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Fugitive git bindings
 nnoremap <Leader>gs :Gstatus<CR>
@@ -68,6 +98,9 @@ nnoremap <Leader>gb :.Gbrowse<CR>
 " Open visual selection in the browser
 vnoremap <Leader>gb :Gbrowse<CR>
 
+" FZF
+noremap <silent> <leader>f :FZF <CR>
+
 " Vim Test
 nmap <leader>T :TestFile<CR>
 nmap <leader>t :TestNearest<CR>
@@ -77,44 +110,8 @@ nmap <leader>l :TestLast<CR>
 map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
 
-" neovim fuzzy
-nnoremap <silent> <Leader>f :FuzzyOpen<CR>
+" Rails
+nmap <leader>a :A <cr>
+nmap <leader>av :AV <cr>
+nmap <leader>as :AS <cr>
 
-" coc-vim
-
-" Auto Fix
-map <Leader>af :CocFix<cr>
-
-nmap <silent> <C-]> <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
-" inoremap <silent><expr> <TAB>
-"   \ pumvisible() ? coc#_select_confirm() :
-"   \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
-"   \ <SID>check_back_space() ? "\<TAB>" :
-"   \ coc#refresh()
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction

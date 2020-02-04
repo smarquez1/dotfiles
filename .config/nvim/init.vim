@@ -17,7 +17,6 @@ Plug 'alvan/vim-closetag' "Auto close (X)HTML tags
 Plug 'benmills/vimux' " vim plugin to interact with tmux
 Plug 'chrisbra/csv.vim' " A Filetype plugin for csv files
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
-Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder using fzy
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'ecomba/vim-ruby-refactoring' " Refactoring tool for Ruby in vim!
 Plug 'henrik/vim-indexed-search' " Display number of search results
@@ -25,13 +24,15 @@ Plug 'honza/vim-snippets' | Plug 'jvanja/vim-bootstrap4-snippets' " Snippets
 Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'janko-m/vim-test' " Vim test runner
 Plug 'jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'                 " fuzzy finder support
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'mattn/emmet-vim' " emmet for vim
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #
-Plug 'scrooloose/nerdtree' " File explorer like navigation
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } " File explorer like navigation
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary' " Comments
