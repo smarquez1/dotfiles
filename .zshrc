@@ -152,3 +152,5 @@ if [[ $TMUX = "" ]]; then
   tmux ls | grep -vq attached && TMUXARG="attach-session -d"
   exec eval "tmux $TMUXARG"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

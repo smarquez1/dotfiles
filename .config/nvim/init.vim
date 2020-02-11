@@ -1,14 +1,5 @@
 "coc.vim: Intellisense engine for vim8 & neovim, full language server protocol support as VSCode 
 
-let s:coc_global_extensions = [
-      \ 'coc-css', 
-      \ 'coc-eslint',
-      \ 'coc-tsserver',
-      \ 'coc-git',
-      \ 'coc-hightlight',
-      \ 'coc-solargraph'
-      \ ]
-
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'AndrewRadev/splitjoin.vim' " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'AndrewRadev/tagalong.vim' " Change an HTML(ish) opening tag and take the closing one along as well
@@ -24,7 +15,7 @@ Plug 'honza/vim-snippets' | Plug 'jvanja/vim-bootstrap4-snippets' " Snippets
 Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'janko-m/vim-test' " Vim test runner
 Plug 'jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'                 " fuzzy finder support
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'mattn/emmet-vim' " emmet for vim

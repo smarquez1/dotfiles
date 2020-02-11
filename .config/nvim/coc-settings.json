@@ -1,13 +1,16 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
   "diagnostic.errorSign": ".",
-  "diagnostic.warningSign": ".",
   "diagnostic.infoSign": "•",
-  "suggest.echodocSupport": true,
-  "suggest.maxCompleteItemCount": 20,
+  "diagnostic.warningSign": ".",
+  "eslint.autoFixOnSave": true,
+  "eslint.packageManager" : "yarn",
   "solargraph.autoformat": true,
+  "solargraph.definitions": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
-  "solargraph.useBundler": false,
-  "eslint.autoFixOnSave": true
+  "solargraph.useBundler": true,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20
 }

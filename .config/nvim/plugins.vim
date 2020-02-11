@@ -6,8 +6,8 @@ let g:AutoPairs = { '(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'`
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js, *.jsx, *.erb"
 
 " CTRLSF
-" Use rf as backend
-let g:ctrlsf_ackprg = 'fd'
+" Use rg as backend
+let g:ctrlsf_ackprg = 'rg'
 " Disable auto close
 let g:ctrlsf_auto_close = {
 \ "normal" : 0,
@@ -16,6 +16,19 @@ let g:ctrlsf_auto_close = {
 let g:ctrlsf_auto_focus = {
 \ "at": "start"
 \ }
+
+" coc.nvim
+let s:coc_global_extensions = [
+      \ 'coc-css', 
+      \ 'coc-eslint',
+      \ 'coc-git',
+      \ 'coc-hightlight',
+      \ 'coc-solargraph',
+      \ 'coc-tsserver',
+      \ 'coc-yank',
+      \ ]
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " CSV.vim
 let g:csv_autocmd_arrange = 1
@@ -72,10 +85,11 @@ let g:fzf_colors =
 au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 au FileType fzf tunmap <buffer> <Esc>
 
+let $FZF_DEFAULT_COMMAND="fd --type file ." 
+let $FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 
-" let g:fzf_layout = { 'up': '~40%' }
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'border': 'rounded' } }
 
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'

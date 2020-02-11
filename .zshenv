@@ -25,8 +25,8 @@ if [ "$SYSTEM_TYPE" = "Linux" ]; then
 fi
 
 # FZF
-export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .'; 
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .'; 
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Update System
 le_update() {
