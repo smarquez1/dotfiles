@@ -24,10 +24,6 @@ if [ "$SYSTEM_TYPE" = "Linux" ]; then
   alias open='xdg-open'
 fi
 
-# FZF
-# export FZF_DEFAULT_COMMAND='fd --hidden --exclude ".git" .'; 
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 # Update System
 le_update() {
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then

@@ -9,6 +9,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+  # Link rubies to homebrew's OpenSSL 1.1
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
 # Access yarn global executables globally
@@ -152,5 +155,3 @@ if [[ $TMUX = "" ]]; then
   tmux ls | grep -vq attached && TMUXARG="attach-session -d"
   exec eval "tmux $TMUXARG"
 fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
