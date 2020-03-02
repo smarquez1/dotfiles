@@ -5,13 +5,9 @@ SYSTEM_TYPE=$(uname -s)
 
 # Rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-  # Link rubies to homebrew's OpenSSL 1.1
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
 # Access yarn global executables globally
@@ -22,7 +18,9 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 
 # Brew path
-export PATH="/usr/local/sbin:$PATH"
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  export PATH="/usr/local/sbin:$PATH"
+fi
 
 # Report term
 if [ -z "$TMUX" ]; then
@@ -151,7 +149,10 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Reattach tmux session
-if [[ $TMUX = "" ]]; then
-  tmux ls | grep -vq attached && TMUXARG="attach-session -d"
-  exec eval "tmux $TMUXARG"
-fi
+# if [[ $TMUX = "" ]]; then
+#   tmux ls | grep -vq attached && TMUXARG="attach-session -d"
+#   exec eval "tmux $TMUXARG"
+# fi
+
+# Decisiv stuff
+source ~/code/decisiv/.profile

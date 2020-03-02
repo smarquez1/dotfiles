@@ -1,7 +1,3 @@
-" Autopairs
-let g:AutoPairsFlyMode = 0
-let g:AutoPairs = { '(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "|":"|" }
-
 " Closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js, *.jsx, *.erb"
 
@@ -21,14 +17,20 @@ let g:ctrlsf_auto_focus = {
 let s:coc_global_extensions = [
       \ 'coc-css', 
       \ 'coc-eslint',
+      \ 'coc-explore',
       \ 'coc-git',
-      \ 'coc-hightlight',
+      \ 'coc-pairs',
+      \ 'coc-snippets',
       \ 'coc-solargraph',
       \ 'coc-tsserver',
       \ 'coc-yank',
       \ ]
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\      'position': 'floating',
+\   }
+\ }
 
 " CSV.vim
 let g:csv_autocmd_arrange = 1
@@ -58,8 +60,13 @@ let g:lightline = {
       \   'cocstatus': 'coc#status',
       \   'currentfunction': 'CocCurrentFunction',
       \   'gitbranch': 'fugitive#head',
+      \   'filetype': 'MyFiletype'
       \ },
       \ }
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
 
 " Emmet
 autocmd FileType html,erb,jsx,vue EmmetInstall
@@ -85,7 +92,7 @@ let g:fzf_colors =
 au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 au FileType fzf tunmap <buffer> <Esc>
 
-let $FZF_DEFAULT_COMMAND="fd --type file ." 
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 
@@ -97,21 +104,6 @@ let g:fugitive_git_executable = 'LANG=en_US git'
 " Multiple cursors
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode  = 0
-
-" NERDTree
-" Don't show help, press ? to get it
-let g:NERDTreeMinimalUI = 1
-"  
-let NERDTreeDirArrows = 1
-" Delete buffer after file rename, delete
-let g:NERDTreeAutoDeleteBuffer=1
-" Refresh nerdtree when opened
-function! NERDTreeRefresh()
-    if &filetype == "nerdtree"
-        silent exe substitute(mapcheck("R"), "<CR>", "", "")
-    endif
-endfunction
-autocmd BufEnter * call NERDTreeRefresh()
 
 " Polyglot
 " Don't threat all js files as jsx

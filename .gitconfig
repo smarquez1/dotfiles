@@ -1,6 +1,6 @@
 [user]
-  name  = Sergio D. Márquez
-  email = marquez.sergio.d@gmail.com
+	name = Sergio D. Márquez
+	email = marquez.sergio.d@gmail.com
 [github]
   user = smarquez1
 [alias]
@@ -9,8 +9,7 @@
   aa             = add --all
   ca             = commit --amend -v
   co             = checkout
-  cleanup        = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
-  fcleanup       = "!git branch | grep -v "master" | xargs git branch -D" 
+  cleanup       = "!git branch | grep -v "master" | xargs git branch -D" 
   commit = commit -v
   cp             = cherry-pick
   st             = status
@@ -23,17 +22,24 @@
 	excludesfile = ~/.gitignore
   editor = nvim
 [diff]
-  prompt = false
-  tool = vimdiff
-[merge]
-	ff = only
   tool = vimdiff
 [difftool]
   prompt = false
+[merge]
+	ff = only
+	tool = vimdiff
+[mergetool]
+  prompt = true
 [mergetool "vimdiff"]
-  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+  prompt = true
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [push]
 	default = current
   followTags = true
 [rebase]
 	autosquash = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

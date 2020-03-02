@@ -11,10 +11,8 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'ecomba/vim-ruby-refactoring' " Refactoring tool for Ruby in vim!
 Plug 'henrik/vim-indexed-search' " Display number of search results
-Plug 'honza/vim-snippets' | Plug 'jvanja/vim-bootstrap4-snippets' " Snippets
 Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'janko-m/vim-test' " Vim test runner
-Plug 'jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'                 " fuzzy finder support
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
@@ -23,7 +21,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } " File explorer like navigation
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary' " Comments
@@ -33,7 +30,9 @@ Plug 'tpope/vim-ragtag' " ghetto HTML/XML mappings (formerly allml.vim)
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround' " Vim Surround
+Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 call plug#end()
 
