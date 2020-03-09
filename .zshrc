@@ -22,13 +22,6 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   export PATH="/usr/local/sbin:$PATH"
 fi
 
-# Report term
-if [ -z "$TMUX" ]; then
-  export TERM=xterm-256color
-else
-  export TERM=screen-256color
-fi
-
 # GPG
 export GPG_TTY=$(tty)
 
@@ -149,10 +142,10 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Reattach tmux session
-# if [[ $TMUX = "" ]]; then
-#   tmux ls | grep -vq attached && TMUXARG="attach-session -d"
-#   exec eval "tmux $TMUXARG"
-# fi
+if [[ $TMUX = "" ]]; then
+  tmux ls | grep -vq attached && TMUXARG="attach-session -d"
+  exec eval "tmux $TMUXARG"
+fi
 
 # Decisiv stuff
 source ~/code/decisiv/.profile

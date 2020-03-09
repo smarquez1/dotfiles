@@ -29,8 +29,6 @@ nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 " Quickly open/reload config
 " nnoremap <leader>ev :e $MYVIMRC; cd ~/.config/nvim<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
-" Auto indent whole document
-nnoremap <leader>ai gg=G<C-o><C-O>
 " Make navigation into and out of Neovim terminal splits nicer.
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
@@ -71,8 +69,10 @@ nmap <silent> <C-]> <Plug>(coc-definition)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " coc-explorer
-nmap <leader>d :CocCommand explorer --preset floating<CR>
-nmap <leader>D :CocCommand explorer --preset floating --reveal expand('%:p') <CR>
+" Open Explorer on projects root
+nmap <leader>d :CocCommand explorer --preset floating --reveal expand('%:p') <CR>
+" Highlight current opened file
+nmap <leader>D :CocCommand explorer --preset floating <CR>
 " nmap <leader>d :CocCommand explorer --preset floating<CR>
 
 " Use <C-l> for trigger snippet expand.

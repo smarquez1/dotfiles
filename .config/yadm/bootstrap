@@ -94,7 +94,7 @@ response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew install android-platform-tools calibre darktable dbeaver-community dash \
-     ticktick bitwarden iina libreoffice spotify transmission zoom
+     ticktick bitwarden iina libreoffice spotify transmission zoom beardedspice
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     yay -S android-tools calibre darktable geeqie dbeaver pinta \
       rapid-photo-downloader spotify transmission-gtk zoom kdenlive \
