@@ -32,14 +32,14 @@ le_update() {
     # Homebrew
     brew update && brew upgrade && brew cask upgrade && brew cleanup
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    # Pacman
-    sudo pacman -Syu --noconfirm
+    # Pacman + Aur
+    yay -Syu --noconfirm
   fi
 
   # Tmux
   ~/.tmux/plugins/tpm/scripts/update_plugin.sh
   # Neovim
-  nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
+  nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+CocUpdate' '+qall'
   sudo pip3 install pynvim --upgrade
   # Zim
   zimfw update && zimfw upgrade

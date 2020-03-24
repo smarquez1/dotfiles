@@ -56,6 +56,7 @@ if command -v nvim >/dev/null 2>&1; then
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
     nvim '+PlugUpdate' '+PlugClean!' '+qall'
+    nvim '+CocInstall' '+qall'
 fi
 
 # Rbenv
@@ -80,7 +81,7 @@ read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; thenA
-    brew cask install iterm slack google-chrome firefox rectangle maccy google-backup-and-sync insomnia itsycal karabiner-elements keka logitech-options notion
+    brew cask install iterm slack google-chrome firefox rectangle maccy google-backup-and-sync insomnia itsycal keka logitech-options notion
 
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     yay -S notion-app slack-desktop ttf-iosevka-term noto-fonts ttf-joypixels \

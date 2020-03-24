@@ -19,9 +19,11 @@ let s:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-explore',
       \ 'coc-git',
+      \ 'coc-html',
       \ 'coc-pairs',
       \ 'coc-snippets',
       \ 'coc-solargraph',
+      \ 'coc-stylelint',
       \ 'coc-tsserver',
       \ 'coc-yank',
       \ ]

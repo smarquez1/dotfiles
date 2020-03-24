@@ -20,7 +20,6 @@ zmodule utility
 zmodule git-info
 # Theme
 zmodule gitster
-
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions
 # Enables and configures smart and extensive tab completion.
@@ -34,3 +33,16 @@ zmodule zsh-users/zsh-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
+
+# Oh My Zsh plugins
+# ASDF
+zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/asdf/asdf.plugin.zsh'
+# Rbenv
+zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/rbenv/rbenv.plugin.zsh'
+# Tmux
+# Automatically start tmux
+# : ${ZSH_TMUX_AUTOSTART:=true}
+# Only autostart once. If set to false, tmux will attempt to
+# autostart every time your zsh configs are reloaded.
+# : ${ZSH_TMUX_AUTOSTART_ONCE:=false}
+# zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/tmux/tmux.plugin.zsh'
