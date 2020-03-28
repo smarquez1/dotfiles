@@ -64,3 +64,6 @@ tshd() {
 tshdd() {
   tsh ssh --cluster=decisiv developers@$1.decisivapps.com
 }
+
+# run decisiiv services
+alias dcvserv="cd ~/Decisiv/decisiv-services && be services start && be services bootstrap"

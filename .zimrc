@@ -19,7 +19,8 @@ zmodule utility
 # Exposes git repository status information to prompts.
 zmodule git-info
 # Theme
-zmodule gitster
+# zmodule gitster
+zmodule romkatv/powerlevel10k
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions
 # Enables and configures smart and extensive tab completion.
@@ -36,7 +37,7 @@ zmodule zsh-users/zsh-history-substring-search
 
 # Oh My Zsh plugins
 # ASDF
-zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/asdf/asdf.plugin.zsh'
+# zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/asdf/asdf.plugin.zsh'
 # Rbenv
 zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/rbenv/rbenv.plugin.zsh'
 # Tmux
