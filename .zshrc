@@ -8,6 +8,9 @@ fi
 # Get theh system type: Linux/Darwin
 SYSTEM_TYPE=$(uname -s)
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Load Decisiv configs
 source ~/code/decisiv/.profile
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
@@ -51,8 +54,8 @@ WORDCHARS=${WORDCHARS//[\/]}
 #
 
 # fix completions not working.
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit
 
 # input
 #
@@ -99,15 +102,3 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-
-
-
-# Reattach tmux session
-#
-#if [[ $TMUX = "" ]]; then
- # tmux ls | grep -vq attached && TMUXARG="attach-session -d"
-  #exec eval "tmux $TMUXARG"
-#fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

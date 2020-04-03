@@ -1,8 +1,17 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
+  "tsserver.enableJavascript": true,
   "diagnostic.errorSign": ".",
   "diagnostic.infoSign": "•",
   "diagnostic.warningSign": ".",
+  "html.autoClosingTags": true,
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "javascriptreact",
+    "eruby"
+  ],
   "eslint.autoFixOnSave": true,
   "eslint.packageManager" : "yarn",
   "solargraph.autoformat": true,

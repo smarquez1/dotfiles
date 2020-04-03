@@ -66,4 +66,6 @@ tshdd() {
 }
 
 # run decisiiv services
-alias dcvserv="cd ~/Decisiv/decisiv-services && be services start && be services bootstrap"
+dcvserv() {
+  ( ~/Decisiv/decisiv-services && be services start && be services bootstrap )
+}

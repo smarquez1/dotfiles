@@ -70,9 +70,9 @@ nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <leader>rn <Plug>(coc-rename)
 " coc-explorer
 " Open Explorer on projects root
-nmap <leader>d :CocCommand explorer --preset floating --reveal expand('%:p') <CR>
+nmap <leader>d :CocCommand explorer --reveal expand('%:p') <CR>
 " Highlight current opened file
-nmap <leader>D :CocCommand explorer --preset floating <CR>
+nmap <leader>D :CocCommand explorer <CR>
 " nmap <leader>d :CocCommand explorer --preset floating<CR>
 
 " Use <C-l> for trigger snippet expand.

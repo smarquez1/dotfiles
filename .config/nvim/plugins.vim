@@ -16,6 +16,7 @@ let g:ctrlsf_auto_focus = {
 " coc.nvim
 let s:coc_global_extensions = [
       \ 'coc-css', 
+      \ 'coc-emmet',
       \ 'coc-eslint',
       \ 'coc-explore',
       \ 'coc-git',
@@ -28,21 +29,17 @@ let s:coc_global_extensions = [
       \ 'coc-yank',
       \ ]
 
-let g:coc_explorer_global_presets = {
-\   'floating': {
-\      'position': 'floating',
-\   }
-\ }
-
 " CSV.vim
 let g:csv_autocmd_arrange = 1
 let g:csv_autocmd_arrange_size = 1024*1024
 
 " IndentLine
-let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_enabled = 0 
+let g:indentLine_char = '│'
+let g:indentLine_enabled = 1
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'markdown']
+let g:indentLine_fileTypeExclude = ['coc-explorer']
 
 " Lightline
 function! CocCurrentFunction()
@@ -70,8 +67,14 @@ function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
-" Emmet
-autocmd FileType html,erb,jsx,vue EmmetInstall
+" MatchTagAlways
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'javascriptreact' : 1,
+    \ 'eruby' : 1,
+    \ 'liquid' : 1,
+    \ 'markdown' : 1
+    \}
 
 " FZF
 " Customize fzf colors to match your color scheme
@@ -120,8 +123,3 @@ let g:ragtag_global_maps = 1
 " let test#neovim#term_position = "vert"
 let test#strategy = "vimux"
 let g:test#ruby#rspec#executable = 'bundle exec rspec'
-
-" Vim Sneak
-let g:sneak#label = 1
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
