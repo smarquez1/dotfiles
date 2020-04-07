@@ -19,12 +19,13 @@
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
+  "solargraph.useBundler": true,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "explorer.sources": [
     {
       "name": "buffer",
-      "expand": false
+      "expand": true
     },
     {
       "name": "file",

@@ -1,20 +1,15 @@
-" TODO: J still joins adding a space
-" TODO: wildmenu should pre select first result (to preview coc
-" documentation)
-
 set mouse=a " Enable mouse
 set ignorecase smartcase " Configure search
 set nobackup nowb noswapfile " No backup or swapfile
-set shell=zsh " Use zsh as shell
 set inccommand=nosplit " Enable live substitution
 set number relativenumber numberwidth=2 " Show line numbers
 set wrap linebreak breakindent " Wrap text
 set splitbelow splitright " more Natural splits behaviour
 set clipboard=unnamedplus " Use system's clipboard.
 set hidden " Keep undo history for hidden buffers
-set updatetime=250
-set completeopt+=preview
-
+set completeopt+=noinsert " do not insert until the user selects a match
+" set completeopt+=noselect " do not select a match in the menu
+set completeopt+=menuone " show the menu when there\s only one match
 " Customize breakline symbol
 set showbreak=↪\ 
 " Ident using 2 spaces

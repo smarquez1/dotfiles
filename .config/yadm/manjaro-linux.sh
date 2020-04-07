@@ -22,11 +22,11 @@ sudo ln -sf ../conf.avail/75-joypixels.conf /etc/fonts/conf.d/75-joypixels.conf
 # Pulse audio auto switch
 sudo tee -a /etc/pulse/default.pa <<-EOF
   load-module module-switch-on-connect
+  load-module module-bluetooth-policy
+  load-module module-bluetooth-discover
 EOF
 
 # Enable bluetooth at startup.
 sudo tee -a /etc/bluetooth/main.conf <<-EOF
   AutoEnable=true
 EOF
-
-# TODO: font smoothing
