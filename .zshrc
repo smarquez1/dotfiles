@@ -17,6 +17,8 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 fi
 
+# Add cargo path
+PATH=$PATH:~/.cargo/bin
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor

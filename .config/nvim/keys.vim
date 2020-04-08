@@ -96,7 +96,8 @@ nnoremap <Leader>gb :.Gbrowse<CR>
 vnoremap <Leader>gb :Gbrowse<CR>
 
 " FZF
-noremap <silent> <leader>f :FZF <CR>
+" noremap <silent> <leader>f :Files <CR>
+noremap <silent> <leader>f :FilesWithDevicons <CR>
 
 " Vim Test
 nmap <leader>T :TestFile<CR>

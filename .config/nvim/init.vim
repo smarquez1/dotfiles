@@ -9,7 +9,8 @@ Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'janko-m/vim-test' " Vim test runner
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'                 " fuzzy finder support
+" Plug 'junegunn/fzf.vim'                 " fuzzy finder support
+Plug 'coreyja/fzf.devicon.vim'
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }

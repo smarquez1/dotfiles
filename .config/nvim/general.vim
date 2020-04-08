@@ -13,7 +13,7 @@ set completeopt+=menuone " show the menu when there\s only one match
 " Customize breakline symbol
 set showbreak=↪\ 
 " Ident using 2 spaces
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab shiftround
+set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 set foldmethod=indent foldlevel=99 " Enable folding by default
 
 " Theme
@@ -32,3 +32,9 @@ colorscheme onedark
 au BufEnter term://* startinsert " Start terminal on insert mode.
 au FileType markdown setl spell " Enable spelling on markdown files
 au TermOpen * setlocal nonumber norelativenumber " No line numbers in terminal mode
+
+" Show help in a vertical buffer
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END

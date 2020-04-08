@@ -14,19 +14,19 @@ let g:ctrlsf_auto_focus = {
 \ }
 
 " coc.nvim
-let s:coc_global_extensions = [
+let g:coc_global_extensions = [
       \ 'coc-css', 
       \ 'coc-emmet',
       \ 'coc-eslint',
-      \ 'coc-explore',
+      \ 'coc-explorer',
       \ 'coc-git',
+      \ 'coc-highlights',
       \ 'coc-html',
       \ 'coc-pairs',
       \ 'coc-snippets',
       \ 'coc-solargraph',
       \ 'coc-stylelint',
       \ 'coc-tsserver',
-      \ 'coc-yank',
       \ ]
 
 " CSV.vim

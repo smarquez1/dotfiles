@@ -1,36 +1,22 @@
 {
-  "codeLens.enable": true,
-  "diagnostic.virtualText": true,
-  "tsserver.enableJavascript": true,
-  "diagnostic.errorSign": ".",
-  "diagnostic.infoSign": "•",
-  "diagnostic.warningSign": ".",
-  "html.autoClosingTags": true,
-  "html.filetypes": [
-    "html",
-    "handlebars",
-    "javascriptreact",
-    "eruby"
-  ],
+  "codeLens.enable": false,
+  "diagnostic.virtualText": false,
+  "suggest.echodocSupport": true,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager" : "yarn",
+  "git.realtimeGutters": true,
+  "html.autoClosingTags": true,
+  "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],
   "solargraph.autoformat": true,
   "solargraph.definitions": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
   "solargraph.useBundler": true,
-  "suggest.echodocSupport": true,
-  "suggest.maxCompleteItemCount": 20,
+  "tsserver.enableJavascript": true,
+  "explorer.icon.enableNerdfont": true,
   "explorer.sources": [
-    {
-      "name": "buffer",
-      "expand": true
-    },
-    {
-      "name": "file",
-      "expand": true
-    },
-  ],
-  "explorer.icon.enableNerdfont": true
+    { "name": "buffer", "expand": true },
+    { "name": "file", "expand": true },
+  ]
 }
