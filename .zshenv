@@ -1,14 +1,15 @@
 source ~/.secrets
 
+SYSTEM_TYPE=$(uname -s)
+
 # Define Zim location
 : ${ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim}
 
-SYSTEM_TYPE=$(uname -s)
-
+# Neovim replaces Vim
+alias g=git
 # Neovim replaces Vim
 alias vim=nvim
 alias v=nvim
-
 # Bundler aliases
 alias b="bundle"
 alias be="bundle exec"
@@ -17,15 +18,12 @@ alias bu="bundle update"
 # Rails aliases
 alias rs="bundle exec rails s"
 alias rc="bundle exec rails c"
-
 # Wget resume by defaut
 alias wget='wget -c'
-
 # Open
-if [ "$SYSTEM_TYPE" = "Linux" ]; then
-  alias open='xdg-open'
-fi
+[ "$SYSTEM_TYPE" = "Linux" ] && alias open='xdg-open'
 
+# TODO: move this to a script.
 # Update System
 le_update() {
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then

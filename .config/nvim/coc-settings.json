@@ -2,6 +2,8 @@
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
   "suggest.echodocSupport": true,
+  "emmet.includeLanguages": { "javascript": "javascriptreact" },
+  "emmet.showAbbreviationSuggestions": true,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager" : "yarn",
   "git.realtimeGutters": true,
@@ -12,11 +14,11 @@
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
-  "solargraph.useBundler": true,
+  "solargraph.useBundler": false,
   "tsserver.enableJavascript": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.sources": [
-    { "name": "buffer", "expand": true },
+    { "name": "buffer", "expand": false },
     { "name": "file", "expand": true },
   ]
 }

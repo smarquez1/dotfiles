@@ -7,10 +7,8 @@
   d              = difftool
   m              = mergetool
   aa             = add --all
-  ca             = commit --amend -v
+  ca             = commit --amend
   co             = checkout
-  cleanup       = "!git branch | grep -v "master" | xargs git branch -D" 
-  commit = commit -v
   cp             = cherry-pick
   st             = status
   undo-commit    = reset --soft HEAD^
@@ -21,6 +19,8 @@
 [core]
 	excludesfile = ~/.gitignore
   editor = nvim
+[commit]
+	verbose = true
 [diff]
   tool = vimdiff
 [difftool]

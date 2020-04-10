@@ -34,7 +34,6 @@ Plug 'tpope/vim-rails'
 " other languages
 Plug 'Valloric/MatchTagAlways' " A Vim plugin that always highlights the enclosing html/xml tags
 Plug 'AndrewRadev/tagalong.vim' " Change an HTML(ish) opening tag and take the closing one along as well
-" Plug 'alvan/vim-closetag' "Auto close (X)HTML tags
 Plug 'tpope/vim-ragtag' " ghetto HTML/XML mappings (formerly allml.vim)
 Plug 'chrisbra/csv.vim' " A Filetype plugin for csv files
 Plug 'sheerun/vim-polyglot' " Better support for some languages
