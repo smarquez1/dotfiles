@@ -1,6 +1,7 @@
 # Get the system type: Linux/Darwin
 SYSTEM_TYPE=$(uname -s)
-
+# Load Decisiv configs
+source ~/.decisivrc
 # Add cargo path
 PATH=$PATH:~/.cargo/bin
 # Access yarn global executables globally
@@ -26,9 +27,30 @@ setopt HIST_IGNORE_ALL_DUPS
 # wait 10 seconds before really executing 'rm -rf *'
 setopt RM_STAR_WAIT
 # Switch cursor between beam and block depending on terminal Vim mode
-_fix_cursor() { echo -ne '\e[5 q' }
-precmd_functions+=(_fix_cursor)
+BLOCK='\e[1 q'
+BEAM='\e[5 q'
+echo -ne $BEAM
+function zle-line-init zle-keymap-select {
+  if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne $BLOCK
+  elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] ||
+       [[ $KEYMAP = '' ]] || [[ $1 = 'beam' ]]; then
+    echo -ne $BEAM
+  fi
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# 10ms for key sequences
+KEYTIMEOUT=1
+
+# _fix_cursor() { echo -ne '\e[5 q' }
+# precmd_functions+=(_fix_cursor)
 # zle-line-finish() { echo -ne "\e[5 q" }
+
+# Remove delay when switching Vim mode
+# export KEYTIMEOUT=1
 # Prompt for spelling correction of commands.
 setopt CORRECT
 # Remove path separator from WORDCHARS.

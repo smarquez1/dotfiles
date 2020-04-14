@@ -5,19 +5,19 @@ let g:ctrlsf_auto_focus = { "at": "start" } " Focus Ctrlsf buffer after it's cal
 
 " coc.nvim
 let g:coc_global_extensions = [
-      \ 'coc-css', 
-      \ 'coc-emmet',
-      \ 'coc-eslint',
-      \ 'coc-explorer',
-      \ 'coc-git',
-      \ 'coc-highlight',
-      \ 'coc-html',
-      \ 'coc-pairs',
-      \ 'coc-snippets',
-      \ 'coc-solargraph',
-      \ 'coc-stylelint',
-      \ 'coc-tsserver',
-      \ ]
+  \ 'coc-css', 
+  \ 'coc-emmet',
+  \ 'coc-eslint',
+  \ 'coc-explorer',
+  \ 'coc-git',
+  \ 'coc-highlight',
+  \ 'coc-html',
+  \ 'coc-pairs',
+  \ 'coc-snippets',
+  \ 'coc-solargraph',
+  \ 'coc-stylelint',
+  \ 'coc-tsserver',
+  \ ]
 
 " CSV.vim
 let g:csv_autocmd_arrange = 1
@@ -70,7 +70,7 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 " let $FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 let g:fzf_preview_window = '' " Disable preview windows
-let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.4, 'yoffset': 0, 'border': 'rounded' } }
+let g:fzf_layout = { 'window': { 'width': 0.80, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' } }
 
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
@@ -91,4 +91,4 @@ let g:ragtag_global_maps = 1
 " vim-test
 " let test#neovim#term_position = "vert"
 let test#strategy = "vimux"
-let g:test#ruby#rspec#executable = 'bundle exec rspec'
+" let g:test#ruby#rspec#executable = 'bundle exec rspec'
