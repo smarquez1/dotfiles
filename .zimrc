@@ -1,4 +1,3 @@
-# -------
 # Modules
 # -------
 
@@ -13,14 +12,15 @@ zmodule termtitle
 # Utility aliases and functions. Adds colour to ls, grep and less.
 zmodule utility
 
-#
 # Prompt
 #
+
 # Exposes git repository status information to prompts.
 zmodule git-info
 # Theme
 # zmodule gitster
-zmodule romkatv/powerlevel10k
+zmodule dracula/zsh --name dracula
+ZSH_THEME="dracula/dracula"
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions
 # Enables and configures smart and extensive tab completion.

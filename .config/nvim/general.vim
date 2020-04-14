@@ -17,15 +17,8 @@ set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 set foldmethod=indent foldlevel=99 " Enable folding by default
 
 " Theme
-" According to :h xterm-true-color
-" t_8f and t_8b are only set when $TERM is xterm*
-" In tmux, $TERM is screen by default.
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-let g:onedark_terminal_italics = 1
-let g:airline_theme='onedark'
-colorscheme onedark
+colorscheme dracula
 
 " Filetype specific settings
 " ==========================

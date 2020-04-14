@@ -1,21 +1,5 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Get theh system type: Linux/Darwin
+# Get the system type: Linux/Darwin
 SYSTEM_TYPE=$(uname -s)
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Load Decisiv configs
-source ~/code/decisiv/.profile
-if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
-fi
 
 # Add cargo path
 PATH=$PATH:~/.cargo/bin
@@ -41,8 +25,10 @@ fi
 setopt HIST_IGNORE_ALL_DUPS
 # wait 10 seconds before really executing 'rm -rf *'
 setopt RM_STAR_WAIT
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
+# Switch cursor between beam and block depending on terminal Vim mode
+_fix_cursor() { echo -ne '\e[5 q' }
+precmd_functions+=(_fix_cursor)
+# zle-line-finish() { echo -ne "\e[5 q" }
 # Prompt for spelling correction of commands.
 setopt CORRECT
 # Remove path separator from WORDCHARS.

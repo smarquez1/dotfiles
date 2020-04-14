@@ -2,37 +2,47 @@
 font                  = Iosevka Term 12
 mouse_autohide        = true
 
+# Dracula theme for termite
+# https://github.com/dracula/termite
+# Copyright 2013-present, All rights reserved
+# Code licensed under the MIT license
+
 [colors]
-# Base16 Oceanic Next
-# Scheme: Dmitri Voronianski (http://pixelhunter.me)
 
-foreground      = #C0C5CE
-foreground_bold = #C0C5CE
-cursor          = #C0C5CE
-background      = #1B2B34
+# special
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background      = #282a36
 
-# 16 color space
-color0  = #1B2B34
-color1  = #EC5f67
-color2  = #99C794
-color3  = #FAC863
-color4  = #6699CC
-color5  = #C594C5
-color6  = #5FB3B3
-color7  = #C0C5CE
-color8  = #65737E
-color9  = #EC5f67
-color10 = #99C794
-color11 = #FAC863
-color12 = #6699CC
-color13 = #C594C5
-color14 = #5FB3B3
-color15 = #D8DEE9
+# black
+color0  = #000000
+color8  = #4d4d4d
 
-# 256 color space
-color16 = #F99157
-color17 = #AB7967
-color18 = #343D46
-color19 = #4F5B66
-color20 = #A7ADBA
-color21 = #CDD3DE
+# red
+color1  = #ff5555
+color9  = #ff6e67
+
+# green
+color2  = #50fa7b
+color10 = #5af78e
+
+# yellow
+color3  = #f1fa8c
+color11 = #f4f99d
+
+# blue
+color4  = #bd93f9
+color12 = #caa9fa
+
+# magenta
+color5  = #ff79c6
+color13 = #ff92d0
+
+# cyan
+color6  = #8be9fd
+color14 = #9aedfe
+
+# white
+color7  = #bfbfbf
+color15 = #e6e6e6

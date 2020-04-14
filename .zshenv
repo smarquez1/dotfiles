@@ -67,3 +67,10 @@ tshdd() {
 dcvserv() {
   ( ~/Decisiv/decisiv-services && be services start )
 }
+
+# Load Decisiv configs
+source ~/code/decisiv/.profile
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+fi
+

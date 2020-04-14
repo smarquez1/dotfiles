@@ -26,11 +26,11 @@ let g:csv_autocmd_arrange_size = 1024*1024
 " IndentLine
 let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
-let g:indentLine_fileTypeExclude = ['help', 'markdown', 'coc-explorer']
+let g:indentLine_fileTypeExclude = ['help', 'coc-explorer', 'csv']
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left':   [ [ 'mode', 'paste' ],
       \               [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
@@ -66,22 +66,6 @@ let g:mta_filetypes = {
     \}
 
 " FZF
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'EndOfBuffer'] }
-
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 " let $FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

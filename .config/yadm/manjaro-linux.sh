@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remove  xf86-video-intel
+yay -R  xf86-video-intel
+
 # Enable TLP
 sudo systemctl enable tlp
 
@@ -7,12 +10,9 @@ sudo systemctl enable tlp
 sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
   vm.swappiness=10
   vm.vfs_cache_pressure=50
-  vm.dirty_background_ratio = 3
-  vm.dirty_ratio = 10
-EOF
-
-# Needed by capybara specs
-sudo tee -a /etc/sysctl.d/40-max-user-watches.conf <<-EOF
+  vm.dirty_background_bytes=16777216
+  vm.dirty_bytes=50331648
+  # Needed by capybara specs
   fs.inotify.max_user_watches=524288
 EOF
 
