@@ -1,0 +1,40 @@
+#!/bin/bash
+SYSTEM_TYPE=$(uname -s)
+
+# Load Decisiv configs
+source ~/code/decisiv/.profile
+
+## Teleport shortcuts
+alias dcvlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
+
+# Ex tlsd builder
+dcvls() {
+	tsh ls --cluster=decisiv | grep app=$1 | grep -Eo '[^/"]+'
+}
+
+# Ex tshd builder-app-dev-1.dev.decisivapps.com
+# Ex2 tshd builder-app-dev-1.dev.decisivapps.com tmux a
+dcvsh() {
+  tsh ssh --cluster=decisiv developers@$1 $2
+}
+
+dcvshd() {
+  tsh ssh --cluster=decisiv developers@$1.decisivapps.com
+}
+
+# run decisiiv services
+dcvserv() {
+  (cd ~/code/decisiv/decisiv-services && be services start && be services bootstrap)
+}
+
+# start pricing
+dcvstart() {
+  sudo systemctl start docker memcached redis postgresql
+  tmux split-window -h '(tail -f ~/code/decisiv/pricing/log/development.log -f ~/code/decisiv/portal/log/development.log)'
+  dcvserv
+  ~/server/puma-dev -sysbind
+}
+
+# if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+#   export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+# fi
