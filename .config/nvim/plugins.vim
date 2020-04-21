@@ -82,13 +82,11 @@ let g:multi_cursor_exit_from_insert_mode  = 0
 " Polyglot
 " Don't threat all js files as jsx
 let g:jsx_ext_required = 1
-" javascript libraries
-let g:used_javascript_libs = 'underscore, jquery, react, vue, jasmine'
 
-" ragtag
+" Ragtag
 let g:ragtag_global_maps = 1
 
-" vim-test
+" Vim-test
 " let test#neovim#term_position = "vert"
 let test#strategy = "vimux"
 " let g:test#ruby#rspec#executable = 'bundle exec rspec'

@@ -36,49 +36,27 @@ nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader>rv :source $MYVIMRC<CR>
 " Escape from terminal goes to normal mode
 " tnoremap <Esc> <C-\><C-n>
-" Like gJ, but always remove spaces
-fun! JoinSpaceless()
-    execute 'normal gJ'
-
-    " Character under cursor is whitespace?
-    if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
-        " When remove it!
-        execute 'normal dw'
-    endif
-endfun
-nnoremap <Leader>J :call JoinSpaceless()<CR>
-
 " map . in visual mode
 vnoremap . :norm.<cr>
 " unmap ex mode: 'Type visual to go into Normal mode.'
 nnoremap Q <nop>
 " saner cursor positioning after yanking blocks
-vnoremap <expr>y "my\"" . v:register . "y`y"
-" Navigate completion menu
-inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
-inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
+" vnoremap <expr>y "my\"" . v:register . "y`y"
 
 " Ctrlsf
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
 
-" coc-vim
-" Auto Fix
-nmap <silent> <C-]> <Plug>(coc-definition)
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-" Open coc-explorer on projects root
-nmap <leader>d :CocCommand explorer --reveal expand('%:p') <CR>
-" Highlight current opened file
-nmap <leader>D :CocCommand explorer <CR>
-" nmap <leader>d :CocCommand explorer --preset floating<CR>
-
+" COMPLETION
+" Navigate completion menu
+inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
+inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -86,6 +64,50 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+" coc
+" Formatting selected code.
+xmap <leader>af  <Plug>(coc-format-selected)
+nmap <leader>af  <Plug>(coc-format-selected)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+" GoTo code navigation.
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" coc explore
+" Open coc-explorer on projects root
+nmap <leader>d :CocCommand explorer --reveal expand('%:p') <CR>
+" Highlight current opened file
+nmap <leader>D :CocCommand explorer <CR>
+" nmap <leader>d :CocCommand explorer --preset floating<CR>
 
 " Fugitive git bindings
 nnoremap <Leader>gs :Gstatus<CR>
