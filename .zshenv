@@ -8,6 +8,7 @@ SYSTEM_TYPE=$(uname -s)
 # Neovim replaces Vim
 alias g=git
 # Neovim replaces Vim
+alias vi=nvim
 alias vim=nvim
 alias v=nvim
 # Bundler aliases

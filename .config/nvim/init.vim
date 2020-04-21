@@ -2,8 +2,6 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'AndrewRadev/splitjoin.vim' " A vim plugin that simplifies the transition between multiline and single-line code
-Plug 'benmills/vimux' " vim plugin to interact with tmux
-Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
 " Plug 'junegunn/fzf.vim'                 " fuzzy finder support
@@ -19,14 +17,15 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround' " Vim Surround
 Plug 'Yggdroot/indentLine' | Plug 'lukas-reineke/indent-blankline.nvim'
 
+" Tmux integration
+Plug 'benmills/vimux' " vim plugin to interact with tmux
+Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
+
 " Appearance
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim', { 'as': 'dracula' }
-
-" Javascript
-Plug 'othree/javascript-libraries-syntax.vim'
 
 " HTMLish
 Plug 'Valloric/MatchTagAlways'  " A Vim plugin that always highlights the enclosing html/xml tags

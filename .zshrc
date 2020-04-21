@@ -7,7 +7,7 @@ PATH=$PATH:~/.cargo/bin
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
-export EDITOR=nvim
+export EDITOR=vi
 export VISUAL=$EDITOR
 # GPG
 export GPG_TTY=$(tty)
@@ -48,9 +48,6 @@ KEYTIMEOUT=1
 # _fix_cursor() { echo -ne '\e[5 q' }
 # precmd_functions+=(_fix_cursor)
 # zle-line-finish() { echo -ne "\e[5 q" }
-
-# Remove delay when switching Vim mode
-# export KEYTIMEOUT=1
 # Prompt for spelling correction of commands.
 setopt CORRECT
 # Remove path separator from WORDCHARS.
@@ -63,9 +60,12 @@ WORDCHARS=${WORDCHARS//[\/]}
 # completion
 #
 
-# fix completions not working.
-# autoload -Uz compinit
-# compinit
+# fix completions not working (once a day)
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # input
 #
@@ -88,6 +88,7 @@ if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   # Update static initialization script if it's outdated, before sourcing it
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
+
 source ${ZIM_HOME}/init.zsh
 
 # ------------------------------
@@ -103,6 +104,7 @@ bindkey '^[[B' history-substring-search-down
 
 # Bind up and down keys
 zmodload -F zsh/terminfo +p:terminfo
+
 if [[ -n ${terminfo[kcuu1]} && -n ${terminfo[kcud1]} ]]; then
   bindkey ${terminfo[kcuu1]} history-substring-search-up
   bindkey ${terminfo[kcud1]} history-substring-search-down

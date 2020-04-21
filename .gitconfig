@@ -25,14 +25,16 @@
   tool = vimdiff
 [difftool]
   prompt = false
+[difftool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
 [merge]
+  conflictstyle = diff3
 	ff = only
 	tool = vimdiff
 [mergetool]
-  prompt = true
+  prompt = false
 [mergetool "vimdiff"]
-  prompt = true
-	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [push]
 	default = current
   followTags = true

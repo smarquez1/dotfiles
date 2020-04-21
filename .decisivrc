@@ -24,15 +24,22 @@ dcvshd() {
 
 # run decisiiv services
 dcvserv() {
-  (cd ~/code/decisiv/decisiv-services && be services start && be services bootstrap)
+  (cd ~/code/decisiv/decisiv-services && be services start)
 }
 
 # start pricing
 dcvstart() {
-  sudo systemctl start docker memcached redis postgresql
+  systemctl start docker memcached redis postgresql
   tmux split-window -h '(tail -f ~/code/decisiv/pricing/log/development.log -f ~/code/decisiv/portal/log/development.log)'
   dcvserv
   ~/server/puma-dev -sysbind
+}
+
+# stop pricing
+dcvstop() {
+  systemctl stop docker memcached redis postgresql
+  (cd ~/code/decisiv/decisiv-services && be services stop)
+  pkill puma-dev
 }
 
 # if [ "$SYSTEM_TYPE" = "Darwin" ]; then

@@ -1,6 +1,9 @@
 {
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
+  "diagnostic.errorSign": "❌",
+  "diagnostic.warningSign": "⚠️",
+  "diagnostic.infoSign": "ℹ️",
   "suggest.echodocSupport": true,
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
   "emmet.showAbbreviationSuggestions": true,
@@ -9,13 +12,16 @@
   "git.realtimeGutters": true,
   "html.autoClosingTags": true,
   "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],
+  "snippets.extends": {
+    "typescript": ["javascript"],
+    "javascriptreact": ["javascript"]
+  },
   "solargraph.autoformat": true,
   "solargraph.definitions": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
   "solargraph.useBundler": false,
-  "tsserver.enableJavascript": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.sources": [
     { "name": "buffer", "expand": false },
