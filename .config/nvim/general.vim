@@ -29,6 +29,10 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 " END: Experimental (from coc readme)
+"
+" trigger autoread everytime you focus the window or enter the buffer
+set autoread
+autocmd! FocusGained,BufEnter * checktime
 
 " Theme
 set termguicolors
@@ -36,22 +40,19 @@ colorscheme dracula
 
 " Filetype specific settings
 " ==========================
-au BufEnter term://* startinsert " Start terminal on insert mode.
-au FileType markdown setl spell " Enable spelling on markdown files
+" Markdown
+au FileType markdown setl spell " Enable spelling
 
-" No line numbers in terminal mode
-au TermOpen * setlocal nonumber norelativenumber
+" Terminal
+au BufEnter term://* startinsert " Start on insert mode.
+au TermOpen * setlocal nonumber norelativenumber " No line numbers
 
-" add yaml stuffs (necessary?)
+" Yaml (necessary?)
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" Show help in a vertical buffer
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup END
-
-" trigger autoread everytime you focus the window or enter the buffer
-set autoread
-autocmd! FocusGained,BufEnter * checktime
+" Diff
+if &diff
+  set cursorline
+endif
+highlight! link DiffText MatchParen
