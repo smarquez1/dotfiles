@@ -30,30 +30,32 @@ let g:indentLine_fileTypeExclude = ['help', 'coc-explorer', 'csv']
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ 'active': {
-      \   'left':   [ [ 'mode', 'paste' ],
-      \               [ 'cocstatus', 'currentfunction', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right':  [ [ 'lineinfo' ],
-      \               [ 'filetype' ]
-      \             ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction',
-      \   'gitbranch': 'fugitive#head',
-      \   'filetype': 'MyFiletype'
-      \ },
-      \ }
+  \ 'colorscheme': 'dracula',
+  \ 'active': {
+  \   'left':   [ [ 'mode', 'paste' ],
+  \               [ 'cocstatus', 'currentfunction', 'gitbranch',
+  \                 'readonly', 'filename', 'modified' ] ],
+  \   'right':  [ [ 'lineinfo' ],
+  \               [ 'percent' ],
+  \               [ 'filetype' ]
+  \             ]
+  \ },
+  \ 'component_function': {
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction',
+  \   'gitbranch': 'fugitive#head',
+  \   'filetype': 'MyFiletype'
+  \ },
+  \ }
 
 function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
+  return get(b:, 'coc_current_function', '')
 endfunction
 
 function! MyFiletype()
   return winwidth(0) > 70 ? 
-        \ (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
-        \: ''
+    \ (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
+    \: ''
 endfunction
 
 " MatchTagAlways
@@ -68,21 +70,14 @@ let g:mta_filetypes = {
 " FZF
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-" let $FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 let g:fzf_preview_window = '' " Disable preview windows
-let g:fzf_layout = { 'window': { 'width': 0.80, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' } }
+let g:fzf_layout = { 'window': 
+  \ { 'width': 0.80, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' } }
 
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
 
-" Multiple cursors
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode  = 0
-
 " Polyglot
-" Don't threat all js files as jsx
-let g:jsx_ext_required = 1
-
 " Ragtag
 let g:ragtag_global_maps = 1
 

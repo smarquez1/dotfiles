@@ -8,7 +8,7 @@ Plug 'janko-m/vim-test' " Vim test runner
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'coreyja/fzf.devicon.vim' 
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-commentary' " Comments
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
