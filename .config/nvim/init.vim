@@ -1,21 +1,21 @@
 "coc.vim: Intellisense engine for vim8 & neovim, full language server protocol support as VSCode 
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'AndrewRadev/splitjoin.vim' " A vim plugin that simplifies the transition between multiline and single-line code
+Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
-" Plug 'junegunn/fzf.vim'                 " fuzzy finder support
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'coreyja/fzf.devicon.vim' 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
+Plug 'honza/vim-snippets' " Snippets for vim
+Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } " LSP integration
 Plug 'tpope/vim-commentary' " Comments
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround' " Vim Surround
-Plug 'Yggdroot/indentLine' | Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'Yggdroot/indentLine' " Show indentation lines
 
 " Tmux integration
 Plug 'benmills/vimux' " vim plugin to interact with tmux
@@ -24,7 +24,6 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 " Appearance
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
-Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 " HTMLish

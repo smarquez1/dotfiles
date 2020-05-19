@@ -54,7 +54,7 @@ endfunction
 
 function! MyFiletype()
   return winwidth(0) > 70 ? 
-    \ (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') 
+    \ (strlen(&filetype) ? &filetype : 'no ft') 
     \: ''
 endfunction
 
@@ -81,7 +81,11 @@ let g:fugitive_git_executable = 'LANG=en_US git'
 " Ragtag
 let g:ragtag_global_maps = 1
 
+" Multi
+" let g:VM_highlight_matches = 'value'
+
 " Vim-test
 " let test#neovim#term_position = "vert"
 let test#strategy = "vimux"
 " let g:test#ruby#rspec#executable = 'bundle exec rspec'
+let test#ruby#use_binstubs = 0

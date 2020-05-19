@@ -7,7 +7,7 @@ source ~/code/decisiv/.profile
 ## Teleport shortcuts
 alias dcvlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
 
-# Ex tlsd builder
+# Ex dcvls builder
 dcvls() {
 	tsh ls --cluster=decisiv | grep app=$1 | grep -Eo '[^/"]+'
 }
@@ -24,22 +24,18 @@ dcvshd() {
 
 # run decisiiv services
 dcvserv() {
-  (cd ~/code/decisiv/decisiv-services && be services start)
+  (cd ~/code/decisiv/decisiv-services && be services bootstrap && be services start)
 }
 
 # start pricing
 dcvstart() {
-  systemctl start docker memcached redis postgresql
-  tmux split-window -h '(tail -f ~/code/decisiv/pricing/log/development.log -f ~/code/decisiv/portal/log/development.log)'
   dcvserv
-  ~/server/puma-dev -sysbind
+  (tail -f ~/code/decisiv/pricing/log/development.log -f ~/code/decisiv/portal/log/development.log)
 }
 
 # stop pricing
 dcvstop() {
-  systemctl stop docker memcached redis postgresql
   (cd ~/code/decisiv/decisiv-services && be services stop)
-  pkill puma-dev
 }
 
 # if [ "$SYSTEM_TYPE" = "Darwin" ]; then

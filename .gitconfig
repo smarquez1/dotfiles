@@ -28,7 +28,6 @@
 [difftool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE
 [merge]
-  conflictstyle = diff3
 	ff = only
 	tool = vimdiff
 [mergetool]

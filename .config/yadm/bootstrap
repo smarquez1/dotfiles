@@ -14,18 +14,16 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
 
     brew tap homebrew/cask-fonts  
     brew tap homebrew/cask-drivers
-  fi
-
-  brew install neovim git ripgrep fd fzf tmux yarn htop wget docker \
+    brew install neovim git ripgrep fzf tmux yarn htop wget docker \
     docker-compose python
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
 
-  yay -S zsh xclip python-neovim neovim git ripgrep fd fzf \
+  yay -S zsh xclip python-neovim neovim git ripgrep fzf \
     tmux python-pip openssh yarn htop wget docker docker-compose tlp \
-    pulseaudio-modules-bt-git --noconfirm --needed
+    pulseaudio-modules-bt-git xscape --noconfirm --needed
 fi
 
 # ZSH
@@ -80,13 +78,13 @@ sudo yarn global add eslint stylelint prettier javascript-typescript-langserver
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-  if [ "$SYSTEM_TYPE" = "Darwin" ]; thenA
+  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew cask install iterm slack google-chrome firefox rectangle maccy google-backup-and-sync insomnia itsycal keka logitech-options notion
 
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     yay -S notion-app slack-desktop ttf-iosevka-term noto-fonts ttf-joypixels \
-      firefox google-chrome pavucontrol plasma-browser-integration termite \
-      --noconfirm --needed
+       firefox google-chrome pavucontrol termite \
+       --noconfirm --needed
   fi
 fi
 
@@ -95,11 +93,11 @@ response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew install android-platform-tools calibre darktable dbeaver-community dash \
-     ticktick bitwarden iina libreoffice spotify transmission zoom beardedspice
+     ticktick bitwarden iina libreoffice spotify transmission zoom beardedspice figma
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     yay -S android-tools calibre darktable geeqie dbeaver pinta \
-      rapid-photo-downloader spotify transmission-gtk zoom kdenlive \
-      bitwarden --noconfirm --needed
+      rapid-photo-downloader spotify transmission-gtk zoom \
+      bitwarden figma-linux obinskit --noconfirm --needed
   fi
 fi
 
@@ -110,5 +108,5 @@ fi
 
 # TODO: move this into a script
 if [ "$SYSTEM_TYPE" = "Linux" ]; then
-  sh ./manjaro-linux.sh
+  # sh ./manjaro-linux.sh
 fi

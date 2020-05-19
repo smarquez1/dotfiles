@@ -1,8 +1,9 @@
 " map Leader
 let mapleader = " "
-" semi colon is colon
+" Semicolon is colon
 map ; :
-map <leader>w :w <cr> " Save file
+" Save file
+map <leader>w :w <cr>
 " Quicker window movement
 nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
@@ -13,6 +14,11 @@ tmap <C-h> <C-\><C-N><C-w>h
 tmap <C-j> <C-\><C-N><C-w>j
 tmap <C-k> <C-\><C-N><C-w>k
 tmap <C-l> <C-\><C-N><C-w>l
+" make J, K, L, and H move the cursor MORE.
+nnoremap J }
+nnoremap K {
+nnoremap L g_
+nnoremap H ^
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
@@ -33,7 +39,7 @@ nmap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 " nmap <leader>ev :e $MYVIMRC; cd ~/.config/nvim<CR>
 nmap <leader>rv :source $MYVIMRC<CR>
 " Escape from terminal goes to normal mode
-" tmap <Esc> <C-\><C-n>
+tmap <Esc> <C-\><C-n>
 " map . in visual mode
 vmap . :norm.<cr>
 " unmap ex mode: 'Type visual to go into Normal mode.'
@@ -122,7 +128,10 @@ nmap <Leader>gb :.Gbrowse<CR>
 vmap <Leader>gb :Gbrowse<CR>
 
 " FZF
-map <silent> <leader>f :FilesWithDevicons <CR>
+map <silent> <leader>f :Files <CR>
+" map <silent> <leader>c :Files ~/.config/nvim <CR>
+map <silent> <leader>c call fzf#vim#files('~/.config/nvim', <bang>0) <CR>
+map <silent> <leader>b :Buffers <CR>
 
 " Vim Test
 nmap <leader>T :TestFile<CR>
@@ -133,3 +142,6 @@ nmap <leader>l :TestLast<CR>
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
 nmap <leader>as :AS <cr>
+
+" Vim which key
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
