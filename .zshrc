@@ -7,7 +7,7 @@ PATH=$PATH:~/.cargo/bin
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
-export EDITOR=vi
+export EDITOR=nvim
 export VISUAL=$EDITOR
 # GPG
 export GPG_TTY=$(tty)
