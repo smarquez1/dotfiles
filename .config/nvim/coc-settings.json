@@ -1,5 +1,6 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascriptreact"],
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
   "suggest.echodocSupport": true,
@@ -8,9 +9,8 @@
   "emmet.showAbbreviationSuggestions": true,
 
   "eslint.autoFixOnSave": true,
-  "eslint.packageManager": "yarn",
 
-  "git.realtimeGutters": true,
+  "git.realtimeGutters": false,
 
   "html.autoClosingTags": true,
   "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],
@@ -20,12 +20,9 @@
     "javascriptreact": ["javascript"]
   },
 
-  "solargraph.autoformat": true,
-  "solargraph.definitions": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
-  "solargraph.useBundler": true,
 
   "explorer.width": 30,
   "explorer.previewAction.onHover": false,
@@ -33,9 +30,4 @@
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
   }
-  //"explorer.sources": [
-  //  { "name": "buffer", "expand": false },
-  //  { "name": "file", "expand": true },
-  //],
-  //"explorer.openAction.strategy": "previousWindow"
 }

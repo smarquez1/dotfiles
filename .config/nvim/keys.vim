@@ -14,11 +14,6 @@ tmap <C-h> <C-\><C-N><C-w>h
 tmap <C-j> <C-\><C-N><C-w>j
 tmap <C-k> <C-\><C-N><C-w>k
 tmap <C-l> <C-\><C-N><C-w>l
-" make J, K, L, and H move the cursor MORE.
-nnoremap J }
-nnoremap K {
-nnoremap L g_
-nnoremap H ^
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
@@ -39,7 +34,7 @@ nmap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 " nmap <leader>ev :e $MYVIMRC; cd ~/.config/nvim<CR>
 nmap <leader>rv :source $MYVIMRC<CR>
 " Escape from terminal goes to normal mode
-tmap <Esc> <C-\><C-n>
+" tmap <Esc> <C-\><C-n>
 " map . in visual mode
 vmap . :norm.<cr>
 " unmap ex mode: 'Type visual to go into Normal mode.'
