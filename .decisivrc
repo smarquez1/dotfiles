@@ -7,9 +7,9 @@ source ~/code/decisiv/.profile
 ## Teleport shortcuts
 alias dcvlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
 
-# Ex dcvls builder
+# Ex dcvls builder qa
 dcvls() {
-	tsh ls --cluster=decisiv | grep app=$1 | grep -Eo '[^/"]+'
+	tsh ls app=$1,env=$2
 }
 
 # Ex tshd builder-app-dev-1.dev.decisivapps.com
