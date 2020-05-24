@@ -23,7 +23,8 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 
 " Appearance
 Plug 'henrik/vim-indexed-search' " Display number of search results
-Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 " HTMLish

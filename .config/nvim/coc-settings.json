@@ -1,9 +1,8 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascriptreact"],
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "codeLens.enable": false,
-  "diagnostic.virtualText": false,
-  "suggest.echodocSupport": true,
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
 
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
   "emmet.showAbbreviationSuggestions": true,
@@ -21,8 +20,9 @@
   },
 
   "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
   "solargraph.formatting": true,
-  "solargraph.hover": true,
+  "solargraph.hover": false,
 
   "explorer.width": 30,
   "explorer.previewAction.onHover": false,

@@ -9,3 +9,10 @@ tags.temp
 
 # Libreoffice lock files
 .~lock.*#
+
+# Editor configurations
+.vim/
+.vscode/
+
+# Solargraph configs
+.solargraph.yml
