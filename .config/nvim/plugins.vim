@@ -1,3 +1,10 @@
+" Airline
+let g:airline_theme='dracula'
+let g:airline_section_y = ''
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_skip_empty_sections = 1
+
+
 " CTRLSF
 let g:ctrlsf_ackprg = 'rg' " Use rg as backend
 let g:ctrlsf_auto_close = { "normal" : 0, "compact": 0 } " Disable auto close
@@ -19,6 +26,21 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ ]
 
+" Show docs on hover
+" function! ShowDocIfNoDiagnostic(timer_id)
+"   if (coc#util#has_float() == 0)
+"     silent call CocActionAsync('doHover')
+"   endif
+" endfunction
+
+" function! s:show_hover_doc()
+"   call timer_start(500, 'ShowDocIfNoDiagnostic')
+" endfunction
+
+" Show documentation on hover
+" autocmd CursorHoldI * :call <SID>show_hover_doc()
+" autocmd CursorHold * :call <SID>show_hover_doc()
+
 " CSV.vim
 let g:csv_autocmd_arrange = 1
 let g:csv_autocmd_arrange_size = 1024*1024
@@ -27,50 +49,6 @@ let g:csv_autocmd_arrange_size = 1024*1024
 let g:indentLine_enabled = 1
 let g:indentLine_char = '│'
 let g:indentLine_fileTypeExclude = ['help', 'coc-explorer', 'csv']
-
-" Lightline
-let g:lightline = {
-  \ 'colorscheme': 'dracula',
-  \ 'active': {
-  \   'left':   [ [ 'mode', 'paste' ],
-  \               [ 'cocstatus', 'currentfunction', 'gitbranch',
-  \                 'statusdiagnostic', 'readonly', 'filename', 'modified' ] ],
-  \   'right':  [ [ 'lineinfo' ],
-  \               [ 'percent' ],
-  \               [ 'filetype' ]
-  \             ]
-  \ },
-  \ 'component_function': {
-  \   'cocstatus': 'coc#status',
-  \   'currentfunction': 'CocCurrentFunction',
-  \   'filetype': 'MyFiletype',
-  \   'gitbranch': 'fugitive#head',
-  \   'statusdiagnostic': 'StatusDiagnostic'
-  \ },
-  \ }
-
-function! CocCurrentFunction()
-  return get(b:, 'coc_current_function', '')
-endfunction
-
-function! MyFiletype()
-  return winwidth(0) > 70 ? 
-    \ (strlen(&filetype) ? &filetype : 'no ft') 
-    \: ''
-endfunction
-
-function! StatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W' . info['warning'])
-  endif
-  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
-endfunction
 
 " MatchTagAlways
 let g:mta_filetypes = {

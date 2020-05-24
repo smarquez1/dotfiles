@@ -1,21 +1,30 @@
+#https://rocket-science.ru/hacking/2018/10/27/pry-with-whistles
+
+# === EDITOR ===
 Pry.editor = 'nvim'
 
-Pry.commands.alias_command 'e', 'exit'
-Pry.commands.alias_command 'q', 'exit-program'
-Pry.commands.alias_command 'w', 'whereami'
+# == Pry-Nav - Using pry as a debugger ==
+Pry.commands.alias_command 'c', 'continue'
+Pry.commands.alias_command 's', 'step'
+Pry.commands.alias_command 'n', 'next'
 
-if defined?(PryByebug)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-  Pry.commands.alias_command 'f', 'finish'
-end
+Pry.config.ls.separator = "\n"
+Pry.config.ls.heading_color = :magenta
+Pry.config.ls.public_method_color = :green
+Pry.config.ls.protected_method_color = :yellow
+Pry.config.ls.private_method_color = :bright_black
 
-# Hit Enter to repeat last command
-Pry::Commands.command /^$/, "repeat last command" do
-  _pry_.run_command Pry.history.to_a.last
-end
+# == PLUGINS ===
+# awesome_print gem: great syntax colorized printing
+# look at ~/.aprc for more settings for awesome_print
+begin
+  require 'awesome_print'
+  # The following line enables awesome_print for all pry output,
+  # and it also enables paging
+  Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
 
-if defined?(PryRails::RAILS_PROMPT)
-  Pry.config.prompt = PryRails::RAILS_PROMPT
+  # If you want awesome_print without automatic pagination, use the line below
+  # Pry.config.print = proc { |output, value| output.puts value.ai }
+rescue LoadError => e
+  puts 'gem install awesome_print  # <-- highly recommended'
 end
