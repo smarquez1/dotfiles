@@ -1,12 +1,10 @@
+brakeman
 bundler
 fasterer
 neovim
 pry
-pry-byebug
-rubocop
-rubocop-rspec
-rspec
-solargraph
 rails_best_practices
 reek
-brakeman
+rspec
+rubocop
+solargraph
