@@ -23,7 +23,7 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
 
   yay -S zsh xclip python-neovim neovim git ripgrep fzf \
     tmux python-pip openssh yarn htop wget docker docker-compose tlp \
-    pulseaudio-modules-bt-git xscape --noconfirm --needed
+    pulseaudio-modules-bt-git --noconfirm --needed
 fi
 
 # ZSH
@@ -79,12 +79,15 @@ read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew cask install iterm slack google-chrome firefox rectangle maccy google-backup-and-sync insomnia itsycal keka logitech-options notion
+    brew cask install
+      \ iterm2 slack google-chrome firefox rectangle maccy
+      \ google-backup-and-sync itsycal keka logitech-options notion
 
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S notion-app slack-desktop ttf-iosevka-term noto-fonts ttf-joypixels \
-       firefox google-chrome pavucontrol termite \
-       --noconfirm --needed
+    yay -S
+         \ notion-app slack-desktop ttf-iosevka-term noto-fonts ttf-joypixels
+         \ firefox google-chrome pavucontrol termite
+         \ --noconfirm --needed
   fi
 fi
 
@@ -92,21 +95,22 @@ read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew install android-platform-tools calibre darktable dbeaver-community dash \
-     ticktick bitwarden iina libreoffice spotify transmission zoom beardedspice figma
+    brew cask install
+    \ android-platform-tools calibre dbeaver-community postman todoist
+    \ bitwarden iina libreoffice spotify transmission zoom beardedspice figma
+    \ obinskit
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S android-tools calibre darktable geeqie dbeaver pinta \
-      rapid-photo-downloader spotify transmission-gtk zoom \
-      bitwarden figma-linux obinskit --noconfirm --needed
+    yay -S
+      \ android-tools calibre darktable geeqie dbeaver pinta
+      \ rapid-photo-downloader spotify transmission-gtk zoom bitwarden
+      \ figma-linux obinskit postman-bin
+      \ --noconfirm --needed
   fi
 fi
 
-# TODO: add macos script
-if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  sh ./macos.sh
-fi
-
-# TODO: move this into a script
-if [ "$SYSTEM_TYPE" = "Linux" ]; then
-  # sh ./manjaro-linux.sh
-fi
+# if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+#   # sh ./macos.sh
+# fi
+# if [ "$SYSTEM_TYPE" = "Linux" ]; then
+#   # sh ./manjaro-linux.sh
+# fi
