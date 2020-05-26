@@ -2,3 +2,4 @@
 .env_secrets##*
 .ssh/*
 .aws/*
+.convox/*
