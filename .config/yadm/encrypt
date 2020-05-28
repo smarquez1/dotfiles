@@ -3,3 +3,4 @@
 .ssh/*
 .aws/*
 .convox/*
+.bundle/config
