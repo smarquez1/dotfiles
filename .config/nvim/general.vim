@@ -8,7 +8,8 @@ set splitbelow splitright " more Natural splits behaviour
 set wrap linebreak breakindent " Wrap text
 " Customize breakline symbol
 set showbreak=↪\  
-set clipboard=unnamedplus " Use system's clipboard.
+" set clipboard=unnamedplus " Use system's clipboard. (linux)
+set clipboard=unnamed " Use system's clipboard.
 set hidden " Keep undo history for hidden buffers
 set completeopt+=noinsert " do not insert until the user selects a match
 set completeopt+=menuone " show the menu when there\s only one match

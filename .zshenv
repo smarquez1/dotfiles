@@ -11,6 +11,9 @@ alias g=git
 alias vi=nvim
 alias vim=nvim
 alias v=nvim
+# Use nvim as manpager `:h Man`
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
 # Bundler aliases
 alias b="bundle"
 alias be="bundle exec"

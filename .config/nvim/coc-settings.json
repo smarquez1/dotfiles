@@ -24,10 +24,15 @@
   "solargraph.formatting": true,
   "solargraph.hover": false,
 
-  "explorer.width": 30,
-  "explorer.previewAction.onHover": false,
+  "explorer.icon": {
+    "enableNerdfont": true,
+    "enableVimDevicons": true
+  },
+
   "explorer.keyMappings": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
-  }
+  },
+  "explorer.previewAction.onHover": false,
+  "explorer.width": 30,
 }

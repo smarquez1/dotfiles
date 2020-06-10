@@ -17,7 +17,6 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-explorer',
   \ 'coc-git',
-  \ 'coc-highlight',
   \ 'coc-html',
   \ 'coc-pairs',
   \ 'coc-snippets',
@@ -46,7 +45,7 @@ let g:csv_autocmd_arrange = 1
 let g:csv_autocmd_arrange_size = 1024*1024
 
 " IndentLine
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
 let g:indentLine_char = '│'
 let g:indentLine_fileTypeExclude = ['help', 'coc-explorer', 'csv']
 

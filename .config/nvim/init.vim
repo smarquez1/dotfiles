@@ -22,10 +22,11 @@ Plug 'benmills/vimux' " vim plugin to interact with tmux
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
 
 " Appearance
+Plug 'ap/vim-css-color' " Highlight colors
 Plug 'henrik/vim-indexed-search' " Display number of search results
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'ryanoasis/vim-devicons'
 
 " HTMLish
 Plug 'Valloric/MatchTagAlways'  " A Vim plugin that always highlights the enclosing html/xml tags

@@ -111,7 +111,7 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
 fi
 
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  sh ./macos.sh
+  # sh ./macos.sh
 fi
 if [ "$SYSTEM_TYPE" = "Linux" ]; then
   sh ./manjaro-linux.sh
