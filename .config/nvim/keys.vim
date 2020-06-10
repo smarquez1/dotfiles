@@ -142,6 +142,3 @@ nmap <leader>l :TestLast<CR>
 nmap <leader>a :A <cr>
 nmap <leader>av :AV <cr>
 nmap <leader>as :AS <cr>
-
-" Vim which key
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>

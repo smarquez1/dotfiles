@@ -53,6 +53,9 @@ setopt CORRECT
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
+# vi mode
+bindkey -v 
+
 # --------------------
 # Module configuration
 # --------------------
