@@ -4,6 +4,10 @@ SYSTEM_TYPE=$(uname -s)
 # Load Decisiv configs
 source ~/code/decisiv/.profile
 
+# Okta aws
+source "$HOME/.okta/bash_functions"
+# PATH="$HOME/.okta/bin:$PATH"
+
 ## Teleport shortcuts
 alias dcvlogin="tsh --proxy=decisiv.sh:443 login --auth=okta"
 
@@ -30,6 +34,10 @@ dcvserv() {
 # start pricing
 dcvstart() {
   dcvserv
+  brew services start memcached
+  brew services start redis
+  brew services start postgresql@9.6
+
   (tail -f ~/code/decisiv/pricing/log/development.log -f ~/code/decisiv/portal/log/development.log)
 }
 
