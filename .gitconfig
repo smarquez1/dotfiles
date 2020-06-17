@@ -41,8 +41,7 @@
 [pull]
 	ff = only
 [push]
-	; default = simple
-  followTags = true
+	default = current
 [rebase]
 	autosquash = true
 [status]

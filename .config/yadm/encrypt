@@ -1,6 +1,7 @@
-.secrets
-.env_secrets##*
-.ssh/*
 .aws/*
-.convox/*
 .bundle/config
+.convox/*
+.env_secrets##*
+.okta/*
+.secrets
+.ssh/*

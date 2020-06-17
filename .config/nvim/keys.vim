@@ -132,6 +132,7 @@ map <silent> <leader>f :Files <CR>
 " map <silent> <leader>c :Files ~/.config/nvim <CR>
 map <silent> <leader>c call fzf#vim#files('~/.config/nvim', <bang>0) <CR>
 map <silent> <leader>b :Buffers <CR>
+map <silent> <leader>G :Rg <CR>
 
 " Vim Test
 nmap <leader>T :TestFile<CR>

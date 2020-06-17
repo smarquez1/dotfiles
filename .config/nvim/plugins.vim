@@ -1,9 +1,8 @@
 " Airline
-let g:airline_theme='dracula'
+let g:airline_theme='onedark'
 let g:airline_section_y = ''
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_skip_empty_sections = 1
-
 
 " CTRLSF
 let g:ctrlsf_ackprg = 'rg' " Use rg as backend
@@ -61,7 +60,7 @@ let g:mta_filetypes = {
 " FZF
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-let g:fzf_preview_window = '' " Disable preview windows
+" let g:fzf_preview_window = '' " Disable preview windows
 let g:fzf_layout = { 'window': 
   \ { 'width': 0.80, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' } }
 

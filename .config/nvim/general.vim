@@ -32,7 +32,7 @@ autocmd! FocusGained,BufEnter * checktime
 
 " Theme
 set termguicolors
-colorscheme dracula
+colorscheme onedark
 
 " Filetype specific settings
 " ==========================

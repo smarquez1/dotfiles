@@ -2,8 +2,6 @@
 SYSTEM_TYPE=$(uname -s)
 # Load Decisiv configs
 source ~/.decisivrc
-# Add cargo path
-PATH=$PATH:~/.cargo/bin
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
@@ -30,6 +28,7 @@ setopt RM_STAR_WAIT
 BLOCK='\e[1 q'
 BEAM='\e[5 q'
 echo -ne $BEAM
+
 function zle-line-init zle-keymap-select {
   if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
     echo -ne $BLOCK
@@ -117,3 +116,4 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
