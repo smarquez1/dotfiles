@@ -12,6 +12,8 @@ export GPG_TTY=$(tty)
 
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  # Postgresql 9.6
+  export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
   # https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
@@ -116,4 +118,3 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
