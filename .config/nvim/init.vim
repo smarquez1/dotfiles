@@ -9,6 +9,7 @@ Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'honza/vim-snippets' " Snippets for vim
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
+" Plug 'nvim-treesitter/nvim-treesitter' " treesitter configurations
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } " LSP integration
 Plug 'tpope/vim-commentary' " Comments
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
@@ -24,7 +25,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors
 Plug 'henrik/vim-indexed-search' " Display number of search results
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 
@@ -40,7 +41,6 @@ Plug 'tpope/vim-endwise'             " add 'end' in ruby, endfunction/endif/more
 Plug 'tpope/vim-rails'               " rails.vim: Ruby on Rails power tools
 
 " other languages
-Plug 'chrisbra/csv.vim'     " A Filetype plugin for csv files
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 call plug#end()
 

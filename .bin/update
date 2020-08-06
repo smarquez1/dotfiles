@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 SYSTEM_TYPE=$(uname -s)
 
@@ -17,6 +17,8 @@ fi
 nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+CocUpdate' '+qall'
 sudo pip3 install pynvim --upgrade
 # Zim
+# Duplicated from zshrc
+source ${ZIM_HOME}/init.zsh
 zimfw update && zimfw upgrade
 # Rbenv plugins
 # rbenv update

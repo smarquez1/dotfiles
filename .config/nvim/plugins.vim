@@ -1,9 +1,3 @@
-" Airline
-let g:airline_theme='onedark'
-let g:airline_section_y = ''
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_skip_empty_sections = 1
-
 " CTRLSF
 let g:ctrlsf_ackprg = 'rg' " Use rg as backend
 let g:ctrlsf_auto_close = { "normal" : 0, "compact": 0 } " Disable auto close
@@ -39,10 +33,6 @@ let g:coc_global_extensions = [
 " autocmd CursorHoldI * :call <SID>show_hover_doc()
 " autocmd CursorHold * :call <SID>show_hover_doc()
 
-" CSV.vim
-let g:csv_autocmd_arrange = 1
-let g:csv_autocmd_arrange_size = 1024*1024
-
 " IndentLine
 let g:indentLine_enabled = 0
 let g:indentLine_char = '│'
@@ -60,9 +50,10 @@ let g:mta_filetypes = {
 " FZF
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-" let g:fzf_preview_window = '' " Disable preview windows
+let g:fzf_preview_window = '' " Disable preview windows
 let g:fzf_layout = { 'window': 
-  \ { 'width': 0.80, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' } }
+\   { 'width': 0.60, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' }
+\ }
 
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
@@ -73,6 +64,36 @@ let g:ragtag_global_maps = 1
 
 " Multi
 " let g:VM_highlight_matches = 'value'
+
+" Lightline
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ 'active': {
+  \   'left':   [ [ 'mode', 'paste' ],
+  \               [ 'cocstatus', 'currentfunction', 'gitbranch',
+  \                 'readonly', 'filename', 'modified' ] ],
+  \   'right':  [ [ 'lineinfo' ],
+  \               [ 'percent' ],
+  \               [ 'filetype' ]
+  \             ]
+  \ },
+  \ 'component_function': {
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction',
+  \   'gitbranch': 'fugitive#head',
+  \   'filetype': 'MyFiletype'
+  \ },
+  \ }
+
+function! CocCurrentFunction()
+  return get(b:, 'coc_current_function', '')
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? 
+    \ (strlen(&filetype) ? &filetype : 'no ft') 
+    \: ''
+endfunction
 
 " Vim-test
 " let test#neovim#term_position = "vert"
