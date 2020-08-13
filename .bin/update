@@ -13,12 +13,11 @@ fi
 
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
+
 # Neovim
 nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+CocUpdate' '+qall'
-sudo pip3 install pynvim --upgrade
+
 # Zim
 # Duplicated from zshrc
 source ${ZIM_HOME}/init.zsh
 zimfw update && zimfw upgrade
-# Rbenv plugins
-# rbenv update
