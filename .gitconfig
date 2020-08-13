@@ -44,3 +44,5 @@
 	autosquash = true
 [status]
   showUntrackedFiles = all
+[pull]
+	rebase = true
