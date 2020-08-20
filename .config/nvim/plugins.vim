@@ -18,26 +18,6 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ ]
 
-" Show docs on hover
-" function! ShowDocIfNoDiagnostic(timer_id)
-"   if (coc#util#has_float() == 0)
-"     silent call CocActionAsync('doHover')
-"   endif
-" endfunction
-
-" function! s:show_hover_doc()
-"   call timer_start(500, 'ShowDocIfNoDiagnostic')
-" endfunction
-
-" Show documentation on hover
-" autocmd CursorHoldI * :call <SID>show_hover_doc()
-" autocmd CursorHold * :call <SID>show_hover_doc()
-
-" IndentLine
-let g:indentLine_enabled = 0
-let g:indentLine_char = '│'
-let g:indentLine_fileTypeExclude = ['help', 'coc-explorer', 'csv']
-
 " MatchTagAlways
 let g:mta_filetypes = {
     \ 'html' : 1,

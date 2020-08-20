@@ -18,8 +18,7 @@ zmodule utility
 # Exposes git repository status information to prompts.
 zmodule git-info
 # Theme
-zmodule dracula/zsh --name dracula
-ZSH_THEME="dracula"
+zmodule romkatv/powerlevel10k
 # Additional completion definitions.
 zmodule zsh-users/zsh-completions
 # Smart and extensive tab completion. must be sourced after zsh-users/zsh-completions
@@ -34,13 +33,8 @@ zmodule zsh-users/zsh-history-substring-search
 zmodule zimfw/ruby
 
 # Oh My Zsh plugins
-# ASDF
-# zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/asdf/asdf.plugin.zsh'
 # Extract compressed files
-# zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/extract/extract.plugin.zsh'
+zmodule ohmyzsh/ohmyzsh -f 'plugins/extract' -s 'plugins/extract/extract.plugin.zsh'
 # Tmux
 # Automatically start tmux
 : ${ZSH_TMUX_AUTOSTART:=true}
-# Only autostart once.
-# : ${ZSH_TMUX_AUTOSTART_ONCE:=true}
-zmodule ohmyzsh/ohmyzsh -f 'plugins/wd' -s 'plugins/tmux/tmux.plugin.zsh'
