@@ -1,6 +1,6 @@
-"coc.vim: Intellisense engine for vim8 & neovim, full language server protocol support as VSCode 
-
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
@@ -9,18 +9,12 @@ Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'honza/vim-snippets' " Snippets for vim
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
-" Plug 'nvim-treesitter/nvim-treesitter' " treesitter configurations
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } " LSP integration
 Plug 'tpope/vim-commentary' " Comments
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
 Plug 'tpope/vim-surround' " Vim Surround
-Plug 'Yggdroot/indentLine' " Show indentation lines
-
-" Tmux integration
-Plug 'benmills/vimux' " vim plugin to interact with tmux
-Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
 
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors
@@ -42,6 +36,11 @@ Plug 'tpope/vim-rails'               " rails.vim: Ruby on Rails power tools
 
 " other languages
 Plug 'sheerun/vim-polyglot' " Better support for some languages
+
+" Tmux integration
+Plug 'benmills/vimux' " vim plugin to interact with tmux
+Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
+
 call plug#end()
 
 source $HOME/.config/nvim/general.vim
