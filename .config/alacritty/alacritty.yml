@@ -4,7 +4,7 @@ env:
   # specify all features alacritty supports. This does pose
   # a few issues with programs relying on terminfo and the
   # `tput` command
-  TERM: xterm-256color
+  # TERM: xterm-256color
   COLORTERM: truecolor
 
 window:
@@ -21,7 +21,7 @@ font:
     style: Regular
   bold:
     family: Iosevka Nerd Font Mono
-    style: Medium
+    style: Bold
   italic:
     family: Iosevka Nerd Font Mono
     style: Italic
