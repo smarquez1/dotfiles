@@ -4,7 +4,9 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim' " fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
+      \ Plug 'junegunn/fzf.vim' |
+      \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder 
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'honza/vim-snippets' " Snippets for vim
@@ -15,6 +17,8 @@ Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
 Plug 'tpope/vim-surround' " Vim Surround
+Plug 'mhinz/vim-signify' " git gutter signs
+Plug 'jiangmiao/auto-pairs'
 
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors

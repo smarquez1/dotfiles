@@ -33,6 +33,7 @@ dcvserv() {
 
 # start pricing
 dcvstart() {
+  dcvstop
   printf "Starting Docker for Mac";
 
   open -a Docker;

@@ -9,9 +9,6 @@
 
   "eslint.autoFixOnSave": true,
 
-  "git.realtimeGutters": false,
-
-  "html.autoClosingTags": true,
   "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],
 
   "snippets.extends": {
