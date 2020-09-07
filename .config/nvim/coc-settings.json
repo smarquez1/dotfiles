@@ -4,9 +4,6 @@
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
 
-  "emmet.includeLanguages": { "javascript": "javascriptreact" },
-  "emmet.showAbbreviationSuggestions": true,
-
   "eslint.autoFixOnSave": true,
 
   "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],
