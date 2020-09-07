@@ -19,6 +19,7 @@ Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
 Plug 'tpope/vim-surround' " Vim Surround
 Plug 'mhinz/vim-signify' " git gutter signs
 Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
 
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors

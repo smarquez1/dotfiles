@@ -6,7 +6,6 @@ let g:ctrlsf_auto_focus = { "at": "start" } " Focus Ctrlsf buffer after it's cal
 " coc.nvim
 let g:coc_global_extensions = [
   \ 'coc-css', 
-  \ 'coc-emmet',
   \ 'coc-eslint',
   \ 'coc-explorer',
   \ 'coc-html',
@@ -48,8 +47,7 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
   \   'left':   [ [ 'mode', 'paste' ],
-  \               [ 'cocstatus', 'currentfunction', 'gitbranch',
-  \                 'readonly', 'filename', 'modified' ] ],
+  \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'cocstatus' ] ],
   \   'right':  [ [ 'lineinfo' ],
   \               [ 'percent' ],
   \               [ 'filetype' ]
@@ -57,20 +55,27 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'cocstatus': 'coc#status',
-  \   'currentfunction': 'CocCurrentFunction',
   \   'gitbranch': 'fugitive#head',
-  \   'filetype': 'MyFiletype'
+  \   'readonly': 'StatusReadonly',
+  \   'filetype': 'StatusFiletype',
+  \   'filename': 'StatusFilename'
   \ },
   \ }
 
-function! CocCurrentFunction()
-  return get(b:, 'coc_current_function', '')
-endfunction
-
-function! MyFiletype()
+" Can I trim the file format and encoding information on narrow windows
+function! StatusFiletype()
   return winwidth(0) > 70 ? 
     \ (strlen(&filetype) ? &filetype : 'no ft') 
     \: ''
+endfunction
+
+function! StatusReadonly()
+  return &readonly && &filetype !=# 'help' ? '🔒' : ''
+endfunction
+
+function! StatusFilename()
+  return &filetype ==# 'CHADTree' ? vimfiler#get_status_string() :
+        \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 endfunction
 
 " Vim-test
