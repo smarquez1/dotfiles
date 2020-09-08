@@ -1,6 +1,4 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
@@ -20,6 +18,7 @@ Plug 'tpope/vim-surround' " Vim Surround
 Plug 'mhinz/vim-signify' " git gutter signs
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors

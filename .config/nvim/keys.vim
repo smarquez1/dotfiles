@@ -1,4 +1,4 @@
-" map Leader
+" ma pLeader
 let mapleader = " "
 " Semicolon is colon
 map ; :
@@ -69,7 +69,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+" let g:coc_snippet_next = '<tab>'
 " Ultisnips
 " prevent coc issues
 let g:UltiSnipsExpandTrigger = "<nop>"
@@ -95,12 +95,11 @@ xmap <leader>af  <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" coc explore
-" Open coc-explorer on projects root
-nmap <leader>d :CocCommand explorer --reveal expand('%:p') <CR>
+" CHADTree
+" Open CHADTree
+nnoremap <leader>d <cmd>CHADopen<cr>
 " Highlight current opened file
-nmap <leader>D :CocCommand explorer <CR>
-" nmap <leader>d :CocCommand explorer --preset floating<CR>
+" nmap <leader>D :CocCommand explorer <CR>
 
 " Fugitive git bindings
 nmap <Leader>gs :Gstatus<CR>
