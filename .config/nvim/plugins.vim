@@ -35,10 +35,7 @@ let g:lightline = {
   \ 'active': {
   \   'left':   [ [ 'mode', 'paste' ],
   \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'lspstatus' ] ],
-  \   'right':  [ [ 'lineinfo' ],
-  \               [ 'percent' ],
-  \               [ 'filetype' ]
-  \             ]
+  \   'right':  [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
   \ },
   \ 'component_function': {
   \   'lspstatus': 'LspStatus',
@@ -52,6 +49,7 @@ let g:lightline = {
 function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
     return luaeval("require('lsp-status').status()")
+
   endif
 
   return ''
