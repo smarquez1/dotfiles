@@ -58,42 +58,22 @@ imap <S-tab> <plug>(emmet-expand-abbr)
 imap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
 imap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 
-" coc completion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-
+" completion using TAB
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" let g:coc_snippet_next = '<tab>'
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ completion#trigger_completion()
+
 " Ultisnips
-" prevent coc issues
-let g:UltiSnipsExpandTrigger = "<nop>"
-" coc
-" GoTo code navigation.
-nmap <silent> <C-]> <Plug>(coc-definition)
-nmap <silent> gd <Plug>(coc-definition)
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-" Use K to show documentation in preview window.
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-nmap <silent> K :call <SID>show_documentation()<CR>
+" prevent completion issues ???
+let g:UltiSnipsEpandTrigger = "<nop>"
 
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Formatting selected code.
-xmap <leader>af  <Plug>(coc-format-selected)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" Use K to show documentation in preview window.
 
 " CHADTree
 " Open CHADTree
@@ -115,6 +95,19 @@ map <silent> <leader>f :Files <CR>
 map <silent> <leader>c call fzf#vim#files('~/.config/nvim', <bang>0) <CR>
 map <silent> <leader>b :Buffers <CR>
 map <silent> <leader>G :Rg <CR>
+
+" nvim-lspconfig {{{
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" }}}
+
 
 " Vim Test
 nmap <leader>T :TestFile<CR>

@@ -53,6 +53,7 @@ function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
     return luaeval("require('lsp-status').status()")
   endif
+
   return ''
 endfunction
 
@@ -84,3 +85,36 @@ let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 " immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
 let g:sneak#s_next = 1
+
+" LSP
+" completion-nvim {{{
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_enable_auto_hover = 1
+let g:completion_auto_change_source = 1
+let g:completion_enable_auto_paren = 0
+let g:completion_timer_cycle = 80
+let g:completion_auto_change_source = 1
+
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" fix conflict between completion-nvim and autopairs
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+      \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
+" }}}
+
+" diagnostic-nvim {{{
+let g:diagnostic_level = 'Warning'
+let g:diagnostic_enable_virtual_text = 0 
+let g:diagnostic_virtual_text_prefix = '? '
+let g:diagnostic_trimmed_virtual_text = '20'
+let g:diagnostic_insert_delay = 1
+
+call sign_define("LspDiagnosticsErrorSign", {"text" : ">>", "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : "?", "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticsInformationSign", {"text" : "?", "texthl" : "LspDiagnosticsInformation"})
+call sign_define("LspDiagnosticsHintSign", {"text" : "?", "texthl" : "LspDiagnosticsWarning"})
+
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+" }}}
+
