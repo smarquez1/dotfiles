@@ -1,3 +1,6 @@
+" ChadTREE
+lua vim.api.nvim_set_var("chadtree_ignores", { name = {".*", ".git"} })
+
 " CTRLSF
 let g:ctrlsf_ackprg = 'rg' " Use rg as backend
 let g:ctrlsf_auto_close = { "normal" : 0, "compact": 0 } " Disable auto close
@@ -34,26 +37,22 @@ let g:fzf_layout = { 'window':
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
 
-" Polyglot
 " Ragtag
 let g:ragtag_global_maps = 1
-
-" Multi
-" let g:VM_highlight_matches = 'value'
 
 " Lightline
 let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
   \   'left':   [ [ 'mode', 'paste' ],
-  \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'cocstatus' ] ],
+  \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'lspstatus' ] ],
   \   'right':  [ [ 'lineinfo' ],
   \               [ 'percent' ],
   \               [ 'filetype' ]
   \             ]
   \ },
   \ 'component_function': {
-  \   'cocstatus': 'coc#status',
+  \   'lspstatus': 'coc#status',
   \   'gitbranch': 'fugitive#head',
   \   'readonly': 'StatusReadonly',
   \   'filetype': 'StatusFiletype',
