@@ -1,4 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
+
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
