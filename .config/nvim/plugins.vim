@@ -6,17 +6,6 @@ let g:ctrlsf_ackprg = 'rg' " Use rg as backend
 let g:ctrlsf_auto_close = { "normal" : 0, "compact": 0 } " Disable auto close
 let g:ctrlsf_auto_focus = { "at": "start" } " Focus Ctrlsf buffer after it's called
 
-" coc.nvim
-let g:coc_global_extensions = [
-  \ 'coc-css', 
-  \ 'coc-eslint',
-  \ 'coc-html',
-  \ 'coc-snippets',
-  \ 'coc-solargraph',
-  \ 'coc-stylelint',
-  \ 'coc-tsserver',
-  \ ]
-
 " MatchTagAlways
 let g:mta_filetypes = {
     \ 'html' : 1,
@@ -52,13 +41,20 @@ let g:lightline = {
   \             ]
   \ },
   \ 'component_function': {
-  \   'lspstatus': 'coc#status',
+  \   'lspstatus': 'LspStatus',
   \   'gitbranch': 'fugitive#head',
   \   'readonly': 'StatusReadonly',
   \   'filetype': 'StatusFiletype',
   \   'filename': 'StatusFilename'
   \ },
   \ }
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+  return ''
+endfunction
 
 " Can I trim the file format and encoding information on narrow windows
 function! StatusFiletype()
@@ -78,7 +74,6 @@ function! StatusFilename()
 endfunction
 
 " Vim-test
-" let test#neovim#term_position = "vert"
 let test#strategy = "vimux"
 " let g:test#ruby#rspec#executable = 'bundle exec rspec'
 let test#ruby#use_binstubs = 0

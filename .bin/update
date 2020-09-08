@@ -15,7 +15,7 @@ fi
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 
 # Neovim
-nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+CocUpdate' '+qall'
+nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
 
 # Zim
 # Duplicated from zshrc
