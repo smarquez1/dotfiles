@@ -89,11 +89,11 @@ let g:sneak#s_next = 1
 " LSP
 " completion-nvim {{{
 let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_enable_auto_hover = 1
-let g:completion_auto_change_source = 1
-let g:completion_enable_auto_paren = 0
-let g:completion_timer_cycle = 80
-let g:completion_auto_change_source = 1
+" let g:completion_enable_auto_hover = 1
+" let g:completion_auto_change_source = 1
+" let g:completion_enable_auto_paren = 0
+" let g:completion_timer_cycle = 80
+" let g:completion_auto_change_source = 1
 
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
