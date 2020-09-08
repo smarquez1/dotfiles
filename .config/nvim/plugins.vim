@@ -7,7 +7,6 @@ let g:ctrlsf_auto_focus = { "at": "start" } " Focus Ctrlsf buffer after it's cal
 let g:coc_global_extensions = [
   \ 'coc-css', 
   \ 'coc-eslint',
-  \ 'coc-explorer',
   \ 'coc-html',
   \ 'coc-snippets',
   \ 'coc-solargraph',
@@ -25,7 +24,7 @@ let g:mta_filetypes = {
     \}
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
 let g:fzf_preview_window = '' " Disable preview windows
 let g:fzf_layout = { 'window': 
@@ -74,7 +73,8 @@ function! StatusReadonly()
 endfunction
 
 function! StatusFilename()
-  return &filetype ==# 'CHADTree' ? vimfiler#get_status_string() :
+  " return &filetype ==# 'CHADTree' ? vimfiler#get_status_string() :
+  return &filetype ==# 'FAKE' ? vimfiler#get_status_string() :
         \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 endfunction
 
@@ -83,3 +83,10 @@ endfunction
 let test#strategy = "vimux"
 " let g:test#ruby#rspec#executable = 'bundle exec rspec'
 let test#ruby#use_binstubs = 0
+
+" Sneak
+let g:sneak#label = 1
+" case insensitive sneak
+let g:sneak#use_ic_scs = 1
+" immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
+let g:sneak#s_next = 1
