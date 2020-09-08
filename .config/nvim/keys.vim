@@ -69,10 +69,6 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ completion#trigger_completion()
 
-" Ultisnips
-" prevent completion issues ???
-let g:UltiSnipsEpandTrigger = "<nop>"
-
 " Use K to show documentation in preview window.
 
 " CHADTree
