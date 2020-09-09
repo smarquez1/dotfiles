@@ -49,7 +49,6 @@ let g:lightline = {
 function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
     return luaeval("require('lsp-status').status()")
-
   endif
 
   return ''
@@ -88,16 +87,11 @@ let g:sneak#s_next = 1
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
 
-" completion-nvim {{{
+" completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_enable_auto_hover = 1
 
-" fix conflict between completion-nvim and autopairs
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-  \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
-" }}}
-
-" diagnostic-nvim {{{
+" diagnostic-nvim
 let g:diagnostic_level = 'Warning'
 let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_enable_virtual_text = 0
@@ -108,6 +102,4 @@ call sign_define("LspDiagnosticsWarningSign", {"text" : "?", "texthl" : "LspDiag
 call sign_define("LspDiagnosticsInformationSign", {"text" : "?", "texthl" : "LspDiagnosticsInformation"})
 call sign_define("LspDiagnosticsHintSign", {"text" : "?", "texthl" : "LspDiagnosticsWarning"})
 
-
 autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
-" }}}

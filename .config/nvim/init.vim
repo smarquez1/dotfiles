@@ -16,10 +16,10 @@ Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
 Plug 'tpope/vim-surround' " Vim Surround
-Plug 'mhinz/vim-signify' " git gutter signs Plug 'jiangmiao/auto-pairs'
+Plug 'mhinz/vim-signify' " git gutter signs
+Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
-Plug 'junegunn/goyo.vim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
