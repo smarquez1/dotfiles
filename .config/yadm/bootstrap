@@ -16,7 +16,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew tap homebrew/cask-drivers
     brew install
       \ neovim git ripgrep fzf tmux yarn htop wget docker gnupg docker-compose
-      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use
+      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use reattach-to-user-namespace
 
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   if command -v yay >/dev/null 2>&1; then

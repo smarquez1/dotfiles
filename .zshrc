@@ -1,3 +1,5 @@
+source ~/.secrets
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,22 +7,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Get the system type: Linux/Darwin
-SYSTEM_TYPE=$(uname -s)
-# Load Decisiv configs
-source ~/.decisivrc
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
-# GPG
-export GPG_TTY=$(tty)
 
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  # Postgresql 9.6
-  export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
   # https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
