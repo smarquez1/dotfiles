@@ -1,10 +1,11 @@
-source ~/.secrets
-
+# Get the system type: Linux/Darwin
 SYSTEM_TYPE=$(uname -s)
 
 # Define Zim location
 : ${ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim}
 
+# GPG (needed by yadm)
+export GPG_TTY=$(tty)
 # Neovim replaces Vim
 alias g=git
 # Neovim replaces Vim
@@ -13,7 +14,6 @@ alias vim=nvim
 alias v=nvim
 # Use nvim as manpager `:h Man`
 export MANPAGER='nvim +Man!'
-export MANWIDTH=999
 # Bundler aliases
 alias b="bundle"
 alias be="bundle exec"
