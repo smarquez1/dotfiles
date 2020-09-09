@@ -111,4 +111,3 @@ call sign_define("LspDiagnosticsHintSign", {"text" : "?", "texthl" : "LspDiagnos
 
 autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
 " }}}
-
