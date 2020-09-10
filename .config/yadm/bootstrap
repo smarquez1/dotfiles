@@ -75,7 +75,7 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
 
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     yay -S \
-       notion-app slack-desktop ttf-iosevka-term noto-fonts ttf-joypixels \
+       notion-app slack-desktop nerd-fonts-iosevka noto-fonts ttf-joypixels \
        firefox google-chrome pavucontrol alacritty \
        --noconfirm --needed
   fi
@@ -99,8 +99,9 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
 fi
 
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  # sh ./macos.sh
+  sh ./macos.sh
 fi
+
 if [ "$SYSTEM_TYPE" = "Linux" ]; then
   sh ./manjaro-linux.sh
 fi
