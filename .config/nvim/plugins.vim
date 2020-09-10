@@ -6,17 +6,6 @@ let g:ctrlsf_ackprg = 'rg' " Use rg as backend
 let g:ctrlsf_auto_close = { "normal" : 0, "compact": 0 } " Disable auto close
 let g:ctrlsf_auto_focus = { "at": "start" } " Focus Ctrlsf buffer after it's called
 
-" coc.nvim
-let g:coc_global_extensions = [
-  \ 'coc-css', 
-  \ 'coc-eslint',
-  \ 'coc-html',
-  \ 'coc-snippets',
-  \ 'coc-solargraph',
-  \ 'coc-stylelint',
-  \ 'coc-tsserver',
-  \ ]
-
 " MatchTagAlways
 let g:mta_filetypes = {
     \ 'html' : 1,
@@ -46,19 +35,24 @@ let g:lightline = {
   \ 'active': {
   \   'left':   [ [ 'mode', 'paste' ],
   \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'lspstatus' ] ],
-  \   'right':  [ [ 'lineinfo' ],
-  \               [ 'percent' ],
-  \               [ 'filetype' ]
-  \             ]
+  \   'right':  [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
   \ },
   \ 'component_function': {
-  \   'lspstatus': 'coc#status',
+  \   'lspstatus': 'LspStatus',
   \   'gitbranch': 'fugitive#head',
   \   'readonly': 'StatusReadonly',
   \   'filetype': 'StatusFiletype',
   \   'filename': 'StatusFilename'
   \ },
   \ }
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
 
 " Can I trim the file format and encoding information on narrow windows
 function! StatusFiletype()
@@ -78,7 +72,6 @@ function! StatusFilename()
 endfunction
 
 " Vim-test
-" let test#neovim#term_position = "vert"
 let test#strategy = "vimux"
 " let g:test#ruby#rspec#executable = 'bundle exec rspec'
 let test#ruby#use_binstubs = 0
@@ -89,3 +82,24 @@ let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 " immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
 let g:sneak#s_next = 1
+
+" LSP
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" completion-nvim
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_enable_auto_hover = 1
+
+" diagnostic-nvim
+let g:diagnostic_level = 'Warning'
+let g:diagnostic_auto_popup_while_jump = 1
+let g:diagnostic_enable_virtual_text = 0
+" let g:diagnostic_virtual_text_prefix = '? '
+
+call sign_define("LspDiagnosticsErrorSign", {"text" : ">>", "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : "?", "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticsInformationSign", {"text" : "?", "texthl" : "LspDiagnosticsInformation"})
+call sign_define("LspDiagnosticsHintSign", {"text" : "?", "texthl" : "LspDiagnosticsWarning"})
+
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
