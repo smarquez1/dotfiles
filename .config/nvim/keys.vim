@@ -42,11 +42,13 @@ nmap Q <nop>
 
 " diff
 if &diff
-    map <C-J> ]c
-    map <C-K> [c
+  map <C-J> ]c
+  map <C-K> [c
 endif
 
-" Ctrlsf
+" CtrlSF
+" nmap <leader>/ :CocSearch <c-r>
+" vmap <leader>/ :CocSearch <c-r>=expand("<cword>")<CR><CR>
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
 
@@ -59,8 +61,9 @@ imap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
 imap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 
 " completion using TAB
-let g:completion_confirm_key = ""
-
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 function! s:check_back_space() abort
   let col = col('.') - 1
 
@@ -68,26 +71,39 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ completion#trigger_completion()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" nvim-lspconfig
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" CHADTree
+" coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> K  :call CocAction('doHover')<CR>
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>rn  <Plug>(coc-rename)
+nmap <leader>ac  <Plug>(coc-codeaction)
+xmap <leader>af  <Plug>(coc-format-selected)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Coc-explore
 " Open CHADTree
-nnoremap <leader>d <cmd>CHADopen<cr>
-" Highlight current opened file
-" nmap <leader>D :CocCommand explorer <CR>
+nmap <leader>d :CocCommand explorer<CR>
 
 " Fugitive git bindings
 nmap <Leader>gs :Gstatus<CR>

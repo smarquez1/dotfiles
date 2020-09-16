@@ -8,8 +8,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
       \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder 
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
-Plug 'SirVer/ultisnips' |
-  \ Plug 'honza/vim-snippets' " Snippets for vim
+Plug 'honza/vim-snippets' " Snippets for vim
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
 Plug 'tpope/vim-commentary' " Comments
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
@@ -17,16 +16,11 @@ Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-rhubarb' " vim-fugitive Github integration
 Plug 'tpope/vim-surround' " Vim Surround
 Plug 'mhinz/vim-signify' " git gutter signs
-Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 
 " LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim' | " async completion framework
-  Plug 'steelsojka/completion-buffers'
-Plug 'nvim-lua/diagnostic-nvim'
-Plug 'nvim-lua/lsp-status.nvim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } " LSP integration
+
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors
 Plug 'henrik/vim-indexed-search' " Display number of search results
@@ -54,7 +48,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 
 call plug#end()
 
-luafile $HOME/.config/nvim/init.lua
+" luafile $HOME/.config/nvim/init.lua
 source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/keys.vim
