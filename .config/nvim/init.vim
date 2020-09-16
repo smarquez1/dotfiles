@@ -8,9 +8,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
       \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder 
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
-" Plug 'SirVer/ultisnips' |
-  " \ Plug 'honza/vim-snippets' " Snippets for vim
-Plug 'honza/vim-snippets' " Snippets for vim
+Plug 'SirVer/ultisnips' |
+  \ Plug 'honza/vim-snippets' " Snippets for vim
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
 Plug 'tpope/vim-commentary' " Comments
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal

@@ -42,3 +42,11 @@ au FileType markdown setl spell " Enable spelling
 " Terminal
 au BufEnter term://* startinsert " Start on insert mode.
 au TermOpen * setlocal nonumber norelativenumber " No line numbers
+
+" :EConfig to edit configuration
+command! Econfig call EditConfig()
+
+function! EditConfig()
+    e ~/.config/nvim/init.vim
+    lcd %:p:h
+endfunction
