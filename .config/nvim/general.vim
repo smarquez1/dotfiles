@@ -10,8 +10,7 @@ set wrap linebreak breakindent " Wrap text
 set showbreak=↪\  
 set clipboard=unnamedplus " Use system's clipboard
 set hidden " Keep undo history for hidden buffers
-set completeopt+=noinsert " do not insert until the user selects a match
-set completeopt+=menuone " show the menu when there\s only one match
+set completeopt=menuone,noinsert,noselect
 " Ident using 2 spaces
 set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 set foldmethod=indent foldlevel=99 " Enable folding by default

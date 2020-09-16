@@ -85,7 +85,8 @@ let g:sneak#s_next = 1
 
 " LSP
 " Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 " completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
