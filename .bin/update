@@ -5,7 +5,7 @@ SYSTEM_TYPE=$(uname -s)
 # Update System
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Homebrew
-  brew update && brew upgrade && brew cask upgrade && brew cleanup
+  brew update && brew upgrade && brew upgrade --cask
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   # Pacman + Aur
   yay -Syu --noconfirm
@@ -15,7 +15,7 @@ fi
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 
 # Neovim
-nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+qall'
+nvim '+PlugUpgrade' '+PlugUpdate' '+PlugClean!' '+CocUpdate!' '+qall'
 
 # Zim
 # Duplicated from zshrc

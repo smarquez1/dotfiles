@@ -24,33 +24,38 @@ let g:fugitive_git_executable = 'LANG=en_US git'
 " Ragtag
 let g:ragtag_global_maps = 1
 
+" Airline
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_section_z = '%l:%c'
+
 " Lightline
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ 'active': {
-  \   'left':   [ [ 'mode', 'paste' ],
-  \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'lspstatus' ] ],
-  \   'right':  [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
-  \ },
-  \ 'component_function': {
-  \   'lspstatus': 'coc#status',
-  \   'gitbranch': 'fugitive#head',
-  \   'readonly': 'StatusReadonly',
-  \   'filetype': 'StatusFiletype',
-  \   'filename': 'StatusFilename'
-  \ },
-  \ }
+" let g:lightline = {
+"   \ 'colorscheme': 'onedark',
+"   \ 'active': {
+"   \   'left':   [ [ 'mode', 'paste' ],
+"   \               [ 'gitbranch', 'readonly', 'filename', 'modified', 'lspstatus' ] ],
+"   \   'right':  [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
+"   \ },
+"   \ 'component_function': {
+"   \   'lspstatus': 'coc#status',
+"   \   'gitbranch': 'fugitive#head',
+"   \   'readonly': 'StatusReadonly',
+"   \   'filetype': 'StatusFiletype',
+"   \ },
+"   \ }
 
-" Can I trim the file format and encoding information on narrow windows
-function! StatusFiletype()
-  return winwidth(0) > 70 ? 
-    \ (strlen(&filetype) ? &filetype : 'no ft') 
-    \: ''
-endfunction
+" " Can I trim the file format and encoding information on narrow windows
+" function! StatusFiletype()
+"   return winwidth(0) > 70 ? 
+"     \ (strlen(&filetype) ? &filetype : 'no ft') 
+"     \: ''
+" endfunction
 
-function! StatusReadonly()
-  return &readonly && &filetype !=# 'help' ? '🔒' : ''
-endfunction
+" function! StatusReadonly()
+"   return &readonly && &filetype !=# 'help' ? '🔒' : ''
+" endfunction
 
 " Vim-test
 let test#strategy = "vimux"
@@ -66,7 +71,7 @@ let g:sneak#s_next = 1
 
 " LSP
 " Show hover documentation when holding the cursor
-autocmd CursorHold * silent call CocAction('doHover')
+" autocmd CursorHold * silent call CocAction('doHover')
 
 let g:coc_global_extensions = [	
   \ 'coc-css', 	

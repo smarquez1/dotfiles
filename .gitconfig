@@ -6,6 +6,7 @@
 [core]
 	excludesfile = ~/.gitignore
   editor = nvim
+	attributesfile = /Users/sergio/.gitattributes
 [commit]
   ; gpgSign = true
 	verbose = true

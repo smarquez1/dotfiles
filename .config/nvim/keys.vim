@@ -39,6 +39,9 @@ vmap . :norm.<cr>
 nmap Q <nop>
 " saner cursor positioning after yanking blocks
 " vmap <expr>y "my\"" . v:register . "y`y"
+" Move lines up or down
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
 
 " diff
 if &diff
@@ -64,39 +67,36 @@ imap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-function! s:check_back_space() abort
-  let col = col('.') - 1
-
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " coc
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> K  :call CocAction('doHover')<CR>
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <leader>rn  <Plug>(coc-rename)
+nmap <silent><C-]> <Plug>(coc-definition)
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>K  :call CocAction('doHover')<CR>
+nmap <silent>gy <Plug>(coc-type-definition)
+nmap <silent>gi <Plug>(coc-implementation)
+nmap <silent>gr <Plug>(coc-references)
+nmap <leader>gR  <Plug>(coc-rename)
 nmap <leader>ac  <Plug>(coc-codeaction)
 xmap <leader>af  <Plug>(coc-format-selected)
+vmap <leader>af  <Plug>(coc-format-selected)
+nmap <leader>af  <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -106,12 +106,12 @@ command! -nargs=0 Format :call CocAction('format')
 nmap <leader>d :CocCommand explorer<CR>
 
 " Fugitive git bindings
-nmap <Leader>gs :Gstatus<CR>
-nmap <Leader>gd :Gdiff<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
 " Open current line in the browser
-nmap <Leader>gb :.Gbrowse<CR>
+nmap <leader>gb :.Gbrowse<CR>
 " Open visual selection in the browser
-vmap <Leader>gb :Gbrowse<CR>
+vmap <leader>gb :Gbrowse<CR>
 
 " FZF
 map <silent> <leader>f :Files <CR>

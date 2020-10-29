@@ -1,19 +1,17 @@
-# Get the system type: Linux/Darwin
+# Get the system type in a variable: Linux/Darwin
 SYSTEM_TYPE=$(uname -s)
-
 # Define Zim location
 : ${ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim}
-
 # GPG (needed by yadm)
 export GPG_TTY=$(tty)
-# Neovim replaces Vim
+# Use nvim as manpager `:h Man`
+export MANPAGER='nvim +Man!'
+# Git
 alias g=git
-# Neovim replaces Vim
+# Neovim replaces Vi/Vim
 alias vi=nvim
 alias vim=nvim
 alias v=nvim
-# Use nvim as manpager `:h Man`
-export MANPAGER='nvim +Man!'
 # Bundler aliases
 alias b="bundle"
 alias be="bundle exec"
@@ -24,5 +22,9 @@ alias rs="bundle exec rails s"
 alias rc="bundle exec rails c"
 # Wget resume by defaut
 alias wget='wget -c'
+# VSCode
+alias vscode="/usr/local/bin/code"
+# Code directory
+alias code="cd ~/code"
 # Open
 [ "$SYSTEM_TYPE" = "Linux" ] && alias open='xdg-open'

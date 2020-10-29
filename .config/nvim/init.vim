@@ -1,11 +1,18 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
+Plug 'romgrk/todoist.vim', { 'do': ':TodoistInstall' }
+" {{{
+  let todoist = { 'key': $TODOIST_API_KEY }
+" }}}
+Plug 'kyazdani42/nvim-web-devicons' |
+  \  Plug 'romgrk/lib.kom' |
+  \  Plug 'romgrk/barbar.nvim' " bufferline
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
-      \ Plug 'junegunn/fzf.vim' |
-      \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder 
+  \ Plug 'junegunn/fzf.vim' |
+  \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'honza/vim-snippets' " Snippets for vim
@@ -24,7 +31,8 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' } " LSP integration
 " Appearance
 Plug 'ap/vim-css-color' " Highlight colors
 Plug 'henrik/vim-indexed-search' " Display number of search results
-Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
+" Plug 'itchyny/lightline.vim' " A light and configurable statusline/tabline plugin for Vim
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 
