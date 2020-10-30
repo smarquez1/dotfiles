@@ -14,9 +14,12 @@ Plug 'romgrk/barbar.nvim' | Plug 'romgrk/lib.kom' " bufferline
 " }}}
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'janko-m/vim-test' " Vim test runner
-Plug 'nvim-lua/telescope.nvim' |
-      \ Plug 'nvim-lua/popup.nvim' |
-      \ Plug 'nvim-lua/plenary.nvim' " Find, Filter, Preview, Pick
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
+  \ Plug 'junegunn/fzf.vim' |
+  \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
+" Plug 'nvim-lua/telescope.nvim' |
+"       \ Plug 'nvim-lua/popup.nvim' |
+"       \ Plug 'nvim-lua/plenary.nvim' " Find, Filter, Preview, Pick
 Plug 'junegunn/vim-easy-align' " A Vim alignment plugin
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'honza/vim-snippets' " Snippets for vim
@@ -41,6 +44,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " Cool icons
 Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'ryanoasis/vim-devicons' " vimscript
+Plug 'joshdick/onedark.vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim' " A bunch of generated colorschemes (treesitter supported)
 
 " HTMLish
@@ -65,7 +69,7 @@ call plug#end()
 
 " luafile $HOME/.config/nvim/lua/init.lua
 luafile $HOME/.config/nvim/lua/treesitter.lua
-luafile $HOME/.config/nvim/lua/tele-scope.lua
+" luafile $HOME/.config/nvim/lua/tele-scope.lua
 " luafile $HOME/.config/nvim/lua/galaxy-line.lua
 source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
