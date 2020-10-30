@@ -11,12 +11,12 @@ let g:mta_filetypes = {
 let g:endwise_no_mappings=1
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-let g:fzf_preview_window = '' " Disable preview windows
-let g:fzf_layout = { 'window': 
-\   { 'width': 0.60, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' }
-\ }
+" let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+" let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
+" let g:fzf_preview_window = '' " Disable preview windows
+" let g:fzf_layout = { 'window': 
+" \   { 'width': 0.60, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' }
+" \ }
 
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
@@ -29,6 +29,7 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_z = '%l:%c'
+let g:airline_theme='onedark'
 
 " Lightline
 " let g:lightline = {

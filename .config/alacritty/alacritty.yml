@@ -25,7 +25,7 @@ font:
   italic:
     family: Iosevka Nerd Font Mono
     style: Italic
-  size: 14.0
+  size: 16.0
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:

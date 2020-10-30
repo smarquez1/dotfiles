@@ -114,11 +114,15 @@ nmap <leader>gb :.Gbrowse<CR>
 vmap <leader>gb :Gbrowse<CR>
 
 " FZF
-map <silent> <leader>f :Files <CR>
+" map <silent> <leader>f :Files <CR>
+" " map <silent> <leader>c :Files ~/.config/nvim <CR>
+" map <silent> <leader>c call fzf#vim#files('~/.config/nvim', <bang>0) <CR>
+" map <silent> <leader>b :Buffers <CR>
 " map <silent> <leader>c :Files ~/.config/nvim <CR>
-map <silent> <leader>c call fzf#vim#files('~/.config/nvim', <bang>0) <CR>
-map <silent> <leader>b :Buffers <CR>
-map <silent> <leader>G :Rg <CR>
+nmap <silent> <leader>f :lua require'telescope.builtin'.git_files{}<CR>
+nmap <silent> <leader>b :lua require'telescope.builtin'.buffers{}<CR>
+nmap <silent> <leader>? :lua require'telescope.builtin'.live_grep{}<CR>
+nmap <silent> <leader>ed :lua require'telescope.builtin'.find_files{ cwd = '~/.config/nvim/'}<CR>
 
 " Vim Test
 nmap <leader>T :TestFile<CR>

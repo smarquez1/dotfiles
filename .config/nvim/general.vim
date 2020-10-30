@@ -30,10 +30,6 @@ autocmd! FocusGained,BufEnter * checktime
 " Highlight the screen line of the cursor with CursorLine
 set cursorline
 
-" Theme
-set termguicolors
-colorscheme onedark
-
 " Filetype specific settings
 " ==========================
 " Markdown
@@ -50,3 +46,17 @@ function! EditConfig()
     e ~/.config/nvim/init.vim
     lcd %:p:h
 endfunction
+
+" {{{
+" Theme
+let g:nvcode_termcolors=256
+
+syntax on
+colorscheme onedark " Or whatever colorscheme you make
+
+" checks if your terminal has 24-bit color support
+if (has("termguicolors"))
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
+" }}}
