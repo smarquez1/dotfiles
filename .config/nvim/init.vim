@@ -44,8 +44,8 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " Cool icons
 Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'ryanoasis/vim-devicons' " vimscript
-Plug 'joshdick/onedark.vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim' " A bunch of generated colorschemes (treesitter supported)
+Plug 'glepnir/zephyr-nvim' " A dark neovim colorscheme written in lua
 
 " HTMLish
 Plug 'Valloric/MatchTagAlways'  " A Vim plugin that always highlights the enclosing html/xml tags

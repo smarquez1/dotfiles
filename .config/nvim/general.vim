@@ -51,6 +51,6 @@ endfunction
   " Theme
   " let g:nvcode_termcolors=256
   set termguicolors
-  hi LineNr ctermbg=NONE guibg=NONE
-  colorscheme onedark
+  " colorscheme onedark
+  colorscheme zephyr
 " }}}
