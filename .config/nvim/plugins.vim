@@ -26,8 +26,8 @@ let g:ragtag_global_maps = 1
 
 " Airline
 let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
 let g:airline_section_z = '%l:%c'
 let g:airline_theme='onedark'
 
