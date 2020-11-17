@@ -39,19 +39,10 @@ au FileType markdown setl spell " Enable spelling
 au BufEnter term://* startinsert " Start on insert mode.
 au TermOpen * setlocal nonumber norelativenumber " No line numbers
 
-" :EConfig to edit configuration
-command! Econfig call EditConfig()
-
-function! EditConfig()
-    e ~/.config/nvim/init.vim
-    lcd %:p:h
-endfunction
-
 " {{{
   " Theme
   set termguicolors
   " let g:nvcode_termcolors=256
   let g:onedark_terminal_italics=1
-  let g:onedark_termcolors=16
   colorscheme onedark
 " }}}

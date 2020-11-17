@@ -12,6 +12,9 @@ export PATH="$PATH:`yarn global bin`"
 export EDITOR=nvim
 export VISUAL=$EDITOR
 
+# BAT colorscheme
+export BAT_THEME=TwoDark
+
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Brew path

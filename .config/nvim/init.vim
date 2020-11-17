@@ -2,12 +2,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'mattn/emmet-vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
-  \ Plug 'junegunn/fzf.vim' |
-  \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
-" Plug 'nvim-lua/telescope.nvim' |
-"       \ Plug 'nvim-lua/popup.nvim' |
-"       \ Plug 'nvim-lua/plenary.nvim' " Find, Filter, Preview, Pick
+
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
+"   \ Plug 'junegunn/fzf.vim' |
+"   \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
+Plug 'nvim-lua/telescope.nvim' |
+      \ Plug 'nvim-lua/popup.nvim' |
+      \ Plug 'nvim-lua/plenary.nvim' " Find, Filter, Preview, Pick
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'tpope/vim-commentary' " Comments
@@ -35,6 +36,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
 Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
+" Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
 " HTMLish
 Plug 'Valloric/MatchTagAlways'  " A Vim plugin that always highlights the enclosing html/xml tags
@@ -51,7 +53,9 @@ Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
 " other languages
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 " {{{
-  let g:polyglot_disabled = ['autoindent', 'sensible']
+  " let g:polyglot_disabled = ['autoindent', 'sensible']
+  let g:polyglot_disabled = ['csv']
+  " let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 
 " Tmux integration
@@ -64,7 +68,7 @@ source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/keys.vim
 luafile $HOME/.config/nvim/lua/init.lua
-luafile $HOME/.config/nvim/lua/plug-colorizer.lua
-luafile $HOME/.config/nvim/lua/treesitter.lua
-" luafile $HOME/.config/nvim/lua/tele-scope.lua
-" luafile $HOME/.config/nvim/lua/galaxy-line.lua
+luafile $HOME/.config/nvim/lua/_nvim-colorizer.lua
+luafile $HOME/.config/nvim/lua/_nvim-treesitter.lua
+luafile $HOME/.config/nvim/lua/_telescope.lua
+" luafile $HOME/.config/nvim/lua/_galaxyline.lua

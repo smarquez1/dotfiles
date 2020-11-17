@@ -16,15 +16,7 @@ scrolling:
   multiplier: 10
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
-
-selection:
-  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
-
-  # When set to `true`, selected text will be copied to both the primary and
-  # the selection clipboard. Otherwise, it will only be copied to the selection
-  # clipboard.
-  save_to_clipboard: true
+draw_bold_text_with_bright_colors: false
 
 live_config_reload: true
 
@@ -40,12 +32,12 @@ font:
     style: Italic
 
   size: 16.0
-  #
-  offset:
-    x: 0 
-    y: 0 
 
-  use_thin_strokes: true
+  # offset:
+  #   x: 0 
+  #   y: 0 
+
+  use_thin_strokes: false
 
 # Colors (One Dark)
 colors:
@@ -53,6 +45,11 @@ colors:
   primary:
     background: '#282c34'
     foreground: '#abb2bf'
+
+  # Cursor colors
+  cursor:
+    text: '0x44475a'
+    cursor: '0xf8f8f2'
 
   # Normal colors
   normal:
@@ -77,3 +74,6 @@ colors:
     magenta: '#c678dd'
     cyan:    '#56b6c2'
     white:   '#ffffff'
+
+  # Indexed Colors
+  indexed_colors: []

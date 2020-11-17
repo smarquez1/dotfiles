@@ -15,7 +15,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew tap homebrew/cask-fonts  
     brew tap homebrew/cask-drivers
     brew install
-      \ neovim git ripgrep fzf tmux yarn htop wget docker gnupg docker-compose
+      \ neovim git ripgrep fd fzf tmux yarn htop wget docker gnupg docker-compose
       \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use reattach-to-user-namespace
 
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
@@ -23,7 +23,7 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     sudo pacman -S yay --noconfirm --needed
   fi
 
-  yay -S zsh xclip python-neovim neovim git ripgrep fzf \
+  yay -S zsh xclip python-neovim neovim git ripgrep fd fzf \
     tmux python-pip openssh yarn htop wget docker docker-compose tlp \
       rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use \
       pulseaudio-modules-bt-git --noconfirm --needed
