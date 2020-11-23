@@ -4,7 +4,7 @@ Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime T
 " File picker
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
   \ Plug 'junegunn/fzf.vim' |
-  \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
+  \ Plug 'stsewd/fzf-checkout.vim'
 " Plug 'nvim-lua/telescope.nvim' |
 "       \ Plug 'nvim-lua/popup.nvim' |
 "       \ Plug 'nvim-lua/plenary.nvim' |
@@ -25,6 +25,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } " LSP integration
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'honza/vim-snippets' " Snippets for vim
+" Plug 'neovim/nvim-lspconfig' | Plug 'nvim-lua/lsp-status.nvim' | Plug "nvim-lua/completion-nvim"
 " Appearance
 Plug 'romgrk/barbar.nvim' " bufferline
 Plug 'norcalli/nvim-colorizer.lua' " Highlight colors
@@ -69,5 +70,6 @@ source $HOME/.config/nvim/plugins/vim_test_config.vim
 
 luafile $HOME/.config/nvim/plugins/nvim_colorizer_config.lua
 luafile $HOME/.config/nvim/plugins/nvim_treesitter_config.lua
+" luafile $HOME/.config/nvim/plugins/lsp.lua
 " luafile $HOME/.config/nvim/plugins/galaxyline_config.lua
 " luafile $HOME/.config/nvim/plugins/telescope_config.lua

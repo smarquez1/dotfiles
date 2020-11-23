@@ -1,0 +1,34 @@
+{	
+  "coc.preferences.hoverTarget": "float",
+  "codeLens.enable": true,	
+  // Diagnostics
+  "diagnostic.virtualText": false,	// this won't work with codelens when error on same line
+  // "diagnostic.errorSign": " ",
+  // "diagnostic.warningSign": " ",
+  // "diagnostic.infoSign": "●",
+  // "diagnostic.hintSign": " ",
+  "diagnostic.messageTarget": "echo", // Don't display diagnostics on popups
+  //Suggestions
+  "suggest.enablePreview": true, // Enable preview (signatures, etc.) during completion
+  "suggest.echodocSupport": true,
+  // Eslint
+  "eslint.autoFixOnSave": true,	
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact", "eruby"],
+  // Explorer: Use nerd font icons
+  "explorer.file.root.template": "[icon] [git] [hidden & 1][root]",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.previewAction.onHover": false,
+  // HTML
+  "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],	
+  // Snippets
+  "snippets.extends": {	
+    "typescript": ["javascript"],	
+    "javascriptreact": ["javascript"]	
+  },	
+  // Solargraph
+  "solargraph.diagnostics": true,	
+  "solargraph.autoformat": false,	
+  "solargraph.formatting": true,	
+  "solargraph.hover": true
+}

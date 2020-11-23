@@ -82,5 +82,4 @@ endif
 
 " General configuration
 luafile $HOME/.config/nvim/utils.lua
-luafile $HOME/.config/nvim/lsp.lua
 source $HOME/.config/nvim/plugins.vim

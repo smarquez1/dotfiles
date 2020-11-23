@@ -1,41 +1,38 @@
-let g:coc_global_extensions = [	
-  \ 'coc-css', 	
-  \ 'coc-eslint',	
-  \ 'coc-explorer',	
-  \ 'coc-html',	
-  \ 'coc-pairs', 	
-  \ 'coc-snippets',	
-  \ 'coc-solargraph',	
-  \ 'coc-stylelint',	
-  \ 'coc-tsserver',	
-  \ ]
+" let g:coc_global_extensions = [	
+"   \ 'coc-css', 	
+"   \ 'coc-eslint',	
+"   \ 'coc-explorer',	
+"   \ 'coc-html',	
+"   \ 'coc-pairs', 	
+"   \ 'coc-snippets',	
+"   \ 'coc-solargraph',	
+"   \ 'coc-stylelint',	
+"   \ 'coc-tsserver',	
+"   \ ]
 
-" LSP
-" Show hover documentation when holding the cursor
-" autocmd CursorHold * silent call CocAction('doHover')
+" " LSP
+" " Stow hover documentation when holding the cursor
+" " autocmd CursorHold * silent call CocAction('doHover')
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-" Don't pass messages to |ins-completion-menu|.
+" Avoid showing message extra message when using completion
 set shortmess+=c
-" Navigate completion menu
-imap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
-imap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
 
-" completion using TAB
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-" let g:coc_snippet_next = '<tab>'
-nmap <silent><C-]> <Plug>(coc-definition)
+" " completion using TAB
+" " Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" " let g:coc_snippet_next = '<tab>'
+" nmap <silent><C-]> <Plug>(coc-definition)
 nmap <silent>gd <Plug>(coc-definition)
 nmap <silent>K  :call CocAction('doHover')<CR>
 nmap <silent>gy <Plug>(coc-type-definition)
