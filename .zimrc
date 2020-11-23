@@ -35,6 +35,3 @@ zmodule zimfw/ruby
 # Oh My Zsh plugins
 # Extract compressed files
 zmodule ohmyzsh/ohmyzsh -f 'plugins/extract' -s 'plugins/extract/extract.plugin.zsh'
-# Tmux
-# Automatically start tmux
-: ${ZSH_TMUX_AUTOSTART:=true}
