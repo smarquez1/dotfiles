@@ -1,6 +1,29 @@
+let g:coc_global_extensions = [	
+  \ 'coc-css', 	
+  \ 'coc-eslint',	
+  \ 'coc-explorer',	
+  \ 'coc-html',	
+  \ 'coc-pairs', 	
+  \ 'coc-snippets',	
+  \ 'coc-solargraph',	
+  \ 'coc-stylelint',	
+  \ 'coc-tsserver',	
+  \ ]
+
+" LSP
+" Show hover documentation when holding the cursor
+" autocmd CursorHold * silent call CocAction('doHover')
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 " Navigate completion menu
-imap <expr> <C-j> pumvisible() ? "\<C-N>" : "j"
-imap <expr> <C-k> pumvisible() ? "\<C-P>" : "k"
+imap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
+imap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
 
 " completion using TAB
 " Use tab for trigger completion with characters ahead and navigate.
@@ -11,15 +34,7 @@ inoremap <silent><expr> <TAB>
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-" coc
+" let g:coc_snippet_next = '<tab>'
 nmap <silent><C-]> <Plug>(coc-definition)
 nmap <silent>gd <Plug>(coc-definition)
 nmap <silent>K  :call CocAction('doHover')<CR>
@@ -33,15 +48,13 @@ vmap <leader>af  <Plug>(coc-format-selected)
 nmap <leader>af  <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
+" Applying codeAction to the selected region.  Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
-
 " Coc-explore
 nmap <leader>d :CocCommand explorer<CR>
 
+" Replace Ctrlsf
 " nmap <leader>/ :CocSearch <c-r>
 " vmap <leader>/ :CocSearch <c-r>=expand("<cword>")<CR><CR>
