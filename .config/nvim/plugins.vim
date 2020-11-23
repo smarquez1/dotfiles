@@ -10,19 +10,15 @@ let g:mta_filetypes = {
 " endwise
 let g:endwise_no_mappings=1
 
-" FZF
-" let $FZF_DEFAULT_COMMAND = 'fd --type f'
-" let $FZF_DEFAULT_OPTS .= ' --layout=reverse --inline-info'
-" let g:fzf_preview_window = '' " Disable preview windows
-" let g:fzf_layout = { 'window': 
-" \   { 'width': 0.60, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' }
-" \ }
-
 " Fugitive
 let g:fugitive_git_executable = 'LANG=en_US git'
 
 " Ragtag
 let g:ragtag_global_maps = 1
+
+" Polyglot
+" let g:polyglot_disabled = ['autoindent', 'sensible']
+let g:vim_jsx_pretty_colorful_config = 1
 
 " Airline
 let g:airline#extensions#hunks#enabled = 0

@@ -40,8 +40,8 @@ nmap Q <nop>
 " saner cursor positioning after yanking blocks
 " vmap <expr>y "my\"" . v:register . "y`y"
 " Move lines up or down
-xnoremap K :move '<-2<CR>gv-gv
-xnoremap J :move '>+1<CR>gv-gv
+" xnoremap K :move '<-2<CR>gv-gv
+" xnoremap J :move '>+1<CR>gv-gv
 
 " diff
 if &diff
@@ -102,7 +102,6 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 command! -nargs=0 Format :call CocAction('format')
 
 " Coc-explore
-" Open CHADTree
 nmap <leader>d :CocCommand explorer<CR>
 
 " Fugitive git bindings
@@ -113,22 +112,11 @@ nmap <leader>gb :.Gbrowse<CR>
 " Open visual selection in the browser
 vmap <leader>gb :Gbrowse<CR>
 
-" Clap
-" map <silent> <leader>f :Clap files <CR>
-" map <silent> <leader>b :Clap buffers <CR>
-
 " FZF
-" map <silent> <leader>f :Files <CR>
-" map <silent> <leader>b :Buffers <CR>
-" TESTING
-" map <silent> <leader>ed :Files '~/.config/nvim' <CR>
-" map <silent> <leader>ed call fzf#vim#files('~/.config/nvim', <bang>0) <CR>
-
-" Telescope
-" nmap <silent> <leader>f :lua require'telescope.builtin'.find_files{}<CR>
-" nmap <silent> <leader>b :lua require'telescope.builtin'.buffers{}<CR>
-" nmap <silent> <leader>? :lua require'telescope.builtin'.live_grep{}<CR>
-" nmap <silent> <leader>ed :lua require'telescope.builtin'.find_files{ cwd = '~/.config/nvim/'}<CR>
+map <silent> <leader>f :Files <CR>
+map <silent> <leader>b :Buffers <CR>
+map <silent> <leader>ed :call fzf#vim#files('~/.config/nvim')<CR>
+map <silent> ht <Cmd>Helptags<CR>
 
 " Vim Test
 nmap <leader>T :TestFile<CR>

@@ -3,12 +3,22 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'mattn/emmet-vim'
 
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
-"   \ Plug 'junegunn/fzf.vim' |
-"   \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
-Plug 'nvim-lua/telescope.nvim' |
-      \ Plug 'nvim-lua/popup.nvim' |
-      \ Plug 'nvim-lua/plenary.nvim' " Find, Filter, Preview, Pick
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
+  \ Plug 'junegunn/fzf.vim' |
+  \ Plug 'stsewd/fzf-checkout.vim' " fuzzy finder
+" {{{
+" FZF
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
+let $FZF_DEFAULT_OPTS .= ' --layout=reverse --inline-info'
+let g:fzf_preview_window = '' " Disable preview windows
+let g:fzf_layout = { 'window': 
+\   { 'width': 0.60, 'height': 0.5, 'yoffset': 0, 'border': 'rounded' }
+\ }
+" }}}
+
+" Plug 'nvim-lua/telescope.nvim' |
+"       \ Plug 'nvim-lua/popup.nvim' |
+"       \ Plug 'nvim-lua/plenary.nvim' " Find, Filter, Preview, Pick
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'tpope/vim-commentary' " Comments
@@ -52,11 +62,6 @@ Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
 
 " other languages
 Plug 'sheerun/vim-polyglot' " Better support for some languages
-" {{{
-  " let g:polyglot_disabled = ['autoindent', 'sensible']
-  let g:polyglot_disabled = ['csv']
-  " let g:vim_jsx_pretty_colorful_config = 1
-" }}}
 
 " Tmux integration
 Plug 'benmills/vimux' " vim plugin to interact with tmux
@@ -68,7 +73,8 @@ source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/keys.vim
 luafile $HOME/.config/nvim/lua/init.lua
+luafile $HOME/.config/nvim/lua/utils.lua
 luafile $HOME/.config/nvim/lua/_nvim-colorizer.lua
 luafile $HOME/.config/nvim/lua/_nvim-treesitter.lua
-luafile $HOME/.config/nvim/lua/_telescope.lua
+" luafile $HOME/.config/nvim/lua/_telescope.lua
 " luafile $HOME/.config/nvim/lua/_galaxyline.lua
