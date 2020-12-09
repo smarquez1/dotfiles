@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Modules
 # -------
 
@@ -18,7 +20,7 @@ zmodule utility
 # Exposes git repository status information to prompts.
 zmodule git-info
 # Theme
-zmodule romkatv/powerlevel10k
+zmodule gitster
 # Additional completion definitions.
 zmodule zsh-users/zsh-completions
 # Smart and extensive tab completion. must be sourced after zsh-users/zsh-completions

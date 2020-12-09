@@ -23,8 +23,12 @@ set hidden
 " Ident using 2 spaces
 set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 " Enable folding by default
-set foldmethod=indent foldlevel=99
-"
+" set foldmethod=indent foldlevel=99
+" Tree-sitter based folding.
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevel=99
+
 set completeopt=menuone,noinsert,noselect
 " Always show the signcolumn
 set signcolumn=yes

@@ -1,11 +1,5 @@
 source ~/.secrets
 
-# Load p10k
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
@@ -19,7 +13,7 @@ export BAT_THEME=TwoDark
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
-  # https://stackoverflow.com/questions/52941426/upgraded-to-macos-mojave-and-now-getting-error-in-rails-console
+  # https://stackoverflow.com/questions/52941426/
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 fi
 
@@ -36,8 +30,8 @@ WORDCHARS=${WORDCHARS//[\/]}
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
+# compinit
+# _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
 bindkey -v 

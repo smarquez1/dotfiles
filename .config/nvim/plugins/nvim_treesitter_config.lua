@@ -1,17 +1,8 @@
 require "nvim-treesitter.configs".setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true
-  },
-}
-
-require'nvim-treesitter.configs'.setup {
-  refactor = {
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "grr",
-      },
-    },
-  },
+    ensure_installed = "maintained",
+    highlight = { enable = true },
+    incremental_selection = { enable = true },
+    textobjects = { enable = true },
+    indent = { enable = true },
+    rainbow = { enable = true }
 }

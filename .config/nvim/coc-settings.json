@@ -1,12 +1,8 @@
 {	
   "coc.preferences.hoverTarget": "float",
-  "codeLens.enable": true,	
+  "codeLens.enable": false,	
   // Diagnostics
-  "diagnostic.virtualText": false,	// this won't work with codelens when error on same line
-  // "diagnostic.errorSign": " ",
-  // "diagnostic.warningSign": " ",
-  // "diagnostic.infoSign": "●",
-  // "diagnostic.hintSign": " ",
+  "diagnostic.virtualText": true,	// this won't work with codelens when error on same line
   "diagnostic.messageTarget": "echo", // Don't display diagnostics on popups
   //Suggestions
   "suggest.enablePreview": true, // Enable preview (signatures, etc.) during completion
