@@ -2,10 +2,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 " File picker
-Plug 'nvim-lua/telescope.nvim' |
-      \ Plug 'nvim-lua/popup.nvim' |
-      \ Plug 'nvim-lua/plenary.nvim' |
-      \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
+       \ Plug 'junegunn/fzf.vim' |
+       \ Plug 'stsewd/fzf-checkout.vim'
+" Plug 'nvim-lua/telescope.nvim' |
+"       \ Plug 'nvim-lua/popup.nvim' |
+"       \ Plug 'nvim-lua/plenary.nvim' |
+"       \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'tomtom/tcomment_vim' " Comments
@@ -24,7 +28,6 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocUpdate' } " LSP inte
 "   \  Plug 'nvim-lua/lsp-status.nvim' |
 "   \  Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
-      \ Plug 'nvim-treesitter/nvim-treesitter-textobjects' |
       \ Plug 'p00f/nvim-ts-rainbow'
 Plug 'honza/vim-snippets' " Snippets for vim
 " " Appearance
@@ -59,6 +62,7 @@ source $HOME/.config/nvim/plugins/coc_config.vim
 source $HOME/.config/nvim/plugins/ctrlsf_config.vim
 source $HOME/.config/nvim/plugins/emmet_config.vim
 source $HOME/.config/nvim/plugins/endwise_config.vim
+source $HOME/.config/nvim/plugins/fzf_config.vim
 source $HOME/.config/nvim/plugins/fugitive_config.vim
 source $HOME/.config/nvim/plugins/matchtagalways_config.vim
 source $HOME/.config/nvim/plugins/onedark_config.vim
@@ -67,8 +71,7 @@ source $HOME/.config/nvim/plugins/sneak_config.vim
 source $HOME/.config/nvim/plugins/vim_rails_config.vim
 source $HOME/.config/nvim/plugins/vim_test_config.vim
 
+" luafile $HOME/.config/nvim/plugins/lsp.lua
 luafile $HOME/.config/nvim/plugins/nvim_colorizer_config.lua
 luafile $HOME/.config/nvim/plugins/nvim_treesitter_config.lua
-
-" luafile $HOME/.config/nvim/plugins/lsp.lua
-luafile $HOME/.config/nvim/plugins/telescope_config.lua
+" luafile $HOME/.config/nvim/plugins/telescope_config.lua

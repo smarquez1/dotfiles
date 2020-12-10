@@ -45,6 +45,7 @@
   up      = !git fetch origin && git rebase origin/master
   l       = log --oneline --decorate --color
   la      = !git config -l | grep alias | cut -c 7-
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 [pull]
 	rebase = false
 [blame]
