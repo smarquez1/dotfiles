@@ -28,8 +28,6 @@ set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 set foldlevel=99
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
-set completeopt=menuone,noinsert,noselect
 " Always show the signcolumn
 set signcolumn=yes
 " trigger autoread everytime you focus the window or enter the buffer

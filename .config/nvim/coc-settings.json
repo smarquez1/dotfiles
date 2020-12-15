@@ -24,6 +24,7 @@
   },	
   // Solargraph
   "solargraph.diagnostics": true,	
+  "solargraph.promptDownload": false,
   "solargraph.autoformat": false,	
   "solargraph.formatting": true,	
   "solargraph.hover": true

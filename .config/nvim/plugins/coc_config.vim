@@ -10,9 +10,8 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',	
   \ ]
 
-" " LSP
-" " Stow hover documentation when holding the cursor
-" " autocmd CursorHold * silent call CocAction('doHover')
+" Completion does not select anything automatically
+set completeopt=menuone,noinsert,noselect
 
 " check if last inserted char is a backspace
 function! s:check_back_space() abort
@@ -43,8 +42,6 @@ nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
 nmap <leader>gR <Plug>(coc-rename)
 nmap <leader>ac <Plug>(coc-codeaction)
-xmap <leader>af <Plug>(coc-format-selected)
-vmap <leader>af <Plug>(coc-format-selected)
 nmap <leader>af <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)

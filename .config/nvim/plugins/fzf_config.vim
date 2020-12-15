@@ -1,7 +1,5 @@
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let $FZF_DEFAULT_OPTS .= '--layout=reverse --inline-info'
-" let g:fzf_preview_window = 'right:50%:noborder:hidden'
-let g:fzf_layout = { 'window':  { 'width': 0.9, 'height': 0.9  } }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors = {
@@ -19,12 +17,14 @@ let g:fzf_colors = {
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
-nmap <leader>f :Files<CR>
-nmap <leader>B :Buffers<CR>
-nmap <leader>gb :GBranches<CR>
-nmap <leader>ht <CMD>Helptags<CR>
-" List all YADM tracked files
-nmap <leader>ed :call fzf#run(fzf#wrap({'source': 'yadm list -a', 'dir': '~' }))<CR>
-
 autocmd FileType fzf tmap <buffer> <C-j> <Down>
 autocmd FileType fzf tmap <buffer> <C-k> <Up>
+
+nmap <silent> <leader>f :Files<CR>
+nmap <silent> <leader>B :Buffers<CR>
+nmap <silent> <leader>gb :GBranches<CR>
+nmap <silent> <leader>ht :Helptags<CR>
+" List all YADM tracked files
+nmap <silent> <leader>ed :call fzf#run(fzf#wrap({'source': 'yadm list -a', 'dir': '~' }))<CR>
+" nnoremap <silent> <leader> fs :<C-u>CocFzfList symbols<CR>
+nnoremap <silent> <leader>S :CocFzfList symbols<CR>

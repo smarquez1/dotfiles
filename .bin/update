@@ -5,7 +5,7 @@ SYSTEM_TYPE=$(uname -s)
 # Update System
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Homebrew
-  brew update && brew upgrade && brew upgrade --cask
+  brew update && brew upgrade
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   # Pacman + Aur
   yay -Syu --noconfirm

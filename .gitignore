@@ -13,10 +13,10 @@ tags.temp
 # Editor configurations
 .vim/
 .vscode/
+.vimrc.local.vim
+coc-settings.local.json
 
 # Solargraph configs
 .solargraph.yml
-
-# Solargraph rails config
-#https://github.com/castwide/solargraph/issues/87
+# https://github.com/castwide/solargraph/issues/87
 config/solargraph.rb
