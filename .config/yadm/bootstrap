@@ -16,7 +16,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew tap homebrew/cask-drivers
     brew install
       \ neovim git ripgrep fd tmux yarn htop wget docker gnupg docker-compose
-      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use reattach-to-user-namespace
+      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use reattach-to-user-namespace starship
 
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   if command -v yay >/dev/null 2>&1; then
@@ -26,7 +26,7 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   yay -S zsh xclip python-neovim neovim git ripgrep fd \
     tmux python-pip openssh yarn htop wget docker docker-compose tlp \
       rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use \
-      pulseaudio-modules-bt-git --noconfirm --needed
+      pulseaudio-modules-bt-git starship --noconfirm --needed
 fi
 
 # ZSH

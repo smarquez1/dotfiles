@@ -1,15 +1,15 @@
-" Support 24 bit color
-set termguicolors
 " Enable mouse
 set mouse=a
  " Configure search
 set ignorecase smartcase
+" Enable live substitution
+set inccommand=nosplit
  " No backups or swapfile
 set nobackup nowritebackup noswapfile
- " Enable live substitution
-set inccommand=nosplit
+" Keep undo history for hidden buffers
+set hidden
 " Show line numbers
-set number relativenumber numberwidth=2
+set number relativenumber
 " more Natural splits behaviour
 set splitbelow splitright
 " Wrap text
@@ -18,22 +18,19 @@ set linebreak breakindent
 set showbreak=↪\  
 " Use system's clipboard
 set clipboard=unnamedplus
- " Keep undo history for hidden buffers
-set hidden
-" Ident using 2 spaces
+" Ident using 2 spaces by default
 set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 " Enable folding by default
-" set foldmethod=indent foldlevel=99
-" Tree-sitter based folding.
-set foldlevel=99
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=indent foldlevel=99
 " Always show the signcolumn
-set signcolumn=yes
+" set signcolumn=yes
+" Highlight the screen line of the cursor with CursorLine
+" set cursorline
+" Support 24 bit color
+set termguicolors
+
 " trigger autoread everytime you focus the window or enter the buffer
 autocmd! FocusGained,BufEnter * checktime
-" Highlight the screen line of the cursor with CursorLine
-set cursorline
 
 " ft=markdown
  " Enable spelling
@@ -46,7 +43,7 @@ au BufEnter term://* startinsert
 au TermOpen * setlocal nonumber norelativenumber
 
 " KEY MAPPINGS
-" map Leader
+" map leader to space
 let mapleader = " "
 " Semicolon is colon
 map ; :
@@ -82,6 +79,5 @@ if &diff
   map <C-K> [c
 endif
 
-" General configuration
-luafile $HOME/.config/nvim/utils.lua
+" Plugin configuration
 source $HOME/.config/nvim/plugins.vim

@@ -20,7 +20,8 @@ zmodule utility
 # Exposes git repository status information to prompts.
 zmodule git-info
 # Theme
-zmodule gitster
+# zmodule gitster
+# zmodule sindresorhus/pure --source async.zsh --source pure.zsh
 # Additional completion definitions.
 zmodule zsh-users/zsh-completions
 # Smart and extensive tab completion. must be sourced after zsh-users/zsh-completions
@@ -36,4 +37,4 @@ zmodule zimfw/ruby
 
 # Oh My Zsh plugins
 # Extract compressed files
-zmodule ohmyzsh/ohmyzsh -f 'plugins/extract' -s 'plugins/extract/extract.plugin.zsh'
+# zmodule ohmyzsh/ohmyzsh -f 'plugins/extract' -s 'plugins/extract/extract.plugin.zsh'

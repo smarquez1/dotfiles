@@ -6,6 +6,10 @@ shell:
     - -c
     - 'tmux attach'
 
+window:
+  startup_mode: Maximized
+  decorations: none
+
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
@@ -39,41 +43,34 @@ font:
 
   use_thin_strokes: false
 
-# Colors (One Dark)
+# Space Duck
 colors:
+  cursor:
+    text: '0x0f111b'
+    cursor: '0xecf0c1'
+    # blinking: Always
   # Default colors
   primary:
-    background: '#282c34'
-    foreground: '#abb2bf'
-
-  # Cursor colors
-  cursor:
-    text: '#131613'
-    cursor: '#ffffff'
-
+    background: '0x0f111b'
+    foreground: '0xecf0c1'
   # Normal colors
   normal:
-    # NOTE: Use '#131613' for the `black` color if you'd like to see
-    # black text on the background.
-    black:   '#282c34'
-    red:     '#e06c75'
-    green:   '#98c379'
-    yellow:  '#d19a66'
-    blue:    '#61afef'
-    magenta: '#c678dd'
-    cyan:    '#56b6c2'
-    white:   '#abb2bf'
+    black:   '0x000000'
+    red:     '0xe33400'
+    green:   '0x5ccc96'
+    yellow:  '0xb3a1e6'
+    blue:    '0x00a3cc'
+    magenta: '0xf2ce00'
+    cyan:    '0x7a5ccc'
+    white:   '0x686f9a'
 
   # Bright colors
   bright:
-    black:   '#5c6370'
-    red:     '#e06c75'
-    green:   '#98c379'
-    yellow:  '#d19a66'
-    blue:    '#61afef'
-    magenta: '#c678dd'
-    cyan:    '#56b6c2'
-    white:   '#ffffff'
-
-  # Indexed Colors
-  indexed_colors: []
+    black:   '0x686f9a'
+    red:     '0xe33400'
+    green:   '0x5ccc96'
+    yellow:  '0xb3a1e6'
+    blue:    '0x00a3cc'
+    magenta: '0xf2ce00'
+    cyan:    '0x7a5ccc'
+    white:   '0xf0f1ce'

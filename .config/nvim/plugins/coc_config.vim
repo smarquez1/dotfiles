@@ -52,6 +52,9 @@ command! -nargs=0 Format :call CocAction('format')
 " Coc-explore
 nmap <leader>d :CocCommand explorer<CR>
 
+" List symbols 
+nmap <silent> <leader>S :CocList symbols<CR>
+
 " Replace Ctrlsf
 " nmap <leader>/ :CocSearch <c-r>
 " vmap <leader>/ :CocSearch <c-r>=expand("<cword>")<CR><CR>

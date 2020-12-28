@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-# ~/.macos — https://mths.be/macos
+
+# Add tmux-256color terminfo (missing in macos)
+# sudo /usr/bin/tic -xe ~/.tmux-256color
+sudo /usr/bin/tic -xe alacritty-direct,tmux-256color .tmux-256color
+
+# ~/.macos https://mths.be/macos
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change

@@ -3,16 +3,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 let g:doge_enable_mappings = 0
 Plug 'dstein64/nvim-scrollview'
-" Plug 'embear/vim-localvimrc'
-" let g:localvimrc_name = '.vimrc.local.vim'
-" autocmd User LocalVimRCPost  echom 'local vimrc loaded'
 
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 " File picker
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
        \ Plug 'junegunn/fzf.vim' |
-       \ Plug 'stsewd/fzf-checkout.vim' |
-       \ Plug 'antoinemadec/coc-fzf'
+       \ Plug 'stsewd/fzf-checkout.vim'
 " Plug 'nvim-lua/telescope.nvim' |
 "       \ Plug 'nvim-lua/popup.nvim' |
 "       \ Plug 'nvim-lua/plenary.nvim' |
@@ -41,9 +37,11 @@ Plug 'honza/vim-snippets' " Snippets for vim
 " Plug 'romgrk/barbar.nvim' " bufferline
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'henrik/vim-indexed-search' " Display number of search results
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
-" " Cool icons
+Plug 'vim-airline/vim-airline'
+" Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
+Plug 'pineapplegiant/spaceduck'
+     
+" Cool icons
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
 " " HTMLish
@@ -63,7 +61,8 @@ Plug 'tpope/vim-rails'               " rails.vim: Ruby on Rails power tools
 
 call plug#end()
 
-source $HOME/.config/nvim/plugins/onedark_config.vim
+" source $HOME/.config/nvim/plugins/onedark_config.vim
+source $HOME/.config/nvim/plugins/spaceduck_config.vim
 source $HOME/.config/nvim/plugins/airline_config.vim
 " source $HOME/.config/nvim/plugins/barbar_config.vim
 source $HOME/.config/nvim/plugins/coc_config.vim
@@ -79,6 +78,5 @@ source $HOME/.config/nvim/plugins/vim_rails_config.vim
 source $HOME/.config/nvim/plugins/vim_test_config.vim
 
 " luafile $HOME/.config/nvim/plugins/lsp_config.lua
-luafile $HOME/.config/nvim/plugins/nvim_treesitter_config.lua
 luafile $HOME/.config/nvim/plugins/nvim_treesitter_config.lua
 " luafile $HOME/.config/nvim/plugins/telescope_config.lua

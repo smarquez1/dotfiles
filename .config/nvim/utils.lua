@@ -10,14 +10,15 @@ function table.merge(dest, src)
 end
 
 -- Key mapping
-function U.map(mode, key, result, opts)
-    opts = table.merge({
-        noremap = true,
-        silent = true,
-        expr = false
-    }, opts or {})
+function U.map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
-    fn.nvim_set_keymap(mode, key, result, opts)
+function U.opt(scope, key, value)
+  scopes[scope][key] = value
+  if scope ~= 'o' then scopes['o'][key] = value end
 end
 
 return U

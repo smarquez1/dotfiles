@@ -1,13 +1,13 @@
 source ~/.secrets
 
+eval "$(starship init zsh)"
 # Access yarn global executables globally
 export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
 
-# BAT colorscheme
-export BAT_THEME=TwoDark
+export TERM="xterm-256color"
 
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
@@ -30,8 +30,6 @@ WORDCHARS=${WORDCHARS//[\/]}
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-# compinit
-# _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
 bindkey -v 
@@ -45,25 +43,16 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 # https://gist.github.com/LukeSmithxyz/e62f26e55ea8b0ed41a65912fbebbe52
 # Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
+function zle-keymap-select () {
+  if [ $KEYMAP = vicmd ]; then
     echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
+  else
     echo -ne '\e[5 q'
   fi
 }
+
 zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -72,13 +61,6 @@ bindkey '^e' edit-command-line
 # --------------------
 # Module configuration
 # --------------------
-
-# fix completions not working (once a day)
-# autoload -Uz compinit
-# for dump in ~/.zcompdump(N.mh+24); do
-#   compinit
-# done
-# compinit -C
 
 # input
 #
@@ -96,11 +78,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
 # ------------------
 # Initialize modules
 # ------------------
-
-if [[ ${ZIM_HOME}/zimfw.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  # Update static initialization script if it's outdated, before sourcing it
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
 
 source ${ZIM_HOME}/init.zsh
 
