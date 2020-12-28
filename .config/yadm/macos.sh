@@ -5,7 +5,7 @@
 # sudo /usr/bin/tic -xe ~/.tmux-256color
 sudo /usr/bin/tic -xe alacritty-direct,tmux-256color .tmux-256color
 
-# ~/.macos https://mths.be/macos
+# source https://mths.be/macos
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change

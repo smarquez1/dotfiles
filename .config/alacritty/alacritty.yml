@@ -43,12 +43,11 @@ font:
 
   use_thin_strokes: false
 
+cursor:
+  blinking: Always
+
 # Space Duck
 colors:
-  cursor:
-    text: '0x0f111b'
-    cursor: '0xecf0c1'
-    # blinking: Always
   # Default colors
   primary:
     background: '0x0f111b'

@@ -73,7 +73,7 @@ zstyle ':zim:input' double-dot-expand yes
 
 # Set what highlighters will be used.
 # See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # ------------------
 # Initialize modules
