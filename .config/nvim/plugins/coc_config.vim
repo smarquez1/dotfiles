@@ -1,5 +1,7 @@
 let g:coc_global_extensions = [	
   \ 'coc-css', 	
+  \ 'coc-git', 	
+  \ 'coc-emmet', 	
   \ 'coc-eslint',	
   \ 'coc-explorer',	
   \ 'coc-html',	
@@ -8,6 +10,7 @@ let g:coc_global_extensions = [
   \ 'coc-solargraph',	
   \ 'coc-stylelint',	
   \ 'coc-tsserver',	
+  \ 'coc-yaml', 	
   \ ]
 
 " Completion does not select anything automatically

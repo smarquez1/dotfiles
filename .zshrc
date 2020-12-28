@@ -6,9 +6,8 @@ export PATH="$PATH:`yarn global bin`"
 # Vim is default editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
-
+# TERM
 export TERM="xterm-256color"
-
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Brew path
@@ -44,6 +43,9 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # https://gist.github.com/LukeSmithxyz/e62f26e55ea8b0ed41a65912fbebbe52
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
+  starship_render
+  zle reset-prompt
+
   if [ $KEYMAP = vicmd ]; then
     echo -ne '\e[1 q'
   else

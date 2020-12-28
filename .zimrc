@@ -15,8 +15,6 @@ zmodule termtitle
 zmodule utility
 
 # Prompt
-#
-
 # Exposes git repository status information to prompts.
 zmodule git-info
 # Theme

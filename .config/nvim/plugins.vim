@@ -22,7 +22,7 @@ Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
 Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-surround' " Vim Surround
-Plug 'mhinz/vim-signify' " git gutter signs
+" Plug 'mhinz/vim-signify' " git gutter signs
 " " Vim test runner
 Plug 'janko-m/vim-test' | Plug 'benmills/vimux'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
@@ -48,7 +48,6 @@ Plug 'ryanoasis/vim-devicons' " icons
 Plug 'Valloric/MatchTagAlways'  " A Vim plugin that always highlights the enclosing html/xml tags
 Plug 'AndrewRadev/tagalong.vim' " Change an HTML(ish) opening tag and take the closing one along as well
 Plug 'tpope/vim-ragtag'         " mappings for templating languages (ex <% %>, <%= %>, <!-- -->
-Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 source $HOME/.config/nvim/plugins/polyglot_config.vim
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
@@ -67,8 +66,8 @@ source $HOME/.config/nvim/plugins/airline_config.vim
 " source $HOME/.config/nvim/plugins/barbar_config.vim
 source $HOME/.config/nvim/plugins/coc_config.vim
 source $HOME/.config/nvim/plugins/ctrlsf_config.vim
-source $HOME/.config/nvim/plugins/emmet_config.vim
 source $HOME/.config/nvim/plugins/endwise_config.vim
+" source $HOME/.config/nvim/plugins/emmet_config.vim
 source $HOME/.config/nvim/plugins/fzf_config.vim
 source $HOME/.config/nvim/plugins/fugitive_config.vim
 source $HOME/.config/nvim/plugins/matchtagalways_config.vim
