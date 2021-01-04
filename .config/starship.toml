@@ -1,3 +1,10 @@
+# disable starship from forcing a new line to be taken. Solved the empty line 
+# at start of terminal
+add_newline = false
+
+[line_break]
+disabled = false
+
 [aws]
 disabled = true
 symbol = " "
@@ -76,3 +83,8 @@ symbol = " "
 
 [swift]
 symbol = "ﯣ "
+
+[cmd_duration]
+min_time = 3
+show_milliseconds = false
+format = "  [$duration]($style) "

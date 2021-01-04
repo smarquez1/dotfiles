@@ -1,5 +1,16 @@
-require('telescope').load_extension('fzy_native')
-require '../utils'
+require('telescope').load_extension 'fzy_native'
+local U = require 'utils'
+
+local M = {}
+
+function M.find_dotfiles()
+  require('telescope.builtin').find_files {
+    prompt_title = "~ dotfiles ~",
+    shorten_path = false,
+    cwd = "~",
+    find_command = { 'yadm', 'list', '-a' },
+  }
+end
 
 local opts = {}
 
@@ -8,4 +19,6 @@ U.map('n', "<leader>B", ":lua require('telescope.builtin').buffers()<CR>", opts)
 U.map('n', "<leader>gb", ":lua require('telescope.builtin').git_branches()<CR>", opts)
 U.map('n', "<leader>ht", ":lua require('telescope.builtin').help_tags()<CR>", opts)
 -- List all YADM tracked files
-U.map('n', "<leader>ed", ":lua require('telescope.builtin').find_files({ find_command = { 'yadm', 'list', '-a' }, cwd = '~'})<CR>", opts)
+U.map('n', "<leader>ed", ":lua require('telescope_config').find_dotfiles()<CR>", opts)
+
+return M
