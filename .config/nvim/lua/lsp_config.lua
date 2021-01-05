@@ -19,11 +19,13 @@ lsp.tsserver.setup {
 
 lsp_status.register_progress()
 
-U.map('n', '<leader>gd', ':lua vim.lsp.buf.definition()<cr>')
-U.map('n', '<leader>af', ':lua vim.lsp.buf.formatting()<cr>')
-U.map('n', '<leader>k', ':lua vim.lsp.buf.hover()<cr>')
-U.map('n', '<leader>gR', ':lua vim.lsp.buf.rename()<cr>')
-U.map('n', '<leader>r', ':lua vim.lsp.buf.references()<cr>')
-U.map('n', '<leader>s', ':lua vim.lsp.buf.document_symbol()<cr>')
+-- Mappings
+U.map('n', '<silent>gd', ':lua vim.lsp.buf.definition()<cr>')
+U.map('n', '<silent>K', ':lua vim.lsp.buf.hover()<cr>')
+U.map('n', '<silent>gr', ':lua vim.lsp.buf.references()<cr>')
 
-U.opt('o', 'completion_matching_strategy_list', ['exact', 'substring', 'fuzzy'])
+U.map('n', '<leader>gR', ':lua vim.lsp.buf.rename()<cr>')
+U.map('n', '<leader>af', ':lua vim.lsp.buf.formatting()<cr>')
+
+-- U.map('n', '<leader>s', ':lua vim.lsp.buf.document_symbol()<cr>')
+-- U.opt('o', 'completion_matching_strategy_list', ['exact', 'substring', 'fuzzy'])

@@ -14,30 +14,7 @@ let g:coc_global_extensions = [
   \ 'coc-yaml', 	
   \ ]
 
-" Completion does not select anything automatically
-set completeopt=menuone,noinsert,noselect
-
-" check if last inserted char is a backspace
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
-
-" " completion using TAB
-" " Use tab for trigger completion with characters ahead and navigate.
-" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-let g:coc_snippet_next = '<tab>'
-
+" LSP
 " nmap <silent><C-]> <Plug>(coc-definition)
 nmap <silent>gd <Plug>(coc-definition)
 nmap <silent>K  :call CocAction('doHover')<CR>
@@ -49,15 +26,46 @@ nmap <leader>ac <Plug>(coc-codeaction)
 nmap <leader>af <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
-" Applying codeAction to the selected region.  Example: `<leader>aap` for current paragraph
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
 " xmap <leader>a  <Plug>(coc-codeaction-selected)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+
+" Snippets
+" Completion does not select anything automatically
+set completeopt=noinsert,menuone,noselect
+" Do not display "Pattern not found" messages during completion.
+" set shortmess+=c
+" Avoid all hit-enter prompts and shorten some other info prompts
+set shortmess=aoOtI
+" Navigate popup menues with j and k
+inoremap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
+inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
+
+" completion using TAB
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+"
+" check if last inserted char is a backspace
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <TAB> for jump to next placeholder
+let g:coc_snippet_next = '<TAB>'
+" Use <S-TAB> for jump to previous placeholder
+let g:coc_snippet_prev = '<S-TAB>'
+
 " Coc-explore
 nmap <leader>d :CocCommand explorer<CR>
-
-" List symbols 
-nmap <silent> <leader>S :CocList symbols<CR>
 
 " Replace Ctrlsf
 " nmap <leader>/ :CocSearch <c-r>
