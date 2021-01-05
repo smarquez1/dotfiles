@@ -1,6 +1,5 @@
 .aws/*
 .bundle/config
-.convox/*
 .env_secrets##*
 .okta/profiles
 .secrets
