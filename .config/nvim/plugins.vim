@@ -18,15 +18,18 @@ Plug 'janko-m/vim-test' | Plug 'benmills/vimux'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
 " LSP, code completion, code highlighting
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocUpdate' } " LSP integration
-Plug 'dstein64/nvim-scrollview'
+" Plug 'neovim/nvim-lspconfig' |
+"   \  Plug 'nvim-lua/completion-nvim' |
+"   \  Plug 'nvim-lua/lsp-status.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
 Plug 'honza/vim-snippets' " Snippets for vim
-" " Appearance
+" Appearance
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'hoob3rt/lualine.nvim'
 Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
+Plug 'dstein64/nvim-scrollview'
 " Cool icons
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
@@ -48,8 +51,6 @@ Plug 'tpope/vim-rails'               " rails.vim: Ruby on Rails power tools
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } |
 "   \ Plug 'junegunn/fzf.vim' |
 "   \ Plug 'stsewd/fzf-checkout.vim'
-" Plug 'neovim/nvim-lspconfig' |
-"   \  Plug 'nvim-lua/completion-nvim'
 
 Plug 'AndrewRadev/splitjoin.vim' " Simplifies transition between multiline and single-line code
 

@@ -34,6 +34,20 @@ local function coc_diagnostics()
   return ''
 end
 
+function lsp_status()
+  return require('lsp-status').messages()
+end
+
+function lsp_diagnostics()
+  if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+    local error_count = vim.lsp.diagnostic.get_count(0, 'Error')
+    local warning_count = vim.lsp.diagnostic.get_count(0, 'Warning')
+    return 'W:' .. warning_count .. ' / E:' .. error_count
+  else
+    return ''
+  end
+end
+
 lualine.sections = {
   lualine_a = { 'mode'},
   lualine_b = { 'branch' },
