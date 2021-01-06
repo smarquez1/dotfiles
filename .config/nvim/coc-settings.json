@@ -1,30 +1,23 @@
 {	
   "coc.preferences.hoverTarget": "float",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.formatOnSaveFiletypes": ["ruby"],
   "codeLens.enable": false,	
-  // Diagnostics
-  "diagnostic.virtualText": true,	// this won't work with codelens when error on same line
-  "diagnostic.messageTarget": "echo", // Don't display diagnostics on popups
-  //Suggestions
-  "suggest.enablePreview": true, // Enable preview (signatures, etc.) during completion
+  "suggest.enablePreview": true,
   "suggest.echodocSupport": true,
-  // Eslint
   "eslint.autoFixOnSave": true,	
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact", "eruby"],
-  // Explorer: Use nerd font icons
-  "explorer.file.root.template": "[icon] [git] [hidden & 1][root]",
-  "explorer.icon.enableNerdfont": false,
-  "explorer.icon.enableVimDevicons": true,
-  "explorer.previewAction.onHover": false,
-  // HTML
-  "html.filetypes": [ "html", "handlebars", "javascriptreact", "eruby" ],	
-  // Snippets
+  "explorer.git.enable": true,
+  "explorer.icon.enableNerdfont": true,
+  "html.filetypes": [ "html", "handlebars", "eruby" ],	
   "snippets.extends": {	
     "typescript": ["javascript"],	
     "javascriptreact": ["javascript"]	
   },	
-  // Solargraph
   "solargraph.diagnostics": true,	
-  "solargraph.autoformat": false,	
   "solargraph.formatting": true,	
-  "solargraph.hover": true
+  "solargraph.hover": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "wxss.validate": false
 }

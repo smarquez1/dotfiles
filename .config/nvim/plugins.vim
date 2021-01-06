@@ -26,6 +26,16 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
 Plug 'honza/vim-snippets' " Snippets for vim
 " Appearance
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" {{{
+let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla'
+\ ]
+" }}}
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'hoob3rt/lualine.nvim'
 Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark

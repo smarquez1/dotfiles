@@ -1,6 +1,8 @@
 " Enable mouse
 set mouse=a
- " Configure search
+" Allow using local vimrc, forbid autocmd in these
+set exrc secure
+" Configure search
 set ignorecase smartcase
 " Enable live substitution
 set inccommand=nosplit

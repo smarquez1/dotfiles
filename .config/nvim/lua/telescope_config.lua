@@ -32,7 +32,8 @@ U.map('n', "<leader>gb", ":lua require('telescope.builtin').git_branches()<CR>",
 U.map('n', "<leader>ht", ":lua require('telescope.builtin').help_tags()<CR>", opts)
 U.map('n', "<leader>S",  ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>", opts)
 -- nmap <silent> <leader>S :CocList symbols<CR>
--- List all YADM tracked files
+-- U.map('n', "<leader>fg", ":lua require('telescope.builtin').live_grep({prompt_prefix=🔍 })<CR>", opts)
+  -- List all YADM tracked files
 U.map('n', "<leader>ed", ":lua require('telescope_config').find_dotfiles()<CR>", opts)
 
 return M

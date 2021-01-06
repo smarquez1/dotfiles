@@ -1,15 +1,32 @@
+" let g:coc_user_config = {
+"   \ 'javascript.suggestionActions.enabled': v:false,
+"   \ 'prettier.printWidth': 100,
+"   \ 'prettier.singleQuote': v:true,
+"   \ 'sql.database': 'postgresql',
+"   \ 'diagnostic.errorSign': '✖',
+"   \ 'diagnostic.infoSign': '🛈',
+"   \ 'diagnostic.hintSign': '🛈',
+"       \ 'snippets.userSnippetsDirectory': '~/.config/nvim/partials/snippets',
+"   \ 'snippets.extends': {
+"   \   'javascriptreact': ['javascript'],
+"   \   'typescript': ['javascript'],
+"   \ },
+"   \ 'coc.preferences.currentFunctionSymbolAutoUpdate': v:true,
+"   \ }
+
 let g:coc_global_extensions = [	
-  \ 'coc-css', 	
   \ 'coc-git', 	
   \ 'coc-emmet', 	
-  \ 'coc-eslint',	
   \ 'coc-explorer',	
-  \ 'coc-html',	
-  \ 'coc-lua',	
   \ 'coc-pairs', 	
   \ 'coc-snippets',	
+  \ 'coc-css', 	
+  \ 'coc-eslint',	
+  \ 'coc-html',	
+  \ 'coc-json', 	
+  \ 'coc-lua',	
   \ 'coc-solargraph',	
-  \ 'coc-stylelint',	
+  \ 'coc-stylelintplus',	
   \ 'coc-tsserver',	
   \ 'coc-yaml', 	
   \ ]
@@ -47,17 +64,30 @@ inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-"
+
 " check if last inserted char is a backspace
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+function s:tab_completion() abort
+  if pumvisible()
+    return coc#_select_confirm() 
+  endif
+
+  if coc#expandableOrJumpable()
+    return "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
+  endif
+
+  if s:check_back_space()
+    return "\<TAB>"
+  endif
+
+  return coc#refresh()
+endfunction
+
+inoremap <silent><expr> <TAB> <sid>tab_completion()
 
 " Use <TAB> for jump to next placeholder
 let g:coc_snippet_next = '<TAB>'
