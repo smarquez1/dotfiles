@@ -1,23 +1,12 @@
-" let g:coc_user_config = {
-"   \ 'javascript.suggestionActions.enabled': v:false,
-"   \ 'prettier.printWidth': 100,
-"   \ 'prettier.singleQuote': v:true,
-"   \ 'sql.database': 'postgresql',
-"   \ 'diagnostic.errorSign': '✖',
-"   \ 'diagnostic.infoSign': '🛈',
-"   \ 'diagnostic.hintSign': '🛈',
-"       \ 'snippets.userSnippetsDirectory': '~/.config/nvim/partials/snippets',
-"   \ 'snippets.extends': {
-"   \   'javascriptreact': ['javascript'],
-"   \   'typescript': ['javascript'],
-"   \ },
-"   \ 'coc.preferences.currentFunctionSymbolAutoUpdate': v:true,
-"   \ }
-
+" LSP migration:
+" coc-emmet => https://github.com/mattn/emmet-vim
+" coc-git =>  gutters, virtual text, 
+" coc-pairs => https://github.com/jiangmiao/auto-pairs or https://github.com/rstacruz/vim-closer
+" coc-snippets
+" coc-explorer => nvim-luatree
 let g:coc_global_extensions = [	
   \ 'coc-git', 	
   \ 'coc-emmet', 	
-  \ 'coc-explorer',	
   \ 'coc-pairs', 	
   \ 'coc-snippets',	
   \ 'coc-css', 	
@@ -40,6 +29,8 @@ nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
 nmap <leader>gR <Plug>(coc-rename)
 nmap <leader>ac <Plug>(coc-codeaction)
+" Formatting selected code.
+xmap <leader>af  <Plug>(coc-format-selected)
 nmap <leader>af <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
@@ -53,9 +44,7 @@ command! -nargs=0 Format :call CocAction('format')
 " Completion does not select anything automatically
 set completeopt=noinsert,menuone,noselect
 " Do not display "Pattern not found" messages during completion.
-" set shortmess+=c
-" Avoid all hit-enter prompts and shorten some other info prompts
-set shortmess=aoOtI
+set shortmess+=c
 " Navigate popup menues with j and k
 inoremap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
 inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
@@ -95,7 +84,7 @@ let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 
 " Coc-explore
-nmap <leader>d :CocCommand explorer<CR>
+" nmap <leader>d :CocCommand explorer<CR>
 
 " Replace Ctrlsf
 " nmap <leader>/ :CocSearch <c-r>

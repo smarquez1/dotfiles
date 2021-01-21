@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-
+Plug 'chrisbra/csv.vim'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'dyng/ctrlsf.vim' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 " File navigator
@@ -8,7 +8,7 @@ Plug 'nvim-lua/telescope.nvim' |
       \ Plug 'nvim-lua/plenary.nvim' |
       \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
-Plug 'tomtom/tcomment_vim' " Comments
+Plug 'tpope/vim-commentary'
 " git wrapper + vim-fugitive Github integration
 Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with '.'
@@ -24,6 +24,16 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocUpdate' } " LSP inte
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
 Plug 'honza/vim-snippets' " Snippets for vim
+Plug 'kyazdani42/nvim-tree.lua'
+" {{{
+let g:nvim_tree_width_allow_resize = 1
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_auto_close = 1
+let g:nvim_tree_follow = 1
+let g:nvim_tree_hide_dotfiles = 1
+let g:nvim_tree_git_hl = 1
+nmap <leader>d :NvimTreeToggle<CR>
+" }}}
 " Appearance
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " {{{

@@ -5,10 +5,10 @@
   "codeLens.enable": false,	
   "suggest.enablePreview": true,
   "suggest.echodocSupport": true,
-  "eslint.autoFixOnSave": true,	
-  "explorer.git.enable": true,
-  "explorer.icon.enableNerdfont": true,
+  "git.addGBlameToVirtualText": false,
   "html.filetypes": [ "html", "handlebars", "eruby" ],	
+  "eslint.autoFixOnSave": true,	
+  "Lua.diagnostics.globals": ["vim"],
   "snippets.extends": {	
     "typescript": ["javascript"],	
     "javascriptreact": ["javascript"]	

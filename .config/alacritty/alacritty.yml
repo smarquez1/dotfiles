@@ -43,6 +43,12 @@ font:
 
   use_thin_strokes: false
 
+# cursor:
+#   style:
+#     blinking: On
+#     shape: Block / Beam
+#   blink_interval: 450
+
 # Colors (One Dark)
 colors:
   # Default colors

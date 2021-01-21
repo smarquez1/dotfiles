@@ -2,59 +2,28 @@ local lualine = require('lualine')
 lualine.theme = 'onedark'
 -- lualine.extensions = { 'fzf' }
 
-local function coc_diagnostic_count(section)
-  local info = vim.b.coc_diagnostic_info
-  if info == nil or next(info) == nil then return 0 end
-  return info[section]
-end
-
-local function coc_diagnostic(symbol, section)
-  local count = coc_diagnostic_count(section)
-  if count > 0 then return symbol .. ': ' .. count else return '' end
-end
-
 local function coc_status()
   if not vim.g.coc_status then return '' end
   return vim.g.coc_status
 end
 
-local function coc_diagnostics()
-  local sections = {}
-    -- local errors = coc_diagnostic('E', 'error'),
-  -- if errorstable.insert(sections, errors)
-    -- local hints = coc_diagnostic('H', 'hint'),
-    -- coc_diagnostic('I', 'information'),
-    -- coc_diagnostic('W', 'warning')
-
-  -- for i = 1, 4 do
-  --   if sections[i] == '' then table.remove(sections, i) end
-  -- end
-
-  -- return table.concat(sections, " | ")
-  return ''
+local function git_blame()
+  if not vim.b.coc_git_blame then return '' end
+  return vim.b.coc_git_blame
+  -- return winwidth(0) > 120 ? blame : ''
 end
 
-function lsp_status()
+local function lsp_status()
   return require('lsp-status').messages()
 end
 
-function lsp_diagnostics()
-  if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
-    local error_count = vim.lsp.diagnostic.get_count(0, 'Error')
-    local warning_count = vim.lsp.diagnostic.get_count(0, 'Warning')
-    return 'W:' .. warning_count .. ' / E:' .. error_count
-  else
-    return ''
-  end
-end
-
 lualine.sections = {
-  lualine_a = { 'mode'},
+  lualine_a = { 'mode' },
   lualine_b = { 'branch' },
-  lualine_c = { 'filename', coc_status },
-  lualine_x = {  },
-  lualine_y = { 'filetype'},
-  lualine_z = { coc_diagnostics },
+  lualine_c = { 'filename', coc_status, git_blame },
+  lualine_x = { },
+  lualine_y = { 'filetype' },
+  lualine_z = { 'location' },
 }
 
 lualine.inactive_sections = {

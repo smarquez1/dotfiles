@@ -19,7 +19,7 @@ set linebreak breakindent
 " Show breakline symbol
 set showbreak=↪\  
 " Use system's clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 " Ident using 2 spaces by default
 set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 " Enable folding by default
@@ -30,7 +30,13 @@ set foldmethod=indent foldlevel=99
 " set cursorline
 " Support 24 bit color
 set termguicolors
-
+"
+au BufRead,BufNewFile * setlocal textwidth=80
+set cc=+1
+" Highlight cursor
+set cursorline
+" number of lines to scroll when the cursor gets off the screen
+set sidescrolloff=5 scrolloff=5
 " trigger autoread everytime you focus the window or enter the buffer
 autocmd! FocusGained,BufEnter * checktime
 
