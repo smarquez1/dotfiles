@@ -1,13 +1,4 @@
-" LSP migration:
-" coc-emmet => https://github.com/mattn/emmet-vim
-" coc-git =>  gutters, virtual text, 
-" coc-pairs => https://github.com/jiangmiao/auto-pairs or https://github.com/rstacruz/vim-closer
-" coc-snippets
-" coc-explorer => nvim-luatree
 let g:coc_global_extensions = [	
-  \ 'coc-git', 	
-  \ 'coc-emmet', 	
-  \ 'coc-pairs', 	
   \ 'coc-snippets',	
   \ 'coc-css', 	
   \ 'coc-eslint',	
@@ -82,10 +73,3 @@ inoremap <silent><expr> <TAB> <sid>tab_completion()
 let g:coc_snippet_next = '<TAB>'
 " Use <S-TAB> for jump to previous placeholder
 let g:coc_snippet_prev = '<S-TAB>'
-
-" Coc-explore
-" nmap <leader>d :CocCommand explorer<CR>
-
-" Replace Ctrlsf
-" nmap <leader>/ :CocSearch <c-r>
-" vmap <leader>/ :CocSearch <c-r>=expand("<cword>")<CR><CR>

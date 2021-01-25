@@ -1,5 +1,5 @@
 require "nvim-treesitter.configs".setup {
-    ensure_installed = "maintained", -- "all", "maintained"
+    ensure_installed = "all", -- "all", "maintained"
     highlight = { enable = true },
     indent = { enable = false },
     rainbow = { enable = false },

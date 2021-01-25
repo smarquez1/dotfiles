@@ -15,10 +15,6 @@ scrolling:
   # Specifying '0' will disable scrolling.
   history: 10000
 
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
-  multiplier: 10
-
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
 
@@ -35,19 +31,9 @@ font:
     family: Iosevka Nerd Font
     style: Italic
 
-  size: 16.0
-
-  # offset:
-  #   x: 0
-  #   y: -2
+  size: 18.0
 
   use_thin_strokes: false
-
-# cursor:
-#   style:
-#     blinking: On
-#     shape: Block / Beam
-#   blink_interval: 450
 
 # Colors (One Dark)
 colors:

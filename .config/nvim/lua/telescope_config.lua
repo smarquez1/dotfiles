@@ -7,7 +7,7 @@ require('telescope').setup {
     mappings = {
       i = { ["<esc>"] = actions.close }
     },
-    file_previewer = previewers.vim_buffer_cat.new,
+    -- file_previewer = previewers.vim_buffer_cat.new,
   }
 }
 
