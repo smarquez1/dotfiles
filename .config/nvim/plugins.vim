@@ -1,4 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
+
 Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
 Plug 'tpope/vim-commentary'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
@@ -13,6 +14,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 Plug 'jiangmiao/auto-pairs' " insert or delete brackets, parens, quotes in pair
 let g:AutoPairsFlyMode = 1
 Plug 'mhinz/vim-signify' " Git gutter
+Plug 'akinsho/nvim-bufferline.lua'
 " Search and navigation
 Plug 'nvim-lua/telescope.nvim' |
       \ Plug 'nvim-lua/popup.nvim' |
@@ -25,7 +27,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
 " Plug 'neovim/nvim-lspconfig' |
-"   \  Plug 'nvim-lua/completion-nvim' |
+"   \  Plug 'nvim-lua/completion-nvim' | or hrsh7th/nvim-compe
 "   \  Plug 'nvim-lua/lsp-status.nvim'
 "   \  Plug 'glepnir/lspsaga.nvim'
 " Appearance
@@ -46,7 +48,6 @@ Plug 'Valloric/MatchTagAlways'  " A Vim plugin that always highlights the enclos
 Plug 'AndrewRadev/tagalong.vim' " Change an HTML(ish) opening tag and take the closing one along as well
 Plug 'tpope/vim-ragtag'         " mappings for templating languages (ex <% %>, <%= %>, <!-- -->
 Plug 'mattn/emmet-vim'
-
 " Other languages
 Plug 'sheerun/vim-polyglot' " Better support for some languages
 source $HOME/.config/nvim/plugins/polyglot_config.vim
@@ -74,3 +75,4 @@ luafile $HOME/.config/nvim/lua/nvim_treesitter_config.lua
 luafile $HOME/.config/nvim/lua/lualine_config.lua
 " luafile $HOME/.config/nvim/lua/lsp_config.lua
 luafile $HOME/.config/nvim/lua/telescope_config.lua
+luafile $HOME/.config/nvim/lua/bufferline_config.lua

@@ -30,6 +30,9 @@ set foldmethod=indent foldlevel=99
 " set cursorline
 " Support 24 bit color
 set termguicolors
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 "
 au BufRead,BufNewFile * setlocal textwidth=80
 set cc=+1
