@@ -25,7 +25,7 @@ map('n', '<leader>ht', ':Telescope help_tags<CR>'            , opts)
 map('n', "<leader>ed", ":lua require('telescope_config').find_dotfiles()<CR>", opts)
 -- nmap <silent> <leader>S :CocList symbols<CR>
 -- map('n', "<leader>fg", ":Telescope.live_grep prompt_prefix=🔍<CR>", opts)
--- map('n', '<leader>S' , ':Telescope lsp_workspace_symbols<CR>', opts)
+map('n', '<leader>S' , ':Telescope lsp_workspace_symbols<CR>', opts)
 
 -- Custom functions
 local M = {}

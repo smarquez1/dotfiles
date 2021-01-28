@@ -1,92 +1,64 @@
-local U = require './utils'
-local lsp = require 'lspconfig'
+-- TODO: Fix loading js snippets, Enable vsnips, maybe replace ultisnips
+-- TODO: check that snipeets jump to next using tab
+-- TODO: display diagnostics in floating window, not virtual text ... Enable LSP saga and/or lsp utils https://www.reddit.com/r/neovim/comments/l61gzb/builtin_lsp_client_exeprience/
+-- TODO: improve lsp status messaging
+-- TODO: add mhartington/formatter.nvim?
+-- https://www.reddit.com/r/neovim/comments/l61gzb/builtin_lsp_client_exeprience/
+-- https://www.reddit.com/r/neovim/comments/l6okhx/nvimcompe_is_an_excellent_autocompletion_plugin/
+
 local lsp_status = require 'lsp-status'
--- local saga = require 'lspsaga'
--- saga.init_lsp_saga()
+lsp_status.register_progress()
+
+local lsp = require 'lspconfig'
 
 local custom_on_attach = function(client, bufnr)
   lsp_status.on_attach(client)
 end
 
+-- gem install solargraph
 lsp.solargraph.setup {
   settings = { solargraph = { diagnostics = true } },
   on_attach = custom_on_attach
 }
-
-lsp.tsserver.setup {
-  on_attach = custom_on_attach
-}
-
---https://github.com/anott03/nvim-lspinstall
--- \ 'coc-css',
--- \ 'coc-stylelintplus',
--- \ 'coc-eslint',
--- \ 'coc-html',
--- \ 'coc-json',	
--- \ 'coc-lua',
--- \ 'coc-yaml',	
+-- npm install -g vscode-css-languageserver-bin
+lsp.cssls.setup { on_attach = custom_on_attach }
+-- npm install -g typescript typescript-language-server
+lsp.tsserver.setup { on_attach = custom_on_attach }
+-- npm install -g vscode-html-languageserver-bin
+lsp.html.setup { on_attach = custom_on_attach }
+-- npm install -g vscode-json-languageserver
+lsp.jsonls.setup { on_attach = custom_on_attach }
+-- npm install -g dockerfile-language-server-nodejs
+lsp.dockerls.setup { on_attach = custom_on_attach }
+-- npm install -g yaml-language-server
+lsp.yamlls.setup { on_attach = custom_on_attach }
+-- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
+lsp.sumneko_lua.setup { on_attach = custom_on_attach }
 
 lsp_status.register_progress()
 
 -- Mappings
-U.map('n', '<silent>gd', ':lua vim.lsp.buf.definition()<cr>')
-U.map('n', '<silent>K' , ':lua vim.lsp.buf.hover()<cr>')
-U.map('n', '<silent>gr', ':lua vim.lsp.buf.references()<cr>')
+local opts = { noremap = true, silent = true }
+local map = vim.api.nvim_set_keymap
 
-U.map('n', '<leader>gR', ':lua vim.lsp.buf.rename()<cr>')
-U.map('n', '<leader>af', ':lua vim.lsp.buf.formatting()<cr>')
+map('n', '<silent>gd', ':lua vim.lsp.buf.definition()<cr>', opts)
+map('n', '<silent>K' , ':lua vim.lsp.buf.hover()<cr>', opts)
+map('n', '<silent>gr', ':lua vim.lsp.buf.references()<cr>', opts)
 
--- U.map('n', '<leader>s', ':lua vim.lsp.buf.document_symbol()<cr>')
--- U.opt('o', 'completion_matching_strategy_list', ['exact', 'substring', 'fuzzy'])
+map('n', '<leader>gR', ':lua vim.lsp.buf.rename()<cr>', opts)
+map('n', '<leader>af', ':lua vim.lsp.buf.formatting()<cr>', opts)
 
--- TODO: Convert from vimlang + coc
--- also: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/snippets.lua
--- and: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/completion.lua
---https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/completion.lua
---https://github.com/steelsojka/completion-buffers
---https://github.com/albertoCaroM/completion-tmux
---
---https://github.com/norcalli/snippets.nvim
---let g:completion_enable_snippet = 'UltiSnips'
--- " Snippets
--- " Completion does not select anything automatically
--- set completeopt=noinsert,menuone,noselect
--- " Do not display "Pattern not found" messages during completion.
--- set shortmess+=c
--- " Navigate popup menues with j and k
--- inoremap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
--- inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
+local compe = require'compe'
 
--- " completion using TAB
--- " Use tab for trigger completion with characters ahead and navigate.
--- " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
--- " other plugin before putting this into your config.
+-- Compe TODO: move to own file
+compe.setup {
+  enabled = true,
 
--- " check if last inserted char is a backspace
--- function! s:check_back_space() abort
---   let col = col('.') - 1
---   return !col || getline('.')[col - 1]  =~# '\s'
--- endfunction
-
--- function s:tab_completion() abort
---   if pumvisible()
---     return coc#_select_confirm()
---   endif
-
---   if coc#expandableOrJumpable()
---     return "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
---   endif
-
---   if s:check_back_space()
---     return "\<TAB>"
---   endif
-
---   return coc#refresh()
--- endfunction
-
--- inoremap <silent><expr> <TAB> <sid>tab_completion()
-
--- " Use <TAB> for jump to next placeholder
--- let g:coc_snippet_next = '<TAB>'
--- " Use <S-TAB> for jump to previous placeholder
--- let g:coc_snippet_prev = '<S-TAB>'
+  source = {
+    path = true,
+    buffer = true,
+    vsnip = true,
+    ultisnips = true,
+    nvim_lsp = true
+  }
+}
