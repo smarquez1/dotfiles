@@ -1,12 +1,10 @@
 local U = require './utils'
 local lsp = require 'lspconfig'
-local completion = require 'completion'
 local lsp_status = require 'lsp-status'
 -- local saga = require 'lspsaga'
 -- saga.init_lsp_saga()
 
 local custom_on_attach = function(client, bufnr)
-  completion.on_attach()
   lsp_status.on_attach(client)
 end
 
@@ -18,6 +16,15 @@ lsp.solargraph.setup {
 lsp.tsserver.setup {
   on_attach = custom_on_attach
 }
+
+--https://github.com/anott03/nvim-lspinstall
+-- \ 'coc-css',
+-- \ 'coc-stylelintplus',
+-- \ 'coc-eslint',
+-- \ 'coc-html',
+-- \ 'coc-json',	
+-- \ 'coc-lua',
+-- \ 'coc-yaml',	
 
 lsp_status.register_progress()
 

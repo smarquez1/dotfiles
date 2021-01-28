@@ -27,7 +27,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
 " Plug 'neovim/nvim-lspconfig' |
-"   \  Plug 'nvim-lua/completion-nvim' | or hrsh7th/nvim-compe
+"   \  Plug 'hrsh7th/nvim-compe'
 "   \  Plug 'nvim-lua/lsp-status.nvim'
 "   \  Plug 'glepnir/lspsaga.nvim'
 " Appearance
