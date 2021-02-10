@@ -1,39 +1,75 @@
--- TODO: Fix loading js snippets, Enable vsnips, maybe replace ultisnips
--- TODO: check that snipeets jump to next using tab
--- TODO: display diagnostics in floating window, not virtual text ... Enable LSP saga and/or lsp utils https://www.reddit.com/r/neovim/comments/l61gzb/builtin_lsp_client_exeprience/
+-- TODO: Snipets should jump to next using tab
+--
 -- TODO: improve lsp status messaging
 -- TODO: add mhartington/formatter.nvim?
+-- TODO: Enable vsnips, maybe replace ultisnips ?
+--
 -- https://www.reddit.com/r/neovim/comments/l61gzb/builtin_lsp_client_exeprience/
 -- https://www.reddit.com/r/neovim/comments/l6okhx/nvimcompe_is_an_excellent_autocompletion_plugin/
 
 local lsp_status = require 'lsp-status'
+local nvim_lsp = require 'lspconfig'
+local saga = require 'lspsaga'
+
 lsp_status.register_progress()
+saga.init_lsp_saga()
 
-local lsp = require 'lspconfig'
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_on_attach = function(client, bufnr)
-  lsp_status.on_attach(client)
+local on_attach = function(client, bufnr)
+  local function bmap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function boption(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  boption('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+  bmap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  bmap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  bmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  bmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  bmap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  bmap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  bmap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  bmap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  bmap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  bmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  bmap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  bmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  bmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  bmap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+  -- Set some keybinds conditional on server capabilities
+  if client.resolved_capabilities.document_formatting then
+    bmap("n", "<leader>qf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  elseif client.resolved_capabilities.document_range_formatting then
+    bmap("n", "<leader>qf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  end
 end
 
 -- gem install solargraph
-lsp.solargraph.setup {
+nvim_lsp.solargraph.setup {
   settings = { solargraph = { diagnostics = true } },
-  on_attach = custom_on_attach
+  capabilities = capabilities,
+  on_attach = on_attach
 }
+
 -- npm install -g vscode-css-languageserver-bin
-lsp.cssls.setup { on_attach = custom_on_attach }
 -- npm install -g typescript typescript-language-server
-lsp.tsserver.setup { on_attach = custom_on_attach }
 -- npm install -g vscode-html-languageserver-bin
-lsp.html.setup { on_attach = custom_on_attach }
 -- npm install -g vscode-json-languageserver
-lsp.jsonls.setup { on_attach = custom_on_attach }
 -- npm install -g dockerfile-language-server-nodejs
-lsp.dockerls.setup { on_attach = custom_on_attach }
 -- npm install -g yaml-language-server
-lsp.yamlls.setup { on_attach = custom_on_attach }
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-lsp.sumneko_lua.setup { on_attach = custom_on_attach }
+
+local servers =
+  { "cssls", "tsserver", "html", "jsonls", "dockerls", "yamlls", "sumneko_lua" }
+  
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { capabilities = capabilities; on_attach = on_attach, }
+end
 
 lsp_status.register_progress()
 
@@ -41,24 +77,14 @@ lsp_status.register_progress()
 local opts = { noremap = true, silent = true }
 local map = vim.api.nvim_set_keymap
 
-map('n', '<silent>gd', ':lua vim.lsp.buf.definition()<cr>', opts)
-map('n', '<silent>K' , ':lua vim.lsp.buf.hover()<cr>', opts)
-map('n', '<silent>gr', ':lua vim.lsp.buf.references()<cr>', opts)
-
-map('n', '<leader>gR', ':lua vim.lsp.buf.rename()<cr>', opts)
-map('n', '<leader>af', ':lua vim.lsp.buf.formatting()<cr>', opts)
-
-local compe = require'compe'
-
--- Compe TODO: move to own file
-compe.setup {
-  enabled = true,
-
-  source = {
-    path = true,
-    buffer = true,
-    vsnip = true,
-    ultisnips = true,
-    nvim_lsp = true
+-- Saga
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    underline = true,
+    signs = true,
   }
-}
+)
+
+vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]

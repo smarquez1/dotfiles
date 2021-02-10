@@ -12,6 +12,8 @@ export TERM="xterm-256color"
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
+  #
+  export HOMEBREW_BOOTSNAP=true
   # https://stackoverflow.com/questions/52941426/
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 fi

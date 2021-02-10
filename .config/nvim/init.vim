@@ -90,5 +90,15 @@ if &diff
   map <C-K> [c
 endif
 
+" Snippets
+" Completion does not select anything automatically
+" set completeopt=noinsert,menuone,noselect
+set completeopt=menu,menuone,noselect
+" Do not display "Pattern not found" messages during completion.
+set shortmess+=c
+" Navigate popup menues with j and k
+inoremap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
+inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
+
 " Plugin configuration
 source $HOME/.config/nvim/plugins.vim
