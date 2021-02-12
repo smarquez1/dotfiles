@@ -9,7 +9,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   brew update && brew upgrade
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   # Pacman + Aur
-  yay -Syu --noconfirm
+  sudo pacman-mirrors --continent && yay -Syu --noconfirm
 fi
 
 # Tmux
