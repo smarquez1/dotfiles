@@ -1,8 +1,9 @@
 #!/bin/zsh
+# System update script
 
 SYSTEM_TYPE=$(uname -s)
 
-# Update System
+# System
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # Homebrew
   brew update && brew upgrade
@@ -18,6 +19,5 @@ fi
 nvim '+PlugUpgrade' '+PlugUpdate!' '+PlugClean!' '+qall'
 
 # Zim
-# Duplicated from zshrc
 source ${ZIM_HOME}/init.zsh
 zimfw update && zimfw upgrade
