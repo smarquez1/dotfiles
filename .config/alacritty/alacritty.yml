@@ -2,13 +2,12 @@
 shell:
   program: /bin/zsh
   args:
-    - --login
+    - -l
     - -c
-    - 'tmux attach'
+    - "tmux attach || tmux new -s 1"
 
 window:
   startup_mode: Maximized
-  decorations: none
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.

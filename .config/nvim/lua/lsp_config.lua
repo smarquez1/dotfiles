@@ -1,12 +1,3 @@
--- TODO: Snipets should jump to next using tab
---
--- TODO: improve lsp status messaging
--- TODO: add mhartington/formatter.nvim?
--- TODO: Enable vsnips, maybe replace ultisnips ?
---
--- https://www.reddit.com/r/neovim/comments/l61gzb/builtin_lsp_client_exeprience/
--- https://www.reddit.com/r/neovim/comments/l6okhx/nvimcompe_is_an_excellent_autocompletion_plugin/
-
 local lsp_status = require 'lsp-status'
 local nvim_lsp = require 'lspconfig'
 local saga = require 'lspsaga'
@@ -26,20 +17,31 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap=true, silent=true }
   bmap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  bmap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  bmap('n', 'gd', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+  -- bmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  bmap('n', 'K', "<cmd>lua require'lspsaga.provider'.render_hover_doc()<CR>", opts)
   bmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  bmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  -- bmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   bmap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   bmap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   bmap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   bmap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  bmap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- bmap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  bmap('n', '<leader>rn', "<cmd>lua require('lspsaga.rename').rename()", opts)
   bmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  bmap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  bmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  bmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  -- bmap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  bmap('n', '[d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
+  bmap('n', ']d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
   bmap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+  bmap('n', '<leader>ca', "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>", opts)
+  bmap('v', '<leader>ca', "<cmd>'<,'>lua require'lspsaga.codeaction'.range_code_action()<CR>", opts)
+
+  -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+  vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
+  -- nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
+  vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
@@ -71,13 +73,10 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { capabilities = capabilities; on_attach = on_attach, }
 end
 
-lsp_status.register_progress()
-
 -- Mappings
 local opts = { noremap = true, silent = true }
 local map = vim.api.nvim_set_keymap
 
--- Saga
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
@@ -85,6 +84,3 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     signs = true,
   }
 )
-
-vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]

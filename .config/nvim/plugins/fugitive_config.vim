@@ -6,3 +6,5 @@ nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :.Gbrowse<CR>
 " Open visual selection in the browser
 vmap <leader>gb :Gbrowse<CR>
+
+" command! -nargs=1 Browse OpenBrowser <args>

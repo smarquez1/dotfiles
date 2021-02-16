@@ -11,7 +11,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
 Plug 'AndrewRadev/splitjoin.vim' " change between multiline and single-line code
 Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits
 Plug 'jiangmiao/auto-pairs' " insert or delete brackets, parens, quotes in pair
-let g:AutoPairsFlyMode = 1
 Plug 'mhinz/vim-signify' " Git gutter
 Plug 'akinsho/nvim-bufferline.lua'
 " Search and navigation
@@ -22,7 +21,6 @@ Plug 'nvim-lua/telescope.nvim' |
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'dyng/ctrlsf.vim' " Mimics Ctrl-Shift-F on Sublime Text 2
 " LSP, code completion, code highlighting
-" Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': ':CocUpdate' }
 Plug 'neovim/nvim-lspconfig' |
   \  Plug 'hrsh7th/nvim-compe' |
   \  Plug 'nvim-lua/lsp-status.nvim' |
@@ -31,14 +29,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Snippets for vim
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact
   \ UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact
- " Plug 'hrsh7th/vim-vsnip-integ' | Plug 'hrsh7th/vim-vsnip'
-" imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)' : '<tab>'
-" smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)' : '<tab>'
-" let g:vsnip_filetypes = {}
-" let g:vsnip_filetypes.javascriptreact = ['javascript']
-" let g:vsnip_filetypes.typescriptreact = ['typescript']
 " Appearance
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'henrik/vim-indexed-search' " Display number of search results
@@ -65,12 +59,10 @@ Plug 'chrisbra/csv.vim'
 call plug#end()
 
 source $HOME/.config/nvim/plugins/onedark_config.vim
-" source $HOME/.config/nvim/plugins/coc_config.vim
 source $HOME/.config/nvim/plugins/ctrlsf_config.vim
 source $HOME/.config/nvim/plugins/endwise_config.vim
 source $HOME/.config/nvim/plugins/vim_doge_config.vim
 source $HOME/.config/nvim/plugins/emmet_config.vim
-" source $HOME/.config/nvim/plugins/fzf_config.vim
 source $HOME/.config/nvim/plugins/fugitive_config.vim
 source $HOME/.config/nvim/plugins/hexokinase_config.vim
 source $HOME/.config/nvim/plugins/matchtagalways_config.vim

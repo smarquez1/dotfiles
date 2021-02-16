@@ -1,5 +1,5 @@
 local lualine = require('lualine')
-lualine.theme = 'onedark'
+lualine.options.theme = 'onedark'
 
 local function coc_status()
   if not vim.g.coc_status then return '' end
@@ -33,7 +33,6 @@ lualine.inactive_sections = {
 }
 
 lualine.status()
-
 
 -- local diagnostics = require('lsp-status/diagnostics')
 

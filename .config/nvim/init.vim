@@ -92,7 +92,6 @@ endif
 
 " Snippets
 " Completion does not select anything automatically
-" set completeopt=noinsert,menuone,noselect
 set completeopt=menuone,noselect
 " Do not display "Pattern not found" messages during completion.
 set shortmess+=c
