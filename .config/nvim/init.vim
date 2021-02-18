@@ -33,11 +33,11 @@ set termguicolors
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-"
-au BufRead,BufNewFile * setlocal textwidth=80
-set cc=+1
+" Highlight columns at 80 chars
+" au BufRead,BufNewFile * setlocal textwidth=80
+" set cc=+1
 " Highlight cursor
-set cursorline
+" set cursorline
 " number of lines to scroll when the cursor gets off the screen
 set sidescrolloff=5 scrolloff=5
 " trigger autoread everytime you focus the window or enter the buffer

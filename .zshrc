@@ -10,6 +10,8 @@ export VISUAL=$EDITOR
 export TERM="xterm-256color"
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  # PSQL path
+  export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
   #

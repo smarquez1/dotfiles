@@ -2,12 +2,6 @@ local lsp_status = require 'lsp-status'
 local nvim_lsp = require 'lspconfig'
 local saga = require 'lspsaga'
 
-lsp_status.register_progress()
-saga.init_lsp_saga()
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 local on_attach = function(client, bufnr)
   local function bmap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function boption(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -49,7 +43,17 @@ local on_attach = function(client, bufnr)
   elseif client.resolved_capabilities.document_range_formatting then
     bmap("n", "<leader>qf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
+
+  -- Format on save
+  vim.cmd [[autocmd BufWritePre *.ruby lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+  vim.cmd [[autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+  vim.cmd [[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 end
+
+lsp_status.register_progress()
+saga.init_lsp_saga()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- gem install solargraph
 nvim_lsp.solargraph.setup {
@@ -72,10 +76,6 @@ local servers =
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { capabilities = capabilities; on_attach = on_attach, }
 end
-
--- Mappings
-local opts = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
