@@ -14,6 +14,7 @@ tags.temp
 .vim/
 .vscode/
 .exrc
+.nvimrc
 
 # https://github.com/castwide/solargraph/issues/87
 config/solargraph.rb

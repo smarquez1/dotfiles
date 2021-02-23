@@ -1,7 +1,8 @@
 " Enable mouse
 set mouse=a
-" Allow using local vimrc, forbid autocmd in these
-set exrc secure
+" Allow using local nvimrc #forbid autocmd in these (?)
+" set exrc secure
+set exrc
 " Configure search
 set ignorecase smartcase
 " Enable live substitution
@@ -66,16 +67,15 @@ nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 nmap <c-h> <c-w>h
 " Make navigation into and out of Neovim terminal splits nicer.
-tmap <C-h> <C-\><C-N><C-w>h
-tmap <C-j> <C-\><C-N><C-w>j
-tmap <C-k> <C-\><C-N><C-w>k
-tmap <C-l> <C-\><C-N><C-w>l
+tmap <c-h> <c-\><c-n><c-w>h
+tmap <c-j> <c-\><c-n><c-w>j
+tmap <c-k> <c-\><c-n><c-w>k
+tmap <c-l> <c-\><c-n><c-w>l
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
 " Cancel a search with Escape:
-nmap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-" Escape from terminal goes to normal mode
+nmap <silent> <Esc> :nohlsearch<Bar>:echo<CR> " Escape from terminal goes to normal mode
 " tmap <Esc> <C-\><C-n>
 " map . in visual mode
 vmap . :norm.<cr>
@@ -96,8 +96,7 @@ set completeopt=menuone,noselect
 " Do not display "Pattern not found" messages during completion.
 set shortmess+=c
 " Navigate popup menues with j and k
-inoremap <expr> <C-J> pumvisible() ? "\<C-N>" : "j"
-inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "k"
-
+inoremap <expr> <C-J> pumvisible() ? "\<c-n>" : "j"
+inoremap <expr> <C-K> pumvisible() ? "\<c-p>" : "k"
 " Plugin configuration
 source $HOME/.config/nvim/plugins.vim

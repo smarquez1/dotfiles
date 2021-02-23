@@ -11,8 +11,8 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap=true, silent=true }
   bmap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  -- bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  bmap('n', 'gd', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+  bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  bmap('n', 'dp', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
   -- bmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   bmap('n', 'K', "<cmd>lua require'lspsaga.provider'.render_hover_doc()<CR>", opts)
   bmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
@@ -45,36 +45,9 @@ local on_attach = function(client, bufnr)
   end
 
   -- Format on save
-  vim.cmd [[autocmd BufWritePre *.ruby lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-  vim.cmd [[autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-  vim.cmd [[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-end
-
-lsp_status.register_progress()
-saga.init_lsp_saga()
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
--- gem install solargraph
-nvim_lsp.solargraph.setup {
-  settings = { solargraph = { diagnostics = true } },
-  capabilities = capabilities,
-  on_attach = on_attach
-}
-
--- npm install -g vscode-css-languageserver-bin
--- npm install -g typescript typescript-language-server
--- npm install -g vscode-html-languageserver-bin
--- npm install -g vscode-json-languageserver
--- npm install -g dockerfile-language-server-nodejs
--- npm install -g yaml-language-server
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-
-local servers =
-  { "cssls", "tsserver", "html", "jsonls", "dockerls", "yamlls", "sumneko_lua" }
-  
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { capabilities = capabilities; on_attach = on_attach, }
+  -- vim.cmd [[autocmd BufWritePre *.ruby lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+  -- vim.cmd [[autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+  -- vim.cmd [[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -84,3 +57,27 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     signs = true,
   }
 )
+
+-- gem install solargraph
+-- npm install -g vscode-css-languageserver-bin
+-- npm install -g typescript typescript-language-server
+-- npm install -g vscode-html-languageserver-bin
+-- npm install -g vscode-json-languageserver
+-- npm install -g dockerfile-language-server-nodejs
+-- npm install -g yaml-language-server
+-- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
+
+local servers =
+  { "solargraph", "cssls", "tsserver", "html", "jsonls", "dockerls", "yamlls" } -- sumneko
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+end
+
+lsp_status.register_progress()
+saga.init_lsp_saga()

@@ -1,6 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'justinmk/vim-sneak' " Jump to any location specified by two characters.
+Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-commentary'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' " git wrapper + Github integration
@@ -23,23 +23,59 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'dyng/ctrlsf.vim' " Mimics Ctrl-Shift-F on Sublime Text 2
 
 " LSP, code completion, code highlighting
+Plug 'w0rp/ale'
+" let g:ale_fix_on_save = 1
+let g:ale_echo_cursor = 0
+let g:ale_disable_lsp = 1
+let g:ale_set_highlights = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_linters = {
+      \'html': ['eslint'],
+      \'css': ['csslint'],
+      \'ruby': ['solargraph'],
+      \'javascript': ['eslint'],
+      \'typescript': ['eslint'],
+      \'lua': ['luacheck'],
+      \}
+
+let g:ale_fixers = {
+      \'*': ['remove_trailing_lines', 'trim_whitespace'],
+      \'html': ['prettier'],
+      \'css': ['prettier'],
+      \'javascript': ['eslint', 'prettier'],
+      \'ruby': ['rubocop'],
+      \'typescript': ['eslint', 'prettier'],
+      \}
+
 Plug 'neovim/nvim-lspconfig' |
   \  Plug 'hrsh7th/nvim-compe' |
   \  Plug 'nvim-lua/lsp-status.nvim' |
   \  Plug 'glepnir/lspsaga.nvim'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
+
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Snippets for vim
+
+" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
 
 " Appearance
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Display colors next to codes
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'hoob3rt/lualine.nvim'
 Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
+Plug 'fnune/base16-vim'
+let base16colorspace=256
 Plug 'dstein64/nvim-scrollview'
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
-
+" Plug 'lukas-reineke/indent-blankline.nvim'
+" let g:indentLine_char = ''
+" let g:indentLine_bufTypeExclude = ['help', 'terminal']
 " Ruby
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #
@@ -50,10 +86,13 @@ Plug 'tpope/vim-rails'               " rails.vim: Ruby on Rails power tools
 Plug 'Valloric/MatchTagAlways'  " Highlights enclosing html/xml tags
 Plug 'AndrewRadev/tagalong.vim' " Change opening tag and closing tags
 Plug 'tpope/vim-ragtag' " ex <% %>, <%= %>, <!-- -->
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'] }
+
+
 " Other languages
 Plug 'chrisbra/csv.vim'
 Plug 'sheerun/vim-polyglot' " Better support for some languages
+
 source $HOME/.config/nvim/plugins/polyglot_config.vim
 
 call plug#end()

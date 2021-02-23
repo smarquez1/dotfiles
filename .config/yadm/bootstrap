@@ -23,7 +23,7 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
     sudo pacman -S yay --noconfirm --needed
   fi
 
-  yay -S zsh xclip python-neovim neovim git ripgrep fd \
+  yay -S zsh xclip neovim git ripgrep fd \
     tmux python-pip openssh yarn htop wget docker docker-compose tlp \
       rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use \
       pulseaudio-modules-bt-git starship gomi --noconfirm --needed
@@ -49,14 +49,9 @@ fi
 # Install neovim plugins
 if command -v nvim >/dev/null 2>&1; then
   echo "Bootstraping NeoVim"
-
-  sudo pip2 install neovim
-  sudo pip3 install pynvim
-  sudo yarn global add neovim
-
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
-    nvim '+PlugUpdate!' '+PlugClean!' '+qall'
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  nvim '+PlugUpdate!' '+PlugClean!' '+qall'
 fi
 
 # JS dependencies
