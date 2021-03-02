@@ -1,16 +1,19 @@
 -- Setup
 local actions = require('telescope.actions')
 local previewers = require('telescope.previewers')
+local telescope = require('telescope')
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
     mappings = {
       i = { ["<esc>"] = actions.close }
     },
+    file_previewer = previewers.cat.new,
+    -- file_previewer = previewers.vim_buffer_cat.new,
   }
 }
 
-require('telescope').load_extension 'fzy_native'
+telescope.load_extension 'fzy_native'
 
 -- Mappings
 local opts = { noremap = true, silent = true }

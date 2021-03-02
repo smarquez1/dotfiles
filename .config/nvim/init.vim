@@ -96,7 +96,7 @@ set completeopt=menuone,noselect
 " Do not display "Pattern not found" messages during completion.
 set shortmess+=c
 " Navigate popup menues with j and k
-inoremap <expr> <C-J> pumvisible() ? "\<c-n>" : "j"
-inoremap <expr> <C-K> pumvisible() ? "\<c-p>" : "k"
+" inoremap <expr> <C-J> pumvisible() ? "\<c-n>" : "j"
+" inoremap <expr> <C-K> pumvisible() ? "\<c-p>" : "k"
 " Plugin configuration
 source $HOME/.config/nvim/plugins.vim

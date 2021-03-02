@@ -1,36 +1,37 @@
 local lsp_status = require 'lsp-status'
-local nvim_lsp = require 'lspconfig'
+local lspconfig = require 'lspconfig'
 local saga = require 'lspsaga'
 
+local u = require('utils')
+local o = vim.o
+local w = vim.wo
+local b = vim.bo
+
 local on_attach = function(client, bufnr)
-  local function bmap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function boption(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  b.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-  boption('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
+  -- Mappings
   local opts = { noremap=true, silent=true }
-  bmap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  bmap('n', 'dp', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
-  -- bmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  bmap('n', 'K', "<cmd>lua require'lspsaga.provider'.render_hover_doc()<CR>", opts)
-  bmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- bmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  bmap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  bmap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  bmap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  bmap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  -- bmap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  bmap('n', '<leader>rn', "<cmd>lua require('lspsaga.rename').rename()", opts)
-  bmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- bmap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  bmap('n', '[d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
-  bmap('n', ']d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
-  bmap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-
-  bmap('n', '<leader>ca', "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>", opts)
-  bmap('v', '<leader>ca', "<cmd>'<,'>lua require'lspsaga.codeaction'.range_code_action()<CR>", opts)
+  u.map_lua_buf('n', 'gD', 'vim.lsp.buf.declaration()', opts)
+  u.map_lua_buf('n', 'gd', 'vim.lsp.buf.definition()', opts)
+  u.map_lua_buf('n', 'dp', "require('lspsaga.provider').preview_definition()", opts)
+  -- u.map_lua_buf ('n', 'K', 'vim.lsp.buf.hover()', opts)
+  u.map_lua_buf('n', 'K', "require('lspsaga.provider').render_hover_doc()", opts)
+  u.map_lua_buf('n', 'gi', 'vim.lsp.buf.implementation()', opts)
+  -- u.map_lua_buf ('n', '<C-k>', 'vim.lsp.buf.signature_help()', opts)
+  u.map_lua_buf('n', '<leader>wa', 'vim.lsp.buf.add_workspace_folder()', opts)
+  u.map_lua_buf('n', '<leader>wr', 'vim.lsp.buf.remove_workspace_folder()', opts)
+  u.map_lua_buf('n', '<leader>wl', 'print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', opts)
+  u.map_lua_buf('n', '<leader>D', 'vim.lsp.buf.type_definition()', opts)
+  -- u.map_lua_buf('n', '<leader>rn', 'vim.lsp.buf.rename()', opts)
+  u.map_lua_buf('n', '<leader>rn', "require('lspsaga.rename').rename()", opts)
+  u.map_lua_buf('n', 'gr', 'vim.lsp.buf.references()', opts)
+  -- u.map_lua_buf('n', '<leader>e', 'vim.lsp.diagnostic.show_line_diagnostics()', opts)
+  u.map_lua_buf('n', '[d', "require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()", opts)
+  u.map_lua_buf('n', ']d', "require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()", opts)
+  u.map_lua_buf('n', '<leader>q', 'vim.lsp.diagnostic.set_loclist()', opts)
+  u.map_lua_buf('n', '<leader>ca', "require('lspsaga.codeaction').code_action()", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<cr>", opts)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
@@ -39,15 +40,10 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    bmap("n", "<leader>qf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    u.map_lua_buf("n", "<leader>qf", "vim.lsp.buf.formatting()", opts)
   elseif client.resolved_capabilities.document_range_formatting then
-    bmap("n", "<leader>qf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    u.map_lua_buf("n", "<leader>qf", "vim.lsp.buf.range_formatting()", opts)
   end
-
-  -- Format on save
-  -- vim.cmd [[autocmd BufWritePre *.ruby lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-  -- vim.cmd [[autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-  -- vim.cmd [[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -58,26 +54,47 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- gem install solargraph
--- npm install -g vscode-css-languageserver-bin
--- npm install -g typescript typescript-language-server
--- npm install -g vscode-html-languageserver-bin
--- npm install -g vscode-json-languageserver
--- npm install -g dockerfile-language-server-nodejs
--- npm install -g yaml-language-server
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-
 local servers =
-  { "solargraph", "cssls", "tsserver", "html", "jsonls", "dockerls", "yamlls" } -- sumneko
+  { "solargraph", "cssls","html", "jsonls", "dockerls", "yamlls" } -- sumneko
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  lspconfig[lsp].setup {
     capabilities = capabilities,
     on_attach = on_attach,
   }
 end
 
+
+lspconfig.tsserver.setup {
+    on_attach = function(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client, bufnr)
+    end
+}
+local eslint = {
+  lintCommand = "./node_modules/.bin/eslint -f unix --stdin",
+  lintIgnoreExitCode = true,
+  lintStdin = true
+}
+
+lspconfig.efm.setup {
+  filetypes = {"javascriptreact", "typescript"},
+  init_options = { documentFormatting = true},
+  settings = {
+    rootMarkers = { ".eslintrc.js", },
+    languages = {
+      typescript = {eslint},
+      javascript = {eslint},
+      typescriptreact = {eslint},
+      javascriptreact = {eslint},
+    }
+  },
+  on_attach = on_attach,
+}
+
 lsp_status.register_progress()
 saga.init_lsp_saga()
+require('formatter').setup()

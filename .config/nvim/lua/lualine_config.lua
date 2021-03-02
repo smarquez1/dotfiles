@@ -3,21 +3,27 @@ local lualine = require('lualine')
 lualine.options = {
   theme = 'onedark',
   component_separators = {'|', '|'},
+  icons_enabled = true,
 }
 
 lualine.sections = {
   lualine_a = { 'mode' },
-  lualine_b = { 'branch', 'signify' },
+  lualine_b = { 'branch', 'diff' },
   lualine_c = {
-    { 'diagnostics', sources = { 'nvim_lsp', 'ale' }, symbols = { error = ' ', warn = ' ', info = ' ' } },
+    {
+      'diagnostics',
+      sources = { 'nvim_lsp', 'ale' },
+      symbols = { error = ' ', warn = ' ', info = ' ' }
+    },
     'filename'
   },
-  lualine_x = { },
-  lualine_y = { 'filetype' },
+  lualine_x = { 'encoding', 'fileformat', 'filetype' },
+  lualine_y = { 'progress' },
   lualine_z = { 'location' },
 }
 
 lualine.inactive_sections = {
+  lualine_b = { 'diff' },
   lualine_c = { 'filename' },
   lualine_x = { 'location' },
 }
