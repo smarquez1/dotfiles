@@ -7,7 +7,8 @@ local eslint = {
   -- lintCommand = 'eslint_d --stdin --stdin-filename ${INPUT} -f unix',
   lintCommand = 'eslint --stdin --stdin-filename ${INPUT} -f unix',
   lintStdin = true,
-  lintIgnoreExitCode = true
+  lintIgnoreExitCode = true,
+  lintFormats = {"%f:%l:%c: %m"},
 }
 
 local prettier =  {
@@ -43,5 +44,6 @@ lsp_config.efm.setup({
   settings = {
     rootMarkers = { 'package.json', '.git/', '.zshrc' },
     languages = efm_languages
-  }
+  },
+  diagnostics = { onChange = false }
 })
