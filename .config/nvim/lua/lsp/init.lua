@@ -1,18 +1,17 @@
 -- https://github.com/lucastrvsn/dot/blob/master/.config/nvim/lua/lsp/init.lua
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
+local lsp = vim.lsp
 
-require('lsp.efm')
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
     underline = true,
     signs = true,
   }
 )
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.solargraph.setup {
@@ -58,3 +57,5 @@ for _, lsp in ipairs(servers_with_efm) do
     end
   }
 end
+
+require('lsp.efm')

@@ -15,8 +15,9 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew tap homebrew/cask-fonts  
     brew tap homebrew/cask-drivers
     brew install
-      \ neovim git ripgrep fd tmux yarn htop wget docker gnupg docker-compose
-      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use reattach-to-user-namespace starship b4b4r07/tap/gomi
+      \ neovim git ripgrep fd tmux yarn htop wget docker gnupg docker-compose go
+      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use
+      \ starship b4b4r07/tap/gomi
 
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   if command -v yay >/dev/null 2>&1; then
@@ -52,6 +53,7 @@ if command -v nvim >/dev/null 2>&1; then
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   nvim '+PlugUpdate!' '+PlugClean!' '+qall'
+  ~/.bin/install_lsp.sh
 fi
 
 # JS dependencies
