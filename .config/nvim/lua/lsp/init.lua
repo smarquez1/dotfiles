@@ -6,7 +6,7 @@ local lsp = vim.lsp
 lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
-    underline = true,
+    underline = false,
     signs = true,
   }
 )
@@ -37,9 +37,9 @@ lspconfig.sumneko_lua.setup({
   }
 })
 
-local servers_with_efm = { "cssls","html", "jsonls", "tsserver" }
+local servers = { "cssls","html", "jsonls", "tsserver" }
 
-for _, lsp in ipairs(servers_with_efm) do
+for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     capabilities = capabilities,
     on_attach = function(client)

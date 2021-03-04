@@ -27,12 +27,27 @@ Plug 'dyng/ctrlsf.vim' " Mimics Ctrl-Shift-F on Sublime Text 2
 Plug 'neovim/nvim-lspconfig' |
   \ Plug 'hrsh7th/nvim-compe' |
   \ Plug 'nvim-lua/lsp-status.nvim' |
-  \ Plug 'glepnir/lspsaga.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Snippets for vim
+
+" TODO: Use this until LSP formattter is stable
+Plug 'w0rp/ale'
+" {{{
+let g:ale_disable_lsp = 1
+let b:ale_linters = []
+let g:ale_fixers = {
+      \'*': ['remove_trailing_lines', 'trim_whitespace'],
+      \'html': ['prettier'],
+      \'css': ['prettier'],
+      \'javascript': ['eslint', 'prettier'],
+      \'javascriptreact': ['eslint'],
+      \'ruby': ['rubocop'],
+      \'typescript': ['eslint', 'prettier'],
+      \}
+" }}}
 
 " Appearance
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Display colors next to codes
@@ -42,9 +57,10 @@ Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
 Plug 'fnune/base16-vim'
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
-" Plug 'lukas-reineke/indent-blankline.nvim'
-" let g:indentLine_char = ''
-" let g:indentLine_bufTypeExclude = ['help', 'terminal']
+Plug 'dstein64/nvim-scrollview'
+Plug 'lukas-reineke/indent-blankline.nvim'
+let g:indentLine_char = ''
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
 " Ruby
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #

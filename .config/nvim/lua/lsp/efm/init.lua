@@ -15,9 +15,6 @@ local prettier =  {
   formatStdin = true
 }
 
-local efm_config = os.getenv('HOME') .. '/.config/nvim/lua/lsp/efm/config.yaml'
-local efm_log_dir = '/tmp/'
-local efm_root_markers = { 'package.json', '.git/', '.zshrc' }
 local efm_languages = {
   yaml = { prettier },
   json = { prettier },
@@ -40,26 +37,11 @@ local efm_languages = {
 }
 
 lsp_config.efm.setup({
-  cmd = {
-    "efm-langserver",
-    "-c",
-    efm_config,
-    "-logfile",
-    efm_log_dir .. "efm.log"
-  },
-  filetype = {
-    'javascript',
-    'javascriptreact',
-    'typescript',
-    'typescriptreact'
-  },
+  args = { "-c", "~/.config/nvim/lua/lsp/efm/config.yaml" },
   on_attach = on_attach,
-  root_dir = lsp_config.util.root_pattern(unpack(efm_root_markers)),
-  init_options = {
-    documentFormatting = false
-  },
+  init_options = { documentFormatting = false },
   settings = {
-    rootMarkers = efm_root_markers,
+    rootMarkers = { 'package.json', '.git/', '.zshrc' },
     languages = efm_languages
   }
 })
