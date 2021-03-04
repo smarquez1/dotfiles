@@ -17,7 +17,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.solargraph.setup {
   settings = {
     solargraph = {
-      commandPath = '/Users/kassioborges/.asdf/shims/solargraph',
+      -- commandPath = '/Users/kassioborges/.asdf/shims/solargraph',
       completion = true
     }
   },
@@ -31,16 +31,7 @@ lspconfig.sumneko_lua.setup({
     Lua = {
       diagnostics = {
         enable = true,
-        globals = {
-          "vim",
-          "describe",
-          "it",
-          "before_each",
-          "after_each",
-          "awesome",
-          "theme",
-          "client"
-        }
+        globals = { "vim", "describe", "it", "before_each", "after_each", "awesome", "theme", "client" }
       }
     }
   }

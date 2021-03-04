@@ -23,13 +23,11 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'dyng/ctrlsf.vim' " Mimics Ctrl-Shift-F on Sublime Text 2
 
 " LSP, code completion, code highlighting
+"
 Plug 'neovim/nvim-lspconfig' |
   \ Plug 'hrsh7th/nvim-compe' |
   \ Plug 'nvim-lua/lsp-status.nvim' |
   \ Plug 'glepnir/lspsaga.nvim'
-
-Plug 'lukas-reineke/formatter.nvim', { 'branch': 'feature/non-stdin' }
-" \ Plug 'mhartington/formatter.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
   \ Plug 'p00f/nvim-ts-rainbow'
@@ -42,8 +40,6 @@ Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'hoob3rt/lualine.nvim'
 Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
 Plug 'fnune/base16-vim'
-let base16colorspace=256
-Plug 'dstein64/nvim-scrollview'
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
 " Plug 'lukas-reineke/indent-blankline.nvim'
@@ -89,7 +85,6 @@ source $HOME/.config/nvim/plugins/vim_test_config.vim
 
 luafile $HOME/.config/nvim/lua/nvim_treesitter_config.lua
 luafile $HOME/.config/nvim/lua/lsp/init.lua
-luafile $HOME/.config/nvim/lua/formatter_config.lua
 luafile $HOME/.config/nvim/lua/lualine_config.lua
 luafile $HOME/.config/nvim/lua/compe_config.lua
 luafile $HOME/.config/nvim/lua/telescope_config.lua
