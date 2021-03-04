@@ -28,4 +28,5 @@ lualine.inactive_sections = {
   lualine_x = { 'location' },
 }
 
+require('lsp-status').register_progress()
 lualine.status()

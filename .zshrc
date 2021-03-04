@@ -95,3 +95,7 @@ source ${ZIM_HOME}/init.zsh
 # zsh-history-substring-search
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+# Use  up and down keys to search through history too
+bindkey "^[[A" history-substring-search-up # Up
+bindkey "^[[B" history-substring-search-down # Down
+
