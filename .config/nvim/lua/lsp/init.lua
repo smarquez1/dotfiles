@@ -14,6 +14,8 @@ lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 local capabilities = lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- require('lsp.efm')
+
 lspconfig.solargraph.setup {
   settings = {
     solargraph = {
@@ -25,19 +27,18 @@ lspconfig.solargraph.setup {
   on_attach = on_attach
 }
 
-lspconfig.sumneko_lua.setup({
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        enable = true,
-        globals = { "vim", "describe", "it", "before_each", "after_each", "awesome", "theme", "client" }
-      }
-    }
-  }
-})
-
--- require('lsp.efm')
+-- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
+-- lspconfig.sumneko_lua.setup({
+--   on_attach = on_attach,
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         enable = true,
+--         globals = { "vim", "describe", "it", "before_each", "after_each", "awesome", "theme", "client" }
+--       }
+--     }
+--   }
+-- })
 
 local function organize_imports()
  local params = {
@@ -56,7 +57,11 @@ lspconfig.tsserver.setup {
       organize_imports,
       description = "Organize Imports"
     }
-  }
+  },
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach(client)
+  end
 }
 
 local servers = { "cssls","html", "jsonls" }

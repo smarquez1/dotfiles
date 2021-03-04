@@ -2,7 +2,7 @@ local map_lua_buf = require('utils').map_lua_buf
 local buf_option = require('utils').buf_option
 
 local on_attach = function(client)
-  buf_option = 'v:lua.vim.lsp.omnifunc'
+  buf_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings
   local opts = { noremap=true, silent=true }

@@ -58,9 +58,9 @@ Plug 'fnune/base16-vim'
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
 Plug 'dstein64/nvim-scrollview'
-Plug 'lukas-reineke/indent-blankline.nvim'
-let g:indentLine_char = ''
-let g:indentLine_bufTypeExclude = ['help', 'terminal']
+" Plug 'lukas-reineke/indent-blankline.nvim'
+" let g:indentLine_char = ''
+" let g:indentLine_bufTypeExclude = ['help', 'terminal']
 " Ruby
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #
