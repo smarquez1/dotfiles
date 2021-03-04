@@ -42,7 +42,7 @@ let g:ale_fixers = {
       \'*': ['remove_trailing_lines', 'trim_whitespace'],
       \'html': ['prettier'],
       \'css': ['prettier'],
-      \'javascript': ['eslint', 'prettier'],
+      \'javascript': ['eslint'],
       \'javascriptreact': ['eslint'],
       \'ruby': ['rubocop'],
       \'typescript': ['eslint', 'prettier'],

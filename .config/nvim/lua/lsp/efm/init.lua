@@ -45,5 +45,8 @@ lsp_config.efm.setup({
     rootMarkers = { 'package.json', '.git/', '.zshrc' },
     languages = efm_languages
   },
+  filetypes = {
+    "javascript", "javascriptreact"
+  },
   diagnostics = { onChange = false }
 })

@@ -37,7 +37,29 @@ lspconfig.sumneko_lua.setup({
   }
 })
 
-local servers = { "cssls","html", "jsonls", "tsserver" }
+-- require('lsp.efm')
+
+local function organize_imports()
+ local params = {
+   command = "_typescript.organizeImports",
+   arguments = { vim.api.nvim_buf_get_name(0) },
+   title = ""
+ }
+ vim.lsp.buf.execute_command(params)
+end
+
+lspconfig.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports"
+    }
+  }
+}
+
+local servers = { "cssls","html", "jsonls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -48,5 +70,3 @@ for _, lsp in ipairs(servers) do
     end
   }
 end
-
-require('lsp.efm')
