@@ -35,7 +35,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 
 # vi mode
-bindkey -v 
+bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
@@ -98,4 +98,3 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Use  up and down keys to search through history too
 bindkey "^[[A" history-substring-search-up # Up
 bindkey "^[[B" history-substring-search-down # Down
-

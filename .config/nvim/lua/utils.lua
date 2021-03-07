@@ -1,4 +1,4 @@
-local M = {} -- The module to export
+local M = {}
 local cmd = vim.cmd
 
 -- We will create a few autogroup, this function will help to avoid

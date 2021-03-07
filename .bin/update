@@ -12,6 +12,9 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   sudo pacman-mirrors --continent && yay -Syu --noconfirm
 fi
 
+# Npm
+yarn global upgrade
+
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 

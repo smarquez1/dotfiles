@@ -15,22 +15,21 @@ Plug 'mhinz/vim-signify' " Git gutter
 Plug 'akinsho/nvim-bufferline.lua'
 
 " Navigation
-Plug 'nvim-lua/telescope.nvim' |
-  \ Plug 'nvim-lua/popup.nvim' |
-  \ Plug 'nvim-lua/plenary.nvim' |
-  \ Plug 'nvim-telescope/telescope-fzy-native.nvim' " File navigator
+" Plug 'nvim-lua/telescope.nvim' |
+"   \ Plug 'nvim-lua/popup.nvim' |
+"   \ Plug 'nvim-lua/plenary.nvim' |
+"   \ Plug 'nvim-telescope/telescope-fzy-native.nvim' " File navigator
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  |
+  \ Plug 'junegunn/fzf.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'dyng/ctrlsf.vim' " Mimics Ctrl-Shift-F on Sublime Text 2
 
 " LSP, code completion, code highlighting
-"
 Plug 'neovim/nvim-lspconfig' |
   \ Plug 'hrsh7th/nvim-compe' |
   \ Plug 'nvim-lua/lsp-status.nvim' |
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
-  \ Plug 'p00f/nvim-ts-rainbow'
-
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Snippets for vim
 
 " TODO: Use this until LSP formattter is stable
@@ -54,13 +53,18 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Display colors next 
 Plug 'henrik/vim-indexed-search' " Display number of search results
 Plug 'hoob3rt/lualine.nvim'
 Plug 'joshdick/onedark.vim' " Colorscheme based on atom onedark
-Plug 'fnune/base16-vim'
 Plug 'kyazdani42/nvim-web-devicons' " icons for lua plugins
 Plug 'ryanoasis/vim-devicons' " icons
 Plug 'dstein64/nvim-scrollview'
 " Plug 'lukas-reineke/indent-blankline.nvim'
 " let g:indentLine_char = ''
 " let g:indentLine_bufTypeExclude = ['help', 'terminal']
+" let g:indent_blankline_char = '·'
+" let g:indent_blankline_char_highlight = 'Whitespace'
+" let g:indent_blankline_space_char = '·'
+" let g:indent_blankline_space_char_highlight = 'Whitespace'
+" let g:indent_blankline_use_treesitter = v:true
+" let g:indent_blankline_debug = v:true
 " Ruby
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'p0deje/vim-ruby-interpolation' " Simple plugin to add {} after hitting #
@@ -68,8 +72,10 @@ Plug 'tpope/vim-endwise'             " add 'end' to functons
 Plug 'tpope/vim-rails'               " rails.vim: Ruby on Rails power tools
 
 " JS
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'othree/yajs.vim'
+" FIXME: https://github.com/nvim-treesitter/nvim-treesitter/issues/921
+Plug 'yuezk/vim-js' | Plug 'MaxMEllon/vim-jsx-pretty'
+let g:vim_jsx_pretty_highlight_close_tag = 1
+let g:vim_jsx_pretty_colorful_config = 1
 
 " HTMLish
 Plug 'Valloric/MatchTagAlways'  " Highlights enclosing html/xml tags
@@ -77,10 +83,12 @@ Plug 'AndrewRadev/tagalong.vim' " Change opening tag and closing tags
 Plug 'tpope/vim-ragtag' " ex <% %>, <%= %>, <!-- -->
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'] }
 
-" Other languages
-Plug 'sheerun/vim-polyglot' " Better support for some languages
-
-source $HOME/.config/nvim/plugins/polyglot_config.vim
+" Other
+Plug 'chrisbra/csv.vim'
+let g:csv_no_progress = 1
+let g:csv_strict_columns = 1
+let g:csv_start = 1
+let g:csv_end = 100
 
 call plug#end()
 
@@ -90,6 +98,7 @@ source $HOME/.config/nvim/plugins/endwise_config.vim
 source $HOME/.config/nvim/plugins/vim_doge_config.vim
 source $HOME/.config/nvim/plugins/emmet_config.vim
 source $HOME/.config/nvim/plugins/fugitive_config.vim
+source $HOME/.config/nvim/plugins/fzf_config.vim
 source $HOME/.config/nvim/plugins/hexokinase_config.vim
 source $HOME/.config/nvim/plugins/matchtagalways_config.vim
 source $HOME/.config/nvim/plugins/nvim_tree_config.vim
@@ -99,9 +108,9 @@ source $HOME/.config/nvim/plugins/ultisnips_config.vim
 source $HOME/.config/nvim/plugins/vim_rails_config.vim
 source $HOME/.config/nvim/plugins/vim_test_config.vim
 
-luafile $HOME/.config/nvim/lua/nvim_treesitter_config.lua
 luafile $HOME/.config/nvim/lua/lsp/init.lua
+luafile $HOME/.config/nvim/lua/nvim_treesitter_config.lua
 luafile $HOME/.config/nvim/lua/lualine_config.lua
 luafile $HOME/.config/nvim/lua/compe_config.lua
-luafile $HOME/.config/nvim/lua/telescope_config.lua
+" luafile $HOME/.config/nvim/lua/telescope_config.lua
 luafile $HOME/.config/nvim/lua/bufferline_config.lua
