@@ -1,23 +1,24 @@
 #!/bin/zsh
+# System update script
 
 SYSTEM_TYPE=$(uname -s)
 
-# Update System
+# System
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  # Homebrew
-  brew update && brew upgrade
+  brew upgrade
+  brew update
+  brew autoremove
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-  # Pacman + Aur
+  sudo pacman-mirrors --continent
   yay -Syu --noconfirm
 fi
 
+# Npm
+yarn global upgrade
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
-
 # Neovim
 nvim '+PlugUpgrade' '+PlugUpdate!' '+PlugClean!' '+qall'
-
-# Zim
-# Duplicated from zshrc
+# Zim (zsh)
 source ${ZIM_HOME}/init.zsh
 zimfw update && zimfw upgrade

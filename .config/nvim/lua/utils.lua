@@ -1,24 +1,70 @@
-local fn = vim.fn
-local U = {}
+local M = {}
+local cmd = vim.cmd
 
-function table.merge(dest, src)
-   for k,v in pairs(src) do
-       dest[k] = v
-   end
-
-   return dest
+-- We will create a few autogroup, this function will help to avoid
+-- always writing cmd('augroup' .. group) etc..
+function M.create_augroup(autocmds, name)
+  cmd ('augroup ' .. name)
+  cmd('autocmd!')
+  for _, autocmd in ipairs(autocmds) do
+    cmd('autocmd ' .. table.concat(autocmd, ' '))
+  end
+  cmd('augroup END')
 end
 
--- Key mapping
-function U.map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+-- Add a apth to the rtp
+function M.add_rtp(path)
+  local rtp = vim.o.rtp
+  rtp = rtp .. ',' .. path
 end
 
-function U.opt(scope, key, value)
-  scopes[scope][key] = value
-  if scope ~= 'o' then scopes['o'][key] = value end
+-- Map a key with optional options
+function M.map(mode, keys, action, options)
+  if options == nil then
+    options = {}
+  end
+  vim.api.nvim_set_keymap(mode, keys, action, options)
 end
 
-return U
+-- Map a key to a lua callback
+function M.map_lua(mode, keys, action, options)
+  if options == nil then
+    options = {}
+  end
+  vim.api.nvim_set_keymap(mode, keys, "<cmd>lua " .. action .. "<cr>", options)
+end
+
+-- Buffer local mappings
+function M.map_buf(mode, keys, action, options, buf_nr)
+  if options == nil then
+    options = {}
+  end
+  local buf = buf_nr or 0
+  vim.api.nvim_buf_set_keymap(buf, mode, keys, action, options)
+end
+
+function M.map_lua_buf(mode, keys, action, options, buf_nr)
+  if options == nil then
+    options = {}
+  end
+  local buf = buf_nr or 0
+  vim.api.nvim_buf_set_keymap(buf, mode, keys, "<cmd>lua " .. action .. "<cr>", options)
+end
+
+function M.map_lua_range_buf(mode, keys, action, options, buf_nr)
+  if options == nil then
+    options = {}
+  end
+  local buf = buf_nr or 0
+  vim.api.nvim_buf_set_keymap(buf, mode, keys, "<cmd>'<,'> lua " .. action .. "<cr>", options)
+end
+
+-- Buffer local option
+function M.buf_option(...)
+  vim.api.nvim_buf_set_option(bufnr, ...)
+end
+
+-- We want to be able to access utils in all our configuration files
+-- so we add the module to the _G global variable.
+_G.utils = M
+return M -- Export the module

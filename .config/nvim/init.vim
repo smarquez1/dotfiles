@@ -1,7 +1,7 @@
 " Enable mouse
 set mouse=a
-" Allow using local vimrc, forbid autocmd in these
-set exrc secure
+" Allow using local nvimrc
+set exrc
 " Configure search
 set ignorecase smartcase
 " Enable live substitution
@@ -17,41 +17,36 @@ set splitbelow splitright
 " Wrap text
 set linebreak breakindent
 " Show breakline symbol
-set showbreak=↪\  
+set showbreak=↪\
 " Use system's clipboard
 set clipboard=unnamed,unnamedplus
 " Ident using 2 spaces by default
 set expandtab smarttab shiftwidth=2 softtabstop=2 tabstop=2
 " Enable folding by default
 set foldmethod=indent foldlevel=99
-" Always show the signcolumn
-" set signcolumn=yes
-" Highlight the screen line of the cursor with CursorLine
-" set cursorline
 " Support 24 bit color
 set termguicolors
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set updatetime=300
-"
-au BufRead,BufNewFile * setlocal textwidth=80
-set cc=+1
+" the screen will not be redrawn unless necessary
+set lazyredraw
 " Highlight cursor
-set cursorline
+" set cursorline
 " number of lines to scroll when the cursor gets off the screen
 set sidescrolloff=5 scrolloff=5
-" trigger autoread everytime you focus the window or enter the buffer
-autocmd! FocusGained,BufEnter * checktime
+
+" The g:vimsyn_embed option allows users to select what, if any, types of
+let g:vimsyn_embed= 'l'
+
 
 " ft=markdown
  " Enable spelling
-au FileType markdown setl spell
-
+autocmd FileType markdown setl spell
 " ft=terminal
 " Start on insert mode.
-au BufEnter term://* startinsert
+autocmd TermOpen term://* startinsert
 " No line numbers
-au TermOpen * setlocal nonumber norelativenumber
+autocmd TermOpen * setlocal nonumber norelativenumber
 
 " KEY MAPPINGS
 " map leader to space
@@ -66,16 +61,15 @@ nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 nmap <c-h> <c-w>h
 " Make navigation into and out of Neovim terminal splits nicer.
-tmap <C-h> <C-\><C-N><C-w>h
-tmap <C-j> <C-\><C-N><C-w>j
-tmap <C-k> <C-\><C-N><C-w>k
-tmap <C-l> <C-\><C-N><C-w>l
+tmap <c-h> <c-\><c-n><c-w>h
+tmap <c-j> <c-\><c-n><c-w>j
+tmap <c-k> <c-\><c-n><c-w>k
+tmap <c-l> <c-\><c-n><c-w>l
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
 " Cancel a search with Escape:
-nmap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-" Escape from terminal goes to normal mode
+nmap <silent> <Esc> :nohlsearch<Bar>:echo<CR> " Escape from terminal goes to normal mode
 " tmap <Esc> <C-\><C-n>
 " map . in visual mode
 vmap . :norm.<cr>

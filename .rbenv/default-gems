@@ -1,10 +1,8 @@
-brakeman
+awesome_print
 bundler
-fasterer
-neovim
 pry
-rails_best_practices
-reek
+pry-byebug
+pry-nav
 rspec
 rubocop
 solargraph

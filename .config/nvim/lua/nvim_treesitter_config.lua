@@ -1,9 +1,8 @@
-require "nvim-treesitter.configs".setup {
-    ensure_installed = "all", -- "all", "maintained"
-    highlight = { enable = true },
-    indent = { enable = false },
-    rainbow = { enable = false },
-    incremental_selection = { enable = false },
+require("nvim-treesitter.configs").setup {
+  ensure_installed = "all", -- "all", "maintained"
+  highlight = { enable = true, },
+  -- indent = { enable = true },
+  -- incremental_selection = { enable = false },
 }
 
 -- Treesitter based folding

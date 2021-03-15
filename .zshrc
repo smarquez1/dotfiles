@@ -10,8 +10,12 @@ export VISUAL=$EDITOR
 export TERM="xterm-256color"
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  # PSQL path
+  export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
+  #
+  export HOMEBREW_BOOTSNAP=true
   # https://stackoverflow.com/questions/52941426/
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 fi
@@ -31,7 +35,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 
 # vi mode
-bindkey -v 
+bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
@@ -91,3 +95,6 @@ source ${ZIM_HOME}/init.zsh
 # zsh-history-substring-search
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+# Use  up and down keys to search through history too
+bindkey "^[[A" history-substring-search-up # Up
+bindkey "^[[B" history-substring-search-down # Down
