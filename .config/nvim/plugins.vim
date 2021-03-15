@@ -12,6 +12,9 @@ Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes a
 Plug 'jiangmiao/auto-pairs' " insert or delete brackets, parens, quotes in pair
 Plug 'mhinz/vim-signify' " Git gutter
 Plug 'akinsho/nvim-bufferline.lua'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
+Plug 'hrsh7th/nvim-compe'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Snippets for vim
 
 " Navigation
 " Plug 'nvim-lua/telescope.nvim' |
@@ -23,16 +26,12 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  |
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'dyng/ctrlsf.vim' " Mimics Ctrl-Shift-F on Sublime Text 2
 
-" LSP, code completion, code highlighting
+" LSP
 Plug 'neovim/nvim-lspconfig' |
-  \ Plug 'hrsh7th/nvim-compe' |
   \ Plug 'nvim-lua/lsp-status.nvim' |
   \ Plug 'kosayoda/nvim-lightbulb' |
   \ Plug 'onsails/lspkind-nvim' |
   \ Plug 'glepnir/lspsaga.nvim'
-
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} |
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Snippets for vim
 
 " Appearance
 Plug 'henrik/vim-indexed-search' " Display number of search results
@@ -84,6 +83,7 @@ source $HOME/.config/nvim/plugins/vim_test_config.vim
 
 luafile $HOME/.config/nvim/lua/lsp/init.lua
 luafile $HOME/.config/nvim/lua/colorscheme.lua
+luafile $HOME/.config/nvim/lua/devicons_config.lua
 luafile $HOME/.config/nvim/lua/nvim_colorizer_config.lua
 luafile $HOME/.config/nvim/lua/nvim_treesitter_config.lua
 luafile $HOME/.config/nvim/lua/lualine_config.lua

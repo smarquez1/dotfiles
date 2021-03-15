@@ -1,14 +1,7 @@
-# frozen_string_literal: true
-
 # === EDITOR ===
 Pry.editor = 'nvim'
 
-# Pry.config.ls.separator = "\n"
-# Pry.config.ls.heading_color = :magenta
-# Pry.config.ls.public_method_color = :green
-# Pry.config.ls.protected_method_color = :yellow
-# Pry.config.ls.private_method_color = :bright_black
-
+# == PLUGINS ===
 # == Pry-Nav - Using pry as a debugger ==
 if defined?(PryByebug) || defined?(PryNav)
   Pry.commands.alias_command 'c', 'continue'
@@ -17,9 +10,7 @@ if defined?(PryByebug) || defined?(PryNav)
   Pry.commands.alias_command 'f', 'finish'
 end
 
-# == PLUGINS ===
-
-# awesome_print gem: great syntax colorized printing
+# == awesome_print - great syntax colorized printing
 # look at ~/.aprc for more settings for awesome_print
 begin
   require 'awesome_print'

@@ -30,7 +30,6 @@ map('n', "<leader>ed", ":lua require('telescope_config').find_dotfiles()<CR>", o
 local M = {}
 
 function M.find_dotfiles()
-;qa
   require('telescope.builtin').find_files {
     prompt_title = "Find Dotfiles",
     shorten_path = false,
