@@ -2,6 +2,7 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
 local lsp = vim.lsp
+local saga = require('lspsaga').init_lsp_saga()
 
 lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   lsp.diagnostic.on_publish_diagnostics, {
@@ -11,21 +12,18 @@ lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+-- TODO: Lsp saga config, check out readme. Can replaces mppings on on_attach
+-- https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/lsp/handlers.lua
+-- Override various utility functions.
+vim.lsp.diagnostic.show_line_diagnostics =
+  require('lspsaga.diagnostic').show_line_diagnostics
+vim.lsp.handlers["textDocument/hover"] =
+  require('lspsaga.hover').handler
+
 local capabilities = lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- require('lsp.efm')
-
-lspconfig.solargraph.setup {
-  settings = {
-    solargraph = {
-      -- commandPath = '/Users/kassioborges/.asdf/shims/solargraph',
-      completion = true
-    }
-  },
-  capabilities = capabilities,
-  on_attach = on_attach
-}
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
 -- lspconfig.sumneko_lua.setup({
@@ -59,19 +57,21 @@ lspconfig.tsserver.setup {
     }
   },
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
     on_attach(client)
   end
 }
 
-local servers = { "cssls","html", "jsonls" }
+local servers = { "cssls", "html", "jsonls", "solargraph" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     capabilities = capabilities,
-    on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
-      on_attach(client)
-    end
+    on_attach = on_attach
   }
 end
+
+-- lightbulb config
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
+
+-- Lsp kind config
+require('lspkind').init()

@@ -24,4 +24,4 @@ RUBY_PACKAGES=(
 echo "installing packages..."
 yarn global add ${NPM_PACKAGES[@]}
 go get ${GO_PACKAGES[@]}
-# gem install ${RUBY_PACKAGES[@]}
+# gem install $--user-install {RUBY_PACKAGES[@]}

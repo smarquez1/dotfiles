@@ -1,4 +1,5 @@
 local map_lua_buf = require('utils').map_lua_buf
+local map_lua_range_buf = require('utils').map_lua_range_buf
 local buf_option = require('utils').buf_option
 
 local on_attach = function(client)
@@ -26,7 +27,9 @@ local on_attach = function(client)
   map_lua_buf('n', 'gr',
     'vim.lsp.buf.references()', opts)
   map_lua_buf('n', '<leader>ca',
-    'vim.lsp.buf.code_action()', opts)
+    'require("lspsaga.codeaction").code_action()', opts)
+  map_lua_range_buf('v', '<leader>ca',
+    'require("lspsaga.codeaction").range_code_action()', opts)
   map_lua_buf('n', '[d',
     'vim.lsp.diagnostic.goto_prev()', opts)
   map_lua_buf('n', ']d',

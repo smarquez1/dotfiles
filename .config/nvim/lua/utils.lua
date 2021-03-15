@@ -51,6 +51,14 @@ function M.map_lua_buf(mode, keys, action, options, buf_nr)
   vim.api.nvim_buf_set_keymap(buf, mode, keys, "<cmd>lua " .. action .. "<cr>", options)
 end
 
+function M.map_lua_range_buf(mode, keys, action, options, buf_nr)
+  if options == nil then
+    options = {}
+  end
+  local buf = buf_nr or 0
+  vim.api.nvim_buf_set_keymap(buf, mode, keys, "<cmd>'<,'> lua " .. action .. "<cr>", options)
+end
+
 -- Buffer local option
 function M.buf_option(...)
   vim.api.nvim_buf_set_option(bufnr, ...)
