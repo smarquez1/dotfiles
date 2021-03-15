@@ -108,7 +108,10 @@ return require('packer').startup(function()
     'akinsho/nvim-bufferline.lua',
     config = function() require('bufferline').setup() end
   }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
   require 'nvim_treesitter_config'
   use {
     'hrsh7th/nvim-compe',
@@ -130,23 +133,30 @@ return require('packer').startup(function()
     requires = { 'junegunn/fzf', run = '-> fzf#install()' }
   }
   use 'kyazdani42/nvim-tree.lua'
-  use 'dyng/ctrlsf.vim' -- Mimics Ctrl-Shift-F on Sublime Text 2
+  use {
+    'dyng/ctrlsf.vim' -- Mimics Ctrl-Shift-F on Sublime Text 2
+  }
   require 'ctrlsf_config'
 
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    config = function() require('lsp') end
+    config = function() require('lsp/init') end
   }
   use 'nvim-lua/lsp-status.nvim'
+
   use 'kosayoda/nvim-lightbulb'
 
   -- Appearance
   use 'henrik/vim-indexed-search' -- Display number of search results
-  use 'hoob3rt/lualine.nvim'
+  use {
+    'hoob3rt/lualine.nvim'
+  }
   require 'lualine_config'
-  use 'joshdick/onedark.vim' -- Colorscheme based on atom onedark
-  require 'colorscheme'
+  use {
+    'joshdick/onedark.vim' -- Colorscheme based on atom onedark
+  }
+  require 'onedark'
   use {
     'kyazdani42/nvim-web-devicons',
     config = function() require('nvim-web-devicons').setup({ default = true; }) end -- icons for lua plugins
@@ -179,7 +189,7 @@ end)
 
 EOF
 
-autocmd BufWritePost plugins.lua PackerCompile
+autocmd BufWritePost init.vim PackerCompile
 
 let g:nvim_tree_width_allow_resize = 1
 let g:nvim_tree_indent_markers = 1
