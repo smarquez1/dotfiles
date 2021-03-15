@@ -14,12 +14,6 @@ full_symbol = ""
 charging_symbol = ""
 discharging_symbol = ""
 
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
-
 [directory]
 read_only = " "
 
@@ -29,14 +23,8 @@ symbol = " "
 [elixir]
 symbol = " "
 
-[elm]
-symbol = " "
-
 [git_branch]
 symbol = " "
-
-[golang]
-symbol = " "
 
 [haskell]
 symbol = " "
@@ -47,17 +35,8 @@ symbol = " "
 [java]
 symbol = " "
 
-[julia]
-symbol = " "
-
 [memory_usage]
 symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
 
 [nodejs]
 symbol = " "
@@ -65,12 +44,6 @@ symbol = " "
 [package]
 disabled = true
 symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
 
 [python]
 symbol = " "
@@ -80,9 +53,6 @@ symbol = " "
 
 [rust]
 symbol = " "
-
-[swift]
-symbol = "ﯣ "
 
 [cmd_duration]
 min_time = 3

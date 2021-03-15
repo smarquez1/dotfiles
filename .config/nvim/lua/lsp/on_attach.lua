@@ -6,7 +6,7 @@ local on_attach = function(client)
   buf_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   map_lua_buf('n', 'gD',
     'vim.lsp.buf.declaration()', opts)

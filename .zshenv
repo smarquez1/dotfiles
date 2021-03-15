@@ -7,7 +7,21 @@ export GPG_TTY=$(tty)
 # Use nvim as manpager `:h Man`
 export MANPAGER='nvim +Man!'
 # Git
-alias g=git
+alias g="git"
+alias ga="git add"
+alias gaa="git add --all"
+alias gb="git branch"
+alias gc="git commit -v"
+alias gc!="git commit -v --amend"
+alias gs="git status"
+alias gp="git pull"
+alias gm="git merge"
+alias gp="git push"
+alias gr="git rebase"
+alias gra="git rebase --abort"
+alias grc="git rebase --continue"
+alias glog="git log --oneline --decorate --graph"
+alias gfp="git fetch --prune"
 # Neovim replaces Vi/Vim
 alias vi=nvim
 alias vim=nvim
