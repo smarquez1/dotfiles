@@ -1,3 +1,5 @@
+local map = require('utils').map
+
 -- Completion does not select anything automatically
 vim.o.completeopt = 'menuone,noselect'
 -- Do not display "Pattern not found" messages during completion.
@@ -72,7 +74,8 @@ _G.s_tab_complete = function()
   end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+local opts = { expr = true }
+map("i", "<Tab>", "v:lua.tab_complete()")
+map("s", "<Tab>", "v:lua.tab_complete()")
+map("i", "<S-Tab>", "v:lua.s_tab_complete()")
+map("s", "<S-Tab>", "v:lua.s_tab_complete()")
