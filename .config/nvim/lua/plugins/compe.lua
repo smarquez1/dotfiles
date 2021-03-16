@@ -79,3 +79,10 @@ map("i", "<Tab>", "v:lua.tab_complete()")
 map("s", "<Tab>", "v:lua.tab_complete()")
 map("i", "<S-Tab>", "v:lua.s_tab_complete()")
 map("s", "<S-Tab>", "v:lua.s_tab_complete()")
+
+vim.g.UltiSnipsExpandTrigger="<c-l>"
+vim.g.UltiSnipsJumpForwardTrigger="<tab>"
+vim.g.UltiSnipsJumpBackwardTrigger="<s-tab>"
+vim.cmd [[
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact
+]]

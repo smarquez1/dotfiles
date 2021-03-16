@@ -1,4 +1,4 @@
-require('lualine').status{
+require('lualine').status {
   options = {
     theme = 'onedark',
     section_separators = {'',''},
@@ -11,7 +11,7 @@ require('lualine').status{
     lualine_c = {
       {
         'diagnostics',
-        sources = { 'nvim_lsp', 'ale' },
+        sources = { 'nvim_lsp' },
         symbols = { error = ' ', warn = ' ', info = ' ' }
       },
       'filename'

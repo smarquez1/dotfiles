@@ -8,6 +8,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   brew upgrade
   brew update
   brew autoremove
+  brew cleanup --prune=all
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   sudo pacman-mirrors --continent
   yay -Syu --noconfirm
@@ -18,7 +19,7 @@ yarn global upgrade
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 # Neovim
-nvim '+PackerUpdate' '+PackerClean' '+qall'
+nvim '+PackerUpdate' '+qall'
 # Zim (zsh)
 source ${ZIM_HOME}/init.zsh
 zimfw update && zimfw upgrade

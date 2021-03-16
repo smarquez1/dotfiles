@@ -1,10 +1,7 @@
--- The g:vimsyn_embed option allows users to select what, if any, types of
-vim.g.vimsyn_embed= 'l'
-
 vim.o.mouse = 'a' -- Enable mouse
 vim.o.lazyredraw = true -- the screen will not be redrawn unless necessary
 vim.o.exrc = true -- Allow using local nvimrc
--- Configure search
+-- Search
 vim.o.ignorecase = true
 vim.o.smartcase  = true
 vim.o.inccommand = 'nosplit' -- Enable live substitution
@@ -14,7 +11,9 @@ vim.o.writebackup = false
 vim.o.swapfile = false
 vim.o.hidden = true -- Keep undo history for hidden buffers
 -- Show line numbers
-vim.o.number = true vim.o.relativenumber = true -- more Natural splits behaviour
+vim.o.number = true
+vim.o.relativenumber = true
+-- more Natural splits behaviour
 vim.o.splitbelow = true
 vim.o.splitright = true
 -- Wrap text
@@ -28,9 +27,6 @@ vim.o.smarttab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.tabstop = 2
--- Enable folding by default
-vim.o.foldmethod = 'indent'
-vim.o.foldlevel = 99
 vim.o.termguicolors = true -- Support 24 bit color
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 vim.o.updatetime = 300
