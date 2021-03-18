@@ -35,7 +35,10 @@ vim.o.conceallevel=0  --So that I can see `` in markdown files
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true -- Highlight cursor
-vim.wo.signcolumn="yes"                      --Always show the signcolumn, otherwise it would shift the text each time
+vim.wo.signcolumn="yes"  --Always show the signcolumn, otherwise it would shift the text each time
+-- Enable folding by default
+vim.o.foldmethod = 'indent'
+vim.o.foldlevel = 99
 
 vim.cmd('set iskeyword+=-') --treat dash separated words as a word text object"
 -- ft=markdown
