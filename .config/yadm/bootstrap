@@ -2,32 +2,45 @@
 # TODO: use https://github.com/Homebrew/homebrew-bundle for macos
 
 SYSTEM_TYPE=$(uname -s)
+COMMON_PACKAGES=(
+	"docker",
+	"docker-compose",
+	"fd",
+	"git",
+	"htop",
+	"neovim",
+	"tmux",
+	"wget",
+	"yarn",
+	"go",
+	"rbenv",
+	"rbenv-aliases",
+	"rbenv-default-gems",
+	"rbenv-use",
+	"ripgrep",
+	"ruby-build",
+	"python",
+	"starship",
+)
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+		BREW_PACKAGES=("gnupg", "b4b4r07/tap/gomi")
     if ! command -v brew >/dev/null 2>&1; then
       BREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
       echo ">>> Installing homebrew.."
       echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
     fi
-
     brew tap homebrew/cask-fonts  
     brew tap homebrew/cask-drivers
-    brew install
-      \ neovim git ripgrep fd tmux yarn htop wget docker gnupg docker-compose go
-      \ python rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use
-      \ starship b4b4r07/tap/gomi
-
+		brew install (${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]})
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+	PACMAN_PACKAGES=("openssh", "pulseaudio-modules-bt-git", "python-pip", "tlp", "xclip", "gomi")
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
-
-  yay -S zsh xclip neovim git ripgrep fd \
-    tmux python-pip openssh yarn htop wget docker docker-compose tlp \
-      rbenv ruby-build rbenv-aliases rbenv-default-gems rbenv-use \
-      pulseaudio-modules-bt-git starship gomi --noconfirm --needed
+	yay -S (${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} ) --noconfirm --needed
 fi
 
 # ZSH

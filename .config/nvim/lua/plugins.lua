@@ -23,15 +23,19 @@ return require('packer').startup(function()
   use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
   use 'jiangmiao/auto-pairs' -- insert or delete brackets, parens, quotes in pair
   use 'mhinz/vim-signify' -- Git gutter
+
   use {
     'akinsho/nvim-bufferline.lua',
     config = function() require('bufferline').setup() end
   }
-  -- use {
-  --   'nvim-treesitter/nvim-treesitter',
-  --   run = ':TSUpdate',
-  --   config = function() require('plugins.treesitter') end
-  -- }
+	
+	--[[
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function() require('plugins.treesitter') end
+  }
+	--]]
 
   use {
     'hrsh7th/nvim-compe',
