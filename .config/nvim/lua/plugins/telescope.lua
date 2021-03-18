@@ -4,6 +4,8 @@ local previewers = require('telescope.previewers')
 local map_lua = require('utils').map_lua
 local map = require('utils').map
 
+telescope.load_extension('media_files')
+
 telescope.setup {
   defaults = {
     mappings = {

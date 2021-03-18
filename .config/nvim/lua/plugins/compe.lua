@@ -15,7 +15,7 @@ require('compe').setup {
   minlength = 1;
   documentation = true;
 
-  source = 
+  source = {
     path = true;
     buffer = true;
     calc = true;

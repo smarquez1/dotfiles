@@ -17,11 +17,14 @@ vim.g.fzf_colors = {
   spinner = { 'fg', 'Label' },
   header =  { 'fg', 'Comment' }
 }
-
 vim.api.nvim_exec(
 [[
 let $FZF_DEFAULT_COMMAND = 'fd --type f'
 let $FZF_DEFAULT_OPTS .= '--layout=reverse --inline-info'
+
+" up/down using c-j and c-k"
+autocmd FileType fzf tmap <buffer> <C-j> <Down>
+autocmd FileType fzf tmap <buffer> <C-k> <Up>
 
 nmap <silent> <leader>f :Files<cr>
 nmap <silent> <leader>b :Buffers<cr>
