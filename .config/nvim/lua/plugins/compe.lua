@@ -19,13 +19,11 @@ require('compe').setup {
     path = true;
     buffer = true;
     calc = true;
-    vsnip = true;
     nvim_lsp = true;
     nvim_lua = true;
+    vsnip = true;
     spell = true;
-    tags = true;
     ultisnips = true;
-    snippets_nvim = true;
     treesitter = true;
   }
 }

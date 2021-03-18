@@ -29,17 +29,15 @@ return require('packer').startup(function()
     config = function() require('bufferline').setup() end
   }
 	
-	--[[
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function() require('plugins.treesitter') end
   }
-	--]]
 
   use {
     'hrsh7th/nvim-compe',
-    requires = { 'SirVer/ultisnips', 'honza/vim-snippets' },
+    requires = { 'SirVer/ultisnips', 'honza/vim-snippets', 'hrsh7th/vim-vsnip' },
     config = function() require('plugins.compe') end
   }
 
