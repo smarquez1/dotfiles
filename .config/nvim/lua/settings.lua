@@ -9,10 +9,9 @@ vim.o.inccommand = 'nosplit' -- Enable live substitution
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
+vim.o.undodir = '/tmp//,.'
+vim.o.undofile = true
 vim.o.hidden = true -- Keep undo history for hidden buffers
--- Show line numbers
-vim.o.number = true
-vim.o.relativenumber = true
 -- more Natural splits behaviour
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -22,24 +21,26 @@ vim.o.breakindent = true
 vim.o.showbreak = '↪' -- Show breakline symbol
 vim.o.clipboard = 'unnamed,unnamedplus' -- Use system's clipboard
 -- Ident using 2 spaces by default
-vim.o.expandtab = true
+vim.bo.expandtab = true -- converts tabs to spaces
 vim.o.smarttab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.termguicolors = true -- Support 24 bit color
--- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
-vim.o.updatetime = 300
--- vim.o.cursorline = true Highlight cursor
--- number of lines to scroll when the cursor gets off the screen
-vim.o.sidescrolloff = 5
-vim.o.scrolloff = 5
+vim.o.updatetime = 300  --Faster completion
+vim.o.sidescrolloff = 4
+vim.o.scrolloff = 4
+vim.o.pumheight=10 --Makes popup menu smaller
+vim.o.conceallevel=0  --So that I can see `` in markdown files
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.cursorline = true -- Highlight cursor
+vim.wo.signcolumn="yes"                      --Always show the signcolumn, otherwise it would shift the text each time
 
+vim.cmd('set iskeyword+=-') --treat dash separated words as a word text object"
 -- ft=markdown
--- Enable spelling
-vim.cmd [[autocmd FileType markdown setl spell]]
+
+vim.cmd [[autocmd FileType markdown setl spell]] -- Enable spelling
 -- ft=terminal
--- Start on insert mode.
-vim.cmd [[autocmd TermOpen term://* startinsert]]
--- No line numbers
-vim.cmd [[autocmd TermOpen * setlocal nonumber norelativenumber]]
+vim.cmd [[autocmd TermOpen term://* startinsert]] -- Start on insert mode.
+vim.cmd [[autocmd TermOpen * setlocal nonumber norelativenumber]] -- No line numbers

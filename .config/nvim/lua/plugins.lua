@@ -1,5 +1,6 @@
-vim.cmd [[autocmd BufWritePost plugins/init.lua PackerCompile]]
 vim.cmd 'packadd packer.nvim' 
+
+vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 return require('packer').startup(function()
   -- Packer can manage itself as an optional plugin
@@ -26,11 +27,11 @@ return require('packer').startup(function()
     'akinsho/nvim-bufferline.lua',
     config = function() require('bufferline').setup() end
   }
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    config = function() require('plugins.treesitter') end
-  }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   run = ':TSUpdate',
+  --   config = function() require('plugins.treesitter') end
+  -- }
 
   use {
     'hrsh7th/nvim-compe',
@@ -73,6 +74,11 @@ return require('packer').startup(function()
   use 'kosayoda/nvim-lightbulb'
 
   -- Appearance
+  use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua', config = function()
+    vim.cmd[[
+      let g:indent_blankline_use_treesitter = v:true
+    ]]
+  end }
   use 'henrik/vim-indexed-search' -- Display number of search results
 
   use {
@@ -128,9 +134,10 @@ return require('packer').startup(function()
     config = function() vim.g.ragtag_global_maps = 1 end
   }
 
-  -- CSV
+  -- Others
   use {
     'chrisbra/csv.vim',
     config = function() require('plugins.csv') end
   }
+  use 'TovarishFin/vim-solidity'
 end)

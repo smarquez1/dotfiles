@@ -3,15 +3,11 @@ local map = require('utils').map
 -- Completion does not select anything automatically
 vim.o.completeopt = 'menuone,noselect'
 -- Do not display "Pattern not found" messages during completion.
-vim.cmd [[set shortmess+=c]]
+vim.cmd('set shortmess+=c')  
 
--- Navigate popup menues with j and k
--- inoremap <expr> <C-J> pumvisible() ? "\<c-n>" : "j"
--- inoremap <expr> <C-K> pumvisible() ? "\<c-p>" : "k"
-
--- Better nav for omnicomplete
-vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
-vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
+-- Better nav for popup menues
+vim.cmd('inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-j>"')
+vim.cmd('inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-k>"')
 
 require('compe').setup {
   enabled = true;
@@ -19,7 +15,7 @@ require('compe').setup {
   minlength = 1;
   documentation = true;
 
-  source = {
+  source = 
     path = true;
     buffer = true;
     calc = true;
@@ -54,9 +50,7 @@ _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
   -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
-  --   return t "<Plug>(UltiSnips#ExpandSnippetOrJump)"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
+  --   return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
   else
@@ -67,8 +61,8 @@ end
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
+  -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+  --   return t "<Plug>(vsnip-jump-prev)"
   else
     return t "<S-Tab>"
   end

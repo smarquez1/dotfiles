@@ -20,10 +20,8 @@ vim.g.fzf_colors = {
 
 vim.api.nvim_exec(
 [[
-let $fzf_default_command = 'fd --type f'
-let $fzf_default_opts .= '--layout=reverse --inline-info'
-autocmd filetype fzf tmap <buffer> <c-j> <down>
-autocmd filetype fzf tmap <buffer> <c-k> <up>
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
+let $FZF_DEFAULT_OPTS .= '--layout=reverse --inline-info'
 
 nmap <silent> <leader>f :Files<cr>
 nmap <silent> <leader>b :Buffers<cr>
@@ -31,8 +29,8 @@ nmap <silent> <leader>gb :Gbranches<cr>
 nmap <silent> <leader>ht :Helptags<cr>
 " list all yadm tracked files
 nmap <silent> <leader>ed :call fzf#run(fzf#wrap({'source': 'yadm list -a', 'dir': '~' }))<cr>
+
 " rails
-" find models
 nmap <silent> <leader>em :call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/models' }))<cr>
 nmap <silent> <leader>ec :call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/controllers' }))<cr>
 nmap <silent> <leader>ev :call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/views' }))<cr>
