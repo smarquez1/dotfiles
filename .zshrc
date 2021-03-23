@@ -7,7 +7,7 @@ export PATH="$PATH:`yarn global bin`"
 export EDITOR=nvim
 export VISUAL=$EDITOR
 # TERM
-# export TERM="xterm-256color"
+export TERM="xterm-256color"
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   # PSQL path

@@ -14,18 +14,23 @@ require('compe').setup {
   autocomplete = true;
   minlength = 1;
   documentation = true;
+	preselect = 'enable';
 
   source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    spell = true;
-    ultisnips = true;
-    treesitter = true;
-  }
+		path = {kind = "  "},
+		buffer = {kind = "  "},
+		calc = {kind = "  "},
+		-- vsnip = {kind = "  "},
+		nvim_lsp = {kind = "  "},
+		nvim_lua = {kind = "  "},
+		spell = {kind = "  "},
+		tags = false,
+		ultisnips = {kind = "  "},
+		snippets_nvim = {kind = "  "},
+		treesitter = {kind = "  "},
+		emoji = {kind = " ﲃ "}
+		-- for emoji press : (idk if that in compe tho)
+	}
 }
 
 local t = function(str)
@@ -47,8 +52,8 @@ end
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
-  --   return t "<Plug>(vsnip-expand-or-jump)"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
   else

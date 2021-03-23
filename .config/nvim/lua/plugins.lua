@@ -34,6 +34,10 @@ return require('packer').startup(function()
     run = ':TSUpdate',
     config = function() require('plugins.treesitter') end
   }
+	use {
+		'sheerun/vim-polyglot',
+		config = "vim.g['polyglot_disabled'] = ['sensible']"
+	}
 
   use {
     'hrsh7th/nvim-compe',
@@ -77,9 +81,7 @@ return require('packer').startup(function()
 
   -- Appearance
   use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua', config = function()
-    vim.cmd[[
-      let g:indent_blankline_use_treesitter = v:true
-    ]]
+    vim.cmd "let g:indent_blankline_use_treesitter = v:true"
   end }
   use 'henrik/vim-indexed-search' -- Display number of search results
 

@@ -19,7 +19,7 @@ yarn global upgrade
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 # Neovim
-nvim '+PackerUpdate' '+qall'
+nvim --headless -c PackerUpdate +q
 # Zim (zsh)
 source ${ZIM_HOME}/init.zsh
 zimfw update && zimfw upgrade

@@ -34,8 +34,10 @@ alias be="bundle exec"
 alias bi="bundle install"
 alias bu="bundle update"
 # Rails aliases
-alias rs="bundle exec rails s"
-alias rc="bundle exec rails c"
+alias rs="be rails s"
+alias rc="be rails c"
+alias rdm="be rake db:migrate"
+alias rdr="br rake db:rollback"
 # Wget resume by defaut
 alias wget='wget -c'
 # VSCode

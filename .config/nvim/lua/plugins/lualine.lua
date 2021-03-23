@@ -14,10 +14,10 @@ require('lualine').status {
         sources = { 'nvim_lsp' },
         symbols = { error = ' ', warn = ' ', info = ' ' }
       },
-      'filename'
+			{ 'filename', file_status = true },
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { },
+		lualine_y = { },
     lualine_z = { 'location' },
   },
 
