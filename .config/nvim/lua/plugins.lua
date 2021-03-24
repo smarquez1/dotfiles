@@ -22,7 +22,11 @@ return require('packer').startup(function()
   use 'AndrewRadev/splitjoin.vim' -- change between multiline and single-line code
   use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
   use 'jiangmiao/auto-pairs' -- insert or delete brackets, parens, quotes in pair
-  use 'mhinz/vim-signify' -- Git gutter
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function() require('gitsigns').setup() end
+  }
 
   use {
     'akinsho/nvim-bufferline.lua',
@@ -31,13 +35,9 @@ return require('packer').startup(function()
 	
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    -- run = ':TSUpdate',
     config = function() require('plugins.treesitter') end
   }
-	use {
-		'sheerun/vim-polyglot',
-		config = "vim.g['polyglot_disabled'] = ['sensible']"
-	}
 
   use {
     'hrsh7th/nvim-compe',
@@ -76,13 +76,17 @@ return require('packer').startup(function()
     'neovim/nvim-lspconfig',
     config = function() require('lsp.init') end
   }
+
   use 'nvim-lua/lsp-status.nvim'
   use 'kosayoda/nvim-lightbulb'
 
   -- Appearance
-  use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua', config = function()
-    vim.cmd "let g:indent_blankline_use_treesitter = v:true"
-  end }
+  use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua',
+    config = function()
+      vim.cmd "let g:indent_blankline_use_treesitter = v:true"
+  end
+  }
+
   use 'henrik/vim-indexed-search' -- Display number of search results
 
   use {
@@ -111,19 +115,37 @@ return require('packer').startup(function()
   use {
     'ecomba/vim-ruby-refactoring',
     'p0deje/vim-ruby-interpolation', -- Simple plugin to add {} after hitting #
+    'tpope/vim-endwise',             -- add 'end' to functons
     'tpope/vim-rails',                -- rails.vim: Ruby on Rails power tools
     {
-      'tpope/vim-endwise',             -- add 'end' to functons
-      config = function() require('plugins.endwise') end
+      config = function()
+        local map = require('utils').map
+
+        vim.g.endwise_no_mappings=1
+
+        map('n', '<leader>a', ':A<cr>')
+        map('n',  '<leader>av', ':AV <cr>')
+        map('n', '<leader>as', ':AS<cr>')
+      end
     }
   }
 
   -- HTMLish
+  use 'windwp/nvim-ts-autotag'
+
+  -- TODO: remove when TS is stable
   use 'AndrewRadev/tagalong.vim' -- Change opening tag and closing tags
 
+  -- TODO: remove when TS is stable
   use {
     'Valloric/MatchTagAlways', -- Highlights enclosing html/xml tags
     config = function() require('plugins.matchtagalways') end
+  }
+
+  -- TODO: remove when TS is stable ?
+  use {
+    'tpope/vim-ragtag', -- ex <% %>, <%= %>, <!-- -->
+    config = function() vim.g.ragtag_global_maps = 1 end
   }
 
   use {
@@ -133,15 +155,14 @@ return require('packer').startup(function()
     }
   }
 
-  use {
-    'tpope/vim-ragtag', -- ex <% %>, <%= %>, <!-- -->
-    config = function() vim.g.ragtag_global_maps = 1 end
-  }
-
   -- Others
-  use {
-    'chrisbra/csv.vim',
-    config = function() require('plugins.csv') end
-  }
-  use 'TovarishFin/vim-solidity'
+	use {
+		'sheerun/vim-polyglot',
+		config = function()
+      vim.g.polyglot_disabled = {'sensible'}
+      vim.g.csv_strict_columns = 1
+      vim.g.csv_start = 1
+      vim.g.csv_end = 1000
+    end
+	}
 end)

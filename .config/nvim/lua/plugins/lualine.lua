@@ -22,7 +22,6 @@ require('lualine').status {
   },
 
   inactive_sections = {
-    lualine_b = { 'diff' },
     lualine_c = { 'filename' },
     lualine_x = { 'location' },
   },

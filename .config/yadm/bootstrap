@@ -72,7 +72,7 @@ if command -v nvim >/dev/null 2>&1; then
 fi
 
 # JS dependencies
-sudo yarn global add eslint stylelint prettier javascript-typescript-langserver
+sudo yarn global add eslint stylelint prettier javascript-typescript-langserver create-react-app
 
 # Basic desktop apps
 read -r -p "Install Basic Desktop apps? [y/N] " response

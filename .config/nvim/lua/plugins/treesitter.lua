@@ -10,6 +10,12 @@ require("nvim-treesitter.configs").setup {
 	},
   indent = { enable = false },
   incremental_selection = { enable = false },
+  autotag = {
+    enable = true,
+    filetypes = {
+      'html', 'javascript', 'javascriptreact', 'typescriptreact', 'eruby'
+    }
+  },
 }
 
 -- Treesitter based folding

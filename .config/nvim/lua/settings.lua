@@ -20,12 +20,8 @@ vim.o.linebreak = true
 vim.o.breakindent = true
 vim.o.showbreak = '↪' -- Show breakline symbol
 vim.o.clipboard = 'unnamed,unnamedplus' -- Use system's clipboard
--- Ident using 2 spaces by default
 vim.bo.expandtab = true -- converts tabs to spaces
-vim.o.smarttab = true
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.tabstop = 2
+vim.o.shiftwidth = 2 -- number of space characters inserted for indentation
 vim.o.termguicolors = true -- Support 24 bit color
 vim.o.updatetime = 300  --Faster completion
 vim.o.sidescrolloff = 4

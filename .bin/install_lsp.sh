@@ -19,3 +19,9 @@ GO_PACKAGES=(
 echo "installing packages..."
 yarn global add ${NPM_PACKAGES[@]}
 go get ${GO_PACKAGES[@]}
+
+# Install sumneko lua
+
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  brew install saadparwaiz1/personal/lua-language-server
+fi

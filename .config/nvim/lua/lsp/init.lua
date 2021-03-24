@@ -1,4 +1,3 @@
--- https://github.com/lucastrvsn/dot/blob/master/.config/nvim/lua/lsp/init.lua
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
 local lsp = vim.lsp
@@ -12,8 +11,6 @@ lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- TODO: Lsp saga config, check out readme. Can replaces mppings on on_attach
--- https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/lsp/handlers.lua
 -- Override various utility functions.
 vim.lsp.diagnostic.show_line_diagnostics =
   require('lspsaga.diagnostic').show_line_diagnostics
@@ -41,9 +38,31 @@ lspconfig.tsserver.setup {
       description = "Organize Imports"
     }
   },
-  on_attach = function(client)
-    on_attach(client)
-  end
+  on_attach = on_attach
+}
+
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+local sumneko_root_path = "~" -- vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
+local sumneko_binary = "lua-langserver" --sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+
+require'lspconfig'.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true, },
+      },
+    },
+  },
 }
 
 local servers = { "cssls", "html", "jsonls", "solargraph" }

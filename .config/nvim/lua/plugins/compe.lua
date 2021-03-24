@@ -3,7 +3,7 @@ local map = require('utils').map
 -- Completion does not select anything automatically
 vim.o.completeopt = 'menuone,noselect'
 -- Do not display "Pattern not found" messages during completion.
-vim.cmd('set shortmess+=c')  
+vim.cmd [[set shortmess+=c]]
 
 -- Better nav for popup menues
 vim.cmd('inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-j>"')
@@ -20,19 +20,21 @@ require('compe').setup {
 		path = {kind = "  "},
 		buffer = {kind = "  "},
 		calc = {kind = "  "},
-		-- vsnip = {kind = "  "},
 		nvim_lsp = {kind = "  "},
 		nvim_lua = {kind = "  "},
 		spell = {kind = "  "},
 		tags = false,
 		ultisnips = {kind = "  "},
 		snippets_nvim = {kind = "  "},
-		treesitter = {kind = "  "},
+		-- treesitter = {kind = "  "},
+		treesitter = false,
 		emoji = {kind = " ﲃ "}
 		-- for emoji press : (idk if that in compe tho)
 	}
 }
 
+
+-- use tab to navigate completion menu?
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -60,26 +62,26 @@ _G.tab_complete = function()
     return vim.fn['compe#complete']()
   end
 end
-
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
-  -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-  --   return t "<Plug>(vsnip-jump-prev)"
+  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
   else
     return t "<S-Tab>"
   end
 end
 
-local opts = { expr = true }
-map("i", "<Tab>", "v:lua.tab_complete()")
-map("s", "<Tab>", "v:lua.tab_complete()")
-map("i", "<S-Tab>", "v:lua.s_tab_complete()")
-map("s", "<S-Tab>", "v:lua.s_tab_complete()")
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
+-- Ultisnips config
 vim.g.UltiSnipsExpandTrigger="<c-l>"
 vim.g.UltiSnipsJumpForwardTrigger="<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 vim.cmd [[
-autocmd FileType javascript,javascriptreact,typescript,typescriptreact UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact
+  autocmd FileType javascript, javascriptreact, typescript, typescriptreact UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact
 ]]

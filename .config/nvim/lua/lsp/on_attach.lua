@@ -1,5 +1,4 @@
-local map_lua_buf = require('utils').map_lua_buf
-local map_lua_range_buf = require('utils').map_lua_range_buf
+local map_buf = require('utils').map_buf
 local buf_option = require('utils').buf_option
 
 local on_attach = function(client)
@@ -8,27 +7,27 @@ local on_attach = function(client)
   -- Mappings
   local opts = { noremap = true, silent = true }
 
-  map_lua_buf('n', 'gD', 'vim.lsp.buf.declaration()', opts)
-  map_lua_buf('n', 'gd', 'vim.lsp.buf.definition()', opts)
-  map_lua_buf('n', 'K', 'vim.lsp.buf.hover()', opts)
-  map_lua_buf('n', 'gi', 'vim.lsp.buf.implementation()', opts)
-  map_lua_buf('n', '<leader>wa', 'vim.lsp.buf.add_workspace_folder()', opts)
-  map_lua_buf('n', '<leader>wr', 'vim.lsp.buf.remove_workspace_folder()', opts)
-  map_lua_buf('n', '<leader>D', 'vim.lsp.buf.type_definition()', opts)
-  map_lua_buf('n', '<leader>rn', 'vim.lsp.buf.rename()', opts)
-  map_lua_buf('n', 'gr', 'vim.lsp.buf.references()', opts)
-  map_lua_buf('n', '<leader>ca', 'require("lspsaga.codeaction").code_action()', opts)
-  map_lua_range_buf('v', '<leader>ca', 'require("lspsaga.codeaction").range_code_action()', opts)
-  map_lua_buf('n', '[d', 'vim.lsp.diagnostic.goto_prev()', opts)
-  map_lua_buf('n', ']d', 'vim.lsp.diagnostic.goto_next()', opts)
-  map_lua_buf('n', '<leader>q', 'vim.lsp.diagnostic.set_loclist()', opts)
+  map_buf('n', 'gD', '<cmd>lua vim.lsp.buf.declaration() <CR>', opts)
+  map_buf('n', 'gd', '<cmd>lua vim.lsp.buf.definition() <CR>', opts)
+  map_buf('n', 'K', '<cmd>lua vim.lsp.buf.hover() <CR>', opts)
+  map_buf('n', 'gi', '<cmd>lua vim.lsp.buf.implementation() <CR>', opts)
+  map_buf('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder() <CR>', opts)
+  map_buf('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder() <CR>', opts)
+  map_buf('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition() <CR>', opts)
+  map_buf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename() <CR>', opts)
+  map_buf('n', 'gr', '<cmd>lua vim.lsp.buf.references() <CR>', opts)
+  map_buf('n', '<leader>ca', '<cmd>lua require("lspsaga.codeaction").code_action() <CR>', opts)
+  -- mab_buf('v', '<leader>ca', ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
+  map_buf('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev() <CR>', opts)
+  map_buf('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next() <CR>', opts)
+  map_buf('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist() <CR>', opts)
   vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
   if client.resolved_capabilities.document_formatting then
-    map_lua_buf("n", "<leader>qf", "vim.lsp.buf.formatting()", opts)
+    map_buf("n", "<leader>qf", "<cmd>lua vim.lsp.buf.formatting() <CR>", opts)
   elseif client.resolved_capabilities.document_range_formatting then
-    map_lua_buf("n", "<leader>qf", "vim.lsp.buf.range_formatting()", opts)
+    map_buf("n", "<leader>qf", "<cmd>lua vim.lsp.buf.range_formatting() <CR>", opts)
   end
 end
 
