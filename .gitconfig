@@ -1,12 +1,15 @@
 [user]
 	name = Sergio D. Márquez
 	email = marquez.sergio.d@gmail.com
-[github]
-  user = smarquez1
+[color]
+  ui = true
 [core]
 	excludesfile = ~/.gitignore
   editor = nvim
 	attributesfile = /Users/sergio/.gitattributes
+  pager = cat
+  mergeoptions = --no-edit # don't prompt for message for merge commits.
+  commitGraph = true
 [commit]
   ; gpgSign = true
 	verbose = true
@@ -16,6 +19,9 @@
   prompt = false
 [difftool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE
+[log]
+  decorate = auto
+  abbrevCommit = true
 [merge]
 	ff = only
 	tool = vimdiff
@@ -24,13 +30,15 @@
 	keepBackup = false
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED  -c '$wincmd w' -c 'wincmd J'
-  ; cmd = nvim -f -c Gdiffsplit! $MERGED
+[fetch]
+  prune = true
 [push]
 	default = current
 [rebase]
-	autosquash = true
+  autoStash = true
+  autoSquash = true
 [status]
-  showUntrackedFiles = all
+	rebase = false
 [alias]
   d       = difftool
   m       = mergetool
@@ -39,7 +47,6 @@
   co      = checkout
   cp      = cherry-pick
   st      = status
-  prune   = fetch --prune
   undo    = reset --soft HEAD^
   unstage = reset HEAD
   up      = !git fetch origin && git rebase origin/master
@@ -47,6 +54,7 @@
   la      = !git config -l | grep alias | cut -c 7-
   set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 [pull]
-	rebase = false
+  rebase = true
+  ff = only
 [blame]
 	date = short

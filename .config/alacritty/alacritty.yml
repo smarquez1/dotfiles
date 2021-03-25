@@ -12,11 +12,6 @@ window:
   dynamic_padding: true
   dynamic_title: true
 
-scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  history: 10000
-
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
 
@@ -25,7 +20,6 @@ live_config_reload: true
 font:
   normal:
     family: Iosevka Nerd Font
-    style: Regular
   size: 18.0
 
 schemes:

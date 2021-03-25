@@ -1,4 +1,4 @@
-require('lualine').status{
+require('lualine').setup {
   options = {
     theme = 'onedark',
     section_separators = {'',''},
@@ -11,18 +11,17 @@ require('lualine').status{
     lualine_c = {
       {
         'diagnostics',
-        sources = { 'nvim_lsp', 'ale' },
+        sources = { 'nvim_lsp' },
         symbols = { error = ' ', warn = ' ', info = ' ' }
       },
-      'filename'
+			{ 'filename', file_status = true },
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { },
+		lualine_y = { },
     lualine_z = { 'location' },
   },
 
   inactive_sections = {
-    lualine_b = { 'diff' },
     lualine_c = { 'filename' },
     lualine_x = { 'location' },
   },

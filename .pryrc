@@ -10,16 +10,10 @@ if defined?(PryByebug) || defined?(PryNav)
   Pry.commands.alias_command 'f', 'finish'
 end
 
-# == awesome_print - great syntax colorized printing
-# look at ~/.aprc for more settings for awesome_print
+# == amazing_print - great syntax colorized printing
 begin
-  require 'awesome_print'
-  # The following line enables awesome_print for all pry output,
-  # and it also enables paging
-  Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
-
-  # If you want awesome_print without automatic pagination, use the line below
-  # Pry.config.print = proc { |output, value| output.puts value.ai }
+  require 'amazing_print'
+  AmazingPrint.pry!
 rescue LoadError => e
-  puts 'gem install awesome_print  # <-- highly recommended'
+  puts 'gem install amazing_print  # <-- highly recommended'
 end
