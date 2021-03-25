@@ -27,13 +27,8 @@ map('n', 'Q', '<Nop>', { noremap = true, silent = true }) -- disable Ex mode
 map('n', '<leader>:', ':%s/:\\(\\w\\+\\)\\s*=>\\s*/\\1: /g<cr>')
 
 -- better indenting
-vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
-
--- escape alternatives
-vim.api.nvim_set_keymap('i', 'jk', '<ESC>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', 'kj', '<ESC>', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('i', 'jj', '<ESC>', { noremap = true, silent = true })
+map('v', '<', '<gv', { noremap = true, silent = true })
+map('v', '>', '>gv', { noremap = true, silent = true })
 
 vim.api.nvim_exec(
 [[
