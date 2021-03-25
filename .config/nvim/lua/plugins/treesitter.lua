@@ -1,12 +1,8 @@
 require("nvim-treesitter.configs").setup {
-  -- ensure_installed = "all", -- "all", "maintained"
-	-- :TSUninstall all
-	-- :TSInstallFromGrammar javascript ruby json typescript bash lua css yaml
-	--:TSInstallFromGrammar maintained
-  ensure_installed = "",
+  ensure_installed = "all",
   highlight = {
 		enable = true,
-		disable = { "javascript" },  -- list of language that will be disabled
+		-- disable = { "javascript" },  -- list of language that will be disabled
 	},
   indent = { enable = false },
   incremental_selection = { enable = false },

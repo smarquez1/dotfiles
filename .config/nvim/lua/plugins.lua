@@ -35,7 +35,7 @@ return require('packer').startup(function()
 	
   use {
     'nvim-treesitter/nvim-treesitter',
-    -- run = ':TSUpdate',
+    run = ':TSUpdate',
     config = function() require('plugins.treesitter') end
   }
 
@@ -51,7 +51,8 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim' -- File navigator
+      'nvim-telescope/telescope-fzy-native.nvim',
+      'nvim-telescope/telescope-media-files.nvim'
     },
     -- config = function() require('plugins.telescope') end
   }
@@ -74,6 +75,7 @@ return require('packer').startup(function()
 
   use {
     'neovim/nvim-lspconfig',
+    requires = 'glepnir/lspsaga.nvim',
     config = function() require('lsp.init') end
   }
 
@@ -83,8 +85,12 @@ return require('packer').startup(function()
   -- Appearance
   use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua',
     config = function()
-      vim.cmd "let g:indent_blankline_use_treesitter = v:true"
-  end
+      vim.g.indent_blankline_buftype_exclude = {'terminal'}
+      vim.g.indent_blankline_filetype_exclude = {'help', 'packer', }
+      vim.g.indent_blankline_char = '▏'
+      vim.g.indent_blankline_use_treesitter=true
+      vim.wo.colorcolumn = "99999"
+    end
   }
 
   use 'henrik/vim-indexed-search' -- Display number of search results
@@ -115,13 +121,10 @@ return require('packer').startup(function()
   use {
     'ecomba/vim-ruby-refactoring',
     'p0deje/vim-ruby-interpolation', -- Simple plugin to add {} after hitting #
-    'tpope/vim-endwise',             -- add 'end' to functons
-    'tpope/vim-rails',                -- rails.vim: Ruby on Rails power tools
+    'tpope/vim-rails',               -- rails.vim: Ruby on Rails power tools
     {
       config = function()
         local map = require('utils').map
-
-        vim.g.endwise_no_mappings=1
 
         map('n', '<leader>a', ':A<cr>')
         map('n',  '<leader>av', ':AV <cr>')
@@ -133,25 +136,16 @@ return require('packer').startup(function()
   -- HTMLish
   use 'windwp/nvim-ts-autotag'
 
-  -- TODO: remove when TS is stable
-  use 'AndrewRadev/tagalong.vim' -- Change opening tag and closing tags
-
-  -- TODO: remove when TS is stable
-  use {
-    'Valloric/MatchTagAlways', -- Highlights enclosing html/xml tags
-    config = function() require('plugins.matchtagalways') end
-  }
-
   -- TODO: remove when TS is stable ?
-  use {
-    'tpope/vim-ragtag', -- ex <% %>, <%= %>, <!-- -->
-    config = function() vim.g.ragtag_global_maps = 1 end
-  }
+  -- use {
+  --   'tpope/vim-ragtag', -- ex <% %>, <%= %>, <!-- -->
+  --   config = function() vim.g.ragtag_global_maps = 1 end
+  -- }
 
   use {
     'mattn/emmet-vim',
     ft = {
-      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'eruby'
     }
   }
 
