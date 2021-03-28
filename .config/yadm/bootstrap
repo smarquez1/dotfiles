@@ -1,7 +1,9 @@
 #!/bin/bash
 # TODO: use https://github.com/Homebrew/homebrew-bundle for macos
+# TODO: SIMPLIFY, ask no questions
 
 SYSTEM_TYPE=$(uname -s)
+
 COMMON_PACKAGES=(
 	"docker",
 	"docker-compose",
@@ -26,17 +28,17 @@ COMMON_PACKAGES=(
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-		BREW_PACKAGES=("gnupg", "b4b4r07/tap/gomi")
     if ! command -v brew >/dev/null 2>&1; then
       BREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
       echo ">>> Installing homebrew.."
       echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
     fi
+    BREW_PACKAGES=()
     brew tap homebrew/cask-fonts  
     brew tap homebrew/cask-drivers
 		brew install (${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]})
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-	PACMAN_PACKAGES=("openssh", "pulseaudio-modules-bt-git", "python-pip", "tlp", "xclip", "gomi")
+	PACMAN_PACKAGES=("openssh", "pulseaudio-modules-bt-git", "python-pip", "tlp", "xclip")
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
@@ -67,28 +69,45 @@ if command -v nvim >/dev/null 2>&1; then
   git clone https://github.com/wbthomason/packer.nvim \
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-  nvim '+PackerCompile' '+PackerInstall' '+qall'
+  nvim --headless +PackerCompile +PackerSync +q
   ~/.bin/install_lsp.sh
 fi
 
 # JS dependencies
-sudo yarn global add eslint stylelint prettier javascript-typescript-langserver create-react-app
+YARN_PACKAGES=("eslint", "stylelint", "prettier", "typescript", "create-react-app")
+sudo yarn global add ${YARN_PACKAGES[@]}
 
 # Basic desktop apps
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
+    COMMON_DESKTOP_PACKAGES=("alacritty", "firefox", "google-chrome",)
+
+    BREW_DESKTOP_PACKAGES=(
+      "appcleaner",
+      "disk-inventory-x",
+      "google-backup-and-sync",
+      "itsycal",
+      "keka",
+      "maccy",
+      "notion",
+      "rectangle",
+      "slack",
+      )
+
+    PACMAN_DESKTOP_PACKAGES=(
+       "nerd-fonts-iosevka",
+       "notion-app",
+       "noto-fonts",
+       "pavucontrol",
+       "slack-desktop",
+       "ttf-joypixels",
+    )
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew cask install \
-      iterm2 slack google-chrome firefox rectangle maccy appcleaner \
-      google-backup-and-sync itsycal keka notion \
-      visual-studio-code disk-inventory-x
+    brew install (${COMMON_DESKTOP_PACKAGES[@]} ${BREW_DESKTOP_PACKAGES[@]})
 
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S \
-       notion-app slack-desktop nerd-fonts-iosevka noto-fonts ttf-joypixels \
-       firefox google-chrome pavucontrol alacritty \
-       --noconfirm --needed
+    yay -S (${COMMON_DESKTOP_PACKAGES[@]} ${LINUX_DESKTOP_PACKAGES[@]}) --noconfirm --needed
   fi
 fi
 
@@ -96,16 +115,32 @@ read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew cask install \
-    android-platform-tools calibre dbeaver-community postman todoist \
-    bitwarden iina libreoffice spotify transmission zoom beardedspice figma \
-    logitech-options watchman
+    COMMON_EXTRA_PACKAGES=("bitwarden", "calibre", "libreoffice", "spotify", "zoom")
+
+    BREW_EXTRA_PACKAGES=(
+      "android-platform-tools",
+      "beardedspice",
+      "dbeaver-community",
+      "figma",
+      "iina",
+      "logitech-options",
+      "postman",
+      "todoist",
+      "transmission",
+      )
+
+    PACMAN_EXTRA_PACKAGES=(
+      "android-tools"
+      "dbeaver"
+      "figma-linux"
+      "pinta"
+      "postman-bin"
+      "transmission-gtk"
+    )
+
+    brew install (${COMMON_EXTRA_PACKAGES[@]} ${BREW_EXTRA_PACKAGES[@]})
   elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S \
-      android-tools calibre darktable geeqie dbeaver pinta \
-      rapid-photo-downloader spotify transmission-gtk zoom bitwarden \
-      figma-linux postman-bin \
-      --noconfirm --needed
+    yay -S (${COMMON_EXTRA_PACKAGES[@]} ${LINUX_EXTRA_PACKAGES[@]}) --noconfirm --needed
   fi
 fi
 

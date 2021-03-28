@@ -1,5 +1,4 @@
 vim.o.mouse = 'a' -- Enable mouse
-vim.o.exrc = true -- Allow using local nvimrc
 -- Appearance
 vim.o.termguicolors = true -- Support 24 bit color
 vim.o.updatetime = 300  --Faster completion
@@ -25,18 +24,17 @@ vim.o.splitright = true
 -- Wrap text
 vim.o.linebreak = true
 vim.o.breakindent = true
-vim.o.showbreak = '↪' -- Show breakline symbol
+vim.o.showbreak = '↲ ' -- Show breakline symbol
 vim.o.clipboard = 'unnamed,unnamedplus' -- Use system's clipboard
 vim.bo.expandtab = true -- converts tabs to spaces
 vim.o.shiftwidth = 2 -- number of space characters inserted for indentation
 -- Enable folding by default
-vim.o.foldmethod = 'indent'
+-- vim.o.foldmethod = 'indent'
 vim.o.foldlevel = 99
 vim.cmd('set iskeyword+=-') --treat dash separated words as a word text object"
 
 -- ft=markdown
 vim.cmd [[autocmd FileType markdown setl spell]] -- Enable spelling
--- vim.o.conceallevel = 0 -- TODO: add this to markdown aucmd
 -- ft=terminal
 vim.cmd [[autocmd TermOpen term://* startinsert]] -- Start on insert mode.
 vim.cmd [[autocmd TermOpen * setlocal nonumber norelativenumber]] -- No line numbers

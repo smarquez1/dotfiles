@@ -26,8 +26,6 @@ alias gfp="git fetch --prune"
 alias vi=nvim
 alias vim=nvim
 alias v=nvim
-# Replace rm with gomi
-alias rm=gomi
 # Bundler aliases
 alias b="bundle"
 alias be="bundle exec"

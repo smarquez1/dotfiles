@@ -6,18 +6,16 @@ local saga = require('lspsaga').init_lsp_saga()
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
-    underline = false,
+    underline = true,
+    update_in_insert = true,
     signs = true,
   }
 )
-
 vim.lsp.diagnostic.show_line_diagnostics =
   require('lspsaga.diagnostic').show_line_diagnostics
+
 vim.lsp.handlers["textDocument/hover"] =
   require('lspsaga.hover').handler
-
-require('lsp.sumneko_lua')
-require('lsp.tsserver')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -33,3 +31,7 @@ end
 
 -- lightbulb config
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
+
+require('lsp.efm')
+require('lsp.sumneko_lua')
+require('lsp.tsserver')

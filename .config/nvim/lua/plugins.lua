@@ -6,6 +6,7 @@ return require('packer').startup(function()
   -- Packer can manage itself as an optional plugin
   use { 'wbthomason/packer.nvim', opt = true }
   use 'tpope/vim-commentary'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
     'tpope/vim-fugitive',
     requires = 'tpope/vim-rhubarb', -- git wrapper + Github integration
@@ -41,7 +42,9 @@ return require('packer').startup(function()
 
   use {
     'hrsh7th/nvim-compe',
-    requires = { 'SirVer/ultisnips', 'honza/vim-snippets', 'hrsh7th/vim-vsnip' },
+    requires = {
+      'SirVer/ultisnips', 'honza/vim-snippets', 'hrsh7th/vim-vsnip', 'rafamadriz/friendly-snippets'
+    },
     config = function() require('plugins.compe') end
   }
 
@@ -80,14 +83,17 @@ return require('packer').startup(function()
   }
 
   use 'nvim-lua/lsp-status.nvim'
-  use 'kosayoda/nvim-lightbulb'
 
   -- Appearance
+  use 'kosayoda/nvim-lightbulb'
+
   use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua',
     config = function()
       vim.g.indent_blankline_buftype_exclude = {'terminal'}
       vim.g.indent_blankline_filetype_exclude = {'help', 'packer', }
       vim.g.indent_blankline_char = '▏'
+      vim.g.indent_blankline_show_trailing_blankline_indent = false
+      vim.g.indent_blankline_show_current_context = true
       vim.g.indent_blankline_use_treesitter=true
       vim.wo.colorcolumn = "99999"
     end
@@ -117,23 +123,25 @@ return require('packer').startup(function()
     config = function() require('colorizer').setup() end
   }
 
-  -- Ruby
+  -- -- Ruby
   use {
     'ecomba/vim-ruby-refactoring',
     'p0deje/vim-ruby-interpolation', -- Simple plugin to add {} after hitting #
-    'tpope/vim-rails',               -- rails.vim: Ruby on Rails power tools
     {
-      config = function()
-        local map = require('utils').map
+      use 'tpope/vim-rails',               -- rails.vim: Ruby on Rails power tools
+      {
+        config = function()
+          local map = require('utils').map
 
-        map('n', '<leader>a', ':A<cr>')
-        map('n',  '<leader>av', ':AV <cr>')
-        map('n', '<leader>as', ':AS<cr>')
-      end
+          map('n', '<leader>a', ':A<cr>')
+          map('n',  '<leader>av', ':AV <cr>')
+          map('n', '<leader>as', ':AS<cr>')
+        end
+      }
     }
   }
 
-  -- HTMLish
+  -- -- HTMLish
   use 'windwp/nvim-ts-autotag'
 
   -- TODO: remove when TS is stable ?
@@ -147,6 +155,7 @@ return require('packer').startup(function()
     ft = {
       'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'eruby'
     }
+    -- autocmd FileType html,css EmmetInstall
   }
 
   -- Others
