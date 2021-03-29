@@ -1,6 +1,5 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
-local saga = require('lspsaga').init_lsp_saga()
 
 -- handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

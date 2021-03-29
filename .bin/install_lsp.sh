@@ -1,5 +1,3 @@
-# TODO: add sumneko
-
 NPM_PACKAGES=(
   diagnostic-languageserver
   typescript-language-server

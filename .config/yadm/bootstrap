@@ -74,7 +74,7 @@ if command -v nvim >/dev/null 2>&1; then
 fi
 
 # JS dependencies
-YARN_PACKAGES=("eslint", "stylelint", "prettier", "typescript", "create-react-app")
+YARN_PACKAGES=("eslint_d", "stylelint", "prettier", "typescript", "create-react-app")
 sudo yarn global add ${YARN_PACKAGES[@]}
 
 # Basic desktop apps

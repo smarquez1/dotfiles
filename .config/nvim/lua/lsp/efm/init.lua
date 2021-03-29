@@ -4,11 +4,11 @@ local on_attach = require('lsp.on_attach')
 -- local prettier = require('lsp.efm.prettier')
 
 local eslint = {
-  lintCommand = 'eslint --stdin --stdin-filename ${INPUT} -f unix',
-  lintStdin = true,
+  lintCommand = 'eslint_d  -f unix --stdin --stdin-filename ${INPUT}',
   lintIgnoreExitCode = true,
+  lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
-  formatCommand = "eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
   formatStdin = true
 }
 
@@ -17,29 +17,26 @@ local prettier =  {
   formatStdin = true
 }
 
-local efm_languages = {
-  yaml = { prettier },
-  json = { prettier },
-  markdown = { prettier },
+local languages = {
+  -- yaml = { prettier },
+  -- json = { prettier },
+  -- markdown = { prettier },
   javascript = { eslint, prettier },
   javascriptreact = { eslint, prettier },
   typescript = { eslint, prettier },
   typescriptreact = { eslint, prettier },
-  css = { prettier },
-  scss = { prettier },
-  sass = { prettier },
-  less = { prettier },
-  graphql = { prettier },
-  html = { prettier }
+  -- css = { prettier },
+  -- scss = { prettier },
+  -- sass = { prettier },
+  -- less = { prettier },
+  -- graphql = { prettier },
+  -- html = { prettier }
 }
 
 lsp_config.efm.setup({
-  args = { "-c", "~/.config/nvim/lua/lsp/efm/config.yaml" },
+  root_dir = lsp_config.util.root_pattern("yarn.lock", "lerna.json", ".git"),
+  init_options = { documentFormatting = true, codeAction = true },
+  filetypes = vim.tbl_keys(languages),
+  settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
   on_attach = on_attach,
-  init_options = { documentFormatting = true, codeAction = false },
-  filetypes = { "javascript", "javascriptreact" },
-  settings = {
-    rootMarkers = { 'package.json', '.git/', '.zshrc' },
-    languages = efm_languages
-  }
 })
