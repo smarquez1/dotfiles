@@ -9,18 +9,13 @@ shell:
 window:
   decorations: full
   startup_mode: Maximized
-  dynamic_padding: true
-  dynamic_title: true
-
-# When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: false
 
 live_config_reload: true
 
 font:
   normal:
     family: Iosevka Nerd Font
-  size: 18.0
+  size: 17
 
 schemes:
   one_dark: &one_dark

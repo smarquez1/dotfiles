@@ -7,8 +7,7 @@ vim.g.nvim_tree_auto_close = 1
 vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_hide_dotfiles = 1
 vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_disable_netrw = 0 -- So :GBrowse works
-vim.g.nvim_tree_hijack_netrw = 0
+vim.g.nvim_tree_disable_netrw = 0 -- So Fugitive's :GBrowse works
 
 vim.g.nvim_tree_bindings = {
   ["l"] = tree_cb('edit'),

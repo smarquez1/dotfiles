@@ -7,7 +7,8 @@ vim.cmd [[set shortmess+=c]]
 
 require('compe').setup {
   enabled = true;
-  autocomplete = true; minlength = 1;
+  autocomplete = true;
+	minlength = 1;
   documentation = true;
 	preselect = 'enable';
 

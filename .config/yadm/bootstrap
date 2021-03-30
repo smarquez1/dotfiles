@@ -5,44 +5,44 @@
 SYSTEM_TYPE=$(uname -s)
 
 COMMON_PACKAGES=(
-	"docker",
-	"docker-compose",
-	"fd",
-	"git",
-	"htop",
-	"neovim",
-	"tmux",
-	"wget",
-	"yarn",
-	"go",
-	"rbenv",
-	"rbenv-aliases",
-	"rbenv-default-gems",
-	"rbenv-use",
-	"ripgrep",
-	"ruby-build",
-	"python",
-	"starship",
+  "docker",
+  "docker-compose",
+  "fd",
+  "git",
+  "htop",
+  "neovim",
+  "tmux",
+  "wget",
+  "yarn",
+  "go",
+  "rbenv",
+  "rbenv-aliases",
+  "rbenv-default-gems",
+  "rbenv-use",
+  "ripgrep",
+  "ruby-build",
+  "python",
+  "starship",
 )
 
 # INSTALL DEPENDENCIES
 echo "installing dependencies"
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    if ! command -v brew >/dev/null 2>&1; then
-      BREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
-      echo ">>> Installing homebrew.."
-      echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
-    fi
-    BREW_PACKAGES=()
-    brew tap homebrew/cask-fonts  
-    brew tap homebrew/cask-drivers
-		brew install (${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]})
+  if ! command -v brew >/dev/null 2>&1; then
+    BREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'
+    echo ">>> Installing homebrew.."
+    echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
+  fi
+  BREW_PACKAGES=()
+  brew tap homebrew/cask-fonts  
+  brew tap homebrew/cask-drivers
+  brew install (${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]})
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-	PACMAN_PACKAGES=("openssh", "pulseaudio-modules-bt-git", "python-pip", "tlp", "xclip")
+  PACMAN_PACKAGES=("openssh", "pulseaudio-modules-bt-git", "python-pip", "tlp", "xclip")
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
-	yay -S (${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} ) --noconfirm --needed
+  yay -S (${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} ) --noconfirm --needed
 fi
 
 # ZSH
@@ -58,7 +58,7 @@ fi
 # Install tmux  plugins
 if [ `ls -A ~/.tmux/plugins/tpm | wc -m` == "0" ]; then
   echo "bootstraping tmux"
-   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
     ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 fi
 
@@ -81,28 +81,28 @@ sudo yarn global add ${YARN_PACKAGES[@]}
 read -r -p "Install Basic Desktop apps? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
-    COMMON_DESKTOP_PACKAGES=("alacritty", "firefox", "google-chrome",)
+  COMMON_DESKTOP_PACKAGES=("alacritty", "firefox", "google-chrome",)
 
-    BREW_DESKTOP_PACKAGES=(
-      "appcleaner",
-      "disk-inventory-x",
-      "google-backup-and-sync",
-      "itsycal",
-      "keka",
-      "maccy",
-      "notion",
-      "rectangle",
-      "slack",
-      )
+  BREW_DESKTOP_PACKAGES=(
+    "appcleaner",
+    "disk-inventory-x",
+    "google-backup-and-sync",
+    "itsycal",
+    "keka",
+    "maccy",
+    "notion",
+    "rectangle",
+    "slack",
+  )
 
-    PACMAN_DESKTOP_PACKAGES=(
-       "nerd-fonts-iosevka",
-       "notion-app",
-       "noto-fonts",
-       "pavucontrol",
-       "slack-desktop",
-       "ttf-joypixels",
-    )
+  PACMAN_DESKTOP_PACKAGES=(
+    "nerd-fonts-iosevka",
+    "notion-app",
+    "noto-fonts",
+    "pavucontrol",
+    "slack-desktop",
+    "ttf-joypixels",
+  )
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     brew install (${COMMON_DESKTOP_PACKAGES[@]} ${BREW_DESKTOP_PACKAGES[@]})
 
@@ -115,7 +115,7 @@ read -r -p "Install Extra packages? [y/N] " response
 response=${response,,}
 if [[ "$response" =~ ^(yes|y)$ ]]; then
   if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    COMMON_EXTRA_PACKAGES=("bitwarden", "calibre", "libreoffice", "spotify", "zoom")
+    COMMON_EXTRA_PACKAGES=("bitwarden", "calibre", "spotify", "zoom")
 
     BREW_EXTRA_PACKAGES=(
       "android-platform-tools",
@@ -127,11 +127,12 @@ if [[ "$response" =~ ^(yes|y)$ ]]; then
       "postman",
       "todoist",
       "transmission",
-      )
+    )
 
     PACMAN_EXTRA_PACKAGES=(
       "android-tools"
       "dbeaver"
+      "libreoffice"
       "figma-linux"
       "pinta"
       "postman-bin"

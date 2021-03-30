@@ -6,7 +6,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.tsserver.setup {
   capabilities = capabilities,
-  settings = {documentFormatting = false},
+  settings = { documentFormatting = false },
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     on_attach(client)

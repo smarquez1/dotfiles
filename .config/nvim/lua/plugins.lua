@@ -1,4 +1,4 @@
-vim.cmd 'packadd packer.nvim' 
+vim.cmd 'packadd packer.nvim'
 
 vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
@@ -75,6 +75,10 @@ return require('packer').startup(function()
     'dyng/ctrlsf.vim', -- Mimics Ctrl-Shift-F on Sublime Text 2
     config = function() require('plugins.ctrlsf') end
   }
+
+  -- use { 'phaazon/hop.nvim', branch = 'pre-extmarks' }
+
+  -- LSP
 
   use {
     'neovim/nvim-lspconfig',
