@@ -4,9 +4,18 @@ local previewers = require('telescope.previewers')
 local map_lua = require('utils').map_lua
 local map = require('utils').map
 telescope.load_extension 'fzy_native'
+-- requires ueberzug
 telescope.load_extension('media_files')
 
 telescope.setup {
+  extensions = {
+    media_files = {
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = {"png", "webp", "jpg", "jpeg"},
+      find_cmd = "rg" -- find command (defaults to `fd`)
+    }
+  },
   defaults = {
     mappings = {
       i = { ["<esc>"] = actions.close }

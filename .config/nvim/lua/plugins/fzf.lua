@@ -1,5 +1,8 @@
 local map = require('utils').map
 
+vim.cmd [[let $FZF_DEFAULT_COMMAND = 'fd --type f']]
+vim.cmd [[let $FZF_DEFAULT_OPTS .= '--layout=reverse --inline-info']]
+
 -- Customize fzf colors to match your color scheme
 -- https://github.com/junegunn/fzf.vim/issues/1152#issuecomment-747156597
 vim.g.fzf_colors = {
@@ -17,25 +20,19 @@ vim.g.fzf_colors = {
   spinner = { 'fg', 'Label' },
   header =  { 'fg', 'Comment' }
 }
-vim.api.nvim_exec(
-[[
-let $FZF_DEFAULT_COMMAND = 'fd --type f'
-let $FZF_DEFAULT_OPTS .= '--layout=reverse --inline-info'
 
-" up/down using c-j and c-k"
-autocmd FileType fzf tmap <buffer> <C-j> <Down>
-autocmd FileType fzf tmap <buffer> <C-k> <Up>
+local opts = { silent = true }
 
-nmap <silent> <leader>f :Files<cr>
-nmap <silent> <leader>b :Buffers<cr>
-nmap <silent> <leader>gb :Gbranches<cr>
-nmap <silent> <leader>ht :Helptags<cr>
-" list all yadm tracked files
-nmap <silent> <leader>ed :call fzf#run(fzf#wrap({'source': 'yadm list -a', 'dir': '~' }))<cr>
-
-" rails
-nmap <silent> <leader>em :call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/models' }))<cr>
-nmap <silent> <leader>ec :call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/controllers' }))<cr>
-nmap <silent> <leader>ev :call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/views' }))<cr>
-]]
-, true)
+map('n', '<leader>f', ':Files <cr>', opts)
+map('n', '<leader>b', ':Buffers <cr>', opts)
+map('n', '<leader>gb', ':Gbranches <cr>', opts)
+map('n', '<leader>ht', ':Helptags <cr>', opts)
+-- list all yadm tracked files
+map('n', '<leader>ed', ":call fzf#run(fzf#wrap({'source': 'yadm list -a', 'dir': '~' }))<cr>", opts)
+-- Rails
+map('n', '<leader>em', ":call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/models' }))<cr>", opts)
+map('n', '<leader>em', ":call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/controllers' }))<cr>", opts)
+map('n', '<leader>ev', ":call fzf#run(fzf#wrap({'source': 'git ls-files', 'dir': 'app/views' }))<cr>", opts)
+-- up/down using c-j and c-k"
+vim.cmd [[autocmd FileType fzf tmap <buffer> <C-k> <Up>]]
+vim.cmd [[autocmd FileType fzf tmap <buffer> <C-j> <Down>]]

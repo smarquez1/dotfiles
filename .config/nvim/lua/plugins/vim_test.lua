@@ -1,9 +1,8 @@
-vim.api.nvim_exec(
-[[
-let test#strategy = "vimux"
-let test#ruby#use_binstubs = 0
-nmap <leader>T :TestFile<CR>
-nmap <leader>t :TestNearest<CR>
-nmap <leader>l :TestLast<CR>
-]]
-, true)
+local map = require('utils').map
+
+vim.cmd [[let test#strategy = "vimux"]]
+vim.cmd [[let test#ruby#use_binstubs = 0]]
+
+map('n', '<leader>T', ':TestFile<cr>', {})
+map('n', '<leader>t', ':TestNearest<cr>', {})
+map('n', '<leader>l', ':TestLast<cr>', {})

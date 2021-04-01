@@ -32,7 +32,6 @@ map('v', '>', '>gv', { noremap = true, silent = true })
 
 vim.api.nvim_exec(
 [[
-  " diff
   if &diff
     map '<C-J>' ']c'
     map '<C-K>' '[c'

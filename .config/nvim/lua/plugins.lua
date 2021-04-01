@@ -2,7 +2,7 @@ vim.cmd 'packadd packer.nvim'
 
 vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
-return require('packer').startup(function()
+return require('packer').startup({ function(use)
   -- Packer can manage itself as an optional plugin
   use { 'wbthomason/packer.nvim', opt = true }
   use 'tpope/vim-commentary'
@@ -31,7 +31,7 @@ return require('packer').startup(function()
 
   use {
     'akinsho/nvim-bufferline.lua',
-    config = function() require('bufferline').setup() end
+    config = function() require('bufferline').setup({ numbers = "ordinal" }) end
   }
 	
   use {
@@ -115,11 +115,7 @@ return require('packer').startup(function()
     config = function() require('plugins.onedark') end
   }
 
-  use {
-    'kyazdani42/nvim-web-devicons',
-    config = function() require('plugins.nvim_web_devicons') end
-  }
-
+  use 'kyazdani42/nvim-web-devicons'
   use 'dstein64/nvim-scrollview'
 
   use {
@@ -172,4 +168,5 @@ return require('packer').startup(function()
       vim.g.csv_end = 1000
     end
 	}
-end)
+
+end })
