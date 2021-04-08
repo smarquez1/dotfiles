@@ -23,8 +23,29 @@ vim.g.fzf_colors = {
 
 local opts = { silent = true }
 
+-- FZF Buffer Delete
+-- vim.cmd [[
+-- function! s:list_buffers()
+--   redir => list
+--   silent ls
+--   redir END
+--   return split(list, "\n")
+-- endfunction
+
+-- function! s:delete_buffers(lines)
+--   execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+-- endfunction
+
+-- command! BD call fzf#run(fzf#wrap({
+--   \ 'source': s:list_buffers(),
+--   \ 'sink*': { lines -> s:delete_buffers(lines) },
+--   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+-- \ }))
+-- ]]
+
 map('n', '<leader>f', ':Files <cr>', opts)
 map('n', '<leader>b', ':Buffers <cr>', opts)
+-- map('n', '<leader>b', ':BD <cr>', opts)
 map('n', '<leader>gb', ':Gbranches <cr>', opts)
 map('n', '<leader>ht', ':Helptags <cr>', opts)
 -- list all yadm tracked files

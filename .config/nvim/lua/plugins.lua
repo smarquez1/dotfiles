@@ -1,12 +1,10 @@
 vim.cmd 'packadd packer.nvim'
-
 vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 return require('packer').startup({ function(use)
-  -- Packer can manage itself as an optional plugin
   use { 'wbthomason/packer.nvim', opt = true }
   use 'tpope/vim-commentary'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'JoosepAlviste/nvim-ts-context-commentstring' -- TODO: requires treesitter
   use {
     'tpope/vim-fugitive',
     requires = 'tpope/vim-rhubarb', -- git wrapper + Github integration
@@ -28,18 +26,15 @@ return require('packer').startup({ function(use)
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('gitsigns').setup() end
   }
-
   use {
     'akinsho/nvim-bufferline.lua',
-    config = function() require('bufferline').setup({ numbers = "ordinal" }) end
+    config = function() require('plugins.bufferline') end
   }
-	
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function() require('plugins.treesitter') end
   }
-
   use {
     'hrsh7th/nvim-compe',
     requires = {
@@ -47,60 +42,40 @@ return require('packer').startup({ function(use)
     },
     config = function() require('plugins.compe') end
   }
-
   -- Navigation
   use {
     'nvim-lua/telescope.nvim',
     requires = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim',
-      'nvim-telescope/telescope-media-files.nvim'
     },
-    -- config = function() require('plugins.telescope') end
+    branch = "use_plenary_async",
+    config = function() require('plugins.telescope') end
   }
-
   use {
     'junegunn/fzf.vim',
     requires = { 'junegunn/fzf', run = '-> fzf#install()' },
-    config = function() require('plugins.fzf') end
+    -- config = function() require('plugins.fzf') end
   }
-
   use {
     'kyazdani42/nvim-tree.lua',
     config = function() require('plugins.nvim_tree') end
   }
-
   use {
     'dyng/ctrlsf.vim', -- Mimics Ctrl-Shift-F on Sublime Text 2
     config = function() require('plugins.ctrlsf') end
   }
-
-  -- use { 'phaazon/hop.nvim', branch = 'pre-extmarks' }
-
   -- LSP
-
   use {
     'neovim/nvim-lspconfig',
     requires = 'glepnir/lspsaga.nvim',
     config = function() require('lsp.init') end
   }
-
   use 'nvim-lua/lsp-status.nvim'
-
   -- Appearance
-  use 'kosayoda/nvim-lightbulb'
 
   use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua',
-    config = function()
-      vim.g.indent_blankline_buftype_exclude = {'terminal'}
-      vim.g.indent_blankline_filetype_exclude = {'help', 'packer', }
-      vim.g.indent_blankline_char = '▏'
-      vim.g.indent_blankline_show_trailing_blankline_indent = false
-      vim.g.indent_blankline_show_current_context = true
-      vim.g.indent_blankline_use_treesitter=true
-      vim.wo.colorcolumn = "99999"
-    end
+    config = function() require('plugins.indent_blankline') end
   }
 
   use 'henrik/vim-indexed-search' -- Display number of search results
@@ -110,20 +85,14 @@ return require('packer').startup({ function(use)
     config = function() require('plugins.lualine') end
   }
 
-  use {
-    'joshdick/onedark.vim', -- Colorscheme based on atom onedark
-    config = function() require('plugins.onedark') end
-  }
-
+  use 'joshdick/onedark.vim'
   use 'kyazdani42/nvim-web-devicons'
   use 'dstein64/nvim-scrollview'
-
   use {
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup() end
   }
-
-  -- -- Ruby
+  -- Ruby
   use {
     'ecomba/vim-ruby-refactoring',
     'p0deje/vim-ruby-interpolation', -- Simple plugin to add {} after hitting #
@@ -140,33 +109,25 @@ return require('packer').startup({ function(use)
       }
     }
   }
-
-  -- -- HTMLish
-  use 'windwp/nvim-ts-autotag'
-
-  -- TODO: remove when TS is stable ?
-  -- use {
-  --   'tpope/vim-ragtag', -- ex <% %>, <%= %>, <!-- -->
-  --   config = function() vim.g.ragtag_global_maps = 1 end
-  -- }
-
+  -- HTMLish
+  use 'windwp/nvim-ts-autotag' -- TODO: requires treesitter
   use {
     'mattn/emmet-vim',
     ft = {
       'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'eruby'
     }
-    -- autocmd FileType html,css EmmetInstall
   }
-
   -- Others
-	use {
-		'sheerun/vim-polyglot',
-		config = function()
+  use {
+    'sheerun/vim-polyglot',
+    config = function()
       vim.g.polyglot_disabled = {'sensible'}
       vim.g.csv_strict_columns = 1
       vim.g.csv_start = 1
       vim.g.csv_end = 1000
     end
-	}
-
+  }
 end })
+
+-- use { 'phaazon/hop.nvim', branch = 'pre-extmarks' }
+-- use 'kosayoda/nvim-lightbulb'

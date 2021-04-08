@@ -13,10 +13,6 @@ function M.map(mode, key, fn, opts)
   vim.api.nvim_set_keymap(mode, key, fn, opts or {})
 end
 
-function M.map_lua(mode, key, fn, opts)
-  vim.api.nvim_set_keymap(mode, key, "<cmd>lua " .. fn .. "<cr>", opts or {})
-end
-
 function M.map_buf(...)
   vim.api.nvim_buf_set_keymap(bufnr, ...)
 end

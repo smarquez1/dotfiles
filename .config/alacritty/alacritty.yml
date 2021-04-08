@@ -1,3 +1,5 @@
+live_config_reload: true
+
 # Start tmux on login
 shell:
   program: /bin/zsh
@@ -9,8 +11,7 @@ shell:
 window:
   decorations: full
   startup_mode: Maximized
-
-live_config_reload: true
+  dynamic_padding: true
 
 font:
   normal:

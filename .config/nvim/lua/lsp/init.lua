@@ -28,9 +28,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- lightbulb config
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
-
 require('lsp.efm')
 require('lsp.sumneko_lua')
 require('lsp.tsserver')

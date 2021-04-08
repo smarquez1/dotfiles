@@ -14,8 +14,8 @@ map('t', '<c-j>', '<c-\\><c-n><c-w>j')
 map('t', '<c-k>', '<c-\\><c-n><c-w>k')
 map('t', '<c-l>', '<c-\\><c-n><c-w>l')
 -- moving up and down when lines wrap, one line at the time
-map('n', 'j', 'gj', { noremap = true, silent = true })
-map('n', 'k', 'gk', { noremap = true, silent = true })
+-- map('n', 'j', 'gj', { noremap = true, silent = true })
+-- map('n', 'k', 'gk', { noremap = true, silent = true })
 -- Easy splitting
 map('n', '<leader>s', ':split<cr>')
 map('n', '<leader>v', ':vsplit<cr>')
