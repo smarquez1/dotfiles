@@ -1,5 +1,15 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
+local saga = require 'lspsaga'
+
+saga.init_lsp_saga {
+  code_action_icon = '💡',
+  code_action_prompt = {
+    virtual_text = false
+  },
+  hint_sign = '🌿',
+  dianostic_header_icon = "👀 "
+}
 
 -- handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

@@ -29,8 +29,8 @@ vim.o.clipboard = 'unnamed,unnamedplus' -- Use system's clipboard
 vim.bo.expandtab = true -- converts tabs to spaces
 vim.o.shiftwidth = 2 -- number of space characters inserted for indentation
 -- Enable folding by default
-vim.o.foldmethod = 'indent'
-vim.o.foldlevel = 99
+vim.wo.foldmethod = 'indent'
+vim.wo.foldlevel = 99
 vim.cmd('set iskeyword+=-') --treat dash separated words as a word text object"
 
 -- ft=markdown

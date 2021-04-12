@@ -8,22 +8,22 @@ vim.cmd [[set shortmess+=c]]
 require('compe').setup {
   enabled = true;
   autocomplete = true;
-	minlength = 1;
+  minlength = 1;
   documentation = true;
-	preselect = 'enable';
+  preselect = 'enable';
 
   source = {
-		path = true,
-		buffer = true,
-		calc = true,
-		nvim_lsp = true,
-		nvim_lua = true,
-		spell = true,
-		ultisnips = true,
-		treesitter = false,
-		emoji = true, -- type :
-		vsnip = false,
-	}
+    path = true,
+    buffer = true,
+    calc = true,
+    nvim_lsp = true,
+    nvim_lua = true,
+    spell = true,
+    ultisnips = true,
+    treesitter = false,
+    emoji = true, -- type :
+    vsnip = false,
+  }
 }
 
 -- Better nav for popup menues
@@ -35,13 +35,4 @@ vim.g.UltiSnipsExpandTrigger="<tab>"
 vim.g.UltiSnipsJumpForwardTrigger="<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-vim.cmd [[autocmd FileType javascript,javascriptreact,typescript,typescriptreact UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact]]
-
--- vsnip
-vim.cmd[[
-	" Jump forward or backward
-	imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-	smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-	imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-	smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-]]
+-- vim.cmd [[autocmd FileType javascript,javascriptreact,typescript,typescriptreact UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact]]

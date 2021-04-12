@@ -13,14 +13,21 @@ return require('packer').startup({ function(use)
   use 'tpope/vim-repeat' -- enable repeating supported plugin maps with '.'
   use 'tpope/vim-surround' -- Vim Surround
   use {
-    'janko-m/vim-test',
-    requires = 'benmills/vimux', -- Vim test runner
+    'janko-m/vim-test', -- Vim test runner
+    requires = 'benmills/vimux',
     config = function() require('plugins.vim_test') end
   }
   use 'mg979/vim-visual-multi' -- Multiple cursors
   use 'AndrewRadev/splitjoin.vim' -- change between multiline and single-line code
   use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
   use 'jiangmiao/auto-pairs' -- insert or delete brackets, parens, quotes in pair
+  use {
+    'phaazon/hop.nvim',
+    config = function()
+      local opts = { silent=true, noremap=true }
+      vim.api.nvim_set_keymap('n', 's', ":HopChar2<cr>", opts)
+    end
+  }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -37,19 +44,13 @@ return require('packer').startup({ function(use)
   }
   use {
     'hrsh7th/nvim-compe',
-    requires = {
-      'SirVer/ultisnips', 'honza/vim-snippets', 'hrsh7th/vim-vsnip', 'rafamadriz/friendly-snippets'
-    },
+    requires = { 'SirVer/ultisnips', 'honza/vim-snippets' },
     config = function() require('plugins.compe') end
   }
   -- Navigation
   use {
     'nvim-lua/telescope.nvim',
-    requires = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-    },
-    branch = "use_plenary_async",
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', },
     config = function() require('plugins.telescope') end
   }
   use {
@@ -71,21 +72,17 @@ return require('packer').startup({ function(use)
     requires = 'glepnir/lspsaga.nvim',
     config = function() require('lsp.init') end
   }
-  use 'nvim-lua/lsp-status.nvim'
   -- Appearance
-
   use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua',
     config = function() require('plugins.indent_blankline') end
   }
-
   use 'henrik/vim-indexed-search' -- Display number of search results
-
   use {
     'hoob3rt/lualine.nvim',
     config = function() require('plugins.lualine') end
   }
-
-  use 'joshdick/onedark.vim'
+  use 'Th3Whit3Wolf/one-nvim'
+  use 'ChristianChiarulli/nvcode-color-schemes.vim'
   use 'kyazdani42/nvim-web-devicons'
   use 'dstein64/nvim-scrollview'
   use {
@@ -118,16 +115,5 @@ return require('packer').startup({ function(use)
     }
   }
   -- Others
-  use {
-    'sheerun/vim-polyglot',
-    config = function()
-      vim.g.polyglot_disabled = {'sensible'}
-      vim.g.csv_strict_columns = 1
-      vim.g.csv_start = 1
-      vim.g.csv_end = 1000
-    end
-  }
+  use 'tomlion/vim-solidity'
 end })
-
--- use { 'phaazon/hop.nvim', branch = 'pre-extmarks' }
--- use 'kosayoda/nvim-lightbulb'

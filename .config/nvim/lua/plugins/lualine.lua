@@ -10,14 +10,14 @@ require('lualine').setup {
     lualine_b = { 'branch', 'diff' },
     lualine_c = {
       {
-        'diagnostics',
-        sources = { 'nvim_lsp' },
-        symbols = { error = ' ', warn = ' ', info = ' ' }
+	'diagnostics',
+	sources = { 'nvim_lsp' },
+	symbols = { error = ' ', warn = ' ', info = ' ' }
       },
-			{ 'filename', file_status = true },
+      { 'filename', file_status = true },
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
-		lualine_y = { },
+    lualine_y = { },
     lualine_z = { 'location' },
   },
 
