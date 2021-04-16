@@ -44,7 +44,8 @@ return require('packer').startup({ function(use)
   }
   use {
     'hrsh7th/nvim-compe',
-    requires = { 'SirVer/ultisnips', 'honza/vim-snippets' },
+    requires = { 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ', 'rafamadriz/friendly-snippets' },
+    -- , 'SirVer/ultisnips', 'honza/vim-snippets'
     config = function() require('plugins.compe') end
   }
   -- Navigation
@@ -52,11 +53,6 @@ return require('packer').startup({ function(use)
     'nvim-lua/telescope.nvim',
     requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', },
     config = function() require('plugins.telescope') end
-  }
-  use {
-    'junegunn/fzf.vim',
-    requires = { 'junegunn/fzf', run = '-> fzf#install()' },
-    -- config = function() require('plugins.fzf') end
   }
   use {
     'kyazdani42/nvim-tree.lua',
@@ -93,27 +89,16 @@ return require('packer').startup({ function(use)
   use {
     'ecomba/vim-ruby-refactoring',
     'p0deje/vim-ruby-interpolation', -- Simple plugin to add {} after hitting #
-    {
-      use 'tpope/vim-rails',               -- rails.vim: Ruby on Rails power tools
-      {
-        config = function()
-          local map = require('utils').map
-
-          map('n', '<leader>a', ':A<cr>')
-          map('n',  '<leader>av', ':AV <cr>')
-          map('n', '<leader>as', ':AS<cr>')
-        end
-      }
-    }
+    'tpope/vim-rails', -- rails.vim: Ruby on Rails power tools
+    config = function() require('plugins.lualine') end
   }
   -- HTMLish
-  use 'windwp/nvim-ts-autotag' -- TODO: requires treesitter
+  use 'windwp/nvim-ts-autotag'
   use {
     'mattn/emmet-vim',
-    ft = {
-      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'eruby'
-    }
+    ft = { 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'eruby' }
   }
   -- Others
   use 'tomlion/vim-solidity'
+  use 'kchmck/vim-coffee-script'
 end })

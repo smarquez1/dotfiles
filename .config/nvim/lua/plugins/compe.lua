@@ -1,4 +1,4 @@
-local map = require('utils').map
+-- local map = require('utils').map
 
 -- Completion does not select anything automatically
 vim.o.completeopt = 'menuone,noselect'
@@ -6,23 +6,17 @@ vim.o.completeopt = 'menuone,noselect'
 vim.cmd [[set shortmess+=c]]
 
 require('compe').setup {
-  enabled = true;
-  autocomplete = true;
-  minlength = 1;
-  documentation = true;
-  preselect = 'enable';
-
   source = {
-    path = true,
-    buffer = true,
-    calc = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    spell = true,
-    ultisnips = true,
-    treesitter = false,
-    emoji = true, -- type :
-    vsnip = false,
+    path = { kind = "  " },
+    buffer = { kind = "  " },
+    calc = { kind = "  " },
+    vsnip = { kind = "  " },
+    nvim_lsp = { kind = "  " },
+    nvim_lua = { kind = "  " },
+    spell = { kind = "  " },
+    tags = false,
+    -- treesitter = {kind = "  "},
+    emoji = { kind = " ﲃ " } -- for emoji press :
   }
 }
 
@@ -30,9 +24,5 @@ require('compe').setup {
 vim.cmd('inoremap <expr> <c-j> pumvisible() ? "<c-n>" : "<c-j>"')
 vim.cmd('inoremap <expr> <c-k> pumvisible() ? "<c-p>" : "<c-k>"')
 
--- Ultisnips config
-vim.g.UltiSnipsExpandTrigger="<tab>"
-vim.g.UltiSnipsJumpForwardTrigger="<tab>"
-vim.g.UltiSnipsJumpBackwardTrigger="<s-tab>"
-
--- vim.cmd [[autocmd FileType javascript,javascriptreact,typescript,typescriptreact UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact]]
+vim.cmd("imap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'")
+vim.cmd("smap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'")
