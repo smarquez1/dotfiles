@@ -1,0 +1,12 @@
+{
+  "Insert pry debugger": {
+    "prefix": "pry",
+    "body": "require 'pry'; binding.pry",
+    "description": "inserts pry debugger"
+  },
+  "Insert byebug debugger": {
+    "prefix": "debug",
+    "body": "require 'byebug'; byebug",
+    "description": "inserts byebug debugger"
+  }
+}

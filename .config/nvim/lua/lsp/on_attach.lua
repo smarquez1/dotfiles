@@ -13,10 +13,8 @@ local on_attach = function(client)
   map_buf('n', 'gi', ':lua vim.lsp.buf.implementation() <CR>', opts)
   map_buf('n', '<leader>rn', ':lua vim.lsp.buf.rename() <CR>', opts)
   map_buf('n', 'gr', ':lua vim.lsp.buf.references() <CR>', opts)
-  -- map_buf('n', '<leader>ca', ':lua vim.lsp.buf.code_action() <CR>', opts)
-  -- map_buf('v', '<leader>ca', ':"<,">lua vim.lsp.buf.range_code_action() <CR>', opts)
-  -- FIXME: map_buf not working here
   map_buf('n', '<leader>ca', ':lua require("lspsaga.codeaction").code_action() <CR>', opts)
+  -- FIXME: map_buf not working here
   -- mab_buf('v', '<leader>ca', ":'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
   map_buf('n', '[d', ':lua vim.lsp.diagnostic.goto_prev() <CR>', opts)
   map_buf('n', ']d', ':lua vim.lsp.diagnostic.goto_next() <CR>', opts)

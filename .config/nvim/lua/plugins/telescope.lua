@@ -35,7 +35,7 @@ end
 local opts = { noremap = true, silent = true }
 
 map('n', '<leader>f' , ':Telescope find_files<CR>', opts)
-map('n', '<leader>b' , ':Telescope buffers<CR>', opts)
+map('n', '<leader>bl' , ':Telescope buffers<CR>', opts)
 map('n', '<leader>gb', ':Telescope git_branches<CR>', opts)
 map('n', '<leader>ht', ':Telescope help_tags<CR>', opts)
 map('n', '<leader>S' , ':Telescope lsp_workspace_symbols<CR>', opts)

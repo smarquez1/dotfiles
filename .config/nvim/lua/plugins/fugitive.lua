@@ -1,7 +1,6 @@
-local map = require('utils').map
-
 vim.g.fugitive_git_executable = 'LANG=en_US git'
 
+local map = require('utils').map
 local options = { noremap = true }
 
 map('n', '<leader>gd', ':Gvdiff<CR>', options)
