@@ -1,28 +1,25 @@
 #!/bin/bash
 # TODO: use https://github.com/Homebrew/homebrew-bundle for macos
-# TODO: SIMPLIFY, ask no questions
 
 SYSTEM_TYPE=$(uname -s)
 
 COMMON_PACKAGES=(
-  "docker",
-  "docker-compose",
-  "fd",
-  "git",
-  "htop",
-  "neovim",
-  "tmux",
-  "wget",
-  "yarn",
-  "go",
-  "rbenv",
-  "rbenv-aliases",
-  "rbenv-default-gems",
-  "rbenv-use",
-  "ripgrep",
-  "ruby-build",
-  "python",
-  "starship",
+  "bat"
+  "docker"
+  "docker-compose"
+  "fd"
+  "git"
+  "go"
+  "htop"
+  "nodejs"
+  "python"
+  "rbenv"
+  "ripgrep"
+  "ruby-build"
+  "starship"
+  "tmux"
+  "wget"
+  "yarn"
 )
 
 # INSTALL DEPENDENCIES
@@ -33,16 +30,17 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     echo ">>> Installing homebrew.."
     echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
   fi
-  BREW_PACKAGES=()
+  BREW_PACKAGES=("neovim-git" "rbenv-aliases" "rbenv-default-gems" "rbenv-use" )
   brew tap homebrew/cask-fonts  
   brew tap homebrew/cask-drivers
-  brew install (${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]})
+  brew install ${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]}
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-  PACMAN_PACKAGES=("openssh", "pulseaudio-modules-bt-git", "python-pip", "tlp", "xclip")
+  # TODO: add  "rbenv-aliases" "rbenv-default-gems" "rbenv-use"
+  PACMAN_PACKAGES=("neovim-nighly-bin" "openssh" "pulseaudio-modules-bt-git" "python-pip" "tlp" "xclip")
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
-  yay -S (${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} ) --noconfirm --needed
+  yay -S ${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} --noconfirm --needed
 fi
 
 # ZSH
@@ -52,14 +50,14 @@ chsh -s $(which zsh)
 if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
   echo "bootstraping ZSH"
   chsh -s /usr/bin/zsh
-  git clone --recursive https://github.com/zimfw/zimfw.git ~/.zim
+  curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 fi
 
 # Install tmux  plugins
-if [ `ls -A ~/.tmux/plugins/tpm | wc -m` == "0" ]; then
+if [ `ls -A ~/.config/tmux/plugins/tpm | wc -m` == "0" ]; then
   echo "bootstraping tmux"
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && \
-    ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && \
+    ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
 fi
 
 # Install neovim plugins
@@ -69,86 +67,79 @@ if command -v nvim >/dev/null 2>&1; then
   git clone https://github.com/wbthomason/packer.nvim \
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-  nvim --headless +PackerCompile +PackerSync +q
+  nvim --headless +PackerInstall +qall!
   ~/.bin/install_lsp.sh
 fi
 
 # JS dependencies
-YARN_PACKAGES=("eslint_d", "stylelint", "prettier", "typescript", "create-react-app")
+YARN_PACKAGES=("eslint_d" "stylelint" "prettier" "typescript" "create-react-app")
 sudo yarn global add ${YARN_PACKAGES[@]}
 
 # Basic desktop apps
-read -r -p "Install Basic Desktop apps? [y/N] " response
-response=${response,,}
-if [[ "$response" =~ ^(yes|y)$ ]]; then
-  COMMON_DESKTOP_PACKAGES=("alacritty", "firefox", "google-chrome",)
+COMMON_DESKTOP_PACKAGES=("alacritty" "firefox" "google-chrome")
 
-  BREW_DESKTOP_PACKAGES=(
-    "appcleaner",
-    "disk-inventory-x",
-    "google-backup-and-sync",
-    "itsycal",
-    "keka",
-    "maccy",
-    "notion",
-    "rectangle",
-    "slack",
-  )
+BREW_DESKTOP_PACKAGES=(
+  "appcleaner"
+  "disk-inventory-x"
+  "google-backup-and-sync"
+  "itsycal"
+  "keka"
+  "maccy"
+  "notion"
+  "rectangle"
+  "slack"
+)
 
-  PACMAN_DESKTOP_PACKAGES=(
-    "nerd-fonts-iosevka",
-    "notion-app",
-    "noto-fonts",
-    "pavucontrol",
-    "slack-desktop",
-    "ttf-joypixels",
-  )
-  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    brew install (${COMMON_DESKTOP_PACKAGES[@]} ${BREW_DESKTOP_PACKAGES[@]})
+PACMAN_DESKTOP_PACKAGES=(
+  "nerd-fonts-iosevka"
+  "notion-app"
+  "noto-fonts"
+  "pavucontrol"
+  "slack-desktop"
+  "ttf-joypixels"
+)
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  brew install ${COMMON_DESKTOP_PACKAGES[@]} ${BREW_DESKTOP_PACKAGES[@]}
 
-  elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S (${COMMON_DESKTOP_PACKAGES[@]} ${LINUX_DESKTOP_PACKAGES[@]}) --noconfirm --needed
-  fi
-fi
-
-read -r -p "Install Extra packages? [y/N] " response
-response=${response,,}
-if [[ "$response" =~ ^(yes|y)$ ]]; then
-  if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-    COMMON_EXTRA_PACKAGES=("bitwarden", "calibre", "spotify", "zoom")
-
-    BREW_EXTRA_PACKAGES=(
-      "android-platform-tools",
-      "beardedspice",
-      "dbeaver-community",
-      "figma",
-      "iina",
-      "logitech-options",
-      "postman",
-      "todoist",
-      "transmission",
-    )
-
-    PACMAN_EXTRA_PACKAGES=(
-      "android-tools"
-      "dbeaver"
-      "libreoffice"
-      "figma-linux"
-      "pinta"
-      "postman-bin"
-      "transmission-gtk"
-    )
-
-    brew install (${COMMON_EXTRA_PACKAGES[@]} ${BREW_EXTRA_PACKAGES[@]})
-  elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-    yay -S (${COMMON_EXTRA_PACKAGES[@]} ${LINUX_EXTRA_PACKAGES[@]}) --noconfirm --needed
-  fi
+elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+  yay -S ${COMMON_DESKTOP_PACKAGES[@]} ${LINUX_DESKTOP_PACKAGES[@]} --noconfirm --needed
 fi
 
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  sh ./macos.sh
+  COMMON_EXTRA_PACKAGES=("bitwarden" "calibre" "spotify" "zoom")
+
+  BREW_EXTRA_PACKAGES=(
+    "android-platform-tools"
+    "beardedspice"
+    "dbeaver-community"
+    "figma"
+    "iina"
+    "logitech-options"
+    "postman"
+    "todoist"
+    "transmission"
+  )
+
+  PACMAN_EXTRA_PACKAGES=(
+    "android-tools"
+    "dbeaver"
+    "libreoffice"
+    "figma-linux"
+    "pinta"
+    "postman-bin"
+    "transmission-gtk"
+  )
+
+  brew install ${COMMON_EXTRA_PACKAGES[@]} ${BREW_EXTRA_PACKAGES[@]}
+elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+  yay -S ${COMMON_EXTRA_PACKAGES[@]} ${LINUX_EXTRA_PACKAGES[@]} --noconfirm --needed
+fi
+
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+   source ~/.bin/macos_setup.sh
 fi
 
 if [ "$SYSTEM_TYPE" = "Linux" ]; then
-  sh ./manjaro-linux.sh
+  source ~/.bin/linux_setup.sh
 fi
+
