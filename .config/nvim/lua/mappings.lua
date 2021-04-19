@@ -1,7 +1,7 @@
 local map = require('utils').map
 
-
 vim.g.mapleader = " " -- map leader to space
+
 map('n', '<leader>w', ':w<cr>') -- Save file
 map('n', '<leader>bd', ':bd<cr>') -- Delete buffer
 -- Quicker window movement

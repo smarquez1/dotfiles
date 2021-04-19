@@ -13,7 +13,7 @@ telescope.setup {
       -- i = { ["<esc>"] = actions.close },
       n = { ["<esc>"] = actions.close },
     },
-    -- file_previewer = previewers.vim_buffer_cat.new,
+    -- file_previewer = previewers.vim_buffer_cat.new, -- Crashes neovim when loading huge files
     file_previewer = previewers.cat.new,
     -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_sorter =  require'telescope.sorters'.get_fzy_sorter,

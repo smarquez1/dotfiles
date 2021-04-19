@@ -21,6 +21,7 @@ return require('packer').startup({ function(use)
   use 'AndrewRadev/splitjoin.vim' -- change between multiline and single-line code
   use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
   use 'jiangmiao/auto-pairs' -- insert or delete brackets, parens, quotes in pair
+  -- TODO: replace with windwp/nvim-autopairs , enable https://github.com/windwp/nvim-autopairs/blob/master/doc/endwise.md
   use {
     'phaazon/hop.nvim',
     config = function()

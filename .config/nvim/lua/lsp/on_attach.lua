@@ -9,16 +9,14 @@ local on_attach = function(client)
 
   map_buf('n', 'gD', ':lua vim.lsp.buf.declaration() <CR>', opts)
   map_buf('n', 'gd', ':lua vim.lsp.buf.definition() <CR>', opts)
-  map_buf('n', 'K', ':lua vim.lsp.buf.hover() <CR>', opts)
-  map_buf('n', 'gi', ':lua vim.lsp.buf.implementation() <CR>', opts)
-  map_buf('n', '<leader>rn', ':lua vim.lsp.buf.rename() <CR>', opts)
   map_buf('n', 'gr', ':lua vim.lsp.buf.references() <CR>', opts)
+  map_buf('n', 'gi', ':lua vim.lsp.buf.implementation() <CR>', opts)
   map_buf('n', '<leader>ca', ':lua require("lspsaga.codeaction").code_action() <CR>', opts)
-  -- FIXME: map_buf not working here
-  -- mab_buf('v', '<leader>ca', ":'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
+  map_buf('n', '<leader>rn', ':lua vim.lsp.buf.rename() <CR>', opts)
+  map_buf('n', 'K', ':Lspsaga hover_doc <CR>', opts)
+  map_buf('v', '<leader>ca', ":'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
   map_buf('n', '[d', ':lua vim.lsp.diagnostic.goto_prev() <CR>', opts)
   map_buf('n', ']d', ':lua vim.lsp.diagnostic.goto_next() <CR>', opts)
-  map_buf('n', '<leader>q', ':lua vim.lsp.diagnostic.set_loclist() <CR>', opts)
 
   vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
