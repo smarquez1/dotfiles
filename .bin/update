@@ -14,7 +14,9 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   yay -Syu --noconfirm
 fi
 
-# Npm
+# ASDF plugins
+asdf plugin update --all   
+# Global npm packages
 yarn global upgrade
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh

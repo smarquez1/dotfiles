@@ -67,6 +67,12 @@ if [ `ls -A ~/.local/share/nvim/site/pack/packer | wc -m` == "0" ]; then
   ~/.bin/install_lsp.sh
 fi
 
+# ASDF plugins
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf plugin-add nodejs 
+asdf plugin-add postgres
+asdf plugin-add yarn
+
 # JS dependencies
 YARN_PACKAGES=("eslint_d" "stylelint" "prettier" "typescript" "create-react-app")
 sudo yarn global add ${YARN_PACKAGES[@]}
