@@ -1,9 +1,9 @@
 #!/bin/bash
-# TODO: use https://github.com/Homebrew/homebrew-bundle for macos
 
 SYSTEM_TYPE=$(uname -s)
 
 COMMON_PACKAGES=(
+  "asdf"
   "bat"
   "docker"
   "docker-compose"
@@ -12,10 +12,7 @@ COMMON_PACKAGES=(
   "go"
   "htop"
   "nodejs"
-  "python"
-  "rbenv"
   "ripgrep"
-  "ruby-build"
   "starship"
   "tmux"
   "wget"
@@ -30,16 +27,15 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     echo ">>> Installing homebrew.."
     echo | /usr/bin/ruby -e "$(curl -fsSL $BREW_URL)" > /dev/null
   fi
-  BREW_PACKAGES=("neovim-git" "rbenv-aliases" "rbenv-default-gems" "rbenv-use" )
+  BREW_PACKAGES=("neovim")
   brew tap homebrew/cask-fonts  
   brew tap homebrew/cask-drivers
   brew install ${COMMON_PACKAGES[@]} ${BREW_PACKAGES[@]}
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-  # TODO: add  "rbenv-aliases" "rbenv-default-gems" "rbenv-use"
-  PACMAN_PACKAGES=("neovim-nighly-bin" "openssh" "pulseaudio-modules-bt-git" "python-pip" "tlp" "xclip")
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
+  PACMAN_PACKAGES=("neovim-nightly-bin" "openssh" "xclip")
   yay -S ${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} --noconfirm --needed
 fi
 
@@ -53,7 +49,7 @@ if [ `ls -A ~/.zim/ | wc -m` == "0" ]; then
   curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 fi
 
-# Install tmux  plugins
+# Install tmux plugins
 if [ `ls -A ~/.config/tmux/plugins/tpm | wc -m` == "0" ]; then
   echo "bootstraping tmux"
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && \
@@ -61,8 +57,8 @@ if [ `ls -A ~/.config/tmux/plugins/tpm | wc -m` == "0" ]; then
 fi
 
 # Install neovim plugins
-if command -v nvim >/dev/null 2>&1; then
-  echo "Bootstraping NeoVim"
+if [ `ls -A ~/.local/share/nvim/site/pack/packer | wc -m` == "0" ]; then
+  echo "Installing NeoVim dependencies"
 
   git clone https://github.com/wbthomason/packer.nvim \
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
@@ -96,7 +92,6 @@ PACMAN_DESKTOP_PACKAGES=(
   "noto-fonts"
   "pavucontrol"
   "slack-desktop"
-  "ttf-joypixels"
 )
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   brew install ${COMMON_DESKTOP_PACKAGES[@]} ${BREW_DESKTOP_PACKAGES[@]}
@@ -105,41 +100,41 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   yay -S ${COMMON_DESKTOP_PACKAGES[@]} ${LINUX_DESKTOP_PACKAGES[@]} --noconfirm --needed
 fi
 
-if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  COMMON_EXTRA_PACKAGES=("bitwarden" "calibre" "spotify" "zoom")
+# if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+#   COMMON_EXTRA_PACKAGES=("bitwarden" "calibre" "spotify" "zoom")
 
-  BREW_EXTRA_PACKAGES=(
-    "android-platform-tools"
-    "beardedspice"
-    "dbeaver-community"
-    "figma"
-    "iina"
-    "logitech-options"
-    "postman"
-    "todoist"
-    "transmission"
-  )
+#   BREW_EXTRA_PACKAGES=(
+#     "android-platform-tools"
+#     "beardedspice"
+#     "dbeaver-community"
+#     "figma"
+#     "iina"
+#     "logitech-options"
+#     "postman"
+#     "todoist"
+#     "transmission"
+#   )
 
-  PACMAN_EXTRA_PACKAGES=(
-    "android-tools"
-    "dbeaver"
-    "libreoffice"
-    "figma-linux"
-    "pinta"
-    "postman-bin"
-    "transmission-gtk"
-  )
+#   PACMAN_EXTRA_PACKAGES=(
+#     "android-tools"
+#     "dbeaver"
+#     "libreoffice"
+#     "figma-linux"
+#     "pinta"
+#     "postman-bin"
+#     "transmission-gtk"
+#   )
 
-  brew install ${COMMON_EXTRA_PACKAGES[@]} ${BREW_EXTRA_PACKAGES[@]}
-elif [ "$SYSTEM_TYPE" = "Linux" ]; then
-  yay -S ${COMMON_EXTRA_PACKAGES[@]} ${LINUX_EXTRA_PACKAGES[@]} --noconfirm --needed
-fi
+#   brew install ${COMMON_EXTRA_PACKAGES[@]} ${BREW_EXTRA_PACKAGES[@]}
+# elif [ "$SYSTEM_TYPE" = "Linux" ]; then
+#   yay -S ${COMMON_EXTRA_PACKAGES[@]} ${LINUX_EXTRA_PACKAGES[@]} --noconfirm --needed
+# fi
 
-if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-   source ~/.bin/macos_setup.sh
-fi
+# if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+#   # TODO: use https://github.com/Homebrew/homebrew-bundle for macos
+#   source ~/.bin/macos_setup.sh
+# fi
 
-if [ "$SYSTEM_TYPE" = "Linux" ]; then
-  source ~/.bin/linux_setup.sh
-fi
-
+# if [ "$SYSTEM_TYPE" = "Linux" ]; then
+#   source ~/.bin/linux_setup.sh
+# fi

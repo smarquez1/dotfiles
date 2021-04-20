@@ -8,7 +8,7 @@ sudo /usr/bin/tic -xe alacritty-direct,tmux-256color .tmux-256color
 # source https://mths.be/macos
 
 # Close any open System Preferences panes, to prevent them from overriding
-# settings weÕre about to change
+# settings weï¿½re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
