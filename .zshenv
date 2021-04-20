@@ -44,3 +44,4 @@ alias vscode="/usr/local/bin/code"
 alias code="cd ~/code"
 # Open
 [ "$SYSTEM_TYPE" = "Linux" ] && alias open='xdg-open'
+export BAT_THEME="TwoDark"
