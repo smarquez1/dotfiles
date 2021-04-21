@@ -3,13 +3,14 @@ bundler
 pry
 pry-byebug
 pry-nav
+rails
 rspec
 rubocop
 solargraph
 
+# other useful gems
 # debride
 # fasterer
-# rails
 # reek
 # rubocop-performance
 # rubocop-rails
