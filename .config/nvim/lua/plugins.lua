@@ -79,7 +79,8 @@ return require('packer').startup({ function(use)
     config = function() require('plugins.lualine') end
   }
   use 'Th3Whit3Wolf/one-nvim'
-  use 'ChristianChiarulli/nvcode-color-schemes.vim'
+  use '~/code/nvcode-color-schemes.vim'
+  -- use 'ChristianChiarulli/nvcode-color-schemes.vim'
   use 'kyazdani42/nvim-web-devicons'
   use 'dstein64/nvim-scrollview'
   use {

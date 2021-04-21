@@ -16,8 +16,10 @@ fi
 
 # ASDF plugins
 asdf plugin update --all   
-# Global npm packages
-yarn global upgrade
+# Global js packages
+(cd ~/ ; yarn upgrade)
+# Global ruby packages
+(cd ~/ ; gem update)
 # Tmux
 ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 # Neovim

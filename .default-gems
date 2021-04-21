@@ -1,7 +1,15 @@
 amazing_print
+bundler
 pry
 pry-byebug
 pry-nav
 rspec
 rubocop
 solargraph
+
+# debride
+# fasterer
+# rails
+# reek
+# rubocop-performance
+# rubocop-rails

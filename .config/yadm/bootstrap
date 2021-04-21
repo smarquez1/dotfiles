@@ -11,12 +11,10 @@ COMMON_PACKAGES=(
   "git"
   "go"
   "htop"
-  "nodejs"
   "ripgrep"
   "starship"
   "tmux"
   "wget"
-  "yarn"
 )
 
 # INSTALL DEPENDENCIES
@@ -71,11 +69,7 @@ fi
 asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin-add nodejs 
 asdf plugin-add postgres
-asdf plugin-add yarn
-
-# JS dependencies
-YARN_PACKAGES=("eslint_d" "stylelint" "prettier" "typescript" "create-react-app")
-sudo yarn global add ${YARN_PACKAGES[@]}
+asdf install
 
 # Basic desktop apps
 COMMON_DESKTOP_PACKAGES=("alacritty" "firefox" "google-chrome")
