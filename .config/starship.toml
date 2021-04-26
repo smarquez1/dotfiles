@@ -17,19 +17,13 @@ discharging_symbol = ""
 [directory]
 read_only = " "
 
-[docker]
+[docker_context]
 symbol = " "
 
 [elixir]
 symbol = " "
 
 [git_branch]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[hg_branch]
 symbol = " "
 
 [java]
@@ -45,14 +39,8 @@ symbol = " "
 disabled = true
 symbol = " "
 
-[python]
-symbol = " "
-
 [ruby]
 symbol = " "
-
-[rust]
-symbol = " "
 
 [cmd_duration]
 min_time = 3
