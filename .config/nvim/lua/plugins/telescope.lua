@@ -15,10 +15,10 @@ telescope.setup {
     },
     -- file_previewer = previewers.vim_buffer_cat.new, -- Crashes neovim when loading huge files
     file_previewer = previewers.cat.new,
-    -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
   }
 }
+
+telescope.load_extension('fzy_native')
 
 -- Custom functions
 local M = {}

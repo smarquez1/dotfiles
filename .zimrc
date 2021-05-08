@@ -7,6 +7,8 @@ zmodule environment
 zmodule git
 # Exposes git repository status information to prompts.
 zmodule git-info
+# Exposes to prompts how long the last command took to execute.
+zmodule duration-info
 # Applies correct bindkeys for input events.
 zmodule input
 # Sets a custom terminal title.
@@ -19,6 +21,10 @@ zmodule archive
 zmodule zsh-users/zsh-completions
 # Smart and extensive tab completion. must be sourced after zsh-users/zsh-completions
 zmodule completion
+
+# prompt theme
+zmodule asciiship
+
 # syntax highlighting. must be sourced after completion
 zmodule zsh-users/zsh-syntax-highlighting
 # autosuggestions for Zsh.

@@ -53,7 +53,7 @@ return require('packer').startup({ function(use)
   -- Navigation
   use {
     'nvim-lua/telescope.nvim',
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', },
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim' },
     config = function() require('plugins.telescope') end
   }
   use {

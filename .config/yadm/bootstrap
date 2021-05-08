@@ -12,7 +12,6 @@ COMMON_PACKAGES=(
   "go"
   "htop"
   "ripgrep"
-  "starship"
   "tmux"
   "wget"
 )
