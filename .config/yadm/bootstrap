@@ -72,7 +72,7 @@ asdf plugin-add postgres
 asdf install
 
 # Basic desktop apps
-COMMON_DESKTOP_PACKAGES=("alacritty" "firefox" "google-chrome")
+COMMON_DESKTOP_PACKAGES=("kitty" "firefox" "google-chrome")
 
 BREW_DESKTOP_PACKAGES=(
   "appcleaner"

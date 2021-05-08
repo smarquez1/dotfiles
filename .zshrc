@@ -6,6 +6,8 @@ source ~/.secrets
 . /usr/local/opt/asdf/asdf.sh
 # load starship
 eval "$(starship init zsh)"
+# https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
 # Git
 alias g="git"
