@@ -7,6 +7,7 @@ rails
 rspec
 rubocop
 solargraph
+yard
 
 # other useful gems
 # debride
