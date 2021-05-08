@@ -49,6 +49,7 @@ return require('packer').startup({ function(use)
     -- , 'SirVer/ultisnips', 'honza/vim-snippets'
     config = function() require('plugins.compe') end
   }
+  use 'folke/which-key.nvim'
   -- Navigation
   use {
     'nvim-lua/telescope.nvim',
@@ -90,11 +91,11 @@ return require('packer').startup({ function(use)
     config = function() require('colorizer').setup() end
   }
   -- Ruby
+  use 'ecomba/vim-ruby-refactoring'
+  use 'p0deje/vim-ruby-interpolation' -- Simple plugin to add {} after hitting #
   use {
-    'ecomba/vim-ruby-refactoring',
-    'p0deje/vim-ruby-interpolation', -- Simple plugin to add {} after hitting #
     'tpope/vim-rails', -- rails.vim: Ruby on Rails power tools
-    config = function() require('plugins.lualine') end
+    config = function() require('plugins.vim_rails') end
   }
   -- HTMLish
   use 'windwp/nvim-ts-autotag'

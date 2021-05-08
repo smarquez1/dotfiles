@@ -12,8 +12,8 @@ end
 
 # == amazing_print - great syntax colorized printing
 begin
-  require 'amazing_print'
-  AmazingPrint.pry!
+  require 'awesome_print'
+  AwesomePrint.pry!
 rescue LoadError => e
-  puts 'gem install amazing_print  # <-- highly recommended'
+  puts 'gem install awesome_print  # <-- highly recommended'
 end

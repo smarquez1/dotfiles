@@ -1,14 +1,12 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
-local saga = require 'lspsaga'
+local saga = require('lspsaga')
 
 saga.init_lsp_saga {
   code_action_icon = '💡',
   code_action_prompt = {
-    virtual_text = false
+    virtual_text = true
   },
-  hint_sign = '🌿',
-  dianostic_header_icon = "👀 "
 }
 
 -- handlers

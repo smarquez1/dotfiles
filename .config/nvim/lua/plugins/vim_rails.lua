@@ -1,5 +1,5 @@
 local map = require('utils').map
 
-map('n', '<leader>a', ':A<cr>')
-map('n', '<leader>av', ':AV <cr>')
-map('n', '<leader>as', ':AS<cr>')
+map('n', '<leader>a', ':A<CR>')
+map('n', '<leader>av', ':AV<CR>')
+map('n', '<leader>as', ':AS<CR>')

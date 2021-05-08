@@ -1,18 +1,18 @@
 [user]
-	name = Sergio D. Márquez
-	email = marquez.sergio.d@gmail.com
+  name = Sergio D. Márquez
+  email = marquez.sergio.d@gmail.com
 [color]
   ui = true
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
   editor = nvim
-	attributesfile = /Users/sergio/.gitattributes
+  attributesfile = /Users/sergio/.gitattributes
   pager = cat
   mergeoptions = --no-edit # don't prompt for message for merge commits.
   commitGraph = true
 [commit]
   ; gpgSign = true
-	verbose = true
+  verbose = true
 [diff]
   tool = vimdiff
 [difftool]
@@ -23,22 +23,22 @@
   decorate = auto
   abbrevCommit = true
 [merge]
-	ff = only
-	tool = vimdiff
+  ff = only
+  tool = vimdiff
 [mergetool]
   prompt = false
-	keepBackup = false
+  keepBackup = false
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED  -c '$wincmd w' -c 'wincmd J'
 [fetch]
   prune = true
 [push]
-	default = current
+  default = current
 [rebase]
   autoStash = true
   autoSquash = true
 [status]
-	rebase = false
+  rebase = false
 [alias]
   d       = difftool
   m       = mergetool
@@ -57,4 +57,4 @@
   rebase = true
   ff = only
 [blame]
-	date = short
+  date = short

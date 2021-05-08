@@ -12,3 +12,10 @@ require("nvim-treesitter.configs").setup {
   },
   context_commentstring = { enable = true }
 }
+
+-- Treesitter based folding, can cause slowdowns
+-- https://github.com/nvim-treesitter/nvim-treesitter/issues/1100#issuecomment-828138292
+vim.cmd[[ set foldexpr=nvim_treesitter#foldexpr() ]]
+vim.cmd[[ set foldmethod=expr ]]
+vim.cmd[[ autocmd FileType vim,yaml setlocal foldmethod=indent ]]
+vim.wo.foldlevel = 99

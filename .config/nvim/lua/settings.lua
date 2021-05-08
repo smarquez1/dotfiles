@@ -6,8 +6,7 @@ vim.o.termguicolors = true -- Support 24 bit color
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true -- Highlight cursor
--- vim.o.sidescrolloff = 4
--- vim.o.scrolloff = 4
+vim.o.scrolloff = 3
 vim.wo.signcolumn="yes"  --Always show the signcolumn, otherwise it would shift the text each time
 -- Search
 vim.o.ignorecase = true
@@ -28,10 +27,7 @@ vim.o.showbreak = '↲ ' -- Show breakline symbol
 vim.o.clipboard = 'unnamed,unnamedplus' -- Use system's clipboard
 vim.bo.expandtab = true -- converts tabs to spaces
 vim.o.shiftwidth = 2 -- number of space characters inserted for indentation
--- Enable folding by default
-vim.wo.foldmethod = 'indent'
-vim.wo.foldlevel = 99
-vim.cmd('set iskeyword+=-') --treat dash separated words as a word text object"
+vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object
 
 -- ft=markdown
 vim.cmd [[autocmd FileType markdown setl spell]] -- Enable spelling

@@ -1,13 +1,5 @@
 live_config_reload: true
 
-# Start tmux on login
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux attach || tmux new -s 1"
-
 window:
   decorations: full
   startup_mode: Maximized
