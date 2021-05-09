@@ -27,6 +27,18 @@ local on_attach = function(client)
   elseif client.resolved_capabilities.document_range_formatting then
     map_buf("n", "<leader>qf", ":lua vim.lsp.buf.range_formatting() <CR>", opts)
   end
+
+  vim.cmd([[
+    augroup prewrites
+      " *.rb,*.js,*.jsx,*.scss,*.json,*.html*.rb,*.js,*.jsx,*.scss,*.json,*.html
+      autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
+    augroup END
+  ]])
+
+  -- to disable the augroup...
+  -- augroup prewrites
+  --   autocmd!
+  -- augroup END
 end
 
 return on_attach

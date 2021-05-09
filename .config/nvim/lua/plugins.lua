@@ -20,8 +20,11 @@ return require('packer').startup({ function(use)
   use 'mg979/vim-visual-multi' -- Multiple cursors
   use 'AndrewRadev/splitjoin.vim' -- change between multiline and single-line code
   use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
-  use 'jiangmiao/auto-pairs' -- insert or delete brackets, parens, quotes in pair
-  -- TODO: replace with windwp/nvim-autopairs , enable https://github.com/windwp/nvim-autopairs/blob/master/doc/endwise.md
+  use {
+    'windwp/nvim-autopairs', -- autopairs for neovim written by lua
+    config = function() require('nvim-autopairs').setup() end
+  }
+
   use {
     'phaazon/hop.nvim',
     config = function()
@@ -53,7 +56,11 @@ return require('packer').startup({ function(use)
   -- Navigation
   use {
     'nvim-lua/telescope.nvim',
-    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim' },
+    requires = {
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim'
+    },
     config = function() require('plugins.telescope') end
   }
   use {
@@ -101,7 +108,10 @@ return require('packer').startup({ function(use)
   use 'windwp/nvim-ts-autotag'
   use {
     'mattn/emmet-vim',
-    ft = { 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'eruby' }
+    ft = {
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
+      'eruby'
+    }
   }
   -- Others
   use 'tomlion/vim-solidity'

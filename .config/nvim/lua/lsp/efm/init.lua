@@ -19,16 +19,14 @@ local prettier =  {
 
 local languages = {
   -- yaml = { prettier },
-  -- json = { prettier },
+  json = { prettier },
   -- markdown = { prettier },
   javascript = { eslint, prettier },
   javascriptreact = { eslint, prettier },
   typescript = { eslint, prettier },
   typescriptreact = { eslint, prettier },
-  -- css = { prettier },
-  -- scss = { prettier },
-  -- sass = { prettier },
-  -- less = { prettier },
+  css = { prettier },
+  scss = { prettier },
   -- graphql = { prettier },
   -- html = { prettier }
 }
