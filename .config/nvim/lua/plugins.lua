@@ -116,4 +116,5 @@ return require('packer').startup({ function(use)
   -- Others
   use 'tomlion/vim-solidity'
   use 'kchmck/vim-coffee-script'
+  use 'chrisbra/csv.vim'
 end })

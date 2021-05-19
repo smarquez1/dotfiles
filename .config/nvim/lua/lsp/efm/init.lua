@@ -1,7 +1,5 @@
 local lsp_config = require('lspconfig')
 local on_attach = require('lsp.on_attach')
--- local eslint = require('lsp.efm.eslint')
--- local prettier = require('lsp.efm.prettier')
 
 local eslint = {
   lintCommand = 'eslint_d  -f unix --stdin --stdin-filename ${INPUT}',
@@ -18,21 +16,21 @@ local prettier =  {
 }
 
 local languages = {
-  -- yaml = { prettier },
   json = { prettier },
-  -- markdown = { prettier },
   javascript = { eslint, prettier },
   javascriptreact = { eslint, prettier },
   typescript = { eslint, prettier },
   typescriptreact = { eslint, prettier },
   css = { prettier },
   scss = { prettier },
+  -- yaml = { prettier },
+  -- markdown = { prettier },
   -- graphql = { prettier },
   -- html = { prettier }
 }
 
 lsp_config.efm.setup({
-  root_dir = lsp_config.util.root_pattern("yarn.lock", "lerna.json", ".git"),
+  root_dir = lsp_config.util.root_pattern("yarn.lock", ".git"),
   init_options = { documentFormatting = true, codeAction = true },
   filetypes = vim.tbl_keys(languages),
   settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},

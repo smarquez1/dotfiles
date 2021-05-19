@@ -12,7 +12,7 @@ require('lualine').setup {
       {
 	'diagnostics',
 	sources = { 'nvim_lsp' },
-	symbols = { error = ' ', warn = ' ', info = ' ' }
+	symbols = { error = ' ', warn = ' ', info = ' ' }
       },
       { 'filename', file_status = true },
     },
