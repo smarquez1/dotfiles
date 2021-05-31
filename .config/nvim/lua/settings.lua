@@ -27,7 +27,7 @@ vim.o.showbreak = '↲ ' -- Show breakline symbol
 vim.o.clipboard = 'unnamed,unnamedplus' -- Use system's clipboard
 vim.bo.expandtab = true -- converts tabs to spaces
 vim.o.shiftwidth = 2 -- number of space characters inserted for indentation
-vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object
+vim.opt.iskeyword = vim.opt.iskeyword + '-' -- treat dash separated words as a word text object
 
 -- ft=markdown
 vim.cmd [[autocmd FileType markdown setl spell]] -- Enable spelling

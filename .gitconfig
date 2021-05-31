@@ -1,60 +1,64 @@
 [user]
-  name = Sergio D. Márquez
   email = marquez.sergio.d@gmail.com
+  name = Sergio D. Márquez
 [color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
   ui = true
+  pager = true
 [core]
-  excludesfile = ~/.gitignore
   editor = nvim
-  attributesfile = /Users/sergio/.gitattributes
-  pager = cat
-  mergeoptions = --no-edit # don't prompt for message for merge commits.
-  commitGraph = true
+  excludesfile = ~/.global_gitignore
+  pager = less -FRSX
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [commit]
   ; gpgSign = true
   verbose = true
-[diff]
-  tool = vimdiff
 [difftool]
   prompt = false
 [difftool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE
-[log]
-  decorate = auto
-  abbrevCommit = true
 [merge]
-  ff = only
+  summary = true
   tool = vimdiff
-[mergetool]
-  prompt = false
-  keepBackup = false
+  ; ff = only
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED  -c '$wincmd w' -c 'wincmd J'
-[fetch]
-  prune = true
-[push]
-  default = current
 [rebase]
-  autoStash = true
+  autosquash = true
+[advice]
+  statusHints = false
+[push]
+  config = default
+  default = tracking
+[rebase]
   autoSquash = true
-[status]
-  rebase = false
+  ; autoStash = true
+[blame]
+  date = short
 [alias]
-  d       = difftool
-  m       = mergetool
   aa      = add --all
   ca      = commit --amend
   co      = checkout
   cp      = cherry-pick
+  d       = difftool
+  l       = log --oneline --decorate --color
+  m       = mergetool
   st      = status
+  aliases = !git config -l | grep alias | cut -c 7-
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
   undo    = reset --soft HEAD^
   unstage = reset HEAD
   up      = !git fetch origin && git rebase origin/master
-  l       = log --oneline --decorate --color
-  la      = !git config -l | grep alias | cut -c 7-
-  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
-[pull]
-  rebase = true
-  ff = only
-[blame]
-  date = short
+
+; [diff]
+;   tool = vimdiff
+; [mergetool]
+;   prompt = false
+;   keepBackup = false
+; [fetch]
+;   prune = true
+; [status]
+;   rebase = false

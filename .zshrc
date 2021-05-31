@@ -4,12 +4,11 @@ source ~/.secrets
 
 # load asdf
 . /usr/local/opt/asdf/asdf.sh
-# load starship
-# eval "$(starship init zsh)"
-# https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
+# autostart TMUX
 [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
 # Git
+alias git="LANG=en git"
 alias g="git"
 alias ga="git add"
 alias gaa="git add --all"

@@ -3,7 +3,7 @@
 -- Completion does not select anything automatically
 vim.o.completeopt = 'menuone,noselect'
 -- Do not display "Pattern not found" messages during completion.
-vim.cmd [[set shortmess+=c]]
+vim.opt.shortmess = vim.opt.shortmess + 'c'
 
 require('compe').setup {
   source = {

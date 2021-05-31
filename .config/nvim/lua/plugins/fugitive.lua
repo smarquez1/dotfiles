@@ -1,5 +1,3 @@
-vim.g.fugitive_git_executable = 'LANG=en_US git'
-
 local map = require('utils').map
 local options = { noremap = true }
 

@@ -74,7 +74,7 @@ return require('packer').startup({ function(use)
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    requires = 'glepnir/lspsaga.nvim',
+    requires = 'kosayoda/nvim-lightbulb',
     config = function() require('lsp.init') end
   }
   -- Appearance
@@ -91,6 +91,7 @@ return require('packer').startup({ function(use)
     'Th3Whit3Wolf/onebuddy',
     requires = 'tjdevries/colorbuddy.vim'
   }
+  use 'folke/tokyonight.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'dstein64/nvim-scrollview'
   use {
