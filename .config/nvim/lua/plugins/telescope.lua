@@ -10,8 +10,9 @@ telescope.setup {
     prompt_position = "top",
     sorting_strategy = "ascending",
     mappings = {
-      -- i = { ["<esc>"] = actions.close },
-      n = { ["<esc>"] = actions.close },
+      n = {
+	["<esc>"] = actions.close,
+      },
     },
     -- file_previewer = previewers.vim_buffer_cat.new, -- Crashes neovim when loading huge files
     file_previewer = previewers.cat.new,
@@ -39,6 +40,7 @@ map('n', '<leader>bl' , ':Telescope buffers<CR>', opts)
 map('n', '<leader>gb', ':Telescope git_branches<CR>', opts)
 map('n', '<leader>ht', ':Telescope help_tags<CR>', opts)
 map('n', '<leader>S' , ':Telescope lsp_workspace_symbols<CR>', opts)
+map('n', '<leader>gs', ':Telescope git_status<CR>', opts)
 -- List all YADM tracked files
 map('n', "<leader>ed", ":lua require('plugins.telescope').find_dotfiles()<CR>", opts)
 

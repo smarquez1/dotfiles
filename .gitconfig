@@ -52,6 +52,7 @@
   undo    = reset --soft HEAD^
   unstage = reset HEAD
   up      = !git fetch origin && git rebase origin/master
+  delete-untracked = clean -fd
 
 ; [diff]
 ;   tool = vimdiff

@@ -27,12 +27,12 @@ local on_attach = function(client)
 
   vim.cmd [[
     augroup lsp
-      au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+      " au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
       au CursorHoldI * silent! lua vim.lsp.buf.signature_help()
+      " au CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+      " au CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+      " au CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       au CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-      au CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-      au CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-      au CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     augroup END
   ]]
 end

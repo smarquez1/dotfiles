@@ -5,7 +5,7 @@ source ~/.secrets
 # load asdf
 . /usr/local/opt/asdf/asdf.sh
 # autostart TMUX
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+# [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
 # Git
 alias git="LANG=en git"
