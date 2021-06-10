@@ -65,7 +65,6 @@ return require('packer').startup({ function(use)
     requires = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
-      -- 'nvim-telescope/telescope-fzy-native.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'nvim-telescope/telescope-github.nvim',
       'sudormrfbin/cheatsheet.nvim',
