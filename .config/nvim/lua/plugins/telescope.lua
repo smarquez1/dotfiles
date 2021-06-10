@@ -3,23 +3,38 @@ local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local previewers = require('telescope.previewers')
 
-local map = require('utils').map
-
 telescope.setup {
   defaults = {
     prompt_position = "top",
     sorting_strategy = "ascending",
-    mappings = {
-      n = {
-	["<esc>"] = actions.close,
-      },
-    },
-    -- file_previewer = previewers.vim_buffer_cat.new, -- Crashes neovim when loading huge files
-    file_previewer = previewers.cat.new,
+    file_previewer = previewers.cat.new -- Default TS previewer crashes neovim when loading huge files
+  },
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+      theme = "dropdown",
+      previewer = false,
+      mappings = {
+        i = {
+          -- ["<c-d>"] = actions.delete_buffer,
+          ["<c-d>"] = "delete_buffer",
+        },
+        n = {
+          -- ["<c-d>"] = actions.delete_buffer,
+          ["<c-d>"] = "delete_buffer",
+        }
+      }
+    }
+  },
+  find_files = {
+    theme = "dropdown"
   }
 }
 
-telescope.load_extension('fzy_native')
+-- telescope.load_extension('fzy_native')
+telescope.load_extension('gh')
+require('telescope').load_extension('fzf')
 
 -- Custom functions
 local M = {}
@@ -33,6 +48,7 @@ function M.find_dotfiles()
 end
 
 -- Mappings
+local map = require('utils').map
 local opts = { noremap = true, silent = true }
 
 map('n', '<leader>f' , ':Telescope find_files<CR>', opts)

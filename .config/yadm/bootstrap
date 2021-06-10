@@ -8,6 +8,7 @@ COMMON_PACKAGES=(
   "docker"
   "docker-compose"
   "fd"
+  "gh"
   "git"
   "go"
   "htop"

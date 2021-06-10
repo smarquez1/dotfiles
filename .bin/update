@@ -7,11 +7,15 @@ SYSTEM_TYPE=$(uname -s)
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   brew upgrade
   brew update
+  brew upgrade neovim --fetch-HEAD
   brew autoremove
   brew cleanup --prune=all
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   sudo pacman-mirrors --continent
+  # brew upgrade neovim --fetch-HEAD
   yay -Syu --noconfirm
+  # brew autoremove
+  # brew cleanup --prune=all
 fi
 
 # ASDF plugins
