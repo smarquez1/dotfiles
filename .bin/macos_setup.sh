@@ -3,7 +3,7 @@
 
 # Add tmux-256color terminfo (missing in macos)
 # sudo /usr/bin/tic -xe ~/.tmux-256color
-sudo /usr/bin/tic -xe alacritty-direct,tmux-256color .tmux-256color
+# sudo /usr/bin/tic -xe alacritty-direct,tmux-256color .tmux-256color
 
 # source https://mths.be/macos
 

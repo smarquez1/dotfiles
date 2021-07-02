@@ -15,7 +15,7 @@ require('compe').setup {
     nvim_lua = { kind = "  " },
     spell = { kind = "  " },
     tags = false,
-    -- treesitter = {kind = "  "},
+    treesitter = {kind = "  "},
     emoji = { kind = " ﲃ " } -- for emoji press :
   }
 }

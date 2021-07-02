@@ -19,18 +19,7 @@ return require('packer').startup({ function(use)
   use 'mg979/vim-visual-multi' -- Multiple cursors
   use 'AndrewRadev/splitjoin.vim' -- change between multiline and single-line code
   use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
-  use {
-    'windwp/nvim-autopairs', -- autopairs for neovim written by lua
-    config = function() require('nvim-autopairs').setup() end
-  }
-
-  use {
-    'phaazon/hop.nvim', -- Easymotion like
-    config = function()
-      local opts = { silent = true, noremap = true }
-      vim.api.nvim_set_keymap('n', 's', ":HopChar1<cr>", opts)
-    end
-  }
+  use 'ggandor/lightspeed.nvim'
   use {
     'lewis6991/gitsigns.nvim', -- display git information in the gutter
     requires = { 'nvim-lua/plenary.nvim' },
@@ -42,11 +31,23 @@ return require('packer').startup({ function(use)
     config = function() require('plugins.treesitter') end
   }
   use { 'nvim-treesitter/playground' }
+  -- use {
+    -- 'nvim-treesitter/nvim-treesitter-textobjects',
+    -- after = 'nvim-treesitter'
+  -- }
+  -- use {'RRethy/nvim-treesitter-textsubjects', after = 'nvim-treesitter'}
+  use {'andymass/vim-matchup', after = 'nvim-treesitter'}
+  use {
+    'windwp/nvim-autopairs', -- autopairs for neovim written by lua
+  }
+
+  use {'windwp/nvim-ts-autotag', after = 'nvim-treesitter'}
 
   use {
     'JoosepAlviste/nvim-ts-context-commentstring', -- sets the TS commentstring based on the cursor location in a file.
     requires = 'tpope/vim-commentary'
   }
+  -- use 'b3nj5m1n/kommentary'
 
   use {
     'hrsh7th/nvim-compe',
@@ -58,6 +59,11 @@ return require('packer').startup({ function(use)
     config = function() require('plugins.compe') end
   }
   use 'folke/which-key.nvim'
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function() require("todo-comments").setup() end
+  }
 
   -- Navigation
   use {
@@ -112,7 +118,7 @@ return require('packer').startup({ function(use)
     'tpope/vim-rails', -- rails.vim: Ruby on Rails power tools
     config = function() require('plugins.vim_rails') end
   }
-  use 'windwp/nvim-ts-autotag'
+  use 'kchmck/vim-coffee-script'
   use {
     'mattn/emmet-vim',
     ft = {
@@ -121,6 +127,5 @@ return require('packer').startup({ function(use)
     }
   }
   use 'tomlion/vim-solidity'
-  use 'kchmck/vim-coffee-script'
   use 'chrisbra/csv.vim'
 end })

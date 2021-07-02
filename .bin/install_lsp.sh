@@ -1,10 +1,11 @@
 NPM_PACKAGES=(
+  bash-language-server
   diagnostic-languageserver
+  emmet-ls
   typescript-language-server
-  vscode-json-languageserver
   vscode-css-languageserver-bin
   vscode-html-languageserver-bin
-  bash-language-server
+  vscode-json-languageserver
 )
 
 GO_PACKAGES=(

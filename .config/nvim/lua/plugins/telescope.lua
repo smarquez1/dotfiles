@@ -33,6 +33,7 @@ local M = {}
 
 function M.find_dotfiles()
   builtin.find_files {
+    cwd = '~',
     find_command = { 'yadm', 'list', '-a' },
     prompt_title = 'Find Dotfiles',
   }
