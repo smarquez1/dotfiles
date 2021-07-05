@@ -33,7 +33,7 @@ elif [ "$SYSTEM_TYPE" = "Linux" ]; then
   if command -v yay >/dev/null 2>&1; then
     sudo pacman -S yay --noconfirm --needed
   fi
-  PACMAN_PACKAGES=("neovim-nightly-bin" "openssh" "xclip")
+  PACMAN_PACKAGES=("neovim" "openssh" "xclip")
   yay -S ${COMMON_PACKAGES[@]} ${PACMAN_PACKAGES[@]} --noconfirm --needed
 fi
 

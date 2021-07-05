@@ -5,9 +5,9 @@ SYSTEM_TYPE=$(uname -s)
 
 # System
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  brew upgrade
   brew update
-  brew upgrade neovim --fetch-HEAD
+  brew upgrade
+  # brew upgrade neovim --fetch-HEAD
   brew autoremove
   brew cleanup --prune=all
 elif [ "$SYSTEM_TYPE" = "Linux" ]; then
