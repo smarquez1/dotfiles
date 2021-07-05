@@ -30,7 +30,6 @@ return require('packer').startup({ function(use)
     run = ':TSUpdate',
     config = function() require('plugins.treesitter') end
   }
-  use { 'nvim-treesitter/playground' }
   -- use {
     -- 'nvim-treesitter/nvim-treesitter-textobjects',
     -- after = 'nvim-treesitter'
@@ -93,7 +92,7 @@ return require('packer').startup({ function(use)
   }
   -- Appearance
   use 'folke/tokyonight.nvim'
-  use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua',
+  use { 'lukas-reineke/indent-blankline.nvim',
     config = function() require('plugins.indent_blankline') end
   }
   use 'henrik/vim-indexed-search' -- Display number of search results

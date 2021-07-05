@@ -1,5 +1,4 @@
 local telescope = require('telescope')
-local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local previewers = require('telescope.previewers')
 
@@ -13,12 +12,10 @@ telescope.setup {
       sort_lastused = true,
       mappings = {
         i = {
-          ["<c-d>"] = actions.delete_buffer,
-          -- ["<c-d>"] = "delete_buffer",
+          ["<c-d>"] = "delete_buffer",
         },
         n = {
-          ["<c-d>"] = actions.delete_buffer,
-          -- ["<c-d>"] = "delete_buffer",
+          ["<c-d>"] = "delete_buffer",
         }
       }
     }

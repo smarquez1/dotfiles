@@ -11,8 +11,8 @@ vim.g.nvim_tree_disable_netrw = 0 -- So Fugitive's :GBrowse works
 vim.g.nvim_tree_lsp_diagnostics = 1
 
 vim.g.nvim_tree_bindings = {
-  ["l"] = tree_cb('edit'),
-  ["h"] = tree_cb('close_node'),
+  { key = "l", cb = tree_cb("edit") },
+  { key = "h", cb = tree_cb("close_node") },
 }
 
 map('n', '<leader>d', ':NvimTreeToggle<cr>')
