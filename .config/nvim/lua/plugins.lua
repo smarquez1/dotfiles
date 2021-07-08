@@ -28,25 +28,33 @@ return require('packer').startup({ function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    requires = {
+      'andymass/vim-matchup',
+      'JoosepAlviste/nvim-ts-context-commentstring', -- sets the TS commentstring based on the cursor location in a file.
+      'windwp/nvim-ts-autotag',
+      "windwp/nvim-autopairs",
+      -- 'RRethy/nvim-treesitter-textsubjects',
+      -- 'mfussenegger/nvim-ts-hint-textobject',
+      -- 'nvim-treesitter/nvim-treesitter-textobjects',
+      -- 'p00f/nvim-ts-rainbow',
+    },
     config = function() require('plugins.treesitter') end
   }
-  -- use {
-    -- 'nvim-treesitter/nvim-treesitter-textobjects',
-    -- after = 'nvim-treesitter'
-  -- }
-  -- use {'RRethy/nvim-treesitter-textsubjects', after = 'nvim-treesitter'}
-  use {'andymass/vim-matchup', after = 'nvim-treesitter'}
+  -- https://github.com/siduck76/NvChad/blob/main/lua/pluginList.lua
   use {
-    'windwp/nvim-autopairs', -- autopairs for neovim written by lua
+    "windwp/nvim-autopairs",
+    after =  "nvim-compe",
+    config = function()
+      require("nvim-autopairs").setup()
+      require("nvim-autopairs.completion.compe").setup(
+	{
+	  map_cr = true,
+	  map_complete = true -- insert () func completion
+	}
+      )
+    end
   }
-
-  use {'windwp/nvim-ts-autotag', after = 'nvim-treesitter'}
-
-  use {
-    'JoosepAlviste/nvim-ts-context-commentstring', -- sets the TS commentstring based on the cursor location in a file.
-    requires = 'tpope/vim-commentary'
-  }
-  -- use 'b3nj5m1n/kommentary'
+  use 'b3nj5m1n/kommentary'
 
   use {
     'hrsh7th/nvim-compe',
@@ -87,7 +95,6 @@ return require('packer').startup({ function(use)
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    requires = 'kosayoda/nvim-lightbulb',
     config = function() require('lsp.init') end
   }
   -- Appearance
@@ -104,7 +111,7 @@ return require('packer').startup({ function(use)
     'akinsho/nvim-bufferline.lua',
     config = function() require('plugins.bufferline') end
   }
-  use 'dstein64/nvim-scrollview'
+  use 'karb94/neoscroll.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use {
     'norcalli/nvim-colorizer.lua',

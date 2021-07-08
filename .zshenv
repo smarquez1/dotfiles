@@ -16,6 +16,8 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
+  # Yarn global path
+  # export PATH="~/.config/yarn/global/node_modules/.bin:$PATH"
   # https://stackoverflow.com/questions/52941426/
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
   # Needed by yadm encrypt not to crash on pinentry

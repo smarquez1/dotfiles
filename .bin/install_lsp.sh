@@ -3,9 +3,7 @@ NPM_PACKAGES=(
   diagnostic-languageserver
   emmet-ls
   typescript-language-server
-  vscode-css-languageserver-bin
-  vscode-html-languageserver-bin
-  vscode-json-languageserver
+  vscode-html-languageserver-bin # html, css, json
 )
 
 GO_PACKAGES=(
@@ -14,6 +12,7 @@ GO_PACKAGES=(
 
 echo "installing packages..."
 yarn global add ${NPM_PACKAGES[@]}
+asdf reshim nodejs
 go get ${GO_PACKAGES[@]}
 
 # Install sumneko lua

@@ -30,9 +30,9 @@ local languages = {
 }
 
 lsp_config.efm.setup({
-  root_dir = lsp_config.util.root_pattern("yarn.lock", ".git"),
+  root_dir = lsp_config.util.root_pattern("package.json", ".git"),
   init_options = { documentFormatting = true, codeAction = true },
   filetypes = vim.tbl_keys(languages),
-  settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+  settings = { languages = languages, log_level = 1, log_file = '~/efm.log' },
   on_attach = on_attach,
 })

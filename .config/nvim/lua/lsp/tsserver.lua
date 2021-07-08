@@ -1,15 +1,13 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require('lsp.capabilities')
 
 lspconfig.tsserver.setup {
-  capabilities = capabilities,
   settings = { documentFormatting = false },
+  capabilities = capabilities,
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-    on_attach(client)
+    client.resolved_capabilities.document_formatting = false,
+    on_attach
   end
 }
 

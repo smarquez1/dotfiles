@@ -21,7 +21,7 @@ fi
 # ASDF plugins
 asdf plugin update --all   
 # Global js packages
-# (cd ~/ ; yarn upgrade)
+# (cd ~/ ; yarn global upgrade ; asdf reshim nodejs)
 # Global ruby packages
 # (cd ~/ ; gem update)
 # Tmux
