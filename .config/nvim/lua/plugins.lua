@@ -3,6 +3,7 @@ vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 return require('packer').startup({ function(use)
   use { 'wbthomason/packer.nvim', opt = true }
+  use 'windwp/nvim-spectre'
 
   use {
     'tpope/vim-fugitive', -- git wrapper

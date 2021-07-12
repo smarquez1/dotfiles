@@ -58,7 +58,7 @@ map('n', '<leader>bl', ':Telescope buffers<CR>', opts)
 map('n', '<leader>gb', ':Telescope git_branches<CR>', opts)
 map('n', '<leader>ht', ':Telescope help_tags<CR>', opts)
 map('n', '<leader>S' , ':Telescope lsp_workspace_symbols<CR>', opts)
-map('n', '<leader>gs', ':Telescope git_status<CR>', opts)
+-- map('n', '<leader>gs', ':Telescope git_status<CR>', opts)
 -- List all YADM tracked files
 map('n', '<leader>ed', ":lua require('plugins.telescope').find_dotfiles()<CR>", opts)
 

@@ -17,12 +17,13 @@ local on_attach = function(client)
   map_buf('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   map_buf('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   map_buf("n", "<leader>bf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  -- map_buf('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   -- map_buf('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- map_buf('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  -- map_buf('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  -- map_buf('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   -- map_buf('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+
+  -- Define an alias to format
+  -- vim.cmd("command -buffer Formatting lua vim.lsp.buf.formatting()")
+  -- format on save
+  -- vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
 
   vim.cmd [[
     augroup lsp

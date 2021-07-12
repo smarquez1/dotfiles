@@ -4,6 +4,36 @@ local capabilities = require('lsp.capabilities')
 
 require('lsp.handlers').setup()
 
+-- kind icons
+-- symbols for autocomplete
+vim.lsp.protocol.CompletionItemKind = {
+  '  ',
+  '  ',
+  '  ',
+  '  ',
+  ' ﴲ ',
+  '[]',
+  '  ',
+  ' ﰮ ',
+  '  ',
+  ' 襁',
+  '  ',
+  '  ',
+  ' 練',
+  '  ',
+  '  ',
+  '  ',
+  '  ',
+  '  ',
+  '  ',
+  '  ',
+  ' ﲀ ',
+  ' ﳤ ',
+  '  ',
+  '  ',
+  '  ',
+}
+
 local servers = { "cssls", "html", "jsonls", "solargraph" }
 
 for _, lsp in ipairs(servers) do
