@@ -39,7 +39,10 @@ local servers = { "cssls", "html", "jsonls", "solargraph" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     capabilities = capabilities,
-    on_attach = on_attach
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 250,
+    }
   }
 end
 

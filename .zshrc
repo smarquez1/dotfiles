@@ -1,49 +1,13 @@
 ## User configuration sourced by interactive shells
 
 source ~/.secrets
+source ~/.aliases
 
 # load asdf
 . /usr/local/opt/asdf/asdf.sh
 # autostart TMUX
 # [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
-# Git
-alias git="LANG=en git"
-alias g="git"
-alias ga="git add"
-alias gaa="git add --all"
-alias gb="git branch"
-alias gc="git commit -v"
-alias gc!="git commit -v --amend"
-alias gs="git status"
-alias gp="git pull"
-alias gm="git merge"
-alias gp="git push"
-alias gr="git rebase"
-alias gra="git rebase --abort"
-alias grc="git rebase --continue"
-alias glog="git log --oneline --decorate --graph"
-alias gfp="git fetch --prune"
-# Neovim replaces Vi/Vim
-alias vi=nvim
-alias vim=nvim
-alias v=nvim
-# Bundler aliases
-alias b="bundle"
-alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
-# Rails aliases
-alias rs="be rails s"
-alias rc="be rails c"
-alias rdm="be rake db:migrate"
-alias rdr="br rake db:rollback"
-# Wget resume by defaut
-alias wget='wget -c'
-# VSCode
-alias vscode="/usr/local/bin/code"
-# Code directory
-alias code="cd ~/code"
 # Open
 [ "$SYSTEM_TYPE" = "Linux" ] && alias open='xdg-open'
 
