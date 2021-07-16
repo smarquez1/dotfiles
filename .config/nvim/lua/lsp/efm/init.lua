@@ -21,8 +21,8 @@ local languages = {
   javascriptreact = { eslint, prettier },
   typescript = { eslint, prettier },
   typescriptreact = { eslint, prettier },
-  css = { prettier },
-  scss = { prettier },
+  --[[ css = { prettier },
+  scss = { prettier }, ]]
   -- yaml = { prettier },
   -- markdown = { prettier },
   -- graphql = { prettier },
@@ -33,6 +33,9 @@ lsp_config.efm.setup({
   root_dir = lsp_config.util.root_pattern("package.json", ".git"),
   init_options = { documentFormatting = true, codeAction = true },
   filetypes = vim.tbl_keys(languages),
+  flags = {
+    debounce_text_changes = 500,
+  },
   settings = { languages = languages, log_level = 1, log_file = '~/efm.log' },
   on_attach = on_attach,
 })

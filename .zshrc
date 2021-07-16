@@ -1,10 +1,8 @@
 ## User configuration sourced by interactive shells
 
-source ~/.secrets
+source ~/.privaterc
 source ~/.aliases
 
-# load asdf
-. /usr/local/opt/asdf/asdf.sh
 # autostart TMUX
 # [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 

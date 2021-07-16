@@ -3,7 +3,6 @@ vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 return require('packer').startup({ function(use)
   use { 'wbthomason/packer.nvim', opt = true }
-  use 'windwp/nvim-spectre'
 
   use {
     'tpope/vim-fugitive', -- git wrapper
@@ -34,26 +33,11 @@ return require('packer').startup({ function(use)
       'JoosepAlviste/nvim-ts-context-commentstring', -- sets the TS commentstring based on the cursor location in a file.
       'windwp/nvim-ts-autotag',
       "windwp/nvim-autopairs",
-      -- 'RRethy/nvim-treesitter-textsubjects',
-      -- 'mfussenegger/nvim-ts-hint-textobject',
-      -- 'nvim-treesitter/nvim-treesitter-textobjects',
-      -- 'p00f/nvim-ts-rainbow',
+      'RRethy/nvim-treesitter-textsubjects',
+      'mfussenegger/nvim-ts-hint-textobject',
+      'nvim-treesitter/nvim-treesitter-textobjects',
     },
     config = function() require('plugins.treesitter') end
-  }
-  -- https://github.com/siduck76/NvChad/blob/main/lua/pluginList.lua
-  use {
-    "windwp/nvim-autopairs",
-    after =  "nvim-compe",
-    config = function()
-      require("nvim-autopairs").setup()
-      require("nvim-autopairs.completion.compe").setup(
-	{
-	  map_cr = true,
-	  map_complete = true -- insert () func completion
-	}
-      )
-    end
   }
   use 'b3nj5m1n/kommentary'
 

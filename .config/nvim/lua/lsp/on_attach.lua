@@ -27,8 +27,8 @@ local on_attach = function(client)
 
   vim.cmd [[
     augroup lsp
-      au CursorHoldI * silent! lua vim.lsp.buf.signature_help()
-      au CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      " au CursorHoldI * silent! lua vim.lsp.buf.signature_help({ border = "single", focusable = false })
+      " au CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single", focusable = false })
     augroup END
   ]]

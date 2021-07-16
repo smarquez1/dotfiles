@@ -1,6 +1,6 @@
 [user]
   email = marquez.sergio.d@gmail.com
-  name = Sergio D. Márquez
+  name = Sergio D. Marquez
 [color]
   diff = auto
   status = auto
@@ -26,6 +26,8 @@
   summary = true
   tool = vimdiff
   ; ff = only
+[mergetool]
+  keepBackup = false
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED  -c '$wincmd w' -c 'wincmd J'
 [rebase]
@@ -37,7 +39,6 @@
   default = tracking
 [rebase]
   autoSquash = true
-  ; autoStash = true
 [blame]
   date = short
 [alias]

@@ -1,4 +1,3 @@
--- Disable some unused built-in Neovim plugins
 -- Completion does not select anything automatically
 vim.o.completeopt = 'menuone,noselect'
 

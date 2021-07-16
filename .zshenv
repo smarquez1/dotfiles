@@ -9,6 +9,9 @@ export VISUAL=$EDITOR
 export MANPAGER='nvim +Man!'
 # Bat configuration
 export BAT_THEME="TwoDark"
+# Do not show warnings, deprecation messages
+# export RUBYOPT="-W0"
+
 
 # Macos specific
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
@@ -16,8 +19,11 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
   # Brew path
   export PATH="/usr/local/sbin:$PATH"
+  # load asdf
+  source /usr/local/opt/asdf/asdf.sh
   # Yarn global path
   # export PATH="~/.config/yarn/global/node_modules/.bin:$PATH"
+  export PATH="$PATH:$(yarn global bin)"
   # https://stackoverflow.com/questions/52941426/
   export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
   # Needed by yadm encrypt not to crash on pinentry

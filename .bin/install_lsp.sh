@@ -2,6 +2,7 @@ NPM_PACKAGES=(
   bash-language-server
   diagnostic-languageserver
   emmet-ls
+  stylelint-lsp
   typescript-language-server
   vscode-html-languageserver-bin # html, css, json
 )

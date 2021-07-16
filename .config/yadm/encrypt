@@ -1,5 +1,5 @@
+.privaterc
 .aws/*
 .bundle/config
 .okta/profiles
-.secrets
 .ssh/*

@@ -12,7 +12,10 @@ if not lspconfig.emmet_ls then
         return vim.loop.cwd()
       end;
       settings = {};
-    };
+    },
+    flags = {
+      debounce_text_changes = 500,
+    }
   }
 end
 

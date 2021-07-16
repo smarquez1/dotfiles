@@ -54,7 +54,7 @@ local map = require('utils').map
 local opts = { noremap = true, silent = true }
 
 map('n', '<leader>f' , ':Telescope find_files<CR>', opts)
-map('n', '<leader>/' , ':Telescope live_grep<CR>', opts)
+-- map('n', '<leader>/' , ':Telescope live_grep<CR>', opts)
 map('n', '<leader>bl', ':Telescope buffers<CR>', opts)
 map('n', '<leader>gb', ':Telescope git_branches<CR>', opts)
 map('n', '<leader>ht', ':Telescope help_tags<CR>', opts)
