@@ -1,6 +1,23 @@
+local function lsp_progress()
+  local messages = vim.lsp.util.get_progress_messages()
+  if #messages == 0 then
+    return
+  end
+  local status = {}
+  for _, msg in pairs(messages) do
+    table.insert(status, (msg.percentage or 0) .. "%% " .. (msg.title or ""))
+  end
+  local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+  local ms = vim.loop.hrtime() / 1000000
+  local frame = math.floor(ms / 120) % #spinners
+  return table.concat(status, " | ") .. " " .. spinners[frame + 1]
+end
+
+vim.cmd([[autocmd User LspProgressUpdate let &ro = &ro]])
+-- vim.cmd([[au User LspProgressUpdate redrawstatus]])
+
 require('lualine').setup {
   options = {
-    -- theme = 'onedark',
     theme = 'tokyonight',
     section_separators = {'',''},
     component_separators = {'|', '|'},
@@ -13,11 +30,10 @@ require('lualine').setup {
       {
 	'diagnostics',
 	sources = { 'nvim_lsp' },
-	symbols = { error = ' ', warn = ' ', info = ' ' }
       },
-      { 'filename', file_status = true },
+      { 'filename' },
     },
-    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_x = { 'filetype', lsp_progress },
     lualine_y = { },
     lualine_z = { 'location' },
   },
@@ -26,5 +42,5 @@ require('lualine').setup {
     lualine_c = { 'filename' },
     lualine_x = { 'location' },
   },
-  extensions = { 'fzf' }
+  extensions = { 'nvim-tree' }
 }

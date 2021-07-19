@@ -11,14 +11,10 @@ function M.buf_option(...)
   vim.api.nvim_buf_set_option(bufnr, ...)
 end
 
--- mappings wrapper, extracted from
--- https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua#L8-L12
-M.map = function(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+-- mappings wrapper
+M.map = function(mode, key, fn, opts)
+  options = opts or { noremap = true }
+  vim.api.nvim_set_keymap(mode, key, fn, options)
 end
 
 -- For autocommands, extracted from

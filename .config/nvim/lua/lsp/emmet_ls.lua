@@ -1,6 +1,5 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
-local capabilities = require('lsp.capabilities')
 
 local configs = require'lspconfig/configs'
 if not lspconfig.emmet_ls then
@@ -14,9 +13,9 @@ if not lspconfig.emmet_ls then
       settings = {};
     },
     flags = {
-      debounce_text_changes = 500,
+      debounce_text_changes = 150,
     }
   }
 end
 
-lspconfig.emmet_ls.setup{ capabilities = capabilities; }
+lspconfig.emmet_ls.setup {}

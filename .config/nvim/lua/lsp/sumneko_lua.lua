@@ -1,12 +1,11 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
-local capabilities = require('lsp.capabilities')
 
 lspconfig.sumneko_lua.setup {
   cmd = { "lua-langserver" },
-  capabilities = capabilities,
+  -- capabilities = capabilities,
   on_attach = on_attach,
-  settings = {
+  --[[ settings = {
     Lua = {
       runtime = {
         version = 'LuaJIT',
@@ -22,5 +21,5 @@ lspconfig.sumneko_lua.setup {
       },
       telemetry = { enable = false },
     },
-  }
+  } ]]
 }

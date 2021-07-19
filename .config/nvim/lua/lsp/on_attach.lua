@@ -25,10 +25,10 @@ local on_attach = function(client)
   -- format on save
   -- vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
 
-  vim.cmd [[
+  --[[ vim.cmd [[
     augroup lsp
-      " au CursorHoldI * silent! lua vim.lsp.buf.signature_help({ border = "single", focusable = false })
-      " au CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      au CursorHoldI * silent! lua vim.lsp.buf.signature_help({ border = "single", focusable = false })
+      au CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single", focusable = false })
     augroup END
   ]]

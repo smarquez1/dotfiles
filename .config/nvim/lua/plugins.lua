@@ -2,7 +2,11 @@ vim.cmd 'packadd packer.nvim'
 vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 return require('packer').startup({ function(use)
+  -- Dependencies
   use { 'wbthomason/packer.nvim', opt = true }
+  use { 'nvim-lua/plenary.nvim' , branch = 'async_jobs_v2' }
+
+  use 'sindrets/diffview.nvim'
 
   use {
     'tpope/vim-fugitive', -- git wrapper
@@ -22,7 +26,6 @@ return require('packer').startup({ function(use)
   use 'ggandor/lightspeed.nvim'
   use {
     'lewis6991/gitsigns.nvim', -- display git information in the gutter
-    requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('gitsigns').setup() end
   }
   use {
@@ -53,16 +56,15 @@ return require('packer').startup({ function(use)
   use 'folke/which-key.nvim'
   use {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
     config = function() require("todo-comments").setup() end
   }
 
   -- Navigation
   use {
     'nvim-lua/telescope.nvim',
+    branch = 'async_v2',
     requires = {
       'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'nvim-telescope/telescope-github.nvim',
       'sudormrfbin/cheatsheet.nvim',
@@ -78,6 +80,7 @@ return require('packer').startup({ function(use)
     config = function() require('plugins.ctrlsf') end
   }
   -- LSP
+  use 'jose-elias-alvarez/null-ls.nvim'
   use {
     'neovim/nvim-lspconfig',
     config = function() require('lsp.init') end

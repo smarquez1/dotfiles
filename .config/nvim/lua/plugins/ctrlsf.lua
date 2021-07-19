@@ -1,4 +1,5 @@
 local map = require('utils').map
 
-map('n', '<leader>/', '<Plug>CtrlSF')
--- map('v', '<leader>/', '<Plug>CtrlSFVwordExec')
+vim.cmd("nmap <leader>/ <Plug>CtrlSFPrompt")
+-- map('n', '<leader>/', '<Plug>CtrlSFPrompt')
+-- map('v', '<leader>/', '<Psdlug>CtrlSFVwordExec')
